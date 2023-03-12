@@ -31,7 +31,7 @@ banner.appendChild(lastImageDiv);
 lastImageDiv.style.backgroundImage = `url(image/001.jpg)`;
 
 banner.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
-firstImageDiv.style.backgroundImage = `url(image/00${imageDiv.length}.jpg)`
+firstImageDiv.style.backgroundImage = `url(/images/00${imageDiv.length}.jpg)`
 
 banner.style.transform = `translate(-1200px)`;
 
