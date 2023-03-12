@@ -1,0 +1,101 @@
+body{
+    letter-spacing: -0.05em;
+    margin: 0;
+}
+
+/* 서브네비게이션 */
+.subnav{
+    border-bottom: 1px solid #d9d9d9;
+}
+
+ul, ol, li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+}
+
+.subnav a{
+    display: inline-block;
+    line-height: 49px;
+}
+
+.subnav_wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subnav_list {
+    padding: 0;
+    margin: 0;
+}
+
+.disply_bundle{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.first_letter{
+    font-size: 15px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.second_letter{
+    font-size: 14px;
+    font-weight: 400;
+    color: #808080;
+}
+
+.except_home_letter{
+    margin-left: 15px;
+}
+
+.subnav li + li {
+    margin-left: 32px;
+}
+
+/* 네비게이션 항목 설정 */
+.select{
+    color: #009a3e;
+}
+
+.list_profile_items{
+    display: none;
+}
+
+.list_my_setting_items{
+    display: none;
+}
+
+/*컨텐츠*/
+.all_wrapper{
+    margin: 0 auto;
+}
+
+.contents_container{
+    display: flex;
+}
+
+.dish_image_wrap{
+    width: 285px;
+    height: 231px;
+    margin-left: 11%;
+    margin-top: 3%;
+    text-align: center;
+}
+
+.dish_image{
+    width: 285px;
+    height: 190px;
+    border-radius: 4px;
+}
+
+.dish{
+    margin-left: 1.5%;
+}
