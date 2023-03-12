@@ -1,0 +1,853 @@
+/* css for list-by-region */
+@import url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+body {
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+body, div, dl, dt, dd, th, td, ul, ol, li,
+h1, h2, h3, h4, h5, h6, form, fieldset, p,
+blockquote, button, input, textarea {
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+html, body, #wrap {
+    min-height: 100vh;
+}
+
+section, article, header, footer, nav, aside, hgroup, figure, figcaption {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="radio" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+}
+
+img, fieldset, button, input {
+    border: 0;
+    vertical-align: middle;
+}
+
+button {
+    vertical-align: top;
+    background: transparent;
+    font-family: 'Spoqa Han Sans', sans-serif;
+}
+
+input, select, button, textarea {
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+    letter-spacing: inherit;
+    outline: none;
+}
+
+input, select, textarea {
+    border: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+label, button {
+    cursor: pointer;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------*/
+
+
+#list-by-region-container {
+    position: relative;
+    min-width: 320px;
+    overflow: hidden;
+    letter-spacing: -0.05em;
+}
+
+#list-by-region-container {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.real-container{
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.sub-title{
+    line-height: 63px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.sub-title.type2{
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    font-size: 28px;
+    margin-top: 13px;
+}
+
+.region-select-container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.map-seoul-container{
+    position: relative;
+    float: left;
+    margin-top: 97px;
+    width: 50%;
+}
+
+.map-seoul, .map-seoul .region-name .img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.map-seoul{
+    position: relative;
+    background-image: url(image/seoul-map.jpg);
+    margin: 0;
+    width: 88.82%;
+    padding-bottom: calc(78.82% * 1.3843);
+}
+
+.map-seoul .region-name input {
+    display: none;
+}
+
+.map-seoul .region-name label, .map-seoul .region-name .img {
+    position: absolute;
+}
+
+.map-seoul .region-name label {
+    z-index: 10;
+    padding: 0 6px;
+    line-height: 26px;
+    font-size: 15px;
+    color: #fff;
+    white-space: nowrap;
+    background-color: #808080;
+    border-radius: 13px;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transition: background-color .2s;
+}
+
+/* 잊지말고 label 위치 바꾸기 */
+.map-seoul .region-name.gangnam label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.gangdong label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.gangbuk label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.gangseo label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.gwanak label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.gwangjin label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.gangnam label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.guro label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.geumchun label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.nowon label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.dobong label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.dongdaemun label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.dongjak label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.mapo label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.seodaemun label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.seocho label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.sungdong label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.sungbuk label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.songpa label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.youngdeungpo label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.yongsan label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.eunpyung label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.jongno label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.junggu label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name.junglang label {
+    top: 17.88%;
+    left: 38.31%;
+}
+
+.map-seoul .region-name input:checked + label {
+    background-color: #009a3e;
+}
+
+.map-seoul .region-name .img {
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* 잊지말고 클릭했을 때 이미지 바꾸기 백단에서 파라미터로 넘기는거 같음*/
+.map-seoul .region-name.gangnam input:checked ~ .img {
+    background-image: url(image/seoul-map-1.jpg);
+}
+.map-seoul .region-name.gangdong input:checked ~ .img {
+    background-image: url(image/seoul-map-2.jpg);
+}
+.map-seoul .region-name.gangbuk input:checked ~ .img {
+    background-image: url(image/seoul-map-3.jpg);
+}
+.map-seoul .region-name.gangseo input:checked ~ .img {
+    background-image: url(image/seoul-map-4.jpg);
+}
+.map-seoul .region-name.gwanak input:checked ~ .img {
+    background-image: url(image/seoul-map-5.jpg);
+}
+.map-seoul .region-name.gwangjin input:checked ~ .img {
+    background-image: url(image/seoul-map-6.jpg);
+}
+.map-seoul .region-name.guro input:checked ~ .img {
+    background-image: url(image/seoul-map-7.jpg);
+}
+.map-seoul .region-name.geumchun input:checked ~ .img {
+    background-image: url(image/seoul-map-8.jpg);
+}
+.map-seoul .region-name.nowon input:checked ~ .img {
+    background-image: url(image/seoul-map-9.jpg);
+}
+.map-seoul .region-name.dobong input:checked ~ .img {
+    background-image: url(image/seoul-map-10.jpg);
+}
+.map-seoul .region-name.dongdaemun input:checked ~ .img {
+    background-image: url(image/seoul-map-11.jpg);
+}
+.map-seoul .region-name.dongjak input:checked ~ .img {
+    background-image: url(image/seoul-map-12.jpg);
+}
+.map-seoul .region-name.mapo input:checked ~ .img {
+    background-image: url(image/seoul-map-13.jpg);
+}
+.map-seoul .region-name.seodaemun input:checked ~ .img {
+    background-image: url(image/seoul-map-14.jpg);
+}
+.map-seoul .region-name.seocho input:checked ~ .img {
+    background-image: url(image/seoul-map-15.jpg);
+}
+.map-seoul .region-name.sungdong input:checked ~ .img {
+    background-image: url(image/seoul-map-16.jpg);
+}
+.map-seoul .region-name.sungbuk input:checked ~ .img {
+    background-image: url(image/seoul-map-17.jpg);
+}
+.map-seoul .region-name.songpa input:checked ~ .img {
+    background-image: url(image/seoul-map-18.jpg);
+}
+.map-seoul .region-name.yangcheon input:checked ~ .img {
+    background-image: url(image/seoul-map-19.jpg);
+}
+.map-seoul .region-name.youngdeungpo input:checked ~ .img {
+    background-image: url(image/seoul-map-20.jpg);
+}
+.map-seoul .region-name.yongsan input:checked ~ .img {
+    background-image: url(image/seoul-map-21.jpg);
+}
+.map-seoul .region-name.eunpyung input:checked ~ .img {
+    background-image: url(image/seoul-map-22.jpg);
+}
+.map-seoul .region-name.jongno input:checked ~ .img {
+    background-image: url(image/seoul-map-23.jpg);
+}
+.map-seoul .region-name.junggu input:checked ~ .img {
+    background-image: url(image/seoul-map-24.jpg);
+}
+.map-seoul .region-name.junglang input:checked ~ .img {
+    background-image: url(image/seoul-map-25.jpg);
+}
+
+.map-select-container {
+    float: right;
+    margin-top: 13px;
+    width: 50%;
+}
+
+.best-list {
+    border-top: 1px solid #d9d9d9;
+    margin-top: 10px
+}
+
+.best-list li {
+    border-bottom: 1px solid #d9d9d9;
+    position: relative;
+}
+
+.best-list li > a {
+    position: relative;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-image: url(image/arrow_r.png);
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: 7px auto;
+}
+
+.best-list.type2 li > a {
+    background: none;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* background-position-x: calc(100% - 21px); */
+}
+
+.best-list .cont {
+    position: relative;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-image: url(image/arrow_r.png);
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: 7px auto;
+    padding-right: 180px;
+    padding-left: 100px;
+    background-position-x: calc(100% - 30px);
+}
+
+.best-list .name {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 22px;
+    line-height: 26px;
+    font-size: 16px;
+    color: #4d4d4d;
+    background: url(image/place.png) right center no-repeat;
+    background-size: 12px auto;
+    background: none;
+    position: relative;
+    padding-right: 50px;
+    max-width: calc(100% - 50px);
+}
+
+.best-list .tag {
+    line-height: 24px;
+    font-size: 14px;
+    color: #808080;
+}
+
+.best-list .name, .best-list .tag {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.best-list .state {
+    position: absolute;
+    top: calc(50% - 7.5px);
+    line-height: 15px;
+    font-size: 0;
+    left: calc(100% - 161px);
+}
+
+.thumbs {
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: calc(50% - 25.5px);
+    width: 49px;
+    height: 49px;
+    border: 1px solid #d9d9d9;
+    border-radius: 100%;
+    left: 30px;
+}
+
+.map_link {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url(image/place_link.png) no-repeat 0 center/auto 16px;
+    z-index: 5;
+    padding-left: 16px;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.best-list .state span {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #b3b3b3;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+.best-list .state .like {
+    width: 35px;
+    background-image: url(image/state_like.png);
+}
+
+.best-list .state .scrap {
+    width: 35px;
+    background-image: url(image/state_scrap.png);
+}
+
+.search-area{
+    margin-top: 30px;
+}
+
+.wrp_frm{
+    font-size: 0;
+    width: calc(100% + 10px);
+}
+
+.search-area .wrp_frm > *,
+.search-area .wrp_frm .region-select-container > * {
+    float: left;
+    margin-right: 10px;
+}
+
+.search-area .gugun {
+    margin-right: 0 !important;
+    width: calc((100% - 40px)*0.4 + 20px);
+}
+
+.custom_select {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    padding-right: 30px;
+    text-align: left;
+    text-indent: 19px;
+    font-size: 15px;
+    color: #808080;
+    background: #fff url(image/arrow_down.png) calc(100% - 19px) center no-repeat;
+    background-size: 10px auto;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.custom_select:not(.on) {
+    color: #b3b3b3;
+}
+
+.search-area .w1 {
+    width: calc(50% - 10px);
+}
+
+select.custom_select {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*js 넣고 스타일 다시 바꾸기*/
+select{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-right: 30px;
+    line-height: 48px;
+    text-indent: 19px;
+    color: #b3b3b3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    outline: none;
+    color: #808080;
+}
+/*js 넣고 스타일 다시 바꾸기*/
+option {
+    /* display: none; */
+    z-index: 0;
+    position: absolute;
+    top: 100%;
+    right: -1px;
+    left: -1px;
+    max-height: 230px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+/*************************************************************/
+
+.region-select-container.w4{
+    width: calc((100% - 10px)*0.588);
+    margin: 0;
+}
+
+.search-box {
+    height: 50px;
+    font-size: 15px;
+    color: #808080;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-indent: 19px;
+}
+
+.search-area .region-select-container.w4 input {
+    width: 100%;
+}
+
+.wrp_buttons{
+    margin-top: 30px;
+    font-size: 0;
+}
+
+.btn {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+}
+
+.btn.green {
+    color: #fff;
+    background-color: #009a3e;
+    width: calc(100% - 88px);
+}
+
+.btn + .btn {
+    margin-left: 8px;
+}
+
+.btn.lgray {
+    color: #4d4d4d;
+    background-color: #d9d9d9;
+    width: 80px;
+}
+
+.gotowrite {
+    margin-top: 20px;
+    position: relative;
+    display: table;
+    width: 100%;
+    padding: 0 130px 0 40px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #222624;
+    background-color: #edf8f1;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.gotowrite .cell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 74px;
+}
+
+.gotowrite strong{
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 40px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #009a3e;
+}
+
+.search-result-area{
+    margin-top: 40px;
+}
+
+.count-result {
+    color: #009a3e;
+}
+
+.result-list{
+    margin-top: -10px;
+    width: calc(100% + 20px);
+}
+
+.result-list li {
+    position: relative;
+    float: left;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: calc(50% - 20px);
+}
+
+.result-list .cont {
+    position: relative;
+    display: block;
+    padding: 30px 39px 39px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: border-color .2s;
+}
+
+.result-list .name, .result-list .add, .result-list .tag {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result-list .name {
+    line-height: 39px;
+    font-size: 22px;
+    color: #222624;
+}
+
+.result-list .add {
+    position: relative;
+    padding-right: 30px;
+    padding-left: 20px;
+    line-height: 26px;
+    font-size: 16px;
+    color: #4d4d4d;
+    background: url(image/place.png) left center no-repeat;
+    background-size: auto 16px;
+}
+
+.result-list .photo {
+    margin-top: 20px;
+}
+
+.result-list .photo .thumbs {
+    float: left;
+    width: calc((100% - 20px)/3);
+    padding-bottom: calc((100% - 20px)/3*0.6667);
+    border-radius: 4px;
+}
+
+.result-list .tag {
+    margin: 22px 0;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #808080;
+}
+
+.fl {
+    float: left;
+}
+.result-list .cont .map_link {
+    display: block;
+    background: url(image/place_link.png) no-repeat 0 center/auto 20px;
+    z-index: 5;
+    padding-left: 24px;
+    font-size: 14px;
+    color: #b3b3b3;
+    height: 20px;
+    line-height: 17px;
+}
+
+.result-list .state {
+    text-align: right;
+    line-height: 15px;
+    font-size: 0;
+}
+
+.result-list .state span {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #b3b3b3;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+.result-list .state .like {
+    background-image: url(image/state_like.png);
+}
+
+.result-list .state span + span {
+    margin-left: 15px;
+}
+
+.result-list .state .scrap {
+    background-image: url(image/state_scrap.png);
+}
+
+.result-list .confrm {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    padding: 0 20px;
+    line-height: 45px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #009a3e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
