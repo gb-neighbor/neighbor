@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>후기관리</title>
+<link rel="shortcut icon" type="image/x-icon" href="./images/logo-favicon.ico" />
+<link rel="stylesheet" href="css/manage-reply.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body> 
+    <div class="wrap">
+        <div id="menu-side" class="container">
+            <div id="top-box" class="menu-box">
+                <img id="knowhow-logo" alt="know-how" src=/images/know-how-title.png">
+            </div>
+            <div id="middle-box" class="menu-box">
+                <div id="wrap-middle-box">
+                    <div id="middle-box-contents">
+                        <div class="side-top-margin"></div>
+                        <span class="mouseOnEffect">
+                            <div id="middle-box-site-shortcut-bar" class="side-bar">
+                                <div class="icon-gap">
+                                    <img class="side-icons" alt="home" src="images/home.png">
+                                </div>
+                                사이트 바로가기
+                            </div> 
+                        </span>
+
+                        <span class="mouseOnEffect">
+                            <div id="middle-box-dashBoard-bar" class="side-bar">
+                                <div class="icon-gap">
+                                    <img class="side-icons" alt="dash-board" src="./images/dashBoard-icon.png">
+                                </div>
+                                대시보드
+                            </div>
+                        </span>
+                    
+                        <button type="button" class="no-collapsible">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="user" src="./images/user-icon.png">
+                            </div>
+                            회원관리
+                        </button>
+
+                        <button type="button" class="collapsible" onclick="collapse(this);">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
+                            </div>
+                            게시판 관리
+                        </button>
+                        <div class="content">
+                            <p>게시글 목록</p>
+                            <p>후기 목록</p>
+                        </div>
+
+                        <button type="button" class="no-collapsible">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
+                            </div>
+                            문의 게시판 관리
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+               
+        <div id="right-side" class="container">
+            <div class="right-header">
+                <div class="letter-space">
+                후기 관리 
+                </div>
+                <h1 id="clock" style="color:black;">clock</h1>
+                <img  class="admin-profile" src="https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png"> 
+                <p class="admin-name">관리자</p>
+                <p class="name-logout-space">ㅣ</p>
+                <button class="admin-logout" type="submit" value="">LOGOUT</button>
+            </div>
+            <div class="right-body">
+                <div class="user-list-letter">
+                    <p>후기 목록</p>
+                </div>
+
+                <div class="user-list-contents">
+                    <div class="member-input-wrap">
+                        <div class="member-delete-button-wrap">
+                            <input class="member-delete-button" type="submit" value="후기 삭제">
+                        </div>
+
+                        <div class="member-search-wrap">
+                            <div class="search-border">
+                                <img id="search-icon" alt="search" src="./images/search-icon.png">
+                                <input class="member-search" type="text" placeholder="후기 검색">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="total-mentor">
+                        <p>후기</p>
+                        <p class="total-mentor-num">15</p>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="item-list-header">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check-all" class="all" value="all">
+                            </div>
+                            <div class="reply-num">
+                                후기 번호
+                            </div>
+                            <div class="board-num">
+                                게시글 번호
+                            </div>
+                            <div class="region">
+                                지역
+                            </div>
+                            <div class="writer-nick">
+                                작성자
+                            </div>
+                            <div class="reply-content">
+                                후기 내용
+                            </div>
+                            <div class="reply-day">
+                                작성일
+                            </div>
+                        </div>
+
+                        <!-- 여기부터 내용 -->
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                오징어볶음 맛있어요
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                        </div>
+
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                오징어볶음 맛있어요
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                        </div>
+
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                오징어볶음 맛있어요
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                        </div>
+
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                오징어볶음 맛있어요
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                        </div>
+
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                오징어볶음 맛있어요
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                        </div>
+
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                오징어볶음 맛있어요
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                            
+                            </div>
+                        </div>
+
+                        <div class="page-button-box">
+                            <input class="page-button" type="submit" value="1">
+                            <input class="page-button2" type="submit" value="2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="js/admin.js"></script>
+</html>
