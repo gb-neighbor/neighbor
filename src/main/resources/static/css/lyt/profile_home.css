@@ -136,14 +136,14 @@ a{
 }
 
 .collapsible:after {
-    content: url(./images/arrow22.png);
+    content: url(../../../templates/lyt/images/arrow22.png);
     color: white;
     font-weight: bold;
     float: right;
     margin-left: auto;
 }
 .active:after {
-    content: url(./images/arrow21.png);
+    content: url(../../../templates/lyt/images/arrow21.png);
 }
 
 .content_items{
@@ -159,76 +159,7 @@ a{
 }
 
 /*컨텐츠*/
-.contents_top{
-    position: relative;
-    padding-top: 20px;
-}
 
-.benefit{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    right: 27%;
-    border: hidden;
-    cursor: pointer;
-    font-size: 15px;
-    color: #B3B3B3;
-}
-
-.benefit:hover{
-    text-decoration: underline;
-}
-
-.grade{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    right: 15%;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    color: #B3B3B3;
-}
-
-.grade:hover{
-    text-decoration: underline;
-}
-
-.favorite{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    right: 3%;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    color: #B3B3B3;
-}
-
-.favorite:hover{
-    text-decoration: underline;
-}
-
-.arrow_right{
-    padding-left: 5%;
-    width: 10%;
-    height: 10%;
-}
-
-.contents_middle{
-    display: flex;
-    align-items: center;
-}
-
-.profile{
-    width: 39%;
-    padding: 47px 0 45px 7.69%;
-}
-
-.profile_wrap{
-    height: 341.6px;
-    background-color: #f2f2f2;
-}
 
 .profile_image_section{
     position: relative;
@@ -264,27 +195,17 @@ a{
 }
 
 .nick_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 .nick_name_letter{
     text-align: center;
     color: #4d4d4d;
     margin: 0;
-}
-
-.introduce{
-    display: flex;
-    margin-top: 8px;
-    justify-items: center;
-    justify-content: center;
-    height: 40px;
-}
-
-.introduce_letter{
-    margin: 0;
-    font-size: 14px;
-    color: #808080;
 }
 
 .introduce_letter_write{
@@ -294,6 +215,7 @@ a{
     padding: 0;
     border: none;
     cursor: pointer;
+    background-color: #ffffff;
 }
 
 .pen_image{
@@ -302,202 +224,38 @@ a{
     height: 12px;
 }
 
-.sns_list{
-    display: flex;
-    justify-items: center;
-    justify-content: center;
-}
-
-.write_insta_btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    background-color: #ffffff;
-    border: 1px solid #d9d9d9;
-    border-radius: 100%;
-    width: 100%;
-    height: 100%;
-}
-
-.write_youtube_btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    background-color: #ffffff;
-    border: 1px solid #d9d9d9;
-    border-radius: 100%;
-    width: 100%;
-    height: 100%;
-}
-
-.write_blog_btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    background-color: #ffffff;
-    border: 1px solid #d9d9d9;
-    border-radius: 100%;
-    width: 100%;
-    height: 100%;
-}
-
-.sns_list_insta{
-    width: 30px;
-    height: 30px;
-}
-
-.sns_list_youtube{
-    margin-left: 5px;
-    width: 30px;
-    height: 30px;
-}
-
-.sns_list_blog{
-    margin-left: 5px;
-    width: 30px;
-    height: 30px;
-}
-
-.insta_image{
-    width: 20px;
-    height: 20px;
-}
-
-.youtube_image{
-    width: 20px;
-    height: 20px;
-}
-
-.blog_image{
-    width: 20px;
-    height: 20px;
-}
-
-.my_info{
-    display: flex;
-    width: 58%;
-    margin-right: 9%;
-}
-
-.post{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 33.3%;
-}
-
-.post_count{
-    display: inline-block;
-    color: #222624;
-    font-size: 21px;
-    margin-bottom: 9px;
-}
-
-.post_count:hover{
-    text-decoration: underline;
-}
-
-.post_letter{
-    color: #808080;
-    font-size: 14px;
-}
-
-.follow{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 33.3%;
-}
-
-.follow_count{
-    display: inline-block;
-    color: #222624;
-    font-size: 21px;
-    margin-bottom: 9px;
-}
-
-.follow_count:hover{
-    text-decoration: underline;
-}
-
-.follow_letter{
-    color: #808080;
-    font-size: 14px;
-}
-
-.following{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 33.3%;
-}
-
-.following_count{
-    display: inline-block;
-    color: #222624;
-    font-size: 21px;
-    margin-bottom: 9px;
-}
-
-.following_count:hover{
-    text-decoration: underline;
-}
-
-.following_letter{
-    color: #808080;
-    font-size: 14px;
-}
-
 .my_state{
     display: flex;
     align-items: center;
-    justify-content: center;
-    line-height: 105px;
+    justify-content:space-around;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    border-top: 1px solid #d9d9d9;
 }
 
 .alarm{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 33.3%;
+    width: 50%;
+    border-right: 1px solid #d9d9d9;
 }
 
-.like{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 33.3%;
+.alarm_message{
+    margin-left: 8%;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
 }
 
-.scrap{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 33.3%;
-}
 
 .alarm_image{
     width: 26px;
     height: 26px;
-    margin-right: 22px;
-}
-
-.like_image{
-    width: 26px;
-    height: 26px;
-    margin-right: 22px;
+    margin-right: 12px;
 }
 
 .scrap_image{
     width: 26px;
     height: 26px;
-    margin-right: 22px;
+    margin-right: 12px;
 }
 
 .alarm_link{
@@ -506,22 +264,26 @@ a{
     justify-content: center;
     font-size: 16px;
     color: #808080;
+    height: 50px;
+}
+
+.alarm_count{
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .alarm_link:hover{
     text-decoration: underline;
 }
 
-.like_link{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: #808080;
+.scrap{
+    width: 50%;
 }
 
-.like_link:hover{
-    text-decoration: underline;
+.scrap_message{
+    margin: 0;
+    text-align: center;
+    margin-left: 8%;
 }
 
 .scrap_link{
@@ -530,6 +292,12 @@ a{
     justify-content: center;
     font-size: 16px;
     color: #808080;
+    height: 50px;
+}
+
+.scrap_count{
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .scrap_link:hover{
@@ -543,13 +311,8 @@ a{
 }
 
 .third_content_image_section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
-    height: 465.6px;
     margin-top: 10px;
 }
 
@@ -628,4 +391,99 @@ a{
 .forth_content_letter{
     font-size: 18px;
     color: #B3B3B3;
+}
+
+/* 지욱님팀꺼 */
+.update-user-info{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    width: 65%;
+}
+
+.update-user-info > div {
+    margin: 0px 0px 16px;
+}
+
+.update-user-text {
+    display: block;
+    margin-bottom: 6px;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+.update-user {
+    position: relative;
+}
+
+.update-user-value {
+    width: 100%;
+    border: 1px solid rgb(238, 238, 238);
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 14px 14px 12px;
+    background: rgb(250, 250, 250);
+    color: rgb(17, 17, 17);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+.update-user-value:focus{
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+}
+
+.update-user-nickname-value:focus {
+    border-color: rgb(0, 117, 239);
+    background: rgb(255, 255, 255);
+}
+
+.update-user-wrap {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.update-user-wrap > div:first-child {
+    width: 100%;
+    margin: 0px 8px 0px 0px;
+}
+
+.update-user-change, .update-user-save {
+    display: flex;
+    align-items: flex-end;
+}
+
+.change-button, .save-button, .go-change-button {
+    width: 87px;
+    height: 50px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.change-button:hover, .save-button:hover, .go-change-button:hover {
+    background: rgb(250, 250, 250);
 }

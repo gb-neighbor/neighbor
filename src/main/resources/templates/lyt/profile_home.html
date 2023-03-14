@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>profile_home</title>
+    <title>이웃집 반찬</title>
     <link rel="stylesheet" href="../../static/css/lyt/profile_home.css">
 </head>
 <body>
@@ -52,6 +52,41 @@
             <div class="menu_box">
                 <div class="menu_contents">
 
+                    <div class="profile">
+                        <div class="profile_image_section">
+                            <img class="profile_image" src="./images/theif.png">
+                            <div class="profile_camera_image_section">
+                                <img class="profile_camera_image" src="./images/camera.png">
+                            </div>
+                        </div>
+
+                        <div class="nick_name">
+                            <p class="nick_name_letter">UI도둑</p>
+                            <button type="button" class="introduce_letter_write">
+                                <img class="pen_image" src="./images/pen.png">
+                            </button>
+                        </div>
+
+                        <div class="my_state">
+                            <div class="alarm">
+                                <a class="alarm_link" href="">
+                                    <img class="alarm_image" src="./images/my_alarm.png">
+                                    <p class="alarm_count">0</p>
+                                </a>
+                                <p class="alarm_message">알림&nbsp</p>
+                            </div>
+
+
+                            <div class="scrap">
+                                <a class="scrap_link" href="">
+                                    <img class="scrap_image" src="./images/my_scrap.png">
+                                    <p class="scrap_count">0</p>
+                                </a>
+                                <p class="scrap_message">게시물&nbsp</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="button" class="collapsible" onclick="collapse(this);">
                         프로필
                     </button>
@@ -70,7 +105,6 @@
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">판매자 즐겨찾기</a>
                         <a href="" class="content_items">최근 본 음식</a>
                         <a href="" class="content_items">거래목록</a>
                         <a href="" class="content_items">문의</a>
@@ -94,124 +128,83 @@
         </div>
 
         <div class="contents_container">
-            <div class="profile_wrap">
-                <div class="contents_top">
-                    <button type="button" class="benefit">혜택보기<img class="arrow_right" src="./images/arrow_right.png"></button>
-                    <button type="button" class="grade">등급보기<img class="arrow_right" src="./images/arrow_right.png"></button>
-                    <button type="button" class="favorite">즐겨찾기<img class="arrow_right" src="./images/arrow_right.png"></button>
-                </div>
-
-                <div class="contents_middle">
-                    <div class="profile">
-                        <div class="profile_image_section">
-                            <img class="profile_image" src="./images/theif.png">
-                            <div class="profile_camera_image_section">
-                                <img class="profile_camera_image" src="./images/camera.png">
-                            </div>
-                        </div>
-
-                        <div class="nick_name">
-                            <p class="nick_name_letter">UI도둑</p>
-                        </div>
-
-                        <div class="introduce">
-                            <p class="introduce_letter">한 줄 소개글을 작성해주세요.</p>
-                            <button type="button" class="introduce_letter_write">
-                                <img class="pen_image" src="./images/pen.png">
-                            </button>
-                        </div>
-
-                        <div class="sns_list">
-                            <div class="sns_list_insta">
-                                <button type="button" class="write_insta_btn">
-                                    <img class="insta_image" src="./images/insta_image.png">
-                                </button>
-                            </div>
-
-                            <div class="sns_list_youtube">
-                                <button type="button" class="write_youtube_btn">
-                                    <img class="youtube_image" src="./images/youtube_image.png">
-                                </button>
-                            </div>
-
-                            <div class="sns_list_blog">
-                                <button type="button" class="write_blog_btn">
-                                    <img class="blog_image" src="./images/blog_image.png">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="my_info">
-                        <div class="post">
-                            <strong>
-                                <a class="post_count" href="">
-                                    0
-                                </a>
-                            </strong>
-                            <a class="post_letter" href="">
-                                게시물
-                            </a>
-                        </div>
-
-                        <div class="follow">
-                            <strong>
-                                <a class="follow_count" href="">
-                                    0
-                                </a>
-                            </strong>
-                            <a class="follow_letter" href="">
-                                팔로우
-                            </a>
-                        </div>
-
-                        <div class="following">
-                            <strong>
-                                <a class="following_count" href="">
-                                    0
-                                </a>
-                            </strong>
-                            <a class="following_letter" href="">
-                                팔로잉
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="my_state">
-                <div class="alarm">
-                    <a class="alarm_link" href="">
-                        <img class="alarm_image" src="./images/my_alarm.png">
-                        <p>알림&nbsp</p>
-                        <p class="alarm_count">0</p>
-                    </a>
-                </div>
-
-                <div class="like">
-                    <a class="like_link" href="">
-                        <img class="like_image" src="./images/my_like.png">
-                        <p>좋아요&nbsp</p>
-                        <p class="like_count">0</p>
-                    </a>
-                </div>
-
-                <div class="scrap">
-                    <a class="scrap_link" href="">
-                        <img class="scrap_image" src="./images/my_scrap.png">
-                        <p>스크랩&nbsp</p>
-                        <p class="scrap_count">0</p>
-                    </a>
-                </div>
-            </div>
 
             <div class="third_content">
-                <h3 class="third_content_title">마이가든</h3>
+                <h3 class="third_content_title">내 정보</h3>
                 <div class="third_content_image_section">
-                    <img class="third_content_image" src="./images/none_image.png">
-                    <p class="third_content_letter">마이가든 사진을 등록해주세요.</p>
+                    <article class="update-user-info">
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">닉네임</label>
+                                <div class="update-user-nickname">
+                                    <input disabled="" name="memberNickname" class="update-user-value change-value" value="UI도둑" />
+                                </div>
+                            </div>
+                            <div class="update-user-change">
+                                <button type="button" class="change-button">변경하기</button>
+                            </div>
+                            <div class="update-user-save">
+                                <button type="button" class="save-button">저장하기</button>
+                            </div>
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">휴대폰 번호</label>
+                                <div class="update-user">
+                                    <input disabled="" name="memberPhone" class="update-user-value" value="01072716604" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">이메일</label>
+                                <div class="update-user">
+                                    <input disabled="" name="memberEmail" class="update-user-value" value="lym3031@naver.com" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">비밀번호</label>
+                                <div class="update-user">
+                                    <input
+                                            type="password"
+                                            disabled=""
+                                            name="memberPassword"
+                                            class="update-user-value"
+                                            value="0000000"
+                                    />
+                                </div>
+                            </div>
+                            <div class="update-user-change">
+                                <button type="button" class="go-change-button">변경하기</button>
+                            </div>
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">생년월일</label>
+                                <div class="update-user">
+                                    <input disabled="" name="memberBirth" class="update-user-value change-value" value="2000.01.01" />
+                                </div>
+                            </div>
+                            <div class="update-user-change">
+                                <button type="button" class="change-button">변경하기</button>
+                            </div>
+                            <div class="update-user-save">
+                                <button type="button" class="save-button">저장하기</button>
+                            </div>
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">성별</label>
+                                <div class="update-user">
+                                    <input disabled="" name="memberGender" class="update-user-value" value="남자" />
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <a class="third_content_upload_btn" href="">마이가든 사진 등록하기</a>
+                <a class="third_content_upload_btn" href="">변경 사항 저장하기</a>
             </div>
 
         </div>
@@ -227,7 +220,7 @@
     <div class="forth_content_photo">
         <div class="forth_content_image_section">
             <img class="forth_content_image" src="./images/none_image.png">
-            <p class="forth_content_letter">등록한 음식일기가 없습니다.</p>
+            <p class="forth_content_letter">등록한 반찬일기가 없습니다.</p>
         </div>
     </div>
 
