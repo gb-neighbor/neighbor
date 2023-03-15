@@ -1,0 +1,193 @@
+
+body{
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+}
+
+dl{
+    margin-top: 30px;
+}
+
+dt{
+    font-size: 15px;
+    line-height: 1;
+    margin-bottom: 1.4em;
+    font-weight: 800;
+    color: #222624;
+}
+
+dd{
+    margin-inline-start: 0;
+}
+
+label{
+    cursor: pointer;
+    display:inline-block;
+    background-image: url('profile.png');
+}
+
+input[type='text'], input[type='password']{
+    text-indent: 19px;
+    height: 50px;
+    font-size: 15px ;
+    color: #808080 ;
+    border: 1px solid #d9d9d9 ;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width:100%;
+}
+
+
+.wrapper{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.join-wrapper{
+    margin: 0 auto;
+    max-width: 400px;
+    box-sizing: border-box;
+    padding-top: 60px;
+    padding-bottom: 110px;
+}
+
+.logo .title{
+    margin-bottom: 30px;
+    line-height: 30px;
+    font-size: 30px;
+    font-weight: 800;
+    color: #009a3e;
+    text-align: center;
+}
+.sp{
+    margin-right: 11px;
+    width: 155px;
+    height: 30px;
+    vertical-align: top;
+    background-image: url('https://www.shouse.garden/images/common/bi.png');
+    background-size: 100% 100%;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+    background-repeat: no-repeat;
+    display:none;
+}
+
+label[for=profile]{
+    width: 100px;
+    height: 100px;
+}
+
+.profile-label img{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0px 0px 16px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.err{
+    color: red;
+}
+
+/*#region{
+    width:70%;
+}*/
+
+.policy{
+    padding-bottom: 13px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px
+}
+
+.check-all{
+    position:relative;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 18px;
+    font-weight: 700;
+    border-bottom: 1px solid #d9d9d9;
+    line-height: 22px;
+    font-size: 14px;
+    color: #222624;
+}
+
+.check{
+    position: relative;
+    padding-left: 18px;
+    line-height: 22px;
+    font-size: 14px;
+    color: #222624;
+    margin-top: 13px;
+    font-weight: 700;
+}
+
+input[type='checkbox']{
+    display:none;
+}
+
+.img{
+    background-image: url('../../../templates/jyc/images/profile.png');
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0px 0px 16px;
+    border-radius: 100%;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.check .span-check, .check-all .span-check{
+    position: absolute;
+    top: calc(50% - 11px);
+    right: 13px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+.check span.span-checked, .check-all span.span-checked{
+    background: url('https://www.shouse.garden/images/common/check.png') center center no-repeat;
+    background-size: 14px auto;
+    border-color: #009a3e;
+    position: absolute;
+    top: calc(50% - 11px);
+    right: 13px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+.join{
+    color: #fff;
+    background-color: #009a3e;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width:100%;
+    outline: none;
+    border:none;
+    cursor:pointer;
+}
+
+
+/* 모달 */
+.modal{
+    margin: 0 auto;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.
