@@ -1,6 +1,11 @@
 @charset "utf-8";
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: 1em;
     font-weight: normal;
 }
@@ -15,7 +20,10 @@ body {
     color: #4d4d4d;
 }
 
-hr, table caption, legend, .blind {
+hr,
+table caption,
+legend,
+.blind {
     width: 0;
     height: 0;
     overflow: hidden;
@@ -23,20 +31,33 @@ hr, table caption, legend, .blind {
     line-height: 0;
 }
 
-section, article, header, footer, nav, aside, hgroup, figure, figcaption {
+section,
+article,
+header,
+footer,
+nav,
+aside,
+hgroup,
+figure,
+figcaption {
     display: block;
     margin: 0;
     padding: 0;
 }
 
-input, select, button, textarea {
+input,
+select,
+button,
+textarea {
     font: 12px/1.2 'Spoqa Han Sans', sans-serif;
     color: #4d4d4d;
     letter-spacing: inherit;
     outline: none;
 }
 
-ul, ol, li {
+ul,
+ol,
+li {
     list-style: none;
 }
 
@@ -46,16 +67,42 @@ button {
     font-family: 'Spoqa Han Sans', sans-serif;
 }
 
-label, button {
+label,
+button {
     cursor: pointer;
 }
 
-img, fieldset, button, input {
+img,
+fieldset,
+button,
+input {
     border: 0;
     vertical-align: middle;
 }
 
-body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, p, blockquote, button, input, textarea {
+body,
+div,
+dl,
+dt,
+dd,
+th,
+td,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+p,
+blockquote,
+button,
+input,
+textarea {
     margin: 0;
     padding: 0;
 }
@@ -71,13 +118,6 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
     /* letter-spacing: -0.05em; */
 }
 
-@media (max-width: 1246px) {
-    .header-grey-line {
-        line-height: 28px;
-        font-size: 11px;
-    }
-}
-
 .header-grey-line-inner {
     position: relative;
     margin: 0 auto;
@@ -85,31 +125,10 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
     box-sizing: border-box;
 }
 
-@media (max-width: 1246px) {
-    .header-grey-line-inner {
-        margin-right: 23px;
-        margin-left: 23px
-    }
-}
-
-@media (max-width: 767px) {
-    #header .header-grey-line-inner {
-        position: static;
-    }
-}
-
-@media (max-width: 767px) {
-    .header-grey-line-inner:not {
-        margin-right: 15px;
-        margin-left: 15px;
-    }
-}
-
 /* 회색부분에 로그인 회원가입 버튼 */
 .header-logIn-signUp {
     float: right;
 }
-
 
 #header .header-logIn-signUp {
     color: #808080;
@@ -124,7 +143,7 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
 }
 
 .header-grey-line-inner::after {
-    content: "";
+    content: '';
     display: block;
     clear: both;
 }
@@ -137,28 +156,6 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
     padding-top: 20px;
 }
 
-@media (max-width:1246px) {
-    .header-grey-line-bottom {
-        padding-top: 14px;
-    }
-}
-
-@media (max-width: 767px) {
-    .header-grey-line-bottom {
-        position: relative;
-        padding-top: 0;
-        text-align: center;
-    }
-}
-
-@media (max-width: 767px) {
-    #header .header-home a {
-        width: 108px;
-        height: inherit;
-        line-height: 53px;
-    }
-}
-
 #header .header-home a {
     margin: 0 auto;
     display: block;
@@ -167,67 +164,17 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
     height: 32px;
 }
 
-@media (max-width: 767px) {
-    #header .header-home a {
-        width: 108px;
-        height: inherit;
-        line-height: 53px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-home a {
-        width: 108.5px;
-        height: 26px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-home a {
-        width: 108.5px;
-        height: 26px;
-    }
-}
-
 #header .header-home a {
     margin: 0 auto;
     display: block;
     width: 155px;
     height: 25px;
     height: 32px;
-}
-
-@media (max-width: 767px) {
-    #header .header-home .header-home-name {
-        width: 88px;
-        height: 17px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-home .header-home-name {
-        height: 21px;
-    }
 }
 
 #header .header-home .header-home-name {
     width: 100%;
     height: 30px;
-}
-
-@media (max-width: 767px) {
-    .header-home-name.special {
-        background-image: url('https://www.shouse.garden/images/common/sp_common.png');
-        background-size: 100px auto;
-    }
-}
-
-
-@media (max-width: 1246px) {
-    .header-home-name.special {
-        background-image: url('https://www.shouse.garden/images/common/sp_common.png');
-        background-size: 150px auto;
-    }
 }
 
 .header-home-name.special {
@@ -242,395 +189,25 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
     background-repeat: no-repeat;
 }
 
-@media (max-width: 767px) {
-    #header .header-navigation {
-        height: auto;
-    }
+/* 로그인 안되어 있을 때 이 2개 띄워줌 */
+/* .header-logIn {
+    display: none;
 }
 
-@media (max-width: 1246px) {
-    #header .header-navigation {
-        height: 47px;
-    }
-}
-
-#header .header-navigation {
-    height: 65px;
-}
-
-@media (max-width: 767px) {
-    .header-navigation > .header-navigation-TBinner {
-        height: auto;
-        padding: 0;
-        border-bottom: 0;
-    }
-}
-
-@media (max-width: 1246px) {
-    .header-navigation > .header-navigation-TBinner {
-        height: 28px;
-        padding: 9px 0;
-    }
-}
-
-#header .header-navigation > .header-navigation-TBinner {
-    height: 40px;
-    padding: 12px 0;
-    border-bottom: 1px solid #d9d9d9;
-}
-
-@media (max-width: 767px) {
-    #header .header-navigation-LRinner {
-        position: static;
-    }
-}
-
-/* @media (max-width: 767px) {
-    .header-navigation-LRinner:not(pwrapper 가뭐지?)
+.header-signUp {
+    display: none;
 } */
 
-/* @media (max-width: 1246px)
-.holder:not(.pwrapper), .pholder {
-    margin-right: 23px;
-    margin-left: 23px;
-} */
+/* 로그인 됐을 시 이 3개 띄워줌 */
 
-.header-navigation-LRinner {
-    position: relative;
-    margin: 0 auto;
-    max-width: 1200px;
-    box-sizing: border-box;
+.header-logOut {
+    display: none;
 }
 
-@media (max-width: 767px) {
-    #header .nav {
-        left: 0;
-        width: 50px;
-    }
+.header-write {
+    display: none;
 }
 
-@media (max-width: 767px) {
-    #header .header-btn-menu {
-        height: 53px;
-        line-height: 53px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .nav {
-        left: 10;
-        width: 38px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-btn-menu {
-        height: 28px;
-        line-height: 28px;
-    }
-}
-
-#header .nav {
-    left: -14px;
-    width: 54px;
-}
-
-#header .nav .header-home-name{
-    width: 26px;
-    height: 17px;
-    background-position: -22px -32px;
-}
-
-#header .header-btn-menu {
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-}
-
-@media (max-width: 1246px) {
-    #header .header-noMenu-wrap {
-        padding-left: 43px;
-    }
-}
-
-#header .header-noMenu-wrap {
-    padding-left: 62px;
-}
-
-@media (max-width: 767px) {
-    .menu-hide {
-        display: none !important;
-    }
-}
-
-#header .header-noMenu-wrap .header-active {
-    position: relative;
-}
-
-#header .header-noMenu-wrap li {
-    float: left;
-}
-
-#header .header-noMenu-wrap .header-active a {
-    color: #009a3e;
-}
-
-@media (max-width: 1246px) {
-    #header .header-noMenu-wrap a{
-        padding: 0 10px;
-        line-height: 28px;
-        font-size: 14px;
-    }
-}
-
-#header .header-noMenu-wrap a{
-    display: block;
-    padding: 0 17px;
-    line-height: 40px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #222624;
-}
-
-@media (max-width: 1246px) {
-    #header .header-noMenu-wrap .header-active::after {
-        bottom: -12px;
-        left: calc(50% - 2.5px);
-        width: 5px;
-        height: 5px;
-    }
-}
-
-#header .header-noMenu-wrap .header-active::after {
-    content: "";
-    z-index: 10;
-    position: absolute;
-    bottom: -16px;
-    left: calc(50% - 3.5px);
-    width: 7px;
-    height: 7px;
-    background-color: #009a3e;
-    border-radius: 100%;
-}
-
-.header-noMenu-content::after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-@media (max-width: 767px) {
-    #header .header-MCW-button {
-        height: 53px;
-        line-height: 53px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-my {
-        right: 238px;
-        width: 32px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-MCW-button {
-        height: 28px;
-        line-height: 28px;
-    }
-}
-
-#header .header-my {
-    right: 86px;
-    width: 45px;
-}
-
-#header .header-my .header-home-name{
-    width: 21px;
-    height: 21px;
-    background-position: -50px -32px;
-}
-
-#header .header-MCW-button {
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-}
-
-@media (max-width: 767px) {
-    .header-my-hide {
-        display: none !important;
-    }
-}
-
-@media (max-width: 767px) {
-    #header .header-bookmark {
-        right: 42px;
-        width: 27px;
-    }
-}
-
-@media (max-width: 767px) {
-    #header .header-bookmark .header-home-name {
-        margin-top: -2px;
-        width: 14.33px;
-        height: 18px;
-        background-position: -21px -18px;
-    }
-}
-
-@media (max-width: 767px) {
-    .t_hide {
-        display: inherit !important;
-    }
-}
-
-@media (max-width: 1246px) {
-    .t_hide {
-        display: none !important;
-    }
-}
-
-@media (max-width: 1246px) {
-    .p_hide {
-        display: inherit !important;
-    }
-}
-
-.p_hide {
-    display: none !important;
-}
-
-
-@media (max-width: 767px) {
-    #header .header-cart {
-        right: 0;
-        width: 33px;
-        padding-right: 9px;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header .header-cart {
-        right: 204px;
-        width: 34px;
-    }
-}
-
-#header .header-cart {
-    right: 38px;
-    width: 48px;
-}
-
-#header .header-cart .header-home-name{
-    width: 26px;
-    height: 24px;
-    background-position: -73px -32px;
-}
-
-@media (max-width: 1246px) {
-    #header .header-write {
-        right: -6px;
-        width: 31px;
-    }
-}
-
-#header .header-write {
-    right: -6px;
-    width: 44px;
-}
-
-#header .header-write .header-home-name{
-    width: 22px;
-    height: 22px;
-    background-position: -101px -32px
-}
-
-@media (max-width: 767px) {
-    .write-hide {
-        display: none !important;
-    }
-}
-
-/* 헤더에 메뉴버튼 눌렀을 때 */
-@media (max-width: 767px) {
-    #header-menu-navigation {
-        position: fixed;
-        top: 0 !important;
-        left: -100% !important;
-        max-width: 100% !important;
-        height: 100%;
-        padding-top: 63px;
-        padding-top: calc(63px + env(safe-area-inset-top));
-        padding-bottom: env(safe-area-inset-bottom);
-        overflow-y: auto;
-        box-sizing: border-box;
-        transition: left .3s;
-    }
-}
-
-/* 원래 두개로 나뉘어져 있다. 안되면 관리자모드로 한번 봐보기 */
-#header-menu-navigation {
-    top: -500px;
-    top: 0;
-    transform: translateY(-100%);
-
-    z-index: 9998;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid #d9d9d9;
-    transition: top .3s, transform .3s;
-}
-
-@media (max-width: 1246px) {
-    .header-menu-content-wrap {
-        margin-right: 23px;
-        margin-left: 23px;
-    }
-}
-
-.header-menu-content-wrap {
-    position: relative;
-    margin: 0 auto;
-    max-width: 1200px;
-    box-sizing: border-box;
-}
-
-#header-menu-navigation .header-menu-content {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-}
-
-@media (min-width: 768px) {
-    #header-menu-navigation .header-menu-content.col4 dl {
-        width: 25% !important;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header-menu-navigation dl:first-child {
-        border-left: 0;
-    }
-}
-
-@media (max-width: 1246px) {
-    #header-menu-navigation dl {
-        padding: 21px 35px 34px;
-    }
-}
-
-#header-menu-navigation dl {
-    display: table-cell;
-    padding: 30px 50px 48px;
-    border-left: 1px solid #f2f2f2;
-    box-sizing: border-box;
+.header-my {
+    display: none;
 }

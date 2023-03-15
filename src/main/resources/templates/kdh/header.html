@@ -1,96 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>헤더</title>
-    <link rel="stylesheet" href="../../static/css/kdh/header.css">
-</head>
-<body>
-<header id="header">
-    <!-- 메인 페이지 헤더 부분에 회색줄 -->
-    <nav class="header-grey-line">
-        <div class="header-grey-line-inner">
-            <ul class="header-logIn-signUp">
-                <li>
-                    <a href="">로그인</a>
-                </li>
-                <li>
-                    <a href="">회원가입</a>
-                </li>
-            </ul>
-        </div>
-        <!-- grey-line-inner after 있음 -->
-    </nav>
-    <!-- 헤더 부분 회색 줄 아래부분. -->
-    <article class="header-grey-line-bottom">
-        <h1 class="header-home">
-            <!-- href 메인으로 링크 해주기 -->
-            <a href="">
-                <span class="header-home-name special">싱그러운 집</span>
-            </a>
-        </h1>
-        <div class="header-navigation">
-            <div class="header-navigation-TBinner">
-                <div class="header-navigation-LRinner">
-                    <div class="header-navigation-content">
-                        <button type="button" class="header-btn-menu nav">
-                            <span class="header-home-name special">메뉴</span> <!-- 다시해보기 -->
-                        </button>
-                        <nav class="header-noMenu-wrap menu-hide">
-                            <ul class="header-noMenu-content">
-                                <li class="header-active"> <!-- active가 녹색으로 내가 어딨는지 위치를 알려주는 거 -->
-                                    <a href="">홈</a>
-                                    <!-- after 있음 -->
-                                </li>
-                                <li>
-                                    <a href="">스토어</a>
-                                </li>
-                                <li>
-                                    <a href="">커뮤니티</a>
-                                </li>
-                                <li>
-                                    <a href="">싱그런 여행</a>
-                                </li>
-                                <li>
-                                    <a href="">조경/시공</a>
-                                </li>
-                                <li>
-                                    <a href="">식물마켓</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <!-- 네비게이션 오른쪽 부분 -->
-                        <a href="" class="header-MCW-button header-my header-my-hide">
-                            <span class="header-home-name special">마이페이지</span>
-                        </a>
-                        <!-- p-hide t-hide 이 두개는 이름을 뭐로 바꿀 지 모르겠어.. -->
-                        <a href="" class="header-MCW-button header-bookmark p-hide t-hide">
-                            <span class="header-home-name special">즐겨찾기</span>
-                        </a>
-                        <a href="" class="header-MCW-button header-cart">
-                            <span class="header-home-name special">장바구니</span>
-                        </a>
-                        <a href="" class="header-MCW-button header-write write-hide">
-                            <span class="header-home-name special">글쓰기</span>
-                        </a>
-                    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>헤더</title>
+        <link rel="stylesheet" href="../../static/css/kdh/header.css" />
+    </head>
+    <body>
+        <header id="header">
+            <!-- 메인 페이지 헤더 부분에 회색줄 -->
+            <nav class="header-grey-line">
+                <div class="header-grey-line-inner">
+                    <ul class="header-logIn-signUp">
+                        <li class="header-my">
+                            <a href="">마이페이지</a>
+                        </li>
+                        <li class="header-write">
+                            <a href="">글쓰기</a>
+                        </li>
+                        <li class="header-logIn">
+                            <a href="">로그인</a>
+                        </li>
+                        <li class="header-signUp">
+                            <a href="">회원가입</a>
+                        </li>
+                        <li class="header-logOut">
+                            <a href="">로그아웃</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-    </article>
-</header>
-<nav id="header-menu-navigation">
-    <div class="header-menu-content-wrap">
-        <div class="header-menu-content col4">
-            <dl>
-                <dt>
-
-                </dt>
-            </dl>
-        </div>
-    </div>
-</nav>
-</body>
+                <!-- grey-line-inner after 있음 -->
+            </nav>
+            <!-- 헤더 부분 회색 줄 아래부분. -->
+            <article class="header-grey-line-bottom">
+                <h1 class="header-home">
+                    <a href="">
+                        <span class="header-home-name special">싱그러운 집</span>
+                    </a>
+                </h1>
+            </article>
+        </header>
+    </body>
 </html>
