@@ -1,5 +1,5 @@
 /* css for list-by-region */
-@import url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
 
 body {
     font: 12px/1.2 'Spoqa Han Sans', sans-serif;
@@ -146,6 +146,12 @@ p {
     margin-top: 13px;
 }
 
+.text-sub{
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 14px;
+}
+
 .region-select-container::after {
     content: "";
     display: block;
@@ -155,7 +161,7 @@ p {
 .map-seoul-container{
     position: relative;
     float: left;
-    margin-top: 97px;
+    margin-top: 93px;
     width: 50%;
 }
 
@@ -167,10 +173,10 @@ p {
 
 .map-seoul{
     position: relative;
-    background-image: url(image/seoul-map.jpg);
+    background-image: url('image/seoul-map.jpg');
     margin: 0;
-    width: 88.82%;
-    padding-bottom: calc(78.82% * 1.3843);
+    width: 100%;
+    padding-bottom: calc(58.82% * 1.3843);
 }
 
 .map-seoul .region-name input {
@@ -412,8 +418,8 @@ p {
 
 .map-select-container {
     float: right;
-    margin-top: 13px;
-    width: 50%;
+    margin-top: 32px;
+    width: 47%;
 }
 
 .best-list {
@@ -431,7 +437,7 @@ p {
     display: block;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-image: url(image/arrow_r.png);
+    background-image: url('image/arrow_r.png');
     background-position-y: center;
     background-repeat: no-repeat;
     background-size: 7px auto;
@@ -452,13 +458,12 @@ p {
 .best-list .cont {
     position: relative;
     display: block;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-image: url(image/arrow_r.png);
+    padding-bottom: 23px;
+    background-image: url('image/arrow_r.png');
     background-position-y: center;
     background-repeat: no-repeat;
     background-size: 7px auto;
-    padding-right: 180px;
+    padding-right: 52px;
     padding-left: 100px;
     background-position-x: calc(100% - 30px);
 }
@@ -470,18 +475,30 @@ p {
     line-height: 26px;
     font-size: 16px;
     color: #4d4d4d;
-    background: url(image/place.png) right center no-repeat;
+    background: url('image/place.png') right center no-repeat;
     background-size: 12px auto;
     background: none;
     position: relative;
     padding-right: 50px;
-    max-width: calc(100% - 50px);
+    max-width: calc(100% - 120px);
+}
+
+.best-list .info-container{
+    position: relative;
+}
+
+.best-list .info-container .stars{
+
 }
 
 .best-list .tag {
-    line-height: 24px;
+    position: absolute;
+    bottom: 0.5px;
+    line-height: 12px;
     font-size: 14px;
     color: #808080;
+    margin-left: 10px;
+
 }
 
 .best-list .name, .best-list .tag {
@@ -492,10 +509,12 @@ p {
 
 .best-list .state {
     position: absolute;
-    top: calc(50% - 7.5px);
     line-height: 15px;
     font-size: 0;
-    left: calc(100% - 161px);
+    width: fit-content;
+    float: right;
+    right: 50px;
+    bottom: 41.5px;
 }
 
 .thumbs {
@@ -515,31 +534,32 @@ p {
     position: absolute;
     right: 0;
     top: 0;
-    background: url(image/place_link.png) no-repeat 0 center/auto 16px;
+    background: url('image/place_link.png') no-repeat 0 center/auto 16px;
     z-index: 5;
     padding-left: 16px;
     font-size: 14px;
     color: #b3b3b3;
 }
 
-.best-list .state span {
+.best-list .state span,
+.sub-info-area-box .price span {
     display: inline-block;
     vertical-align: top;
     padding-left: 20px;
-    font-size: 14px;
-    color: #b3b3b3;
+    font-size: 15px;
+    color: #000;
     background-repeat: no-repeat;
     background-size: auto 100%;
 }
 
-.best-list .state .like {
-    width: 35px;
-    background-image: url(image/state_like.png);
+.best-list .state .won,
+.price .won {
+    background-image: url('image/won.png');
 }
 
 .best-list .state .scrap {
     width: 35px;
-    background-image: url(image/state_scrap.png);
+    background-image: url('image/state_scrap.png');
 }
 
 .search-area{
@@ -554,12 +574,11 @@ p {
 .search-area .wrp_frm > *,
 .search-area .wrp_frm .region-select-container > * {
     float: left;
-    margin-right: 10px;
 }
 
 .search-area .gugun {
     margin-right: 0 !important;
-    width: calc((100% - 40px)*0.4 + 20px);
+    width: 28%;
 }
 
 .custom_select {
@@ -569,49 +588,39 @@ p {
     height: 50px;
     padding-right: 30px;
     text-align: left;
-    text-indent: 19px;
     font-size: 15px;
     color: #808080;
-    background: #fff url(image/arrow_down.png) calc(100% - 19px) center no-repeat;
+    background: #fff url('image/arrow_down.png') calc(100% - 19px) center no-repeat;
     background-size: 10px auto;
-    border: 1px solid #d9d9d9;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-.custom_select:not(.on) {
-    color: #b3b3b3;
-}
-
 .search-area .w1 {
-    width: calc(50% - 10px);
+    width: 86%;
 }
 
-select.custom_select {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-/*js 넣고 스타일 다시 바꾸기*/
-select{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding-right: 30px;
-    line-height: 48px;
+select {
+    width: 140%;
+    padding: 0.8em;
+    border: 1px solid #d9d9d9;
+    font-family: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* padding-right: 30px; */
     text-indent: 19px;
-    color: #b3b3b3;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     outline: none;
     color: #808080;
 }
-/*js 넣고 스타일 다시 바꾸기*/
+
+select::-ms-expand {
+    display: none;
+}
+
 option {
-    /* display: none; */
     z-index: 0;
     position: absolute;
     top: 100%;
@@ -627,7 +636,7 @@ option {
 /*************************************************************/
 
 .region-select-container.w4{
-    width: calc((100% - 10px)*0.588);
+    width: 70%;
     margin: 0;
 }
 
@@ -706,6 +715,7 @@ option {
     color: #009a3e;
 }
 
+/************************************************************************/
 .search-result-area{
     margin-top: 40px;
 }
@@ -719,129 +729,100 @@ option {
     width: calc(100% + 20px);
 }
 
-.result-list li {
-    position: relative;
-    float: left;
+.result-list .result-list-container {
     margin-top: 20px;
+    float: left;
     margin-right: 20px;
     width: calc(50% - 20px);
+    position: relative;
 }
 
-.result-list .cont {
+.result-list .result-list-container .result-list-outer-box{
     position: relative;
     display: block;
     padding: 30px 39px 39px;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
     transition: border-color .2s;
+
 }
 
-.result-list .name, .result-list .add, .result-list .tag {
+.result-list .result-list-container .result-list-outer-box:hover{
+    border: 1px solid #009a3e;
+}
+
+.title-area-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.title-area{
+    float: left;
+    display: flex;
+    align-items: center;
+}
+
+.list-title {
+    max-width: 355px;
+    line-height: 35px;
+    font-size: 20px;
+    color: #222624;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin-right: 15px;
 }
 
-.result-list .name {
-    line-height: 39px;
-    font-size: 22px;
-    color: #222624;
+.sub-info-area-box {
+    display: flex;
+    justify-content: space-between;
 }
 
-.result-list .add {
-    position: relative;
-    padding-right: 30px;
-    padding-left: 20px;
-    line-height: 26px;
-    font-size: 16px;
+.sub-info-area-box .location .map {
+    display: block;
+    background: url('image/place_link.png') no-repeat 0 center/auto 16px;
+    font-size: 14px;
     color: #4d4d4d;
-    background: url(image/place.png) left center no-repeat;
-    background-size: auto 16px;
+    padding-left: 16px;
 }
 
-.result-list .photo {
+.result-list-outer-box .pic-box{
     margin-top: 20px;
 }
 
-.result-list .photo .thumbs {
+.result-list-outer-box .pic-box .pics-thumbs{
     float: left;
-    width: calc((100% - 20px)/3);
-    padding-bottom: calc((100% - 20px)/3*0.6667);
-    border-radius: 4px;
-}
-
-.result-list .tag {
-    margin: 22px 0;
-    height: 20px;
-    line-height: 20px;
-    font-size: 14px;
-    color: #808080;
-}
-
-.fl {
-    float: left;
-}
-.result-list .cont .map_link {
-    display: block;
-    background: url(image/place_link.png) no-repeat 0 center/auto 20px;
-    z-index: 5;
-    padding-left: 24px;
-    font-size: 14px;
-    color: #b3b3b3;
-    height: 20px;
-    line-height: 17px;
-}
-
-.result-list .state {
-    text-align: right;
-    line-height: 15px;
-    font-size: 0;
-}
-
-.result-list .state span {
-    display: inline-block;
-    vertical-align: top;
-    padding-left: 20px;
-    font-size: 14px;
-    color: #b3b3b3;
     background-repeat: no-repeat;
-    background-size: auto 100%;
-}
-
-.result-list .state .like {
-    background-image: url(image/state_like.png);
-}
-
-.result-list .state span + span {
-    margin-left: 15px;
-}
-
-.result-list .state .scrap {
-    background-image: url(image/state_scrap.png);
-}
-
-.result-list .confrm {
-    position: absolute;
-    bottom: 25px;
-    left: 20px;
-    padding: 0 20px;
-    line-height: 45px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #009a3e;
+    background-size: cover;
+    background-position: center;
+    width: calc((100% - 20px)/3);
+    border-radius: 4px;
+    padding-bottom: calc((100% - 14px)/3*0.6667);
 }
 
 
+.pic-box .thumbs1{
+    background-image: url('image/dummy-thumbnail-2.jpg');
+}
+.pic-box .thumbs2{
+    background-image: url('image/dummy-thumbnail-2.jpg');
+}
+.pic-box .thumbs3{
+    background-image: url('image/dummy-thumbnail-2.jpg');
+}
+
+.pic-box .pics-thumbs+.pics-thumbs{
+    margin-left: 10px;
+}
 
 
-
-
-
-
-
-
-
-
+.pic-box::after{
+    content: "";
+    display: block;
+    clear: both;
+}
 
 
 
