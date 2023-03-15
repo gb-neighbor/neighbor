@@ -1,0 +1,54 @@
+.wrapper{
+    margin: 0 auto;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+dt{
+    cursor: pointer;
+    line-height: 58px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222624;
+}
+
+dd{
+    margin-inline-start: 0;
+    margin-top: 10px;
+    font: 14px/1.2 'Spoqa Han Sans', sans-serif;
+    text-indent: 3px;
+}
+
+button{
+    color: #fff;
+    background-color: #009a3e;
+    border:0;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-top: 40px;
+    width: 100%;
+    font: 14px/1.2 'Spoqa Han Sans', sans-serif;
+    letter-spacing: inherit;
+    outline: none;
+}
+
+input{
+    height: 50px ;
+    font-size: 15px ;
+    color: #808080 ;
+    border: 1px solid #d9d9d9 ;
+    border-radius: 4px ;
+    box-sizing: border-box;
+    text-indent: 19px;
+    width:100%;
+}
+
+.input{
+    width:100%;
+}

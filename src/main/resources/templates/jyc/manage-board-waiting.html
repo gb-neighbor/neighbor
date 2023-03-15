@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>게시글 관리</title>
+<title>판매 완료 관리</title>
 <link rel="shortcut icon" type="image/x-icon" href="./images/logo-favicon.ico" />
-<link rel="stylesheet" href="css/manage-board.css">
+<link rel="stylesheet" href="../../static/css/jyc/manage-board.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body> 
-    <div class="wrap">
-        <div id="menu-side" class="container">
-            <div id="top-box" class="menu-box">
-                <img id="knowhow-logo" alt="know-how" src=/images/know-how-title.png">
-            </div>
-            <div id="middle-box" class="menu-box">
-                <div id="wrap-middle-box">
-                    <div id="middle-box-contents">
-                        <div class="side-top-margin"></div>
-                        <span class="mouseOnEffect">
+<body>
+<div class="wrap">
+    <div id="menu-side" class="container">
+        <div id="top-box" class="menu-box">
+            <img id="knowhow-logo" alt="know-how" src=/images/know-how-title.png">
+        </div>
+        <div id="middle-box" class="menu-box">
+            <div id="wrap-middle-box">
+                <div id="middle-box-contents">
+                    <div class="side-top-margin"></div>
+                    <span class="mouseOnEffect">
                             <div id="middle-box-site-shortcut-bar" class="side-bar">
                                 <div class="icon-gap">
                                     <img class="side-icons" alt="home" src="images/home.png">
@@ -28,7 +28,7 @@
                             </div> 
                         </span>
 
-                        <span class="mouseOnEffect">
+                    <span class="mouseOnEffect">
                             <div id="middle-box-dashBoard-bar" class="side-bar">
                                 <div class="icon-gap">
                                     <img class="side-icons" alt="dash-board" src="./images/dashBoard-icon.png">
@@ -36,35 +36,37 @@
                                 대시보드
                             </div>
                         </span>
-                    
-                        <button type="button" class="no-collapsible">
-                            <div class="icon-gap">
-                                <img class="side-icons" alt="user" src="./images/user-icon.png">
-                            </div>
-                            회원관리
-                        </button>
 
-                        <button type="button" class="collapsible" onclick="collapse(this);">
-                            <div class="icon-gap">
-                                <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
-                            </div>
-                            게시판 관리
-                        </button>
-                        <div class="content">
-                            <p>게시글 목록</p>
-                            <p>후기 목록</p>
+                    <button type="button" class="no-collapsible">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="user" src="./images/user-icon.png">
                         </div>
+                        회원관리
+                    </button>
 
-                        <button type="button" class="no-collapsible">
-                            <div class="icon-gap">
-                                <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
-                            </div>
-                            문의 게시판 관리
-                        </button>
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
+                        </div>
+                        게시판 관리
+                        <img src="images/plus.png" class="collapse-button">
+                    </button>
+
+                    <div class="content">
+                        <p>게시글 목록</p>
+                        <p>후기 목록</p>
                     </div>
+
+                    <button type="button" class="no-collapsible">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
+                        </div>
+                        문의 게시판 관리
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
                
         <div id="right-side" class="container">
             <div class="right-header">
@@ -138,7 +140,7 @@
                                 서울시 강동구
                             </div>
                             <div class="user-name">
-                                황현수
+                                hhs1234
                             </div>
                             <div class="board-contents">
                                 이거 맛있어요. 이거 먹을분 있으신가요?
@@ -162,7 +164,7 @@
                                 서울시 강동구
                             </div>
                             <div class="user-name">
-                                황현수
+                                hhs1234
                             </div>
                             <div class="board-contents">
                                 이거 맛있어요. 이거 먹을분 있으신가요?
@@ -186,7 +188,7 @@
                                 서울시 강동구
                             </div>
                             <div class="user-name">
-                                황현수
+                                hhs1234
                             </div>
                             <div class="board-contents">
                                 이거 맛있어요. 이거 먹을분 있으신가요?
@@ -210,7 +212,7 @@
                                 서울시 강동구
                             </div>
                             <div class="user-name">
-                                황현수
+                                hhs1234
                             </div>
                             <div class="board-contents">
                                 이거 맛있어요. 이거 먹을분 있으신가요?
@@ -234,7 +236,7 @@
                                 서울시 강동구
                             </div>
                             <div class="user-name">
-                                황현수
+                                hhs1234
                             </div>
                             <div class="board-contents">
                                 이거 맛있어요. 이거 먹을분 있으신가요?
@@ -286,16 +288,16 @@
                                 서울시 강동구
                             </div>
                             <div class="user-name">
-                                hhs1234
+                                kyp1234
                             </div>
                             <div class="board-contents">
-                                이거 먹을분 있으신가요?
+                                진미채 맛있음
                             </div>
                             <div class="board-register-date">
                                 2023-04-05
                             </div>
-                            <div class="status status-true">
-                                판매 완료
+                            <div class="status status-false">
+                                판매 대기중
                             </div>
                         </div>
 
@@ -310,5 +312,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="js/admin.js"></script>
+<script src="../../static/js/jyc/admin.js"></script>
 </html>

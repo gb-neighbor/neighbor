@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이웃집 반찬</title>
+    <link rel="stylesheet" href="../../static/css/lyt/alarm.css">
+</head>
+<body>
+<!-- 서브네비게이션  -->
+<nav class="subnav">
+    <div class="subnav_wrapper">
+        <ul class="subnav_list">
+            <li class="list_profile">
+                <a href="" class="first_letter select">프로필</a>
+                <div class="list_profile_items disply_bundle">
+                    <a href="" class="second_letter">홈</a>
+                    <a href="" class="second_letter except_home_letter select">알림</a>
+                    <a href="" class="second_letter except_home_letter">쪽지함</a>
+                    <a href="" class="second_letter except_home_letter">내가 올린 음식</a>
+                    <a href="" class="second_letter except_home_letter">후기</a>
+                </div>
+            </li>
+
+            <li class="list_my_shopping">
+                <a href="" class="first_letter">마이쇼핑</a>
+                <div class="list_my_shopping_items disply_bundle">
+                    <a href="" class="second_letter">홈</a>
+                    <a href="" class="second_letter except_home_letter">판매자 즐겨찾기</a>
+                    <a href="" class="second_letter except_home_letter">최근 본 음식</a>
+                    <a href="" class="second_letter except_home_letter">거래목록</a>
+                    <a href="" class="second_letter except_home_letter">문의</a>
+                </div>
+            </li>
+
+            <li class="list_setting">
+                <a href="" class="first_letter">설정</a>
+                <div class="list_my_setting_items disply_bundle">
+                    <a href="" class="second_letter except_home_letter">푸시 알림</a>
+                    <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
+                    <a href="" class="second_letter except_home_letter">회원탈퇴</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- 콘텐츠부분 시작 -->
+
+<!-- 메뉴 -->
+<section class="wrap">
+    <article class="divide_btns">
+        <ul class="btn_list">
+            <li class="active">
+                <a class="btn_setting select_btn" href="">전체</a>
+            </li>
+            <li>
+                <a class="btn_setting" href="">알림</a>
+            </li>
+            <li>
+                <a class="btn_setting" href="">쪽지</a>
+            </li>
+            <li>
+                <a class="btn_setting" href="">댓글</a>
+            </li>
+        </ul>
+        <button type="button" class="read_all">전체 읽음</button>
+
+    </article>
+    <article class="alarm_content">
+        <p class="keep_message">모든 알림은 8주간 보관됩니다.</p>
+        <ul id="alarm_list">
+            <li class="unread">
+                <div class="alarm_wrapper">
+                    <div class="alarm_profile">
+                        <a href="">
+                            <img class="alarm_profile_image" src="./images/profile_sample1.png">
+                        </a>
+                    </div>
+                    <div class="alarm_detail">
+                        <a class="detail_message_link" href="">
+                            <p class="detail_message">구센치 <span class="divide_color">님이 댓글을 달았습니다.</span></p>
+                            <p class="alarm_time">2023.03.13 13:53</p>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="unread">
+                <div class="alarm_wrapper">
+                    <div class="alarm_profile">
+                        <a href="">
+                            <img class="alarm_profile_image" src="./images/profile_image_none.png">
+                        </a>
+                    </div>
+                    <div class="alarm_detail">
+                        <a class="detail_message_link" href="">
+                            <p class="detail_message">싱글싱글 <span class="divide_color">님이 쪽지를 보냈습니다.</span></p>
+                            <p class="alarm_time">2023.03.13 13:53</p>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="alarm_wrapper">
+                    <div class="alarm_profile">
+                        <a href="">
+                            <img class="alarm_profile_image" src="./images/profile_image_none.png">
+                        </a>
+                    </div>
+                    <div class="alarm_detail">
+                        <a class="detail_message_link" href="">
+                            <p class="detail_message">운영자 <span class="divide_color">님이 1:1문의에 답변을 보냈습니다.</span></p>
+                            <p class="alarm_time">2023.03.13 13:53</p>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+</section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/lyt/alarm.js"></script>
+</html>

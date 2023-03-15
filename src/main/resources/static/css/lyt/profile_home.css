@@ -1,0 +1,489 @@
+body{
+    letter-spacing: -0.05em;
+    margin: 0;
+}
+
+/* 서브네비게이션 */
+.subnav{
+    border-bottom: 1px solid #d9d9d9;
+}
+
+ul, ol, li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+}
+
+.subnav a{
+    display: inline-block;
+    line-height: 49px;
+}
+
+.subnav_wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subnav_list {
+    padding: 0;
+    margin: 0;
+}
+
+.disply_bundle{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.first_letter{
+    font-size: 15px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.second_letter{
+    font-size: 14px;
+    font-weight: 400;
+    color: #808080;
+}
+
+.except_home_letter{
+    margin-left: 15px;
+}
+
+.subnav li + li {
+    margin-left: 32px;
+}
+
+/* 네비게이션 항목 설정 */
+.select{
+    color: #009a3e;
+}
+
+.list_my_shopping_items{
+    display: none;
+}
+
+.list_my_setting_items{
+    display: none;
+}
+
+/*메뉴*/
+.wrap{
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.all_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.menu_container{
+    width: 20%;
+}
+
+.contents_container{
+    padding-left: 4%;
+    width: 76%;
+}
+
+.content {
+    cursor: pointer;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #ffffff;
+    color: #222624;
+}
+
+.content_items_padding{
+    height: 11px;
+    margin: 0;
+    cursor:default;
+}
+
+.menu_border{
+    border-bottom: 1px solid black;
+}
+
+
+.collapsible {
+    background-color: #ffffff;
+    color: #222624;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 0;
+    text-align: left;
+    text-indent: 9px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    align-items: center;
+    letter-spacing: -0.05em;
+}
+
+.collapsible:after {
+    content: url(../../../templates/lyt/images/arrow22.png);
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: auto;
+}
+.active:after {
+    content: url(../../../templates/lyt/images/arrow21.png);
+}
+
+.content_items{
+    display: block;
+    color: #808080;
+    line-height: 36px;
+    text-indent: 19px;
+    font-size: 14px;
+}
+
+.content_items:hover{
+    color: #222624;
+}
+
+/*컨텐츠*/
+
+
+.profile_image_section{
+    position: relative;
+    margin: 0 auto;
+    width: 89.6px;
+    height: 89.6px;
+}
+
+.profile_image{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 100%;
+}
+
+.profile_camera_image_section{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 29.6px;
+    height: 29.6px;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.profile_camera_image{
+    margin: 0 auto;
+    width: 60%;
+    height: 50%;
+}
+
+.nick_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.nick_name_letter{
+    text-align: center;
+    color: #4d4d4d;
+    margin: 0;
+}
+
+.introduce_letter_write{
+    width: 12px;
+    height: 20px;
+    margin-left: 10px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.pen_image{
+    padding-top: 3px;
+    width: 12px;
+    height: 12px;
+}
+
+.my_state{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    border-top: 1px solid #d9d9d9;
+}
+
+.alarm{
+    width: 50%;
+    border-right: 1px solid #d9d9d9;
+}
+
+.alarm_message{
+    margin-left: 8%;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+
+.alarm_image{
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+}
+
+.scrap_image{
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+}
+
+.alarm_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #808080;
+    height: 50px;
+}
+
+.alarm_count{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.alarm_link:hover{
+    text-decoration: underline;
+}
+
+.scrap{
+    width: 50%;
+}
+
+.scrap_message{
+    margin: 0;
+    text-align: center;
+    margin-left: 8%;
+}
+
+.scrap_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #808080;
+    height: 50px;
+}
+
+.scrap_count{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.scrap_link:hover{
+    text-decoration: underline;
+}
+
+.third_content_title{
+    font-size: 25px;
+    line-height: 63px;
+    margin: 0;
+}
+
+.third_content_image_section{
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.third_content_image{
+    width: 62px;
+    height: 59px;
+}
+
+.third_content_letter{
+    font-size: 18px;
+    color: #B3B3B3;
+}
+
+.third_content_upload_btn{
+    display: inline-block;
+    margin-top: 30px;
+    line-height: 48px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #009a3e;
+    color: #009a3e;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.forth_content{
+    margin-top: 100px;
+    display: flex;
+}
+
+.story{
+    display: block;
+    background-color: #009a3e;
+    color: #f2f2f2;
+    line-height: 37px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-right: 8px;
+    width: 73.13px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.photo{
+    display: block;
+    background-color: #f2f2f2;
+    color: #4d4d4d;
+    line-height: 37px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-right: 8px;
+    width: 60.85px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.forth_content_photo{
+    margin-left: 10.5%;
+    margin-right: 10.5%;
+}
+
+
+.forth_content_image_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 465.6px;
+}
+
+.forth_content_image{
+    width: 62px;
+    height: 59px;
+}
+
+.forth_content_letter{
+    font-size: 18px;
+    color: #B3B3B3;
+}
+
+/* 지욱님팀꺼 */
+.update-user-info{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    width: 65%;
+}
+
+.update-user-info > div {
+    margin: 0px 0px 16px;
+}
+
+.update-user-text {
+    display: block;
+    margin-bottom: 6px;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+.update-user {
+    position: relative;
+}
+
+.update-user-value {
+    width: 100%;
+    border: 1px solid rgb(238, 238, 238);
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 14px 14px 12px;
+    background: rgb(250, 250, 250);
+    color: rgb(17, 17, 17);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+.update-user-value:focus{
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+}
+
+.update-user-nickname-value:focus {
+    border-color: rgb(0, 117, 239);
+    background: rgb(255, 255, 255);
+}
+
+.update-user-wrap {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.update-user-wrap > div:first-child {
+    width: 100%;
+    margin: 0px 8px 0px 0px;
+}
+
+.update-user-change, .update-user-save {
+    display: flex;
+    align-items: flex-end;
+}
+
+.change-button, .save-button, .go-change-button {
+    width: 87px;
+    height: 50px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.change-button:hover, .save-button:hover, .go-change-button:hover {
+    background: rgb(250, 250, 250);
+}
