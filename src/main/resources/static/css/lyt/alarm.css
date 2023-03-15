@@ -1,0 +1,209 @@
+body{
+    letter-spacing: -0.05em;
+    margin: 0;
+}
+
+/* 서브네비게이션 */
+.subnav{
+    border-bottom: 1px solid #d9d9d9;
+}
+
+ul, ol, li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+}
+
+.subnav a{
+    display: inline-block;
+    line-height: 49px;
+}
+
+.subnav_wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subnav_list {
+    padding: 0;
+    margin: 0;
+}
+
+.disply_bundle{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.first_letter{
+    font-size: 15px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.second_letter{
+    font-size: 14px;
+    font-weight: 400;
+    color: #808080;
+}
+
+.except_home_letter{
+    margin-left: 15px;
+}
+
+.subnav li + li {
+    margin-left: 32px;
+}
+
+/* 네비게이션 항목 설정 */
+.select{
+    color: #009a3e;
+}
+
+.list_my_setting_items{
+    display: none;
+}
+
+.list_my_shopping_items{
+    display: none;
+}
+
+
+/*컨텐츠*/
+.wrap{
+    letter-spacing: -0.05em;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.divide_btns{
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn_setting{
+    display: block;
+    color: #4D4D4D;
+    background-color: #F2F2F2;
+    padding: 0 12px;
+    line-height: 37px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.select_btn{
+    color: #fff;
+    background-color: #009a3e;
+}
+
+.btn_list{
+    margin: 0;
+    padding: 0;
+}
+
+.read_all{
+    position: absolute;
+    line-height: 20px;
+    font-size: 15px;
+    color: #808080;
+    right: 0;
+    background-color: #fff;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 2px solid #cdcdcd;
+    padding: 0;
+    cursor: pointer;
+}
+
+.divide_btns li:not(.active) a:hover{
+    background-color: #d9d9d9;
+}
+
+.keep_message{
+    margin-top: 30px;
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: 16px;
+    color: #222624;
+}
+
+.unread{
+    background-color:#f2faf5;
+}
+
+.alarm_content{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.alarm_wrapper{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+    box-sizing: border-box;
+}
+
+
+#alarm_list{
+    display: block;
+    padding: 0;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.alarm_profile{
+    width: 56px;
+}
+
+.alarm_profile_image{
+    width: 100%;
+    border-radius: 100%;
+    border: 1px solid #d9d9d9;
+}
+
+.alarm_detail{
+    padding-left: 25px;
+}
+
+.detail_message{
+    color: #4D4D4D;
+    margin-bottom: -3px;
+    line-height: 20px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+}
+
+.divide_color{
+    color: #808080;
+}
+
+.detail_message_link:hover .detail_message:not(.alarm_time){
+    text-decoration: underline;
+    color: #222624;
+}
+
+.alarm_time{
+    margin-top: 6px;
+    line-height: 20px;
+    color: #b3b3b3;
+    font-size: 13px;
+    text-decoration: none;
+}
