@@ -237,6 +237,10 @@ p {
     left: 0;
 }
 
+.board-thumb:hover{
+    transform: scale(1.5);
+}
+
 .board-title{
     margin-top: 7px;
     text-align: center;
