@@ -265,3 +265,9 @@ if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && ch
     $(".join").attr("disabled", "true")
 }
 
+
+
+/* 모달 */
+function show () {
+    document.querySelector(".modal").className = "modal show";
+}
