@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../../static/css/jyc/join.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <form action="">
+            <div class="join-wrapper">
+                <div class="logo">
+                    <h1 class="title">
+                        <span class="sp">싱그러운집</span>
+                        회원가입
+                    </h1>
+                </div>
+                <div class="join-content">
+                    <dl style="text-align: center;">
+                        <dt>프로필</dt>
+                        <label for="profile" id="profile_label">
+                            <div class="img"></div>
+                            <span class="close" style="display:none">X</span>
+                        </label>
+                        <input type="file" id="profile"  style="display: none" />
+                    </dl>
+                    <dl>
+                        <dt>아이디</dt>
+                        <dd class="id-check">
+                            <input type="text" id="join-identification" name="memberIdentification" placeholder="아이디">
+                            <p class="id-err err"></p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>비밀번호</dt>
+                        <dd class="password">
+                            <input type="password" id="join-password" name="memberPassword" placeholder="비밀번호">
+                            <p class="err-password err"></p>
+                        </dd>
+                        <dd style="margin-top:5px">
+                            <input type="password" id="join-check-password" placeholder="비밀번호 확인">
+                            <p class="err-password-check err"></p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>닉네임</dt>
+                        <dd>
+                            <input type="text" id="nickname" name="memberNickname" placeholder="닉네임(2~10자)">
+                            <p class="err-nickname err"></p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>이름</dt>
+                        <dd>
+                            <input type="text" id="name" name="memberName" placeholder="이름">
+                            <p class="err-name err"></p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>생일</dt>
+                        <input type="text" id="birth" name="memberBirth" placeholder="생일 ex)19980101">
+                        <p class="err-birth err"></p>
+                    </dl>
+                    <dl>
+                        <dt>핸드폰 번호</dt>
+                        <input type="text" id="phone" name="memberPhone" placeholder="전화번호 ex)01041938215">
+                        <p class="err-phone err"></p>
+                    </dl>
+                    <dl>
+                        <dt>지역</dt>
+                        <input type="text" id="region" name="memberRegion" placeholder="지역">
+                        <p class="err-region err"></p>
+                    </dl>
+                    <dl>
+                        <dt>이메일</dt>
+                        <input type="text" id="email" name="memberEmail" placeholder="이메일">
+                        <p class="err-email" err></p>
+                    </dl>
+                    <dl>
+                        <dt>약관동의</dt>
+                        <dd>
+                            <div class="policy">
+
+                                <div class="check-all">
+                                    <label>
+                                        전체동의
+                                        <input type="checkbox" id="">
+                                        <span class="span-check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="check">
+                                    <label>
+                                        이용약관
+                                        <input type="checkbox" id="">
+                                        <span class="span-check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="check">
+                                    <label>
+                                        개인정보 처리 방침
+                                        <input type="checkbox" id="">
+                                        <span class="span-check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="check">
+                                    <label>
+                                        마케팅 수신 동의
+                                        <input type="checkbox" id="">
+                                        <span class="span-check"></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <button class="join">회원가입 완료</button>
+            </div>
+        </form>
+
+
+        <div class="modal" style="display:none;">
+            <div class=""></div>
+
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../../static/js/jyc/member.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</html>
