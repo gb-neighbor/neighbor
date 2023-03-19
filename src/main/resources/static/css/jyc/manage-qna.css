@@ -28,13 +28,12 @@ html{
     height: 100%;
 }
 
-#knowhow-logo {
+#neighbor-logo {
     width: 90%;
 }
 
 #top-box {
     display: flex;
-    border-bottom: 2px dotted gray;
     height: 7vh;
     align-items: center;
     justify-content: center;

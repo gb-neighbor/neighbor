@@ -37,8 +37,8 @@ let checkAll = [false, false, false, false, false, false, false, false, false];
     4 -> 생일 
     5 -> 핸드폰 번호
     6 -> 이메일
-    7 -> 지역
-    8 -> 아이디
+    7 -> 아이디
+    8 -> 전체동의
 */
 
 /* 프로필 사진 썸네일 */
@@ -77,10 +77,11 @@ profile.addEventListener('change', function (e) {
 $("#join-identification").on("blur", function () {
     if(!$(this).val()){
         $(".id-err").text("아이디를 입력해주세요");
-        checkAll[8] = false;
+        checkAll[7] = false;
     } else {
         $(".id-err").text("");
-        checkAll[8] = true;
+        checkAll[7] = true;
+        changeButton();
     }
 })
 
@@ -112,6 +113,7 @@ $passwordInput.keyup(function(e){
     } else{
         $errPassword.text("")
         checkAll[0] = true;
+        changeButton();
     }
 })
 
@@ -121,6 +123,7 @@ $passwordInput.keyup(function(e){
     if($passwordInput.val() == $passwordCheck.val()){
         $errPasswordCheck.text("")
         checkAll[1] = true;
+        changeButton();
     } else{
         $errPasswordCheck.text("비밀번호가 다릅니다")
         checkAll[1] = false;
@@ -133,6 +136,7 @@ $passwordCheck.keyup(function(e){
     if($passwordInput.val() == $passwordCheck.val()){
         $errPasswordCheck.text("")
         checkAll[1] = true;
+        changeButton();
     } else{
         $errPasswordCheck.text("비밀번호가 다릅니다")
         checkAll[1] = false;
@@ -154,6 +158,7 @@ $("#nickname").on("keyup",function(){
         } else if($(this).val()){
             $errNick.text("")
             checkAll[2] = true;
+            changeButton();
 
         }
         
@@ -163,6 +168,7 @@ $("#nickname").on("keyup",function(){
         } else if($(this).val()){
             $errNick.text("")
             checkAll[2] = true;
+            changeButton();
 
         }
 })
@@ -172,6 +178,7 @@ $("#name").on("keyup", function() {
     $(this).val($(this).val().replace(/[^(ㄱ-힣a-zA-Z)]/gi, ''));
     if($(this).val() != ""){
         checkAll[3] = true;
+        changeButton();
     } else {
         checkAll[3] = false;
     }
@@ -184,6 +191,7 @@ $("#name").on("keyup", function() {
     if($(this).val() != "" && $(this).val().length == 8 && regBirth.test($(this).val())){
         checkAll[4] = true;
         $(".err-birth").text("");
+        changeButton();
     } else {
         checkAll[4] = false;
         $(".err-birth").text("생일을 정확히 입력해주세요")
@@ -197,6 +205,7 @@ $("#phone").on("keyup", function(){
     if($(this).val() != "" && $(this).val().length == 11 && regPhone.test($(this).val())){
         checkAll[5] = true;
         $(".err-phone").text("");
+        changeButton();
     } else {
         checkAll[5] = false;
         $(".err-phone").text("핸드폰 번호를 재대로 입력해주세요")
@@ -205,15 +214,16 @@ $("#phone").on("keyup", function(){
 
 
 /* 지역 */
-$("#region").on("keyup", function(){
+/* $("#region").on("keyup", function(){
     if(!$(this).val()){
         checkAll[7] = false;
         $(".err-region").text("지역을 입력해주세요");
     } else{
         checkAll[7] = true;
         $(".err-region").text("");
+        changeButton();
     }
-})
+}) */
 
 
 
@@ -235,6 +245,7 @@ $email.keyup(function(){
         } else {
             $helpEmail.text("");
             checkAll[6] = true;
+            changeButton();
 
         }
         
@@ -268,22 +279,24 @@ $(".check-all span").on("click", function () {
     if($(".check-all span").attr("class") == "span-check"){
         $(".check-all span").attr("class", "span-checked")
         $(".check span").attr("class", "span-checked")
+        checkAll[8] = true;
+        changeButton()
     } else {
         $(".check-all span").attr("class", "span-check")
         $(".check span").attr("class", "span-check")
+        checkAll[8] = false;
     }
 })
 
 
-/* 수정 필요 */
 /* 모든 정보가 있어야만 클릭 가능*/
-    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && $(".check-all span").attr("class") == "span-checked"){
+function changeButton(){
+    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8]){
         $(".join").attr("disabled", false)
-        console.log("들어오")
     } else {
         $(".join").attr("disabled", true)
-        console.log("안들어옴")
     }
+}
 
 
 
