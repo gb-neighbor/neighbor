@@ -248,7 +248,7 @@ a {
 
 /* fotter에 있는 로고 */
 .footer-logo {
-    background-image: url(/src/main/resources/static/image/logo_title_450_150.png);
+    background-image: url('../../image/logo_title_450_150.png');
     width: 200px;
     height: 100px;
     position: absolute;
