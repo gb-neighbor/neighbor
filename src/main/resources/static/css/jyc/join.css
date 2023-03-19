@@ -23,21 +23,38 @@ dd{
 label{
     cursor: pointer;
     display:inline-block;
-    background-image: url('profile.png');
+    position:relative;
 }
 
-input[type='text'], input[type='password']{
-    text-indent: 19px;
+input[type='text'], input[type='password'], select, textarea{
+    /* text-indent: 19px;
     height: 50px;
     font-size: 15px ;
     color: #808080 ;
     border: 1px solid #d9d9d9 ;
     border-radius: 4px;
     box-sizing: border-box;
-    width:100%;
+    width:100%; */
+    width: 100%;
+    padding: 14px 14px 12px;
+    color: rgb(17, 17, 17);
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.42px;
+    border-radius: 3px;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgb(238, 238, 238);
+    margin: 4px 0px 8px;
+    overflow-x: hidden;
 }
 
+textarea{
+    resize:none;
+}
 
+select{
+    width:107%;
+}
 .wrapper{
     padding: 0;
     box-sizing: border-box;
@@ -55,11 +72,12 @@ input[type='text'], input[type='password']{
 .logo .title{
     margin-bottom: 30px;
     line-height: 30px;
-    font-size: 30px;
+    font-size: 14px;
     font-weight: 800;
     color: #009a3e;
     text-align: center;
 }
+
 .sp{
     margin-right: 11px;
     width: 155px;
@@ -72,7 +90,10 @@ input[type='text'], input[type='password']{
     vertical-align: middle;
     font-size: 0;
     background-repeat: no-repeat;
-    display:none;
+}
+
+.text{
+    text-align: right;
 }
 
 label[for=profile]{
@@ -100,7 +121,8 @@ label[for=profile]{
 .policy{
     padding-bottom: 13px;
     border: 1px solid #d9d9d9;
-    border-radius: 4px
+    border-radius: 4px;
+    width:107%;
 }
 
 .check-all{
@@ -113,6 +135,7 @@ label[for=profile]{
     line-height: 22px;
     font-size: 14px;
     color: #222624;
+    
 }
 
 .check{
@@ -125,31 +148,51 @@ label[for=profile]{
     font-weight: 700;
 }
 
+button{
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+    line-height: 22px;
+    font-size: 14px;
+    color: #222624;
+    padding: 0;
+}
+
 input[type='checkbox']{
     display:none;
 }
 
 .img{
-    background-image: url('../../../templates/jyc/images/profile.png');
+    background-image: url('../../../templates/jyc/images/profile2.png');
     position: relative;
     width: 100%;
     height: 100%;
     margin: 0px 0px 16px;
-    border-radius: 100%;
     cursor: pointer;
     background-position: center;
     background-size: cover;
+}
 
+.close{
+    font-size: 14px;
+    position: absolute;
+    left: 84px;
+    bottom: 81px;
+    font-weight: 800;
 }
 
 .check .span-check, .check-all .span-check{
     position: absolute;
     top: calc(50% - 11px);
-    right: 13px;
     width: 20px;
     height: 20px;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
+    left:398px;
+    cursor: pointer;
 }
 
 .check span.span-checked, .check-all span.span-checked{
@@ -163,6 +206,8 @@ input[type='checkbox']{
     height: 20px;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
+    left:398px;
+    cursor: pointer;
 }
 
 .join{
@@ -176,18 +221,139 @@ input[type='checkbox']{
     text-align: center;
     box-sizing: border-box;
     border-radius: 4px;
-    width:100%;
+    width:107%;
     outline: none;
     border:none;
     cursor:pointer;
 }
 
 
-/* 모달 */
-.modal{
-    margin: 0 auto;
-    max-width: 400px;
-    box-sizing: border-box;
+/* 모달  3개 다 복붙임*/
+
+/* 1번째 모달 */
+#modal-agree.modal-overlay {
+    width: 100%;
+    height: 456%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#modal-agree .modal-window {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 700px;
+    height: 500px;
+    position: relative;
+    top: -100px;
+    padding: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#modal-agree .title {
+    padding-left: 10px;
+    display: inline;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
+    
+}
+#modal-agree .title h2 {
+    display: inline;
+}
+#modal-agree .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
 }
 
-.
+#modal-agree .content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
+}
+
+
+
+
+/* 2번쨰 모달 */
+#modal-privacy.modal-overlay {
+    width: 100%;
+    height: 456%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display:none;
+}
+#modal-privacy .modal-window {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 700px;
+    height: 500px;
+    position: relative;
+    top: -100px;
+    padding: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#modal-privacy .title {
+    padding-left: 10px;
+    display: inline;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
+    
+}
+#modal-privacy .title h2 {
+    display: inline;
+}
+#modal-privacy .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
+}
+
+#modal-privacy .content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
+}
+
+.fc6{
+    color: #222624 !important;
+}
