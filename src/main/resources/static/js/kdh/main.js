@@ -2,13 +2,10 @@
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 const banner = document.querySelector('div.banner');
 const imageDiv = document.querySelectorAll('div.banner div');
-const imageRandomDiv = document.querySelectorAll('div.random-menu-banner-wrap ul li a div');
 const lastImageDiv = document.createElement('div');
 const firstImageDiv = document.createElement('div');
 const next = document.querySelector('div.next');
-const randomNext = document.querySelector('div.random-menu-banner-right-arrow');
 const prev = document.querySelector('div.prev');
-const randomPrev = document.querySelector('div.random-menu-banner-left-arrow');
 const buttons = document.querySelectorAll('.buttons button');
 
 let checkArrow = false;
@@ -110,8 +107,107 @@ next.addEventListener('click', function () {
     }, 300);
 });
 
+/* 최근 음식 게시물 */
+/* const recentFoodInfo = document.querySelector('recent-food-info-wrap');
+
+recentFoodInfo.setAttribute('class','hover'); */
+
+
 
 /* 랜덤추천 메뉴 */
-imageRandomDiv.forEach(
-    (div, i) => (div.style.backgroundImage = `url(../../static/css/kdh/images/random00${i + 1}.jpg)`)
-);
+const imageRandomDiv = document.querySelectorAll('ul.random-menu-banner-list div');
+const randomNext = document.querySelector('.random-menu-banner-right-arrow');
+const randomPrev = document.querySelector('.random-menu-banner-left-arrow');
+const randomBanner = document.querySelector('ul.random-menu-banner-list');
+globalThis.displayNext = 0;
+let count2 = 0;
+var randomImageCount = 0;
+let checkArrow2 = false;
+randomPrev.style.display = "none";
+
+randomPrev.addEventListener('click', function () {
+    if(randomImageCount != 0) {
+        if (checkArrow2) {
+            return;
+        }
+        checkArrow2 = true;
+        randomBanner.style.transition = 'transform 0.3s';
+        randomBanner.style.transform = `translate(${305 * ++count2}px)`;
+        randomImageCount--;
+        setTimeout(() => {
+            checkArrow2 = false;
+        }, 30);
+    }
+    if(randomImageCount==0) {
+        randomPrev.style.display = "none";
+    }
+    if(globalThis.displayNext==1) {
+        randomNext.style.display = "block";
+    }
+});
+
+randomNext.addEventListener('click', function () {
+    if(randomImageCount==3) {
+        randomNext.style.display = "none";
+        displayNext = 1;
+    }
+
+    if(randomImageCount != 4) {
+        randomImageCount++;
+        if (checkArrow2) {
+            return;
+        }
+        if(randomImageCount!=0) {
+            randomPrev.style.display = "block";
+        }
+        checkArrow2 = true;
+        randomBanner.style.transition = 'transform 0.3s';
+        randomBanner.style.transform = `translate(${305 * --count2}px)`;
+        setTimeout(() => {
+            checkArrow2 = false;
+        }, 30);
+    }
+});
+
+/* 최근 게시물 */
+var showInfo = $(".recent-food-info-wrap");
+var recentImg = $(".recent-food-image");
+const pictureWrappers = $('.recent-food-picture-wrapper');
+
+
+
+pictureWrappers.on('mouseover', function() {
+  const parent = $(this).parent();
+  const infoWraps = parent.find('.recent-food-info-wrap');
+  infoWraps.each(function() {
+    $(this).css('display', $(this).parent()[0] === parent[0] ? 'none' : 'block');
+  });
+});
+
+pictureWrappers.on('mouseout', function() {
+  const parent = $(this).parent();
+  const infoWraps = parent.find('.recent-food-info-wrap');
+  infoWraps.each(function() {
+    $(this).css('display', $(this).parent()[0] === parent[0] ? 'block' : 'none');
+  });
+});
+
+
+pictureWrappers.hover(function() {
+    // 마우스 오버 이벤트 발생 시 실행될 코드
+    const targetImg = $(this).find('.recent-food-image');
+    targetImg.css('filter', 'brightness(0.5)');
+  }, function() {
+    // 마우스 아웃 이벤트 발생 시 실행될 코드
+    const targetImg = $(this).find('.recent-food-image');
+    targetImg.css('filter', 'brightness(1)');
+  });
+  
+  showInfo.hover(function() {
+    // 마우스 오버 이벤트 발생 시 실행될 코드
+    const parent = $(this).parent();
+    const targetImg = parent.find('.recent-food-image');
+    targetImg.css('filter', 'brightness(0.5)');
+  });
+
+
