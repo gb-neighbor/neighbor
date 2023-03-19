@@ -619,7 +619,27 @@ div.buttons button:nth-child(1) {
 }
 /* 랜덤메뉴 끝 */
 
-/* 테스트용 */
-.recent-food-image:hover {
-    filter: brightness(0.5);
+/* 맨 위로 가는 버튼 */
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #009a3e;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease-in-out;
+}
+  
+#topBtn:hover {
+    background-color: #c2185b;
 }
