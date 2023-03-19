@@ -3,6 +3,10 @@ body{
     margin: 0;
 }
 
+*{
+    font-family: 'Spoqa Han Sans', sans-serif
+}
+
 /* 서브네비게이션 */
 .subnav{
     border-bottom: 1px solid #d9d9d9;
@@ -132,28 +136,14 @@ a{
 }
 
 .search_wrap{
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 25px 40px;
-    background-color: #f2faf5;
     border-radius: 4px;
 }
 
 
 .search_container{
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
-.search_info{
-    width: 149px;
-    margin: 0;
-    line-height: 50px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #808080;
-}
 /* 셀렉트 박스 */
 .hide{
     display: none;
@@ -216,125 +206,115 @@ a{
     color: #4D4D4D;
 }
 
-.search_input{
-    width: calc(100% - 367px);
-    padding-right: 64px;
-    text-indent: 19px;
-    box-sizing: border-box;
-    line-height: 32px;
+.inquiry_category_info{
+    padding-bottom: 20px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: 700;
+    color: #4d4d4d;
+}
+
+.inquiry_title_wrap{
+    margin-top: 40px;
+}
+
+.inquiry_title{
+    padding-bottom: 20px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: 700;
+    color: #4d4d4d;
+}
+
+.write_title{
+    width: 100%;
     height: 50px;
     font-size: 15px;
-    color: #808080 ;
+    color: #808080;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
+    text-indent: 19px;
+    box-sizing: border-box;
     outline: none;
 }
 
-input::placeholder {
-    color: #b3b3b3;
-    font-size: 14px;
+input::placeholder {color:#b3b3b3;}
+
+.inquiry_content_wrap{
+    margin-top: 40px;
 }
 
-.search_btn{
-    position: absolute;
-    right: 0;
-    width: 65px;
+.inquiry_content{
+    padding-bottom: 20px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: 700;
+    color: #4d4d4d;
+}
+
+textarea::placeholder {color:#b3b3b3;}
+
+.write_content{
+    width: 100%;
+    height: 100px;
+    padding: 13px 19px;
+    line-height: 20px;
+    font-size: 15px;
+    color: #808080;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+}
+
+.inquiry_write_btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.write_cancel{
+    width: 150px;
     height: 50px;
     font-size: 15px;
-    color: #009a3e;
-    background-color: #fff;
-    outline: none;
-    border:1px solid #d9d9d9;
-    border-left:0;
+    color: #4d4d4d;
+    background-color: #d9d9d9;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.collapsible {
-    z-index: 0;
-    position: relative;
-    background-color: #ffffff;
-    color: #222624;
+.send_inquiry{
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+    margin-left: 8px;
+    color: #fff;
+    background-color: #009a3e;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    width: 100%;
-    height: 60px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 20px;
-    line-height: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: left;
-    outline: none;
-    align-items: center;
-    letter-spacing: -0.05em;
-}
-
-.collapsible:after {
-    content: url(./images/arrow22.png);
-    color: white;
-    font-weight: bold;
-    float: right;
-    margin-left: auto;
-    margin-right: 20px;
-}
-.active:after {
-    content: url(./images/arrow21.png);
-}
-
-.content_items{
-    display: block;
-    color: #808080;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 20px;
-    line-height: 20px;
-    font-size: 14px;
-    margin: 0;
 }
 
 
-.content {
-    position: relative;
-    cursor: pointer;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    background-color: #f7f7f7;
-    color: #222624;
+/* 스크롤 CSS */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-.content_items_padding{
-    height: 11px;
-    margin: 0;
-    cursor:default;
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-.question{
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    font-weight: 700;
-    color: #009a3e;
-    font-size: 16px;
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
 }
 
-.category_text{
-    font-weight: bold;
-}
-
-.answer{
-    position: absolute;
-    left: 20px;
-    top: 18px;
-    font-weight: 700;
-    color: #808080;
-    font-size: 16px;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

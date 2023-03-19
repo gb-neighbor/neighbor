@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이웃집 반찬</title>
+    <title>설정 &gt; 회원탈퇴 | 이웃집 반찬</title>
     <link rel="stylesheet" href="../../static/css/lyt/user_leave.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/neighbor_logo.ico" />
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <!-- 서브네비게이션  -->
@@ -16,28 +19,23 @@
                 <a href="" class="first_letter">프로필</a>
                 <div class="list_profile_items disply_bundle">
                     <a href="" class="second_letter">홈</a>
-                    <a href="" class="second_letter except_home_letter">알림</a>
                     <a href="" class="second_letter except_home_letter">쪽지함</a>
-                    <a href="" class="second_letter except_home_letter">내가 올린 음식</a>
+                    <a href="" class="second_letter except_home_letter">내가 올린 반찬</a>
                     <a href="" class="second_letter except_home_letter">후기</a>
                 </div>
             </li>
 
             <li class="list_my_shopping">
-                <a href="" class="first_letter">마이쇼핑</a>
+                <a href="" class="first_letter">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
-                    <a href="" class="second_letter">홈</a>
-                    <a href="" class="second_letter except_home_letter">판매자 즐겨찾기</a>
-                    <a href="" class="second_letter except_home_letter">최근 본 음식</a>
-                    <a href="" class="second_letter except_home_letter">거래목록</a>
-                    <a href="" class="second_letter except_home_letter">문의</a>
+                    <a href="" class="second_letter except_home_letter">FAQ</a>
+                    <a href="" class="second_letter except_home_letter">1:1 문의</a>
                 </div>
             </li>
 
             <li class="list_setting">
                 <a href="" class="first_letter select">설정</a>
                 <div class="list_my_setting_items disply_bundle">
-                    <a href="" class="second_letter except_home_letter">푸시 알림</a>
                     <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
                     <a href="" class="second_letter except_home_letter select">회원탈퇴</a>
                 </div>
@@ -54,27 +52,57 @@
             <div class="menu_box">
                 <div class="menu_contents">
 
+                    <div class="profile">
+                        <div class="oneline_wrapper">
+                            <div class="profile_image_section">
+                                <img class="profile_image" src="./images/theif.png">
+                            </div>
+
+                            <div class="info_desk" >
+                                <div class="nick_name">
+                                    <p class="nick_name_letter">UI도둑</p>
+                                </div>
+
+                                <div class="my_state">
+                                    <div class="scrap">
+                                        <a class="scrap_link" href="">
+                                            <p class="scrap_message">게시물&nbsp</p>
+                                            <p class="scrap_count">0</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="alarm">
+                                        <a class="alarm_link" href="">
+                                            <p class="alarm_message">후기&nbsp</p>
+                                            <p class="alarm_count">0</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <button type="button" class="collapsible" onclick="collapse(this);">
                         프로필
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">알림</a>
+                        <a href="" class="content_items">홈</a>
                         <a href="" class="content_items">쪽지함</a>
-                        <a href="" class="content_items">내가 올린 음식</a>
+                        <a href="" class="content_items">내가 올린 반찬</a>
                         <a href="" class="content_items">후기</a>
                         <p class="content_items_padding"></p>
                     </div>
 
 
                     <button type="button" class="collapsible" onclick="collapse(this);">
-                        마이 쇼핑
+                        문의
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">최근 본 음식</a>
-                        <a href="" class="content_items">거래목록</a>
-                        <a href="" class="content_items">문의</a>
+                        <a href="" class="content_items">FAQ</a>
+                        <a href="" class="content_items">1:1 문의</a>
                         <p class="content_items_padding"></p>
                     </div>
 
@@ -83,7 +111,6 @@
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">푸시 알림</a>
                         <a href="" class="content_items">비밀번호 변경</a>
                         <a href="" class="content_items">회원탈퇴</a>
                         <p class="content_items_padding"></p>

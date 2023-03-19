@@ -3,6 +3,10 @@ body{
     margin: 0;
 }
 
+*{
+    font-family: 'Spoqa Han Sans', sans-serif
+}
+
 /* 서브네비게이션 */
 .subnav{
     border-bottom: 1px solid #d9d9d9;
@@ -137,14 +141,14 @@ a{
 }
 
 .collapsible:after {
-    content: url(../../../templates/lyt/images/arrow22.png);
+    content: url(./images/arrow22.png);
     color: white;
     font-weight: bold;
     float: right;
     margin-left: auto;
 }
 .active:after {
-    content: url(../../../templates/lyt/images/arrow21.png);
+    content: url(./images/arrow21.png);
 }
 
 .content_items{
@@ -160,8 +164,115 @@ a{
 }
 
 /*컨텐츠*/
+
+.profile_image_section{
+    position: relative;
+    width: 63px;
+    height: 63px;
+}
+
+.profile_image{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 100%;
+}
+
+
+.nick_name{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 8%;
+}
+
+.nick_name_letter{
+    text-align: center;
+    color: #4d4d4d;
+    margin: 0;
+}
+
+.my_state{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    width: 75%;
+    margin-bottom: 15%;
+    margin-left: 4%;
+    margin-right: 0;
+}
+
+.alarm{
+    width: 50%;
+}
+
+.alarm_message{
+    margin-left: 8%;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.alarm_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #808080;
+    height: 50px;
+}
+
+.alarm_count{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.alarm_link:hover .alarm_count:not(.alarm_message){
+    text-decoration: underline;
+}
+
+.scrap{
+    width: 50%;
+}
+
+.scrap_message{
+    margin: 0;
+    text-align: center;
+    margin-left: 8%;
+}
+
+.scrap_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #808080;
+    height: 50px;
+}
+
+.scrap_count{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.scrap_link:hover .scrap_count:not(.scrap_message){
+    text-decoration: underline;
+}
+
+
+.info_desk{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 62%;
+    height: 63px;
+}
+
+.oneline_wrapper{
+    display: flex;
+}
+
 .leave_title{
-    font-size: 25px;
+    font-size: 18px;
     margin: 0;
     letter-spacing: -0.05em;
 }
@@ -273,4 +384,25 @@ textarea::placeholder {
     outline: none;
     cursor: pointer;
     border: 0;
+}
+
+/* 스크롤 CSS */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
