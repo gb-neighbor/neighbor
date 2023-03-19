@@ -4,6 +4,8 @@
 body {
     font: 12px/1.2 'Spoqa Han Sans', sans-serif;
     color: #4d4d4d;
+    zoom: 80%;
+    margin: auto 0;
 }
 
 h3 {
@@ -207,128 +209,128 @@ p {
 
 /* 잊지말고 label 위치 바꾸기 */
 .map-seoul .region-name.gangnam label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 77.88%;
+    left: 72.31%;
 }
 
 .map-seoul .region-name.gangdong label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 53.88%;
+    left: 90.31%;
 }
 
 .map-seoul .region-name.gangbuk label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 22.88%;
+    left: 57.31%;
 }
 
 .map-seoul .region-name.gangseo label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 49.88%;
+    left: 14.31%;
 }
 
 .map-seoul .region-name.gwanak label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 84.88%;
+    left: 43.31%;
 }
 
 .map-seoul .region-name.gwangjin label {
-    top: 17.88%;
-    left: 38.31%;
-}
-
-.map-seoul .region-name.gangnam label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 55.88%;
+    left: 76.7%;
 }
 
 .map-seoul .region-name.guro label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 74.88%;
+    left: 18.31%;
 }
 
 .map-seoul .region-name.geumchun label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 87.88%;
+    left: 32.31%;
 }
 
 .map-seoul .region-name.nowon label {
     top: 17.88%;
-    left: 38.31%;
+    left: 73%;
 }
 
 .map-seoul .region-name.dobong label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 7.88%;
+    left: 62.8%;
 }
 
 .map-seoul .region-name.dongdaemun label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 43.88%;
+    left: 67.8%;
 }
 
 .map-seoul .region-name.dongjak label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 71.88%;
+    left: 43.31%;
 }
 
 .map-seoul .region-name.mapo label {
-    top: 17.88%;
+    top: 54.88%;
     left: 38.31%;
 }
 
 .map-seoul .region-name.seodaemun label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 45.88%;
+    left: 40.31%;
 }
 
 .map-seoul .region-name.seocho label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 78.88%;
+    left: 57.31%;
 }
 
 .map-seoul .region-name.sungdong label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 53.88%;
+    left: 66.31%;
 }
 
 .map-seoul .region-name.sungbuk label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 36.88%;
+    left: 59.31%;
 }
 
 .map-seoul .region-name.songpa label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 69.88%;
+    left: 82.31%;
+}
+
+.map-seoul .region-name.yangcheon label {
+    top: 66.0%;
+    left: 22.31%;
 }
 
 .map-seoul .region-name.youngdeungpo label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 64.88%;
+    left: 34.31%;
 }
 
 .map-seoul .region-name.yongsan label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 60.88%;
+    left: 51.31%;
 }
 
 .map-seoul .region-name.eunpyung label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 24.88%;
+    left: 39.8%;
 }
 
 .map-seoul .region-name.jongno label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 31.88%;
+    left: 48.31%;
 }
 
 .map-seoul .region-name.junggu label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 51.5%;
+    left: 56.5%;
 }
 
 .map-seoul .region-name.junglang label {
-    top: 17.88%;
-    left: 38.31%;
+    top: 35.88%;
+    left: 77.71%;
 }
 
 .map-seoul .region-name input:checked + label {
@@ -729,7 +731,6 @@ option {
     margin-top: -10px;
     width: calc(100% + 20px);
 }
-
 .clearfix::after{
     content: "";
     display: block;
@@ -759,26 +760,42 @@ option {
 }
 
 .profile-area-box{
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
 }
 
 .profile-area-box .thumbs{
    position: inherit;
    width: 30px;
    height: 30px;
+   min-width: 30px;
 }
 
 .profile-area-box .id span{
     font-size: 14px;
     color: #4d4d4d;
     padding-left: 8px;
+    display: inline-block;
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.profile-area{
+.profile-area-inner{
     display: flex;
     align-items: center;
+    max-width: 80%;
+}
+
+.profile-area-inner p{
+    max-width: 100%;
+    width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
 .title-area-box{
@@ -805,12 +822,19 @@ option {
     margin-right: 15px;
 }
 
-.sub-info-area-box {
+.profile-area{
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    max-width:100%;
 }
 
-.sub-info-area-box .location .map {
+.profile-area-box .location{
+    margin-left: 12px;
+    min-width: fit-content;
+}
+
+.profile-area-box .location .map {
     display: block;
     background: url('image/place_link.png') no-repeat 0 center/auto 16px;
     font-size: 14px;
@@ -819,7 +843,8 @@ option {
 }
 
 .result-list-outer-box .pic-box{
-    margin-top: 13px;
+    margin-top: 7px;
+
 }
 
 .result-list-outer-box .pic-box .pics-thumbs{
@@ -855,10 +880,52 @@ option {
 }
 
 
+/************************************************************/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 
 
+/************************************************************/
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #009a3e;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  #topBtn:hover {
+    background-color: #c2185b;
+  }
 
-
-
-
-
+  

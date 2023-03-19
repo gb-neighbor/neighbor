@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>list-by-region</title>
-    <link rel="stylesheet" href="../../static/css/hhs/list-by-region.css">
+    <title>list-by-region2</title>
+    <link rel="stylesheet" href="../../static/css/hhs/list-by-region2.css">
     <link rel="shortcut icon" type="image/x-icon" href="../../static/image/favicon.ico">
 </head>
 <body>
@@ -19,7 +19,7 @@
         <!-- 위 아래 패딩을 위한 컨테이너 -->
         <article class="list-by-region-inner-container">
             <!-- 양 옆 마진을 위한 컨테이너 -->
-            <div class="real-container">  
+            <div class="real-container">
                 <!-- 페이지 타이틀 -->
                 <h3 class="sub-title type2">
                     싱그런 여행
@@ -34,7 +34,7 @@
                         <div class="map-seoul">
                             <!-- 강남구 -->
                             <div class="region-name gangnam">
-                                <input type="radio" class="input-selection" id="input-selection-gangnam" value="1" onclick="locationClick(1)" >
+                                <input type="radio" name="regionMap" class="input-selection gangnam" id="input-selection-gangnam" value="1" onclick="locationClick(1)" >
                                 <label for="input-selection-gangnam">강남구</label>
                                 <span class="img"></span>
                             </div>
@@ -42,7 +42,7 @@
                             <!-- 강동구 -->
                             <!-- gangdong -->
                             <div class="region-name gangdong">
-                                <input type="radio" class="input-selection gangdong" id="input-selection-gangdong" value="2" onclick="locationClick(2)">
+                                <input type="radio" name="regionMap" class="input-selection gangdong" id="input-selection-gangdong" value="2" onclick="locationClick(2)">
                                 <label for="input-selection-gangdong">강동구</label>
                                 <span class="img"></span>
                             </div>
@@ -50,7 +50,7 @@
                             <!-- 강북구 -->
                             <!-- gangbuk -->
                             <div class="region-name gangbuk">
-                                <input type="radio" class="input-selection gangbuk"  id="input-selection-gangbuk" value="3" onclick="locationClick(3)">
+                                <input type="radio" name="regionMap" class="input-selection gangbuk"  id="input-selection-gangbuk" value="3" onclick="locationClick(3)">
                                 <label for="input-selection-gangbuk">강북구</label>
                                 <span class="img"></span>
                             </div>
@@ -58,7 +58,7 @@
                             <!-- 강서구 -->
                             <!-- gangseo -->
                             <div class="region-name gangseo">
-                                <input type="radio" class="input-selection gangseo" id="input-selection-gangseo" value="4" onclick="locationClick(4)">
+                                <input type="radio" name="regionMap" class="input-selection gangseo" id="input-selection-gangseo" value="4" onclick="locationClick(4)">
                                 <label for="input-selection-gangseo">강서구</label>
                                 <span class="img"></span>
                             </div>
@@ -66,7 +66,7 @@
                             <!-- 관악구 -->
                             <!-- gwanak -->
                             <div class="region-name gwanak">
-                                <input type="radio" class="input-selection gwanak" id="input-selection-gwanak" value="5" onclick="locationClick(5)">
+                                <input type="radio" name="regionMap" class="input-selection gwanak" id="input-selection-gwanak" value="5" onclick="locationClick(5)">
                                 <label for="input-selection-gwanak">관악구</label>
                                 <span class="img"></span>
                             </div>
@@ -74,7 +74,7 @@
                             <!-- 광진구 -->
                             <!-- gwangjin -->
                             <div class="region-name gwangjin">
-                                <input type="radio" class="input-selection gwangjin" id="input-selection-gwangjin" value="6" onclick="locationClick(6)">
+                                <input type="radio" name="regionMap" class="input-selection gwangjin" id="input-selection-gwangjin" value="6" onclick="locationClick(6)">
                                 <label for="input-selection-gwangjin">광진구</label>
                                 <span class="img"></span>
                             </div>
@@ -82,7 +82,7 @@
                             <!-- 구로구 -->
                             <!-- guro -->
                             <div class="region-name guro">
-                                <input type="radio" class="input-selection guro" id="input-selection-guro" value="7" onclick="locationClick(7)">
+                                <input type="radio" name="regionMap" class="input-selection guro" id="input-selection-guro" value="7" onclick="locationClick(7)">
                                 <label for="input-selection-guro">구로구</label>
                                 <span class="img"></span>
                             </div>
@@ -90,7 +90,7 @@
                             <!-- 금천구 -->
                             <!-- geumchun -->
                             <div class="region-name geumchun">
-                                <input type="radio" class="input-selection geumchun"  id="input-selection-geumchun" value="8" onclick="locationClick(8)">
+                                <input type="radio" name="regionMap" class="input-selection geumchun"  id="input-selection-geumchun" value="8" onclick="locationClick(8)">
                                 <label for="input-selection-geumchun">금천구</label>
                                 <span class="img"></span>
                             </div>
@@ -98,7 +98,7 @@
                             <!-- 노원구 -->
                             <!-- nowon -->
                             <div class="region-name nowon">
-                                <input type="radio" class="input-selection nowon" id="input-selection-nowon" value="9" onclick="locationClick(9)">
+                                <input type="radio" name="regionMap" class="input-selection nowon" id="input-selection-nowon" value="9" onclick="locationClick(9)">
                                 <label for="input-selection-nowon">노원구</label>
                                 <span class="img"></span>
                             </div>
@@ -106,7 +106,7 @@
                             <!-- 도봉구 -->
                             <!-- dobong -->
                             <div class="region-name dobong">
-                                <input type="radio" class="input-selection dobong" id="input-selection-dobong" value="10" onclick="locationClick(10)">
+                                <input type="radio" name="regionMap" class="input-selection dobong" id="input-selection-dobong" value="10" onclick="locationClick(10)">
                                 <label for="input-selection-dobong">도봉구</label>
                                 <span class="img"></span>
                             </div>
@@ -114,7 +114,7 @@
                             <!-- 동대문 -->
                             <!-- dongdaemun -->
                             <div class="region-name dongdaemun">
-                                <input type="radio" class="input-selection dongdaemun" id="input-selection-dongdaemun" value="11" onclick="locationClick(11)">
+                                <input type="radio" name="regionMap" class="input-selection dongdaemun" id="input-selection-dongdaemun" value="11" onclick="locationClick(11)">
                                 <label for="input-selection-dongdaemun">동대문구</label>
                                 <span class="img"></span>
                             </div>
@@ -122,7 +122,7 @@
                             <!-- 동작구 -->
                             <!-- dongjak -->
                             <div class="region-name dongjak">
-                                <input type="radio" class="input-selection dongjak" id="input-selection-dongjak" value="12" onclick="locationClick(12)">
+                                <input type="radio" name="regionMap" class="input-selection dongjak" id="input-selection-dongjak" value="12" onclick="locationClick(12)">
                                 <label for="input-selection-dongjak">동작구</label>
                                 <span class="img"></span>
                             </div>
@@ -130,7 +130,7 @@
                             <!-- 마포구 -->
                             <!-- mapo -->
                             <div class="region-name mapo">
-                                <input type="radio" class="input-selection mapo" id="input-selection-mapo" value="13" onclick="locationClick(13)">
+                                <input type="radio" name="regionMap" class="input-selection mapo" id="input-selection-mapo" value="13" onclick="locationClick(13)">
                                 <label for="input-selection-mapo">마포구</label>
                                 <span class="img"></span>
                             </div>
@@ -138,7 +138,7 @@
                             <!-- 서대문구 -->
                             <!-- seodaemun -->
                             <div class="region-name seodaemun">
-                                <input type="radio" class="input-selection seodaemun" id="input-selection-seodaemun" value="14" onclick="locationClick(14)">
+                                <input type="radio" name="regionMap" class="input-selection seodaemun" id="input-selection-seodaemun" value="14" onclick="locationClick(14)">
                                 <label for="input-selection-seodaemun">서대문구</label>
                                 <span class="img"></span>
                             </div>
@@ -146,7 +146,7 @@
                             <!-- 서초구 -->
                             <!-- seocho -->
                             <div class="region-name seocho">
-                                <input type="radio" class="input-selection seocho"  id="input-selection-seocho" value="15" onclick="locationClick(15)">
+                                <input type="radio" name="regionMap" class="input-selection seocho"  id="input-selection-seocho" value="15" onclick="locationClick(15)">
                                 <label for="input-selection-seocho">서초구</label>
                                 <span class="img"></span>
                             </div>
@@ -154,7 +154,7 @@
                             <!-- 성동구 -->
                             <!-- sungdong -->
                             <div class="region-name sungdong">
-                                <input type="radio" class="input-selection sungdong" id="input-selection-sungdong" value="16" onclick="locationClick(16)">
+                                <input type="radio" name="regionMap" class="input-selection sungdong" id="input-selection-sungdong" value="16" onclick="locationClick(16)">
                                 <label for="input-selection-sungdong">성동구</label>
                                 <span class="img"></span>
                             </div>
@@ -162,7 +162,7 @@
                             <!-- 성북구 -->
                             <!-- sungbuk -->
                             <div class="region-name sungbuk">
-                                <input type="radio" class="input-selection sungbuk" id="input-selection-sungbuk" value="17" onclick="locationClick(17)">
+                                <input type="radio" name="regionMap" class="input-selection sungbuk" id="input-selection-sungbuk" value="17" onclick="locationClick(17)">
                                 <label for="input-selection-sungbuk">성북구</label>
                                 <span class="img"></span>
                             </div>
@@ -170,7 +170,7 @@
                             <!-- 송파구 -->
                             <!-- songpa -->
                             <div class="region-name songpa">
-                                <input type="radio" class="input-selectio songpa" id="input-selection-songpa" value="18" onclick="locationClick(18)">
+                                <input type="radio" name="regionMap" class="input-selection songpa" id="input-selection-songpa" value="18" onclick="locationClick(18)">
                                 <label for="input-selection-songpa">송파구</label>
                                 <span class="img"></span>
                             </div>
@@ -178,7 +178,7 @@
                             <!-- 양천구 -->
                             <!-- yangcheon -->
                             <div class="region-name yangcheon">
-                                <input type="radio" class="input-selection yangcheon" id="input-selection-yangcheon" value="19" onclick="locationClick(19)">
+                                <input type="radio" name="regionMap" class="input-selection yangcheon" id="input-selection-yangcheon" value="19" onclick="locationClick(19)">
                                 <label for="input-selection-yangcheon">양천구</label>
                                 <span class="img"></span>
                             </div>
@@ -186,7 +186,7 @@
                             <!-- 영등포구 -->
                             <!-- youngdeungpo -->
                             <div class="region-name youngdeungpo">
-                                <input type="radio" class="input-selection youngdeungpo" id="input-selection-youngdeungpo" value="20" onclick="locationClick(20)">
+                                <input type="radio" name="regionMap" class="input-selection youngdeungpo" id="input-selection-youngdeungpo" value="20" onclick="locationClick(20)">
                                 <label for="input-selection-youngdeungpo">영등포구</label>
                                 <span class="img"></span>
                             </div>
@@ -194,7 +194,7 @@
                             <!-- 용산구 -->
                             <!-- yongsan -->
                             <div class="region-name yongsan">
-                                <input type="radio" class="input-selection yongsan" id="input-selection-yongsan" value="21" onclick="locationClick(21)">
+                                <input type="radio" name="regionMap" class="input-selection yongsan" id="input-selection-yongsan" value="21" onclick="locationClick(21)">
                                 <label for="input-selection-yongsan">용산구</label>
                                 <span class="img"></span>
                             </div>
@@ -202,7 +202,7 @@
                             <!-- 은평구 -->
                             <!-- eunpyung -->
                             <div class="region-name eunpyung">
-                                <input type="radio" class="input-selection eunpyung" id="input-selection-eunpyung" value="22" onclick="locationClick(22)">
+                                <input type="radio" name="regionMap" class="input-selection eunpyung" id="input-selection-eunpyung" value="22" onclick="locationClick(22)">
                                 <label for="input-selection-eunpyung">은평구</label>
                                 <span class="img"></span>
                             </div>
@@ -210,7 +210,7 @@
                             <!-- 종로구 -->
                             <!-- jongno -->
                             <div class="region-name jongno">
-                                <input type="radio" class="input-selection jongno" id="input-selection-jongno" value="23" onclick="locationClick(23)">
+                                <input type="radio" name="regionMap" class="input-selection jongno" id="input-selection-jongno" value="23" onclick="locationClick(23)">
                                 <label for="input-selection-jongno">종로구</label>
                                 <span class="img"></span>
                             </div>
@@ -218,7 +218,7 @@
                             <!-- 중구 -->
                             <!-- junggu -->
                             <div class="region-name junggu">
-                                <input type="radio" class="input-selection junggu" id="input-selection-junggu" value="24" onclick="locationClick(24)">
+                                <input type="radio" name="regionMap" class="input-selection junggu" id="input-selection-junggu" value="24" onclick="locationClick(24)">
                                 <label for="input-selection-junggu">중구</label>
                                 <span class="img"></span>
                             </div>
@@ -226,7 +226,7 @@
                             <!-- 중랑구 -->
                             <!-- junglang -->
                             <div class="region-name junglang">
-                                <input type="radio" class="input-selection junglang"id="input-selection-junglang" value="25" onclick="locationClick(25)">
+                                <input type="radio" name="regionMap" class="input-selection junglang"id="input-selection-junglang" value="25" onclick="locationClick(25)">
                                 <label for="input-selection-junglang">중랑구</label>
                                 <span class="img"></span>
                             </div>
@@ -351,7 +351,7 @@
                                         <!-- 시 -->
                                         <!-- 구 -->
                                         <div class="custom_select w1">
-                                            <select class="custom_select" name="gugun" id="gugun">
+                                            <select class="custom_select select-region-drop" name="gugun" id="gugun">
                                                 <option value="">구/군</option>
                                                 <option value="0">전체</option>
                                                 <option value="1">강남구</option>
@@ -392,8 +392,8 @@
                                 <!-- //서울 구 선택 + 검색창 -->
                                 <!-- 검색 버튼 -->
                                 <div class="wrp_buttons">
-                                    <button type="submit" class="btn green">검색</button>
-                                    <button type="button" class="btn lgray" onclick="reset();">초기화</button>
+                                    <button type="submit" class="btn green" onclick="console.log('hello')">검색</button>
+                                    <button type="button" class="btn lgray" onclick="reset();resetMap();">초기화</button>
                                 </div>
                             </form>
                             <!-- //검색 폼 -->
@@ -424,17 +424,6 @@
                         <li class="result-list-container">
                             <div class="result-list-outer-box">
                                 <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
-                                            <p class="id">
-                                                <span onclick="location.href='#'">그린조에</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <img src="../../static/css/hhs/image/arrow_r.png">
-                                        </div>
-                                    </div>
                                     <div class="title-area-box">
                                         <div class="title-area">
                                             <span class="list-title">도프커피</span>
@@ -446,13 +435,26 @@
                                                 <img src="../../static/css/hhs/image/star.png">
                                             </span>
                                         </div>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="location">
-                                            <span class="map">종로구</span>
+                                        <div>
+                                            <img src="../../static/css/hhs/image/arrow_r.png">
                                         </div>
-                                        <div class="price">
-                                            <span class="won">25,000</span>
+                                    </div>
+                                    <div class="profile-area-box">
+                                        <div class="profile-area">
+                                            <div class="profile-area-inner">
+                                                <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
+                                                <p class="id">
+                                                    <span onclick="location.href='#'">그린조에</span>
+                                                </p>
+                                                <div class="location">
+                                                    <span class="map">종로구</span>
+                                                </div>
+                                            </div>
+                                            <div class="sub-info-area-box">
+                                                <div class="price">
+                                                    <span class="won">25,000</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="pic-box">
@@ -468,17 +470,6 @@
                         <li class="result-list-container">
                             <div class="result-list-outer-box">
                                 <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
-                                            <p class="id">
-                                                <span onclick="location.href='#'">그린조에</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <img src="../../static/css/hhs/image/arrow_r.png">
-                                        </div>
-                                    </div>
                                     <div class="title-area-box">
                                         <div class="title-area">
                                             <span class="list-title">도프커피</span>
@@ -490,13 +481,26 @@
                                                 <img src="../../static/css/hhs/image/star.png">
                                             </span>
                                         </div>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="location">
-                                            <span class="map">종로구</span>
+                                        <div>
+                                            <img src="../../static/css/hhs/image/arrow_r.png">
                                         </div>
-                                        <div class="price">
-                                            <span class="won">25,000</span>
+                                    </div>
+                                    <div class="profile-area-box">
+                                        <div class="profile-area">
+                                            <div class="profile-area-inner">
+                                                <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
+                                                <p class="id">
+                                                    <span onclick="location.href='#'">그린조에</span>
+                                                </p>
+                                                <div class="location">
+                                                    <span class="map">종로구</span>
+                                                </div>
+                                            </div>
+                                            <div class="sub-info-area-box">
+                                                <div class="price">
+                                                    <span class="won">25,000</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="pic-box">
@@ -512,17 +516,6 @@
                         <li class="result-list-container">
                             <div class="result-list-outer-box">
                                 <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
-                                            <p class="id">
-                                                <span onclick="location.href='#'">그린조에</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <img src="../../static/css/hhs/image/arrow_r.png">
-                                        </div>
-                                    </div>
                                     <div class="title-area-box">
                                         <div class="title-area">
                                             <span class="list-title">도프커피</span>
@@ -534,101 +527,26 @@
                                                 <img src="../../static/css/hhs/image/star.png">
                                             </span>
                                         </div>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="location">
-                                            <span class="map">종로구</span>
-                                        </div>
-                                        <div class="price">
-                                            <span class="won">25,000</span>
-                                        </div>
-                                    </div>
-                                    <div class="pic-box">
-                                        <div class="pics-thumbs thumbs1"></div>
-                                        <div class="pics-thumbs thumbs2"></div>
-                                        <div class="pics-thumbs thumbs3"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <!-- //리스트 한개 -->
-                        <!-- 리스트 한개 -->
-                        <li class="result-list-container">
-                            <div class="result-list-outer-box">
-                                <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
-                                            <p class="id">
-                                                <span onclick="location.href='#'">그린조에</span>
-                                            </p>
-                                        </div>
                                         <div>
                                             <img src="../../static/css/hhs/image/arrow_r.png">
                                         </div>
                                     </div>
-                                    <div class="title-area-box">
-                                        <div class="title-area">
-                                            <span class="list-title">도프커피</span>
-                                            <span class="stars">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="location">
-                                            <span class="map">종로구</span>
-                                        </div>
-                                        <div class="price">
-                                            <span class="won">25,000</span>
-                                        </div>
-                                    </div>
-                                    <div class="pic-box">
-                                        <div class="pics-thumbs thumbs1"></div>
-                                        <div class="pics-thumbs thumbs2"></div>
-                                        <div class="pics-thumbs thumbs3"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <!-- //리스트 한개 -->
-                        <!-- 리스트 한개 -->
-                        <li class="result-list-container">
-                            <div class="result-list-outer-box">
-                                <a href="#">
                                     <div class="profile-area-box">
                                         <div class="profile-area">
-                                            <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
-                                            <p class="id">
-                                                <span onclick="location.href='#'">그린조에</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <img src="../../static/css/hhs/image/arrow_r.png">
-                                        </div>
-                                    </div>
-                                    <div class="title-area-box">
-                                        <div class="title-area">
-                                            <span class="list-title">도프커피</span>
-                                            <span class="stars">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="location">
-                                            <span class="map">종로구</span>
-                                        </div>
-                                        <div class="price">
-                                            <span class="won">25,000</span>
+                                            <div class="profile-area-inner">
+                                                <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
+                                                <p class="id">
+                                                    <span onclick="location.href='#'">그린조에</span>
+                                                </p>
+                                                <div class="location">
+                                                    <span class="map">종로구</span>
+                                                </div>
+                                            </div>
+                                            <div class="sub-info-area-box">
+                                                <div class="price">
+                                                    <span class="won">25,000</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="pic-box">
@@ -640,64 +558,21 @@
                             </div>
                         </li>
                         <!-- //리스트 한개 -->
-                        <!-- 리스트 한개 -->
-                        <li class="result-list-container">
-                            <div class="result-list-outer-box">
-                                <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="thumbs" style="background-image:url('../../static/css/hhs/image/dummy-thumbnail.jpg')"></div>
-                                            <p class="id">
-                                                <span onclick="location.href='#'">그린조에</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <img src="../../static/css/hhs/image/arrow_r.png">
-                                        </div>
-                                    </div>
-                                    <div class="title-area-box">
-                                        <div class="title-area">
-                                            <span class="list-title">도프커피</span>
-                                            <span class="stars">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                                <img src="../../static/css/hhs/image/star.png">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="location">
-                                            <span class="map">종로구</span>
-                                        </div>
-                                        <div class="price">
-                                            <span class="won">25,000</span>
-                                        </div>
-                                    </div>
-                                    <div class="pic-box">
-                                        <div class="pics-thumbs thumbs1"></div>
-                                        <div class="pics-thumbs thumbs2"></div>
-                                        <div class="pics-thumbs thumbs3"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <!-- //리스트 한개 -->
-
-
+                      
                     </ul>
                     <!-- //결과 리스트 묶음 전체 -->
                 </div>
                 <!-- //검색 결과 리스트 창 -->
                 <!-- ::after -->
+                <!-- top으로 가는 버튼  -->
+                <button id="topBtn">Top</button>
+                <!-- //top으로 가는 버튼  -->
             </div>
             <!-- //양 옆 마진을 위한 컨테이너 -->
         </article>
         <!-- //위 아래 패딩을 위한 컨테이너 -->
     </section>
     <!-- //본문 전체 -->
-
     <!-- section for footer -->
     <!-- //section for footer -->
 </div>
@@ -705,4 +580,5 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/hhs/list-by-region.js"></script>
 </html>
