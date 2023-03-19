@@ -3,6 +3,10 @@ body{
     margin: 0;
 }
 
+*{
+    font-family: 'Spoqa Han Sans', sans-serif
+}
+
 /* 서브네비게이션 */
 .subnav{
     border-bottom: 1px solid #d9d9d9;
@@ -116,6 +120,7 @@ a{
 
 
 .collapsible {
+    display: block;
     background-color: #ffffff;
     color: #222624;
     cursor: pointer;
@@ -136,14 +141,14 @@ a{
 }
 
 .collapsible:after {
-    content: url(../../../templates/lyt/images/arrow22.png);
+    content: url(./images/arrow22.png);
     color: white;
     font-weight: bold;
     float: right;
     margin-left: auto;
 }
 .active:after {
-    content: url(../../../templates/lyt/images/arrow21.png);
+    content: url(./images/arrow21.png);
 }
 
 .content_items{
@@ -163,9 +168,8 @@ a{
 
 .profile_image_section{
     position: relative;
-    margin: 0 auto;
-    width: 89.6px;
-    height: 89.6px;
+    width: 63px;
+    height: 63px;
 }
 
 .profile_image{
@@ -179,8 +183,8 @@ a{
     display: flex;
     align-items: center;
     position: absolute;
-    width: 29.6px;
-    height: 29.6px;
+    width: 23.6px;
+    height: 23.6px;
     bottom: 0;
     right: 0;
     background-color: #ffffff;
@@ -197,9 +201,8 @@ a{
 .nick_name{
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: 20px;
+    justify-content: left;
+    margin-left: 8%;
 }
 
 .nick_name_letter{
@@ -208,34 +211,18 @@ a{
     margin: 0;
 }
 
-.introduce_letter_write{
-    width: 12px;
-    height: 20px;
-    margin-left: 10px;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    background-color: #ffffff;
-}
-
-.pen_image{
-    padding-top: 3px;
-    width: 12px;
-    height: 12px;
-}
-
 .my_state{
     display: flex;
     align-items: center;
     justify-content:space-around;
-    margin-top: 10%;
+    width: 75%;
     margin-bottom: 15%;
-    border-top: 1px solid #d9d9d9;
+    margin-left: 4%;
+    margin-right: 0;
 }
 
 .alarm{
     width: 50%;
-    border-right: 1px solid #d9d9d9;
 }
 
 .alarm_message{
@@ -245,34 +232,21 @@ a{
     text-align: center;
 }
 
-
-.alarm_image{
-    width: 26px;
-    height: 26px;
-    margin-right: 12px;
-}
-
-.scrap_image{
-    width: 26px;
-    height: 26px;
-    margin-right: 12px;
-}
-
 .alarm_link{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 14px;
     color: #808080;
     height: 50px;
 }
 
 .alarm_count{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 500;
 }
 
-.alarm_link:hover{
+.alarm_link:hover .alarm_count:not(.alarm_message){
     text-decoration: underline;
 }
 
@@ -290,22 +264,35 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 14px;
     color: #808080;
     height: 50px;
 }
 
 .scrap_count{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 500;
 }
 
-.scrap_link:hover{
+.scrap_link:hover .scrap_count:not(.scrap_message){
     text-decoration: underline;
 }
 
+
+.info_desk{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 62%;
+    height: 63px;
+}
+
+.oneline_wrapper{
+    display: flex;
+}
+
+
 .third_content_title{
-    font-size: 25px;
+    font-size: 18px;
     line-height: 63px;
     margin: 0;
 }
@@ -394,6 +381,7 @@ a{
 }
 
 /* 지욱님팀꺼 */
+
 .update-user-info{
     padding-top: 20px;
     padding-bottom: 20px;
@@ -433,12 +421,13 @@ a{
     line-height: 22px;
     letter-spacing: -0.03em;
     text-align: left;
+    outline: none;
 }
 
-.update-user-value:focus{
-    border: 1px solid black;
-    background-color: rgb(255, 255, 255);
-}
+/* .update-user-value:focus{;
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+}; */
 
 .update-user-nickname-value:focus {
     border-color: rgb(0, 117, 239);
@@ -454,11 +443,6 @@ a{
 .update-user-wrap > div:first-child {
     width: 100%;
     margin: 0px 8px 0px 0px;
-}
-
-.update-user-change, .update-user-save {
-    display: flex;
-    align-items: flex-end;
 }
 
 .change-button, .save-button, .go-change-button {
@@ -486,4 +470,56 @@ a{
 
 .change-button:hover, .save-button:hover, .go-change-button:hover {
     background: rgb(250, 250, 250);
+}
+
+input::placeholder {
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.42px;
+    font-weight: 500;
+    color:rgb(17, 17, 17)
+}
+
+/* 스크롤 CSS */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 위로가기 버튼 */
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #009a3e;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease-in-out;
+}
+
+#topBtn:hover {
+    background-color: #c2185b;
 }
