@@ -28,12 +28,17 @@ $('input').keydown(function(event) {
 
 
 /* 인풋테그에 값이 있으면 순서대로 true로 변경 */
-let checkAll = [false, false, false, false, false, false, false];
+let checkAll = [false, false, false, false, false, false, false, false, false];
 /* 순서대로 
     0 -> 비밀번호를 정확히 입력했다면 true
     1 -> 비밀번호와 비밀번호 확인이 같다면 true
-    2 -> 닉네임에 값이 있다면 true
-    3 - > 이름에 값이 있다면 true
+    2 -> 닉네임
+    3 -> 이름
+    4 -> 생일 
+    5 -> 핸드폰 번호
+    6 -> 이메일
+    7 -> 아이디
+    8 -> 전체동의
 */
 
 /* 프로필 사진 썸네일 */
@@ -46,7 +51,7 @@ profileClose.addEventListener('click', function (e) {
     e.preventDefault();
     profile.value = "";
     profileClose.style.display="none";
-    profileDiv.style.backgroundImage =  `url('../../templates/jyc/images/profile.png')`;
+    profileDiv.style.backgroundImage =  `url('../../templates/jyc/images/profile2.png')`;
     profileDiv.style.width = "100%";
     profileDiv.style.display = "block";
 });
@@ -64,7 +69,7 @@ profile.addEventListener('change', function (e) {
             profileClose.style.display = "inline-block";
             profileDiv.style.width = "100%";
         } else {
-            profileDiv.style.backgroundImage = `url('../../templates/jyc/images/profile.png')`;
+            profileDiv.style.backgroundImage = `url('../../templates/jyc/images/profile2.png')`;
         }
     };
 });
@@ -72,8 +77,11 @@ profile.addEventListener('change', function (e) {
 $("#join-identification").on("blur", function () {
     if(!$(this).val()){
         $(".id-err").text("아이디를 입력해주세요");
+        checkAll[7] = false;
     } else {
         $(".id-err").text("");
+        checkAll[7] = true;
+        changeButton();
     }
 })
 
@@ -91,7 +99,7 @@ $passwordInput.keyup(function(e){
     let english = $value.search(/[a-z]/ig);
     let spece = $value.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
     // 아무것도 입력하지 않았을때
-    if($value== ""){
+    if(!$value){
         $errPassword.text("비밀번호를 입력해주세요");
     } else if($value.length<10 || $value.length>20){
         $errPassword.text("비밀번호는 10자 이상 20자 이하로 입력해주세요")
@@ -105,19 +113,20 @@ $passwordInput.keyup(function(e){
     } else{
         $errPassword.text("")
         checkAll[0] = true;
+        changeButton();
     }
-   
-   
-
 })
+
+
 /* 새로운 비밀번호 확인 인풋테그 감지해서 값 비교 */
 $passwordInput.keyup(function(e){
     if($passwordInput.val() == $passwordCheck.val()){
         $errPasswordCheck.text("")
-        checkAll[0] = true;
+        checkAll[1] = true;
+        changeButton();
     } else{
         $errPasswordCheck.text("비밀번호가 다릅니다")
-        checkAll[0] = false;
+        checkAll[1] = false;
     }
 })
 
@@ -127,6 +136,7 @@ $passwordCheck.keyup(function(e){
     if($passwordInput.val() == $passwordCheck.val()){
         $errPasswordCheck.text("")
         checkAll[1] = true;
+        changeButton();
     } else{
         $errPasswordCheck.text("비밀번호가 다릅니다")
         checkAll[1] = false;
@@ -145,12 +155,21 @@ $("#nickname").on("keyup",function(){
          $(this).val($(this).val().substring(0, 9));
          $('#nick_name').html(9);
 
-        } else if($(this).val() != ""){
+        } else if($(this).val()){
+            $errNick.text("")
             checkAll[2] = true;
+            changeButton();
 
-        } else if(!$(this).val()){
+        }
+        
+        if(!$(this).val()){
             checkAll[2] = false;
             $errNick.text("닉네임을 입력해주세요")
+        } else if($(this).val()){
+            $errNick.text("")
+            checkAll[2] = true;
+            changeButton();
+
         }
 })
 
@@ -159,6 +178,7 @@ $("#name").on("keyup", function() {
     $(this).val($(this).val().replace(/[^(ㄱ-힣a-zA-Z)]/gi, ''));
     if($(this).val() != ""){
         checkAll[3] = true;
+        changeButton();
     } else {
         checkAll[3] = false;
     }
@@ -171,6 +191,7 @@ $("#name").on("keyup", function() {
     if($(this).val() != "" && $(this).val().length == 8 && regBirth.test($(this).val())){
         checkAll[4] = true;
         $(".err-birth").text("");
+        changeButton();
     } else {
         checkAll[4] = false;
         $(".err-birth").text("생일을 정확히 입력해주세요")
@@ -184,6 +205,7 @@ $("#phone").on("keyup", function(){
     if($(this).val() != "" && $(this).val().length == 11 && regPhone.test($(this).val())){
         checkAll[5] = true;
         $(".err-phone").text("");
+        changeButton();
     } else {
         checkAll[5] = false;
         $(".err-phone").text("핸드폰 번호를 재대로 입력해주세요")
@@ -192,17 +214,17 @@ $("#phone").on("keyup", function(){
 
 
 /* 지역 */
-/*$("#region").click(function () {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-        }
-    });
+/* $("#region").on("keyup", function(){
+    if(!$(this).val()){
+        checkAll[7] = false;
+        $(".err-region").text("지역을 입력해주세요");
+    } else{
+        checkAll[7] = true;
+        $(".err-region").text("");
+        changeButton();
+    }
+}) */
 
-})*/
-
-console.log($("#region"))
 
 
 
@@ -223,23 +245,28 @@ $email.keyup(function(){
         } else {
             $helpEmail.text("");
             checkAll[6] = true;
+            changeButton();
 
         }
         
 })
 
+
+console.log($(".check span"))
 /* 이용약관 */
 $(".check span").on("click", function(){
     /* 클릭하면 체크로 바뀌게 */
     let i = $(this).index() - 1;
-    if($(this).eq(i).attr("class") == "span-check"){
-        $(this).eq(i).attr("class", "span-checked");
+    console.log(i)
+    console.log($(this).attr("class"))
+    if($(this).attr("class") == "span-check"){
+        $(this).attr("class", "span-checked");
     } else{
-        $(this).eq(i).attr("class", "span-check");
+        $(this).attr("class", "span-check");
     }
     
     /*만약 3개가 다 체크되어있다면 check-all은 checked로 바뀜*/
-    if($(".check span").eq(0).attr("class") == "span-checked" && $(".check span").eq(1).attr("class") == "span-checked" && $(".check span").eq(2).attr("class") == "span-checked"){
+    if($(".check span").eq(0).attr("class") == "span-checked" && $(".check span").eq(1).attr("class") == "span-checked"){
         $(".check-all span").attr("class", "span-checked")
     } else {
         $(".check-all span").attr("class", "span-check")
@@ -252,16 +279,60 @@ $(".check-all span").on("click", function () {
     if($(".check-all span").attr("class") == "span-check"){
         $(".check-all span").attr("class", "span-checked")
         $(".check span").attr("class", "span-checked")
+        checkAll[8] = true;
+        changeButton()
     } else {
         $(".check-all span").attr("class", "span-check")
         $(".check span").attr("class", "span-check")
+        checkAll[8] = false;
     }
 })
 
+
 /* 모든 정보가 있어야만 클릭 가능*/
-if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6]){
-    $(".join").attr("disabled", "false")
-} else {
-    $(".join").attr("disabled", "true")
+function changeButton(){
+    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8]){
+        $(".join").attr("disabled", false)
+    } else {
+        $(".join").attr("disabled", true)
+    }
 }
 
+
+
+/* 첫번째 모달 */
+const modal1 = document.querySelector("#modal-agree")
+function show1 () {
+    modal1.style.display = "flex";
+}
+
+const closeBtn1 = modal1.querySelector("#modal-agree .close-area")
+    closeBtn1.addEventListener("click", e => {
+    modal1.style.display = "none"
+})
+
+
+
+/* 두번째 모달 */
+const modal2 = document.querySelector("#modal-privacy")
+function show2 () {
+    modal2.style.display = "flex";
+}
+
+const closeBtn2 = modal2.querySelector("#modal-privacy .close-area")
+    closeBtn2.addEventListener("click", e => {
+    modal2.style.display = "none"
+})
+
+
+/* 모달창 아닌 부분을 클릭했을 시 사라짐 */
+modal1.addEventListener("click", function(e){
+    if(e.target === modal1){
+        modal1.style.display = "none";
+    }
+})
+modal2.addEventListener("click", function(e){
+    if(e.target === modal2){
+        modal2.style.display = "none";
+    }
+})

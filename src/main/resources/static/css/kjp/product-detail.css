@@ -1,0 +1,271 @@
+/*
+---------------------------
+          HEADER
+--------------------------- */
+body {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    position: relative;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+/*
+-------------------------
+        best shop
+-------------------------*/
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.product-payment{
+    margin: 0 auto;
+    width: 63%;
+}
+.product-img{
+    max-width: 1200px;
+    display: flex;
+    margin-top: 20px;
+}
+.product-img img{
+    width: 645px;
+    border-radius: 10px;
+    height: 582px;
+}
+.img-spec{
+    color: inherit;
+    font-size: 20px;
+    margin-left: 75px;
+    max-width: 453px;
+    color: #201e1eb5;
+    font: revert;
+}
+.btn-like{
+    width: 60px;
+    height: 56px;
+    float: right;
+}
+.spec{
+    display: flex;
+    line-height: 20px;
+    font-size: 13px;
+}
+.border-botton{
+    width: 440px;
+    border-bottom: 1px #d0d0d0 solid;
+}
+
+.price{
+    font-weight: 1000;
+    color: black;
+    font-size: 25px;
+}
+.goods-spec{
+    margin-top: 30px;
+    color: #808080;
+    width: 20%;
+}
+.spec  li {
+    display: table-cell;
+    vertical-align: middle;
+}
+.spec-botton{
+    float: right;
+}
+.sp-font{
+    font-size: 15px;
+}
+div#spec-md {
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+img.star {
+    width: 15px;
+    height: 15px;
+}
+div#spec-top {
+    margin-right: 65px;
+    display: flex;
+    flex-direction: column;
+}
+.spec-a {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+}
+.count {
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #808080;
+    display: inline-block;
+}
+
+.count input[type='button'] {
+    background-color: white;
+    border-style: none;
+    line-height: 25px;
+    cursor: pointer;
+}
+#span{
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+
+#mainus {
+    border-right: 1px solid #201e1eb5;
+    width: 30px;
+    height: 39px;
+    color: #201e1eb5;
+}
+
+#plus {
+    border-left: 1px solid #201e1eb5;;
+    width: 30px;
+    height: 39px;
+    color: #201e1eb5;
+}
+.total{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-top: 57px;
+}
+.total-price :nth-child(1){
+    color: black;
+}
+.total-price :nth-child(2){
+    color: green;
+    font-size: 25px;
+}
+.buy{
+    text-align: center;
+    margin-top: 69px;
+}
+.buy input[type='button']{
+    background-color: white;
+    margin: 2px;
+    font-size: 15px;
+    width: 200px;
+    height: 65px;
+    border-radius: 6px;
+    border: 1px solid;
+    color: green;
+    cursor: pointer;
+}
+
+.buy input:nth-child(2){
+    background-color: green;
+    color: white;
+}
+
+/* 모달창 스타일 */
+.modal {
+    display: none; /* 모달창 숨김 */
+    position: fixed; /* 스크롤에 따라 모달창이 이동하지 않도록 고정 */
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 스크롤 가능하게 설정 */
+    background-color: rgba(0,0,0,0.4); /* 배경색과 투명도 설정 */
+}
+.info-container {
+    margin-bottom: 15px;
+}
+h3.modal-title {
+    /* border-bottom: 1px solid; */
+    border-bottom: 1px solid #ccc;
+}
+
+/* 모달창 내용 스타일 */
+.modal-content {
+    background-color: white;
+    margin: 12% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 28%;
+    border-radius: 6px;
+}
+
+/* 모달창 닫기 버튼 스타일 */
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: #888;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 폼 스타일 */
+.noteForm {
+    display: flex;
+    flex-direction: column;
+}
+label.modal-label {
+    display: inherit;
+}
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.nick-name{
+    display: inline;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+}
+
+button[type="submit"],
+button[type="button"] {
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 82px;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #3e8e41;
+}
+
+textarea#content {
+    height: 145px;
+}
+
+.button-group {
+    text-align: right;
+}
+/* 모달창 스타일 끝 */
+
+
+
+
+
+

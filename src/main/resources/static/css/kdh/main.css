@@ -1,14 +1,39 @@
 @charset "utf-8";
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+
 body {
-    min-width: 1200px;
-    margin: 0;
+    zoom: 80%; /* 배율을 80%로 맞춘다. */
+    margin: auto 0;
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 
 a {
     color: inherit;
     text-decoration: none;
 }
+
 
 ul, ol, li {
     list-style: none;
@@ -74,8 +99,6 @@ div.move-arrow {
     right: 0px;
     bottom: 0px;
     width: 6%;
-
-    /* height: 3vh; */
 }
 
 div.move-arrow div {
@@ -232,6 +255,7 @@ div.buttons button:nth-child(1) {
     position: relative;
     overflow: hidden;
     border-radius: 4px;
+    height: 189px;
 }
 
 .recent-food-picture {
@@ -243,19 +267,19 @@ div.buttons button:nth-child(1) {
     background-size: cover;
 }
 
-.recent-food-time {
-    margin-bottom: -3px;
-    line-height: 20px;
-    font-size: 14px;
+.recent-food-picture-title {
+    line-height: 26px;
+    font-size: 28px;
+    width: 150px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 21px !important;
+    position: absolute;
+    top: -175px;
+    left: 70px;
+    color: white;
 }
 
 .recent-food-user-info {
-    margin-top: 15px !important;
     position: relative;
-    min-height: 35px;
     padding-top: 0;
     padding-left: 45px;
 }
@@ -266,11 +290,12 @@ div.buttons button:nth-child(1) {
 }
 
 .recent-food-user-picture {
-    width: 33px;
+    width: 70px;
+    height: 40px;
     padding-bottom: 33px;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 60px;
+    left: 107px;
     border: 1px solid #d9d9d9;
     border-radius: 100%;
     overflow: hidden;
@@ -283,14 +308,18 @@ div.buttons button:nth-child(1) {
     line-height: 35px;
     display: inline-block;
     vertical-align: top;
-    font-size: 15px;
+    font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    position: absolute;
+    right: 114px;
+    top: 140px;
+    color: white;
 }
 
 .recent-food-list::after {
-    content: "";
+    content: '';
     display: block;
     clear: both;
 }
@@ -319,10 +348,25 @@ div.buttons button:nth-child(1) {
     font-weight: 700;
 }
 
+.recent-food-image {
+    object-fit: cover;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    height: 190px;
+    width: 284px;
+}
+
+.recent-food-info-wrap {
+    display: none;
+}
+
+/* 최근 게시물 끝 */
+
 /* 별점 인기순 */
 
 .bookmark {
-    margin-top: 80px !important;
+    margin-top: 60px !important;
     position: relative;
     margin: 0 auto;
     max-width: 1200px;
@@ -345,7 +389,7 @@ div.buttons button:nth-child(1) {
 }
 
 .bookmark-list li > a {
-    padding-right: 80px;  /* 판매가격 오른쪽으로 몰 때 padding-right 조정 */
+    padding-right: 80px; /* 판매가격 오른쪽으로 몰 때 padding-right 조정 */
     padding-left: 110px;
     background-position-x: calc(100% - 40px);
     position: relative;
@@ -458,7 +502,7 @@ div.buttons button:nth-child(1) {
 .banner-background-color {
     background-color: #f2f2f2;
     margin-left: -349px;
-    margin-right: -349px !important
+    margin-right: -349px !important;
 }
 
 .random-menu-wrap {
@@ -487,7 +531,6 @@ div.buttons button:nth-child(1) {
     overflow: hidden;
 }
 
-
 .random-menu-banner-list {
     z-index: 1;
     position: relative;
@@ -499,7 +542,7 @@ div.buttons button:nth-child(1) {
 }
 
 .random-menu-banner {
-    width: calc((100% - 60px)/4);
+    width: calc((100% - 60px) / 4);
     position: relative;
     flex-shrink: 0;
     height: 100%;
@@ -523,7 +566,6 @@ div.buttons button:nth-child(1) {
     left: 0;
     font-size: 0;
     background-size: 100% 100%;
-
 }
 
 .random-menu-banner-arrows {
@@ -531,11 +573,12 @@ div.buttons button:nth-child(1) {
 }
 
 .random-menu-banner-left-arrow:hover {
-    background-color: rgba(0,154,62,0.9);
+    background-color: rgba(0, 154, 62, 0.9);
+
 }
 
 .random-menu-banner-left-arrow {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     background-image: url('images/randomPrev.png');
     left: -20px;
     top: calc(50% - 20px);
@@ -552,7 +595,7 @@ div.buttons button:nth-child(1) {
 }
 
 .random-menu-banner-right-arrow:hover {
-    background-color: rgba(0,154,62,0.9);
+    background-color: rgba(0, 154, 62, 0.9);
 }
 
 .random-menu-banner-right-arrow {
@@ -561,7 +604,7 @@ div.buttons button:nth-child(1) {
     top: calc(50% - 20px);
     width: 40px;
     height: 40px;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     /* 마우스 hover 했을 때 */
     /* background-color: rgba(0,154,62,0.9); */
     border-radius: 100%;
@@ -574,7 +617,29 @@ div.buttons button:nth-child(1) {
     position: absolute;
     text-align: center;
 }
+/* 랜덤메뉴 끝 */
 
-
-
-
+/* 맨 위로 가는 버튼 */
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #009a3e;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease-in-out;
+}
+  
+#topBtn:hover {
+    background-color: #c2185b;
+}
