@@ -33,7 +33,7 @@ input{
     margin: 0 auto;
     max-width: 400px;
     box-sizing: border-box;
-    padding-top: 174px;
+    padding-top: 94px;
     padding-bottom: 228px;
     text-align: center;
 }
@@ -41,16 +41,16 @@ input{
 .logo {
     font-size: 1em;
     font-weight: normal;
-    width: 209px;
-    height: 41px;
+    width: 170px;
+    height: 170px;
     margin:0 auto;
 }
 
 span.logo-name{
-    width: 209px;
-    height: 41px;
+    width: 170px;
+    height: 170px;
     vertical-align: top;
-    background-image: url('https://www.shouse.garden/images/common/bi.png');
+    background-image: url('../../image/logo_entire_450_450.png');
     background-size: 100% 100%;
     position: relative;
     display: inline-block;
