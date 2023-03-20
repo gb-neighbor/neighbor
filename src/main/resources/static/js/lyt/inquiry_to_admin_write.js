@@ -89,6 +89,11 @@ function collapse(element) {
 function writeScript(){;
     var form1 = document.inquiryForm;
 
+    if(values.innerHTML == opts[0].innerHTML){
+        alert("문의 유형을 선택해주세요.");
+        return;
+    }
+
     if (form1.title.value=="") {
         alert("제목을 입력해주세요.");
         form1.title.focus();
@@ -99,5 +104,7 @@ function writeScript(){;
         form1.content.focus();
         return;
     }
+
+
     form1.submit();
 }
