@@ -50,22 +50,20 @@ dd{
 }
 
 button{
-    color: #fff;
-    background-color: #009a3e;
-    border:0;
-    height: 50px;
-    line-height: 50px;
-    font-size: 15px;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: 4px;
-    margin-top: 40px;
-    width: 100%;
-    font: 14px/1.2 'Spoqa Han Sans', sans-serif;
-    letter-spacing: inherit;
-    outline: none;
+  color: #fff;
+  background-color: #009a3e;
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width:100%;
+  outline: none;
+  border:none;
+  cursor:pointer;
 }
 
 input{

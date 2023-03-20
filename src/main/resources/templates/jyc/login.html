@@ -17,10 +17,10 @@
                 </a>
             </div>
             <div class="form-wrapper">
-                <form action="">
-                    <input type="text" placeholder="이메일" class="eamil">
-                    <input type="password" placeholder="비밀번호 8자 이상" class="password">
-                    <button type="submit" class="login-button btn">로그인</button>
+                <form action="" name="loginForm">
+                    <input type="text" placeholder="아이디" class="id" name="memberIdentification">
+                    <input type="password" placeholder="비밀번호 8자 이상" class="password" name="memberPassword">
+                    <button type="button" class="login-button btn" onclick="send()">로그인</button>
 
                     <div class="bottom-wrap">
                         <label class="is-checked">
