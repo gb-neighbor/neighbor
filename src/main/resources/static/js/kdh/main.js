@@ -170,45 +170,74 @@ randomNext.addEventListener('click', function () {
 });
 
 /* 최근 게시물 */
-var showInfo = $(".recent-food-info-wrap");
-var recentImg = $(".recent-food-image");
-const pictureWrappers = $('.recent-food-picture-wrapper');
+var timeOut = null;
 
-
-
-pictureWrappers.on('mouseover', function() {
-  const parent = $(this).parent();
-  const infoWraps = parent.find('.recent-food-info-wrap');
-  infoWraps.each(function() {
-    $(this).css('display', $(this).parent()[0] === parent[0] ? 'none' : 'block');
-  });
-});
-
-pictureWrappers.on('mouseout', function() {
-  const parent = $(this).parent();
-  const infoWraps = parent.find('.recent-food-info-wrap');
-  infoWraps.each(function() {
-    $(this).css('display', $(this).parent()[0] === parent[0] ? 'block' : 'none');
-  });
-});
-
-
-pictureWrappers.hover(function() {
-    // 마우스 오버 이벤트 발생 시 실행될 코드
-    const targetImg = $(this).find('.recent-food-image');
-    targetImg.css('filter', 'brightness(0.5)');
-  }, function() {
-    // 마우스 아웃 이벤트 발생 시 실행될 코드
-    const targetImg = $(this).find('.recent-food-image');
-    targetImg.css('filter', 'brightness(1)');
-  });
+$(document).ready(function(){
+    $('.recent-food-picture').hover(function() {
+        var $this = $(this);
+        console.log(`1 : ` + $(this));
+        $this.find('.recent-food-info-wrap').stop().fadeIn(300);
+        $this.find('.recent-food-image').stop().css('filter', 'brightness(50%)');
+    }, function() {
+        var $this = $(this);
+        console.log(`2 : ` + $(this));
+        $this.find('.recent-food-info-wrap').stop().fadeOut(500);
+        $this.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+    }).each(function() {
+        var $this = $(this);
+        console.log(`3 : ` + $(this));
+        var $infoWrap = $this.find('.recent-food-info-wrap');
+        $infoWrap.data('timeout', null);
+    });
   
-  showInfo.hover(function() {
-    // 마우스 오버 이벤트 발생 시 실행될 코드
-    const parent = $(this).parent();
-    const targetImg = parent.find('.recent-food-image');
-    targetImg.css('filter', 'brightness(0.5)');
-  });
+    $('.recent-food-info-wrap').mouseenter(function() {
+        var $this = $(this);
+        console.log(`4 : ` + $(this));
+        var $picture = $this.parent('.recent-food-picture');
+        clearTimeout($picture.data('timeout'));
+    }).mouseleave(function() {
+        var $this = $(this);
+        console.log(`5 : ` + $(this));
+        var $picture = $this.parent('.recent-food-picture');
+        $picture.data('timeout', setTimeout(function() {
+        $this.stop().fadeOut(500);
+        $picture.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+        }, 500));
+    });
+});
+
+
+/* 밝아지는거 but recent-food-info-wrap이 사라질 때 같이 밝기 조절이 된다. */
+/* $(document).ready(function() {
+    $('.recent-food-picture').hover(function() {
+      var $this = $(this);
+      $this.find('.recent-food-info-wrap').stop().fadeIn(300);
+      $this.find('.recent-food-image').stop().animate({
+        opacity: 0.5
+      }, 300);
+    }, function() {
+      var $this = $(this);
+      $this.find('.recent-food-info-wrap').stop().fadeOut(500);
+      $this.find('.recent-food-image').stop().animate({
+        opacity: 0.8
+      }, 500);
+    }).each(function() {
+      var $this = $(this);
+      $this.find('.recent-food-info-wrap').hover(function() {
+        clearTimeout(timeOut);
+      }, function() {
+        var $this = $(this);
+        timeOut = setTimeout(function() {
+          $this.stop().fadeOut(500);
+          $this.parent('.recent-food-picture').find('.recent-food-image').stop().animate({
+            opacity: 0.8
+          }, 500);
+        }, 500);
+      });
+    });
+}); */
+
+
 
 /* 맨 위로 가는 버튼 */
 var topBtn = document.getElementById("topBtn");

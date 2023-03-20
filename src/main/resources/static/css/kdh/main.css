@@ -8,6 +8,10 @@ body {
     color: #4d4d4d;
 }
 
+.bookmark-list li:last-child {
+    margin-right: 0;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -373,6 +377,11 @@ div.buttons button:nth-child(1) {
     box-sizing: border-box;
 }
 
+.bookmark-full-list  {
+    display: flex;
+    justify-content: space-between;
+}
+
 .bookmark-title {
     line-height: 63px;
     font-size: 25px;
@@ -382,6 +391,12 @@ div.buttons button:nth-child(1) {
 
 .bookmark-list {
     border-top: 1px solid #d9d9d9;
+    list-style-type: disc;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+    list-style-position: inside;
+    width: 100%;
 }
 
 .bookmark-list li {
@@ -390,24 +405,22 @@ div.buttons button:nth-child(1) {
 
 .bookmark-list li > a {
     padding-right: 80px; /* 판매가격 오른쪽으로 몰 때 padding-right 조정 */
-    padding-left: 110px;
-    background-position-x: calc(100% - 40px);
+    padding-left: 10px;
+    background-position-x: calc(100% - 10px);
     position: relative;
     display: block;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-image: url('images/next.png');
-    background-position-y: center;
+    background-image: url(images/next.png);
+    background-position-y: 61px;
     background-repeat: no-repeat;
     background-size: 7px auto;
 }
 
 .bookmark-picture {
-    left: 40px;
-    position: absolute;
-    top: calc(50% - 25.5px);
-    width: 49px;
-    height: 49px;
+    left: 33px;
+    width: 70px;
+    height: 70px;
     border: 1px solid #d9d9d9;
     border-radius: 100%;
     background-position: center center;
@@ -423,10 +436,12 @@ div.buttons button:nth-child(1) {
     max-width: calc(100% - 22px);
     padding-right: 22px;
     line-height: 26px;
-    font-size: 16px;
+    font-size: 21px;
     color: #4d4d4d;
-    background: url('images/place.png') right center no-repeat;
-    background-size: 12px auto;
+    position: absolute;
+    top: 48px;
+    left: 150px;
+    height: 30px;
 }
 
 .bookmark-sell-place {
@@ -434,8 +449,17 @@ div.buttons button:nth-child(1) {
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 24px;
-    font-size: 12px;
+    font-size: 16px;
     color: #808080;
+    position: absolute;
+    top: 18px;
+    left: 150px;
+}
+
+.bookmark-profile-wrap {
+    display: flex;
+    position: relative;
+    flex-direction: column;
 }
 
 .won {
@@ -449,22 +473,31 @@ div.buttons button:nth-child(1) {
     color: #222624;
     float: right;
     font-weight: 700;
-    font-size: 17px;
-    margin-top: 10px;
+    font-size: 18px;
+    margin-top: 30px;
     display: flex;
     align-items: flex-end;
+    position: absolute;
+    top: 24px;
+    right: 48px;
 }
 
+
 .bookmark-sell-user-nickname {
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
-    color: #b3b3b3;
+    text-align: center;
+    width: 70px;
+    margin-top: 7px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .bookmark-star {
     margin-right: 10px;
+    position: absolute;
+    top: 83px;
+    left: 150px;
 }
 
 .bookmark-more-button {
@@ -642,4 +675,12 @@ div.buttons button:nth-child(1) {
   
 #topBtn:hover {
     background-color: #c2185b;
+}
+
+.bookmark-first-list {
+    margin-right: 8px;
+}
+
+.bookmark-second-list {
+    margin-left: 8px;
 }
