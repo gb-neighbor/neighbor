@@ -104,10 +104,10 @@ select{
 
 .sp{
     margin-right: 11px;
-    width: 250px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     vertical-align: top;
-    background-image: url('../../image/logo_title_450_150.png');
+    background-image: url('../../image/logo_entire_450_450.png');
     background-size: 100% 100%;
     position: relative;
     display: inline-block;
@@ -132,6 +132,12 @@ label[for=profile]{
     margin: 0px 0px 16px;
     border-radius: 100%;
     cursor: pointer;
+}
+
+.camera{
+    position: absolute;
+    left: 72px;
+    top: 73px;
 }
 
 .err{
