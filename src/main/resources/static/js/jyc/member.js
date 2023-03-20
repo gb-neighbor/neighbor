@@ -2,6 +2,20 @@
     login.html
 */
 
+/*로그인 비밀번호 암호화*/
+function sendLogin(){
+    location.replace(location.href);
+    $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
+    document.loginForm.submit();
+    }
+
+/* 회원가입시 비밀번호 암호화 */
+function sendJoin(){
+    location.replace(location.href);
+    $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
+    document.joinForm.submit();
+    }
+
 
 /* login.html 이메일 저장 버튼 클릭시 alert 이벤트 */
 $(".checkbox").on("click", function(){
@@ -11,9 +25,6 @@ $(".checkbox").on("click", function(){
     }
 
 })
-
-
-
 
 
 
