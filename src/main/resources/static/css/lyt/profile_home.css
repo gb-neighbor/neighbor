@@ -129,7 +129,7 @@ a{
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: 1px solid #d9d9d9;
+    border: 0;
     padding: 0;
     text-align: left;
     text-indent: 9px;
@@ -155,7 +155,7 @@ a{
     display: block;
     color: #808080;
     line-height: 36px;
-    text-indent: 19px;
+    text-indent: 30px;
     font-size: 14px;
 }
 
@@ -215,9 +215,10 @@ a{
     display: flex;
     align-items: center;
     justify-content:space-around;
-    width: 75%;
+    width: 89%;
+    margin-top: 5%;
     margin-bottom: 15%;
-    margin-left: 4%;
+    margin-left: 6%;
     margin-right: 0;
 }
 
@@ -237,13 +238,19 @@ a{
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    color: #808080;
-    height: 50px;
+    color: #009a3e;
+    border: 1px solid #009a3e;
+    width: 60px;
+    height: 20px;
+    border-radius: 15px;
+    box-sizing: border-box;
 }
 
 .alarm_count{
     font-size: 15px;
     font-weight: 500;
+    margin-left: 3px;
+    color: #009a3e;
 }
 
 .alarm_link:hover .alarm_count:not(.alarm_message){
@@ -265,13 +272,20 @@ a{
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    color: #808080;
-    height: 50px;
+    color: #009a3e;
+    border: 1px solid #009a3e;
+    width: 60px;
+    height: 20px;
+    border-radius: 15px;
+    padding-right: 4px;
+    box-sizing: border-box;
 }
 
 .scrap_count{
     font-size: 15px;
     font-weight: 500;
+    margin-left: 3px;
+    color: #009a3e;
 }
 
 .scrap_link:hover .scrap_count:not(.scrap_message){
@@ -288,6 +302,8 @@ a{
 
 .oneline_wrapper{
     display: flex;
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 7px;
 }
 
 
@@ -298,8 +314,6 @@ a{
 }
 
 .third_content_image_section{
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
     margin-top: 10px;
 }
 
@@ -325,68 +339,13 @@ a{
     font-size: 15px;
 }
 
-.forth_content{
-    margin-top: 100px;
-    display: flex;
-}
-
-.story{
-    display: block;
-    background-color: #009a3e;
-    color: #f2f2f2;
-    line-height: 37px;
-    border-radius: 4px;
-    margin-top: 10px;
-    margin-right: 8px;
-    width: 73.13px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.photo{
-    display: block;
-    background-color: #f2f2f2;
-    color: #4d4d4d;
-    line-height: 37px;
-    border-radius: 4px;
-    margin-top: 10px;
-    margin-right: 8px;
-    width: 60.85px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.forth_content_photo{
-    margin-left: 10.5%;
-    margin-right: 10.5%;
-}
-
-
-.forth_content_image_section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 465.6px;
-}
-
-.forth_content_image{
-    width: 62px;
-    height: 59px;
-}
-
-.forth_content_letter{
-    font-size: 18px;
-    color: #B3B3B3;
-}
-
 /* 지욱님팀꺼 */
 
 .update-user-info{
     padding-top: 20px;
     padding-bottom: 20px;
     margin: 0 auto;
-    width: 65%;
+    width: 44.5%;
 }
 
 .update-user-info > div {
