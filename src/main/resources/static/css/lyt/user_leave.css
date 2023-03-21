@@ -178,7 +178,6 @@ a{
     border-radius: 100%;
 }
 
-
 .nick_name{
     display: flex;
     align-items: center;
@@ -196,9 +195,10 @@ a{
     display: flex;
     align-items: center;
     justify-content:space-around;
-    width: 75%;
+    width: 89%;
+    margin-top: 5%;
     margin-bottom: 15%;
-    margin-left: 4%;
+    margin-left: 6%;
     margin-right: 0;
 }
 
@@ -218,13 +218,19 @@ a{
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    color: #808080;
-    height: 50px;
+    color: #009a3e;
+    border: 1px solid #009a3e;
+    width: 60px;
+    height: 20px;
+    border-radius: 15px;
+    box-sizing: border-box;
 }
 
 .alarm_count{
     font-size: 15px;
     font-weight: 500;
+    margin-left: 3px;
+    color: #009a3e;
 }
 
 .alarm_link:hover .alarm_count:not(.alarm_message){
@@ -246,13 +252,20 @@ a{
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    color: #808080;
-    height: 50px;
+    color: #009a3e;
+    border: 1px solid #009a3e;
+    width: 60px;
+    height: 20px;
+    border-radius: 15px;
+    padding-right: 4px;
+    box-sizing: border-box;
 }
 
 .scrap_count{
     font-size: 15px;
     font-weight: 500;
+    margin-left: 3px;
+    color: #009a3e;
 }
 
 .scrap_link:hover .scrap_count:not(.scrap_message){
@@ -269,6 +282,8 @@ a{
 
 .oneline_wrapper{
     display: flex;
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 7px;
 }
 
 .leave_title{
