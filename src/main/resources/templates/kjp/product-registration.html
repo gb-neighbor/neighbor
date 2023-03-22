@@ -18,63 +18,46 @@
                 <span class="subtitle-text">싱그러운 라이프 스타일</span>
             </h3>
             <div class="cover-container">
-                <div class="caution">
-                    <button type="button" class="caution-modal">
-                        <strong class="st">스토리 작성 가이드</strong>
-                        <span class="">글쓰기 전 작성 가이드를 확인 후 스토리를 남겨주세요.</span>
-                    </button>
+                <div class="detail-title">
+                    <h4 class="sub-detail">제목 입력</h4>
                 </div>
                 <div class="cover-title">
                     <label for="">
                         <input type="text" class="input-title" placeholder="* 스토리 제목을 입력해주세요">
                     </label>
                 </div>
-                <div class="cover-photo">
-                    <div class="photo-sdsdsd">
-                        <label for="cover-file" class="cover-label">
-                            <input type="file" class="file" id="cover-file">
-                            <span class="cover-img"></span>
-                            <span class="cover-txt">커버 사진을 등록해주세요.</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="detail-title">
-                <h4 class="sub-detail">상세 내용 입력</h4>
-            </div>
-            <div class="detail-form">
-                <div class="detail-photo">
-                    <div class="detail-container">
-                        <div class="detail-content">
-                            <label for="detail-file" class="detail-label">
-                                <input type="file" class="" id="detail-file">
-                                <div class="thumbnail-container" style="display: none;">
-                                    <img id="thumbnail" style="display: none;"/>
-                                </div>
-                                <span class="detail-img"></span>
-                                <span class="detail-span">사진을 등록해주세요</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="thumbnail-container1"></div>
+                <div class="detail-title">
+                    <h4 class="sub-detail">상세 내용 입력</h4>
                 </div>
                 <div class="detail-text">
                     <div class="text-top">
                         <div class="cartagori">
                             <select name="" id="">
-                                <option value="강남구">* 구 선택</option>
-                                <option value="강남구">강남구</option>
-                                <option value="노원구">노원구</option>
-                                <option value="마포구">마포구</option>
-                                <option value="동작구">동작구</option>
-                            </select>
-                        </div>
-                        <div class="cartagori-two">
-                            <select name="" id="" >
-                                <option value="대치동">* 동 선택</option>
-                                <option value="대치동">대치동</option>
-                                <option value="월계동">월계동</option>
-                                <option value="하계동">하계동</option>
+                            <option value="강남구">강남구</option>
+                            <option value="강동구">강동구</option>
+                            <option value="강북구">강북구</option>
+                            <option value="강서구">강서구</option>
+                            <option value="관악구">관악구</option>
+                            <option value="광진구">광진구</option>
+                            <option value="구로구">구로구</option>
+                            <option value="금천구">금천구</option>
+                            <option value="노원구">노원구</option>
+                            <option value="도봉구">도봉구</option>
+                            <option value="동대문구">동대문구</option>
+                            <option value="동작구">동작구</option>
+                            <option value="마포구">마포구</option>
+                            <option value="서대문구">서대문구</option>
+                            <option value="서초구">서초구</option>
+                            <option value="성동구">성동구</option>
+                            <option value="성북구">성북구</option>
+                            <option value="송파구">송파구</option>
+                            <option value="양천구">양천구</option>
+                            <option value="영등포구">영등포구</option>
+                            <option value="용산구">용산구</option>
+                            <option value="은평구">은평구</option>
+                            <option value="종로구">종로구</option>
+                            <option value="중구">중구</option>
+                            <option value="중랑구">중랑구</option>
                             </select>
                         </div>
                     </div>
@@ -82,14 +65,33 @@
                         <label for="">
                             <textarea name="" id="" cols="30" rows="10" placeholder="* 사진에 대한 내용을 작성해주세요"></textarea>
                         </label>
-                        <button type="button"id="delete-button"class="delete-button">
-                            <span  >삭제</span>
-                        </button>
                     </div>
                     <div class="text-hashtag"></div>
                     <div class="text-controls"></div>
                 </div>
-
+                <div class="cover-photo">
+                    <div class="photo-sdsdsd">
+                        <label for="cover-file" class="cover-label">
+                            <div class="img">
+                                <input type="file" class="file" id="cover-file">
+                                <div class="cover-center">
+                                    <div class="cover-img"></div>
+                                </div>
+                                <span class="cover-txt">커버 사진을 등록해주세요.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-form">
+                <div class="detail-photo">
+                            <label for="detail-file" class="detail-label">
+                                <input type="file" class="" id="detail-file">
+                                    <img id="thumbnail" style="display: none;"/>
+                                </div>
+                            </label>
+                    <div id="thumbnail-container1"></div>
+                </div>
             </div>
             <div class="addition-button">
                 <label for="">
