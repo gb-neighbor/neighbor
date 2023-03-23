@@ -141,7 +141,21 @@ $('.modal7').on('click', function() {
     // 모달창 띄우기
     modal('my_modal7');
 });
+/* 유찬 수정사항----------------------------------------------------------------------- */
 
+/* manage-board 게시글 내용 누르면 모달 */
+$('.board-contents span').on('click', function() {
+    // 모달창 띄우기
+    modal('my_modal7');
+});
+
+/* manage-reply 후기내용 누르면 모달 */
+$(".reply-content span").on('click', function() {
+    // 모달창 띄우기
+    modal('my_modal7');
+});
+
+/* ----------------------------------------------------------------------- */
 
 var submit = document.getElementById('submitButton');
 submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
