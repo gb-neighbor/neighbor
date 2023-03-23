@@ -37,7 +37,7 @@
                             </div>
                         </span>
 
-                    <button type="button" class="no-collapsible">
+                    <button type="button" class="no-collapsible mouseOnEffect">
                         <div class="icon-gap">
                             <img class="side-icons" alt="user" src="./images/user-icon.png">
                         </div>
@@ -57,7 +57,7 @@
                         <p>후기 목록</p>
                     </div>
 
-                    <button type="button" class="no-collapsible">
+                    <button type="button" class="no-collapsible mouseOnEffect">
                         <div class="icon-gap">
                             <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
                         </div>
@@ -86,10 +86,18 @@
 
                 <div class="user-list-contents">
                     <div class="member-input-wrap">
-                        <div class="member-delete-button-wrap">
-                            <input class="member-delete-button" type="submit" value="게시글 삭제">
+                        <!-- 버튼만 묶어놓기 -->
+                        <div class="wrap-button">
+                            <div class="watch-all-ask">
+                                <input class="watch-all-ask-button" type="submit" value="전체보기">
+                            </div>
+                            <div class="watch-all-ask">
+                                <input class="watch-waiting-button" type="submit" value="판매 완료 상품 보기">
+                            </div>
+                            <div class="member-delete-button-wrap">
+                                <input class="member-delete-button" type="submit" value="게시글 삭제">
+                            </div>
                         </div>
-
                         <div class="member-search-wrap">
                             <div class="search-border">
                                 <img id="search-icon" alt="search" src="./images/search-icon.png">
@@ -143,7 +151,16 @@
                                 hhs1234
                             </div>
                             <div class="board-contents">
-                                이거 맛있어요. 이거 먹을분 있으신가요?
+                                <span>게시글 내용입니다.</span>
+                                <div id="my_modal7" class="my_modal" >
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: 벅벅코딩</div>
+                                    <div class="comment-title">제목: 메일이 안와요</div>
+                                    <div class="comment-detail">
+                                        그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
+                                        그대의 눈동자에 cheers.
+                                    </div>
+                                </div>
                             </div>
                             <div class="board-register-date">
                                 2023-04-05
@@ -167,7 +184,16 @@
                                 hhs1234
                             </div>
                             <div class="board-contents">
-                                이거 맛있어요. 이거 먹을분 있으신가요?
+                                <span>게시글 내용입니다.</span>
+                                <div id="my_modal7" class="my_modal" >
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: 벅벅코딩</div>
+                                    <div class="comment-title">제목: 메일이 안와요</div>
+                                    <div class="comment-detail">
+                                        그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
+                                        그대의 눈동자에 cheers.
+                                    </div>
+                                </div>
                             </div>
                             <div class="board-register-date">
                                 2023-04-05

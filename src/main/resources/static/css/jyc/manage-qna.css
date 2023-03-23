@@ -281,6 +281,17 @@ html{
 }
 
 
+.watch-all-ask-button, .watch-waiting-button {
+    background-color: #353C45;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 6rem;
+    height: 2rem;
+    margin-top: 5%;
+}
+
+
 .watch-all-ask-button{
     background-color: #353C45;
     color: #fff;
