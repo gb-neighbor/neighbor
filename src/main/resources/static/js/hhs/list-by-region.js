@@ -10,7 +10,6 @@ const $region_list = ["전체", "강남구", "강동구", "강북구", "강서�
 // 지도에서 선택한 지역구 표시할 곳
 const $selected_region = $(".selected-region");
 
-
 // 초기화 버튼 누르면 선택 초기화 (전체 선택 default)
 function resetMap(){
     $radios.each((i, e) => {
