@@ -11,5 +11,6 @@
         <typeAlias type="com.neighbor.domain.vo.PurchaseVO" alias="purchaseVO"/>
         <typeAlias type="com.neighbor.domain.vo.ReplyVO" alias="replyVO"/>
         <typeAlias type="com.neighbor.domain.vo.ReplyFileVO" alias="replyFileVO"/>
+        <typeAlias type="com.neighbor.domain.dto.BoardDTO" alias="boardDTO"/>
     </typeAliases>
 </configuration>

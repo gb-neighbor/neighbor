@@ -1,11 +1,11 @@
-package com.neighbor.domain.vo;
+package com.neighbor.domain.dto;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class MemberVO {
+public class BoardDTO {
     private Long memberId;
     private String memberIdentification;
     private String memberPassword;
@@ -18,6 +18,12 @@ public class MemberVO {
     private String hiSentence;
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
-    private String memberProfileUuid;
     private String memberProfilePath;
+    private Long boardId;
+    private String boardTitle;
+    private String boardContent;
+    private String boardRegisterDate;
+    private String boardUpdateDate;
+    private Boolean boardStatus;
+    private Integer boardRegion;
 }
