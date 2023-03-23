@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.AskAdminMapper">
-
+    <!--대쉬보드 문의사항 전체 조회-->
+    <select id="selectAll" resultType="AskAdminDTO">
+        select ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, aa.member_id, member_nickname
+        from tbl_ask_admin aa join tbl_member m
+        on aa.member_id = m.member_id
+    </select>
 </mapper>

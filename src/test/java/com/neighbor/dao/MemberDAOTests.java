@@ -1,5 +1,7 @@
-package com.neighbor.mapper;
+package com.neighbor.dao;
 
+
+import com.neighbor.domain.dao.MemberDAO;
 import com.neighbor.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -10,18 +12,16 @@ import java.util.List;
 
 @SpringBootTest
 @Slf4j
-public class MemberMapperTests {
+public class MemberDAOTests {
 
     @Autowired
-    MemberMapper memberMapper;
+    private MemberDAO memberDAO;
 
-    /*전체조회*/
     @Test
-    public void selectAllTest() {
-        List<MemberVO> listMember = memberMapper.selectAll();
-        log.info(String.valueOf(listMember));
+    public void memberListTest() {
+        List<MemberVO> memberVOList = memberDAO.list();
+        log.info(String.valueOf(memberVOList));
     }
-    
-    
+
 
 }

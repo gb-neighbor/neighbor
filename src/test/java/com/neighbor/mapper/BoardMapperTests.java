@@ -32,4 +32,9 @@ public class BoardMapperTests {
         Assertions.assertThat(boardDTO.getBoardRegion()).isEqualTo(1);
         /* 널포인터 익셉션 어떻게 안뜨게 하지*/
     }
+
+    @Test
+    public void selectAllTest() {
+        log.info(boardMapper.selectAll().toString());
+    }
 }
