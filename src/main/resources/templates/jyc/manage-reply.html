@@ -10,63 +10,63 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="wrap">
-    <div id="menu-side" class="container">
-        <div id="top-box" class="menu-box">
-            <img id="neighbor-logo" alt="neighbor" src="images/logo2.png">
-        </div>
-        <div id="middle-box" class="menu-box">
-            <div id="wrap-middle-box">
-                <div id="middle-box-contents">
-                    <div class="side-top-margin"></div>
-                    <span class="mouseOnEffect">
-                            <div id="middle-box-site-shortcut-bar" class="side-bar">
-                                <div class="icon-gap">
-                                    <img class="side-icons" alt="home" src="images/home.png">
+    <div class="wrap">
+        <div id="menu-side" class="container">
+            <div id="top-box" class="menu-box">
+                <img id="neighbor-logo" alt="neighbor" src="images/logo2.png">
+            </div>
+            <div id="middle-box" class="menu-box">
+                <div id="wrap-middle-box">
+                    <div id="middle-box-contents">
+                        <div class="side-top-margin"></div>
+                        <span class="mouseOnEffect">
+                                <div id="middle-box-site-shortcut-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="home" src="images/home.png">
+                                    </div>
+                                    사이트 바로가기
+                                </div> 
+                            </span>
+    
+                        <span class="mouseOnEffect">
+                                <div id="middle-box-dashBoard-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="dash-board" src="./images/dashBoard-icon.png">
+                                    </div>
+                                    대시보드
                                 </div>
-                                사이트 바로가기
-                            </div> 
-                        </span>
-
-                    <span class="mouseOnEffect">
-                            <div id="middle-box-dashBoard-bar" class="side-bar">
-                                <div class="icon-gap">
-                                    <img class="side-icons" alt="dash-board" src="./images/dashBoard-icon.png">
-                                </div>
-                                대시보드
+                            </span>
+    
+                        <button type="button" class="no-collapsible mouseOnEffect">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="user" src="./images/user-icon.png">
                             </div>
-                        </span>
-
-                    <button type="button" class="no-collapsible">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="user" src="./images/user-icon.png">
+                            회원관리
+                        </button>
+    
+                        <button type="button" class="collapsible" onclick="collapse(this);">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
+                            </div>
+                            게시판 관리
+                            <img src="images/plus.png" class="collapse-button">
+                        </button>
+    
+                        <div class="content">
+                            <p>게시글 목록</p>
+                            <p>후기 목록</p>
                         </div>
-                        회원관리
-                    </button>
-
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
-                        </div>
-                        게시판 관리
-                        <img src="images/plus.png" class="collapse-button">
-                    </button>
-
-                    <div class="content">
-                        <p>게시글 목록</p>
-                        <p>후기 목록</p>
+    
+                        <button type="button" class="no-collapsible mouseOnEffect">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
+                            </div>
+                            문의 게시판 관리
+                        </button>
                     </div>
-
-                    <button type="button" class="no-collapsible">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
-                        </div>
-                        문의 게시판 관리
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
                
         <div id="right-side" class="container">
             <div class="right-header">
@@ -146,7 +146,53 @@
                                 lyt1234
                             </div>
                             <div class="reply-content">
-                                오징어볶음 맛있어요
+                                <span>후기 내용입니다.</span>
+                                <div id="my_modal7" class="my_modal" >
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: 김동한</div>
+                                    <div class="comment-detail">
+                                        그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
+                                        그대의 눈동자에 cheers.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
+                            </div>
+                        </div>
+
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="reply-num">
+                                1
+                            </div>
+                            <div class="board-num">
+                               3
+                            </div>
+                            <div class="region">
+                                서울시 강동구
+                            </div>
+                            <div class="writer-nick">
+                                lyt1234
+                            </div>
+                            <div class="reply-content">
+                                <span>후기 내용입니다.</span>
+                                <div id="my_modal7" class="my_modal" >
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: 김동한</div>
+                                    <div class="comment-detail">
+                                        그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
+                                        그대의 눈동자에 cheers.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reply-day">
+                                2023-05-05
                             </div>
                             <div class="reply-day">
                                 2023-05-05
@@ -218,31 +264,15 @@
                                 lyt1234
                             </div>
                             <div class="reply-content">
-                                오징어볶음 맛있어요
-                            </div>
-                            <div class="reply-day">
-                                2023-05-05
-                            </div>
-                        </div>
-
-                        <div class="item-list-contents">
-                            <div class="checkbox-zip">
-                                <input type="checkbox" id="check1" class="normal" value="">
-                            </div>
-                            <div class="reply-num">
-                                1
-                            </div>
-                            <div class="board-num">
-                               3
-                            </div>
-                            <div class="region">
-                                서울시 강동구
-                            </div>
-                            <div class="writer-nick">
-                                lyt1234
-                            </div>
-                            <div class="reply-content">
-                                오징어볶음 맛있어요
+                                <span>후기 내용입니다.</span>
+                                <div id="my_modal7" class="my_modal" >
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: 김동한</div>
+                                    <div class="comment-detail">
+                                        그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
+                                        그대의 눈동자에 cheers.
+                                    </div>
+                                </div>
                             </div>
                             <div class="reply-day">
                                 2023-05-05

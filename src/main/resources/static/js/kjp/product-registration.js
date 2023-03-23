@@ -79,10 +79,17 @@ $(function() {
     });
 });
 
-
+let imgtotal = 0;
 // '사진을 추가하세요!' 버튼 클릭 시 이벤트 핸들러 등록
 $('.add-button').on('click', function() {
     var fileInput = $('<input type="file" name="image">');
+    if($('#thumbnail-container1').children().length > 5){
+        alert("사진은 6개까지 추가할 수 있습니다.")
+        fileInput.value = '';
+        thumbnail.style.display = 'none';
+        imageCount--;
+    }
+    imgtotal++;
 
     fileInput.on('change', function() {
         // 파일 객체 가져오기
@@ -131,6 +138,10 @@ fileInput.addEventListener("change", function() {
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
             coverImage.style.backgroundImage = "url(" + canvas.toDataURL() + ")";
+            coverImage.style.width = "500px";
+            coverImage.style.height = "500px";
+            coverImage.style.top = "0";
+            coverImage.style.left = "325px";
         });
     });
 

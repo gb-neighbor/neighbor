@@ -70,5 +70,9 @@ $passwordCheck.keyup(function(e){
         $(".change-button").attr("disabled", true)
     }
 })
-
-console.log()
+/* 비밀번호 암호화 */
+function sendPassword(){
+    location.replace(location.href);
+    $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
+    document.joinForm.submit();
+    }
