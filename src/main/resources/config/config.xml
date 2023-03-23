@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.neighbor.domain.vo.AskAdminAnswerVO" alias="askAdminAnswerVO"/>
+        <typeAlias type="com.neighbor.domain.vo.AskAdminVO" alias="askAdminVO"/>
+        <typeAlias type="com.neighbor.domain.vo.BoardVO" alias="boardVO"/>
+        <typeAlias type="com.neighbor.domain.vo.BoardFileVO" alias="boardFileVO"/>
+        <typeAlias type="com.neighbor.domain.vo.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.neighbor.domain.vo.MessageVO" alias="messageVO"/>
+        <typeAlias type="com.neighbor.domain.vo.PurchaseVO" alias="purchaseVO"/>
+        <typeAlias type="com.neighbor.domain.vo.ReplyVO" alias="replyVO"/>
+        <typeAlias type="com.neighbor.domain.vo.ReplyFileVO" alias="replyFileVO"/>
+    </typeAliases>
+</configuration>

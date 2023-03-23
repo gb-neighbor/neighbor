@@ -11,63 +11,63 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="wrap">
-    <div id="menu-side" class="container">
-        <div id="top-box" class="menu-box">
-            <img id="knowhow-logo" alt="know-how" src=/images/know-how-title.png">
-        </div>
-        <div id="middle-box" class="menu-box">
-            <div id="wrap-middle-box">
-                <div id="middle-box-contents">
-                    <div class="side-top-margin"></div>
-                    <span class="mouseOnEffect">
-                            <div id="middle-box-site-shortcut-bar" class="side-bar">
-                                <div class="icon-gap">
-                                    <img class="side-icons" alt="home" src="images/home.png">
+    <div class="wrap">
+        <div id="menu-side" class="container">
+            <div id="top-box" class="menu-box">
+                <img id="neighbor-logo" alt="neighbor" src="images/logo2.png">
+            </div>
+            <div id="middle-box" class="menu-box">
+                <div id="wrap-middle-box">
+                    <div id="middle-box-contents">
+                        <div class="side-top-margin"></div>
+                        <span class="mouseOnEffect">
+                                <div id="middle-box-site-shortcut-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="home" src="images/home.png">
+                                    </div>
+                                    사이트 바로가기
+                                </div> 
+                            </span>
+    
+                        <span class="mouseOnEffect">
+                                <div id="middle-box-dashBoard-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="dash-board" src="./images/dashBoard-icon.png">
+                                    </div>
+                                    대시보드
                                 </div>
-                                사이트 바로가기
-                            </div> 
-                        </span>
-
-                    <span class="mouseOnEffect">
-                            <div id="middle-box-dashBoard-bar" class="side-bar">
-                                <div class="icon-gap">
-                                    <img class="side-icons" alt="dash-board" src="./images/dashBoard-icon.png">
-                                </div>
-                                대시보드
+                            </span>
+    
+                        <button type="button" class="no-collapsible mouseOnEffect">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="user" src="./images/user-icon.png">
                             </div>
-                        </span>
-
-                    <button type="button" class="no-collapsible">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="user" src="./images/user-icon.png">
+                            회원관리
+                        </button>
+    
+                        <button type="button" class="collapsible" onclick="collapse(this);">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
+                            </div>
+                            게시판 관리
+                            <img src="images/plus.png" class="collapse-button">
+                        </button>
+    
+                        <div class="content">
+                            <p>게시글 목록</p>
+                            <p>후기 목록</p>
                         </div>
-                        회원관리
-                    </button>
-
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="ask-answer" src="./images/ask-answer-icon2.png">
-                        </div>
-                        게시판 관리
-                        <img src="images/plus.png" class="collapse-button">
-                    </button>
-
-                    <div class="content">
-                        <p>게시글 목록</p>
-                        <p>후기 목록</p>
+    
+                        <button type="button" class="no-collapsible mouseOnEffect">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
+                            </div>
+                            문의 게시판 관리
+                        </button>
                     </div>
-
-                    <button type="button" class="no-collapsible">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="ask-board" src="./images/ask-board-icon.png">
-                        </div>
-                        문의 게시판 관리
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
                
         <div id="right-side" class="container">
             <div class="right-header">

@@ -272,6 +272,27 @@ body {
     background-color: #EEEEEE;
 }
 
+.wrap-button{
+    display:flex;
+    width: 315px;
+    justify-content: inherit;
+    margin-left:35px;
+}
+
+.watch-all-ask-button, .watch-waiting-button {
+    background-color: #353C45;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 6rem;
+    height: 2rem;
+    margin-top: 5%;
+}
+
+.watch-all-ask-button:hover, .watch-waiting-button:hover{
+    background-color:#3175c2;
+    transition: background-color 0.5s;
+ }
 
 .member-delete-button{
     background-color: #F1416C;
@@ -289,9 +310,6 @@ body {
     transition: background-color 0.5s;
  }
 
-.member-delete-button-wrap{
-    padding-left: 3%;
-}
 
 .total-mentor{
     display: flex;
@@ -363,7 +381,7 @@ body {
 .board-contents{
     text-align: center;
     width: 40%;
-
+    cursor:pointer;
 }
 
 
@@ -443,8 +461,14 @@ bottom: 3%;
     right: 30px;
 }
 
-.comment-title{
+.comment-writer{
     margin-top: 10%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid black;
+}
+
+.comment-title{
+    margin-top: 1%;
     padding-bottom: 1%;
     border-bottom: 1px solid black;
 }
@@ -454,4 +478,31 @@ bottom: 3%;
     margin-bottom: 3%;
     padding-bottom: 5%;
     border-bottom: 1px solid black;
+}
+
+.qna-submit-btn{
+    background-color: #353C45;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 6rem;
+    height: 2rem;
+    margin-top: 1%;
+}
+
+.qna-submit-btn:hover{
+   background-color:#3175c2;
+   transition: background-color 0.5s;
+}
+
+.qna-manage{
+    text-align: center;
+}
+
+.write-section{
+    width: 100%;
+    height: 30vh;
+    font-size: 1rem;
+    font-weight: 300;
+    resize: none;
 }
