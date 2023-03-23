@@ -25,4 +25,5 @@ public class BoardDTO {
     private String boardRegisterDate;
     private String boardUpdateDate;
     private Boolean boardStatus;
+    private Integer boardRegion;
 }

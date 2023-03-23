@@ -18,5 +18,6 @@ public class MemberVO {
     private String hiSentence;
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
+    private String memberProfileUuid;
     private String memberProfilePath;
 }
