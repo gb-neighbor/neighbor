@@ -9,11 +9,11 @@
 
     <select id="selectAll" resultType="AskAdminAnswerDTO">
         select ask_admin_answer_id, ask_admin_answer_content, ask_admin_answer_register_date, aa.ask_admin_id, aaa.member_id, ask_admin_status,(select count(distinct ask_admin_id) from tbl_ask_admin_answer) as counttotalanswers
-        from tbl_ask_admin_answer as aaa
+        where ask_admin_status = #{askAdminStatus}
         join tbl_ask_admin as aa on aaa.ask_admin_id = aa.ask_admin_id
         join tbl_member as m on aaa.member_id = m.member_id
+        from tbl_ask_admin_answer as aaa
         order by ask_admin_answer_id desc
-        where ask_admin_status = #{askAdminStatus}
     </select>
 
 
