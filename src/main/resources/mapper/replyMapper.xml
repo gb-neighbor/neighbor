@@ -5,7 +5,7 @@
     <select id="selectAll" resultType="ReplyDTO">
         select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, board_id, member_nickname, (select count(distinct reply_id) from tbl_reply) as countTotalReplys
         from tbl_member m join tbl_reply r
-        on m.member_id = r.member_id
+        on m.member_id = r.member_id order by reply_id desc
     </select>
 
     <!--후기관리 글 삭제-->

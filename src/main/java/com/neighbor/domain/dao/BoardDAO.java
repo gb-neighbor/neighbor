@@ -13,8 +13,12 @@ public class BoardDAO {
 
     private final BoardMapper boardMapper;
 
-//    대쉬보드 게시글 전체 조회
+//    대시보드 게시글 전체 조회
     public List<BoardDTO> list(){return boardMapper.selectAll();}
 
+//    게시판 목록 삭제
+    public void delete(Long boardId) {
+        boardMapper.delete(boardId);
+    }
 
 }

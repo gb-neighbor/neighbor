@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.AskAdminAnswerMapper">
+    <insert id="insertAskAdminAnswer">
+        insert into tbl_ask_admin_answer
+        (ask_admin_answer_content, ask_admin_id, member_id)
+        values(#{askAdminAnswerContent}, #{askAdminId}, #{memberId})
+    </insert>
+
+    <select id="selectAll" resultType="AskAdminAnswerDTO">
+        select ask_admin_answer_id, ask_admin_answer_content, ask_admin_answer_register_date, aa.ask_admin_id, aaa.member_id, ask_admin_status,(select count(distinct ask_admin_id) from tbl_ask_admin_answer) as counttotalanswers
+        from tbl_ask_admin_answer as aaa
+        join tbl_ask_admin as aa on aaa.ask_admin_id = aa.ask_admin_id
+        join tbl_member as m on aaa.member_id = m.member_id
+        order by ask_admin_answer_id desc
+        where ask_admin_status = #{askAdminStatus}
+    </select>
+
 
 </mapper>

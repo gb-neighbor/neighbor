@@ -12,4 +12,5 @@ public class AskAdminVO {
     private String askAdminContent;
     private String askAdminRegisterDate;
     private Long memberId;
+    private Boolean askAdminStatus;
 }

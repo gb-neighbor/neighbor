@@ -12,4 +12,6 @@ public interface AskAdminMapper {
 //    전체 조회
     public List<AskAdminDTO> selectAll();
 
+//    삭제
+    public void delete(Long askAdminId);
 }
