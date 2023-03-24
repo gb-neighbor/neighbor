@@ -148,6 +148,7 @@ var randomImageCount = 0;
 let checkArrow2 = false;
 randomPrev.style.display = "none";
 
+// translate 만지기
 function pushPrev() {
     if(randomImageCount != 0) {
         if (checkArrow2) {
@@ -155,7 +156,8 @@ function pushPrev() {
         }
         checkArrow2 = true;
         randomBanner.style.transition = 'transform 0.3s';
-        randomBanner.style.transform = `translate(${148.4925 * ++count2}px)`;
+        /* randomBanner.style.transform = `translate(${148.4925 * ++count2}px)`; */
+        randomBanner.style.transform = `translate(${149.1 * ++count2}px)`;
         randomImageCount--;
         setTimeout(() => {
             checkArrow2 = false;
@@ -185,7 +187,8 @@ function pushNext() {
         }
         checkArrow2 = true;
         randomBanner.style.transition = 'transform 0.3s';
-        randomBanner.style.transform = `translate(${148.4925 * --count2}px)`;
+        /* randomBanner.style.transform = `translate(${148.4925 * --count2}px)`; */
+        randomBanner.style.transform = `translate(${149.1 * --count2}px)`;
         setTimeout(() => {
             checkArrow2 = false;
         }, 30);
