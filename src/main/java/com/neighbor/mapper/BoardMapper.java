@@ -8,7 +8,14 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+//   게시판 글 추가
     public void insert(BoardVO boardVO);
+//    게시글 조회
     public BoardDTO select(Integer boardRegion);
+//    게시글 전체 조회
     public List<BoardDTO> selectAll();
+
+//    게시글 삭제
+    public void delete(Long boardId);
+
 }

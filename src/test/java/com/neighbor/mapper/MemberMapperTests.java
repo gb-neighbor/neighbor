@@ -1,5 +1,6 @@
 package com.neighbor.mapper;
 
+import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,15 +19,8 @@ public class MemberMapperTests {
     /*전체조회*/
     @Test
     public void selectAllTest() {
-        List<MemberVO> listMember = memberMapper.selectAll();
+        List<MemberDTO> listMember = memberMapper.selectAll();
         log.info(String.valueOf(listMember));
-    }
-    
-    /*인원 수 조회*/
-    @Test
-    public void selectTotalMembersTest() {
-        Integer members = memberMapper.selectTotalMembers();
-        System.out.println(members);
     }
 
     /*회원관리 멤버 삭제*/

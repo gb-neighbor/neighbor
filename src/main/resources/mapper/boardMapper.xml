@@ -19,12 +19,16 @@
 
     <!-- 관리자 대시보드 게시판 관리 -->
     <select id="selectAll" resultType="BoardDTO">
-        select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
+        select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status, (select count(distinct board_id) from tbl_board) countTotalBoards
         from tbl_member m join tbl_board b
         on m.member_id = b.member_id
     </select>
 
-
+    <!--관리자 게시판 목록 삭제-->
+    <delete id="delete">
+        delete from tbl_board
+        where board_id=#{boardId}
+    </delete>
 
 
 </mapper>

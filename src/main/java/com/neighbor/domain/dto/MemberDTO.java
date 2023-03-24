@@ -1,22 +1,7 @@
 package com.neighbor.domain.dto;
 
-
-import lombok.Data;
-import org.springframework.stereotype.Component;
-
-/*ReplyVO와 MemberVO를 조인*/
-
-@Component
-@Data
-public class ReplyDTO {
-    private Long replyId;
-    private String replyTitle;
-    private String replyContent;
-    private Integer replyScore;
-    private String replyRegisterDate;
-    private String replyUpdateDate;
+public class MemberDTO {
     private Long memberId;
-    private Long boardId;
     private String memberIdentification;
     private String memberPassword;
     private String memberName;
@@ -28,6 +13,7 @@ public class ReplyDTO {
     private String hiSentence;
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
+    private String memberProfileUuid;
     private String memberProfilePath;
-    private Integer countTotalreplys;
+    private Integer countTotalMembers;
 }

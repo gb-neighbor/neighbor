@@ -11,4 +11,8 @@ public interface ReplyMapper {
 
 //    전체 조회
     public List<ReplyDTO> selectAll();
+
+//    후기 삭제
+    public void delete(Long userId);
+
 }

@@ -33,8 +33,17 @@ public class BoardMapperTests {
         /* 널포인터 익셉션 어떻게 안뜨게 하지*/
     }
 
+    /*관리자 대시보드 게시판*/
     @Test
     public void selectAllTest() {
         log.info(boardMapper.selectAll().toString());
+    }
+
+    /*관리자 게시판 목록 삭제*/
+    @Test
+    public void deleteTest() {
+        BoardVO boardVO = new BoardVO();
+        boardVO.setBoardId(4L);
+        boardMapper.delete(boardVO.getBoardId());
     }
 }

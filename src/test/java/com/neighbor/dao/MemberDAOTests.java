@@ -2,6 +2,7 @@ package com.neighbor.dao;
 
 
 import com.neighbor.domain.dao.MemberDAO;
+import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -20,16 +21,16 @@ public class MemberDAOTests {
     /* 대시보드 멤버 전체 조회 테스트*/
     @Test
     public void memberListTest() {
-        List<MemberVO> memberVOList = memberDAO.list();
+        List<MemberDTO> memberVOList = memberDAO.list();
         log.info(String.valueOf(memberVOList));
     }
 
-    /*회원관리 멤버 총 인원수 테스트*/
+    /* 회원 관리 멤버 삭제 테스트*/
     @Test
-    public void memberTotalTest() {
-        int members = memberDAO.totalMembers();
-        System.out.println(members);
+    public void memberDeleteTest() {
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId(4L);
+        memberDAO.delete(4L);
     }
-
 
 }
