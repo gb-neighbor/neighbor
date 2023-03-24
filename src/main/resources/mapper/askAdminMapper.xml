@@ -3,8 +3,13 @@
 <mapper namespace="com.neighbor.mapper.AskAdminMapper">
     <!--대쉬보드 문의사항 전체 조회-->
     <select id="selectAll" resultType="AskAdminDTO">
-        select ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, aa.member_id, member_nickname
+        select ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, aa.member_id, member_nickname,(select count(distinct ask_admin_id) from tbl_ask_admin) countTotalAsks
         from tbl_ask_admin aa join tbl_member m
-        on aa.member_id = m.member_id
+        on aa.member_id = m.member_id order by ask_admin_id desc
     </select>
+
+    <delete id="delete">
+        delete from tbl_ask_admin
+        where ask_admin_id=#{askAdminId}
+    </delete>
 </mapper>
