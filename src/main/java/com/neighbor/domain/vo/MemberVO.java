@@ -16,7 +16,7 @@ public class MemberVO {
     private Integer region;
     private String memberEmail;
     private String hiSentence;
-    private String memberProfileSystemName;
+    private String memberProfileSize;
     private String memberProfileOriginalName;
     private String memberProfileUuid;
     private String memberProfilePath;
