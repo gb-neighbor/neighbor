@@ -1,3 +1,47 @@
+/* 모달 */
+@charset "utf-8";
+
+@keyframes popUp {
+    from {scale: 0;}
+    to {scale: 1;}
+}
+
+@keyframes popDown {
+    from {scale: 1;}
+    to {scale: 0;}
+}
+
+div.modal {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    inset: 0px;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #8586898a;
+}
+
+div.warn-modal {
+    box-sizing: border-box;
+    position: unset;
+    width: 288px;
+    margin: 20vh 0px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(33 35 41 / 12%) 0px 2px 12px;
+    border-radius: 8px;
+}
+
+div.warn-modal {
+    padding: 24px;
+}
+
+div#content-wrap span{
+    display: block;
+}
+
+
 body{
     letter-spacing: -0.05em;
     margin: 0;
@@ -101,6 +145,7 @@ a{
 .message_box_content{
     max-width: 1200px;
     margin: 0 auto;
+    width: 50%;
 }
 
 .message_box_wrapper{
@@ -108,8 +153,6 @@ a{
     align-items: center;
     padding: 15px 20px;
     width: 100%;
-    border-top: 1px solid #f2f2f2;
-    border-bottom: 1px solid #f2f2f2;
     box-sizing: border-box;
     margin-top: -1px;
 }
@@ -121,6 +164,11 @@ a{
     margin-top: 30px;
     margin-bottom: 0;
 }
+
+.profile_wrap{
+    z-index: 2;
+    width: 56px;
+    height: 56px;}
 
 .message_box_profile{
     width: 56px;
@@ -137,6 +185,12 @@ a{
 .message_box_detail{
     width: 93%;
     padding-left: 25px;
+    position: relative;
+}
+
+.message_box_info{
+    display: flex;
+    align-items: center;
 }
 
 .detail_message{
@@ -155,7 +209,10 @@ a{
 }
 
 .message_box_time{
-    margin: 0;
+    z-index: 2;
+    margin-top: 6px;
+    margin-bottom: 0;
+    margin-left: 15px;
     line-height: 20px;
     color: #b3b3b3;
     font-size: 13px;
@@ -163,6 +220,7 @@ a{
 }
 
 .board_title{
+    z-index: 2;
     margin-top: 6px;
     line-height: 20px;
     color: #808080;
@@ -173,35 +231,85 @@ a{
 }
 
 .nick_name{
+    z-index: 2;
     font-weight: bold;
     margin: 0;
+    color: #222624;
 }
 
 .detail_btn{
+    z-index: 1;
+    position: absolute;
     cursor: pointer;
     border: 0;
     outline: none;
     width: 100%;
+    height: 100%;
     padding: 0;
     background-color: #ffffff;
 }
 
+.message_list{
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.purchase_complete_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 60px;
+}
+
+.purchase_complete_form{
+    position: absolute;
+    right: 3%;
+}
+
+.complete_message{
+    z-index: 2;
+    font-size: 0.7rem;
+    color: black;
+    margin: 0;
+    display: none;
+}
+
+.purchase_complete_btn{
+    z-index: 2;
+    padding: 0;
+    cursor: pointer;
+    width: 70px;
+    height: 60px;
+    border: 0.3px solid #009a3e5c;
+    background-color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #545353;
+
+}
 /* 쪽지함 디테일 모달창*/
-.my_modal {
+.this_modal {
+    z-index: 998;
     display: none;
     width: 40%;
     height: auto;
     padding: 20px 20px;
     background-color: #fefefe;
     border: 1px solid #888;
-    border-radius: 25px;
 }
 
-.my_modal .modal_close_btn {
+.this_modal .modal_close_btn {
     position: absolute;
     cursor: pointer;
     top: 7px;
     right: 10px;
+}
+.modal_background{
+    display: none;
 }
 
 .comment-writer{
@@ -221,12 +329,19 @@ a{
 
 /* 모달창 탑 */
 .box_top{
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     position: relative;
     width: 100%;
     padding-bottom: 5px;
     border-bottom: 1px solid #f2f2f2;
+}
+
+.box_top_wrap{
+    width: 100%;
+    height: 100%;
 }
 
 .detail_nick_name{
@@ -237,11 +352,45 @@ a{
 }
 
 .detail_title{
-    position: absolute;
-    left: 40%;
-    margin: 0;
+    position: relative;
+    z-index: 3;
+    width: fit-content;
+    text-align: center;
+    margin: 0 auto;
     font-weight: 400;
     font-size: 20px;
+}
+
+.title_refresh_wrap{
+    display: flex;
+    margin: 0 auto;
+}
+
+.refresh_image_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    cursor: pointer;
+    padding-top: 5px;
+    margin-left: 8px;
+}
+
+.refresh_image_wrap:hover{
+    background-color: #f2f2f2;
+}
+
+.refresh_image{
+    line-height: 1px;
+    width: 18px;
+    height: 18px;
+}
+
+.div_for_margin{
+    width: 50.85px;
+    height: 30px;
 }
 
 .go_to_board{
@@ -289,7 +438,7 @@ a{
 .box_text{
     padding-top: 20px;
     padding-bottom: 20px;
-    height: 487px;
+    height: 523px;
     box-sizing: border-box;
 }
 
@@ -400,10 +549,26 @@ a{
     margin-left: 10px;
 }
 
-.text_count{
-    margin: 0;
+.count_letter{
+    display: inline;
+    border: 0;
+    outline: none;
+    text-align: end;
     font-size: 12px;
     color: #b3b3b3;
+    padding: 0;
+
+}
+
+.count_letter_max{
+    display: inline;
+    border: 0;
+    outline: none;
+    width: 37px;
+    text-align: end;
+    font-size: 12px;
+    color: #b3b3b3;
+    padding: 0;
 }
 
 /* 스크롤 CSS */
