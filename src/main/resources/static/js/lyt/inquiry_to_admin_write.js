@@ -88,23 +88,44 @@ function collapse(element) {
 
 function writeScript(){;
     var form1 = document.inquiryForm;
+    let modalMessage = '';
 
     if(values.innerHTML == opts[0].innerHTML){
-        alert("문의 유형을 선택해주세요.");
+        modalMessage = "문의 유형을 선택해주세요.";
+        showWarnModal(modalMessage);
         return;
     }
 
     if (form1.title.value=="") {
-        alert("제목을 입력해주세요.");
-        form1.title.focus();
+        modalMessage = "제목을 입력해주세요.";
+        showWarnModal(modalMessage);
         return;
     }
     if (form1.content.value=="") {
-        alert("내용을 입력해주세요.");
-        form1.content.focus();
+        modalMessage = "내용을 입력해주세요.";
+        showWarnModal(modalMessage);
         return;
     }
 
 
     form1.submit();
 }
+
+
+
+/* 모달창 */
+let modalCheck;
+function showWarnModal(modalMessage){
+    modalCheck = false;
+    $("div#content-wrap").html(modalMessage)
+    $("div.warn-modal").css("animation", "popUp 0.5s");
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function(){modalCheck = true;}, 500);
+}
+
+$("div.modal").on("click", function(){
+    if(modalCheck){
+        $("div.warn-modal").css("animation", "popDown 0.5s");
+        $("div.modal").fadeOut(500);
+    }
+});

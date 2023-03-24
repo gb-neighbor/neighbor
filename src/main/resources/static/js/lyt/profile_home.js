@@ -14,46 +14,6 @@ function collapse(element) {
     }
 }
 
-/* mypageUpdate.html */
-
-const $changeButtons = $('.change-button');
-const $saveButtons = $('.save-button');
-const $inputUsers = $('.change-value');
-const birthRegex = /^(19[0-9][0-9]|20\d{2}).?(0[0-9]|1[0-2]).?(0[1-9]|[1-2][0-9]|3[0-1])$/;
-let check;
-
-$saveButtons.hide();
-
-/* 생일, 닉네임 정규식 추가해야함 */
-/* $inputUsers.eq(1).on('focus', function () {
-  $(this).val($(this).val().replaceAll('.', ''));
-});
-
-$inputUsers.eq(1).on('blur', function () {
-  check = false;
-  check = birthRegex.test($(this).val());
-  if (check) {
-    $(this).val($(this).val().replace(/^(\d{4})(\d{2})(\d{2})$/, `$1.$2.$3`));
-    return;
-    alert("생년월일을 확인하세요.");
-  }
-}); */
-
-$changeButtons.on('click', function () {
-    let i = $changeButtons.index($(this));
-    $inputUsers.eq(i).attr('disabled', false);
-    $inputUsers.eq(i).focus();
-    $(this).hide();
-    $saveButtons.eq(i).show();
-});
-
-$saveButtons.on('click', function () {
-    let i = $saveButtons.index($(this));
-    $inputUsers.eq(i).attr('disabled', true);
-    $(this).hide();
-    $changeButtons.eq(i).show();
-});
-
 
 /* 위로가기 버튼 */
 var topBtn = document.getElementById("topBtn");
@@ -76,3 +36,159 @@ function topFunction() {
 }
 
 topBtn.addEventListener("click", topFunction);
+
+
+
+/* 비밀번호 정규식 */
+const passwordNumberRegex = /[0-9]/g;
+const passwordEnglishRegex = /[a-z]/gi;
+const passwordSpecialCharacterRegex = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
+const $warnText = $('p.warn-text');
+const $regexText = $('p.password-regex');
+const $inputs = $('input[type="password"]');
+/* 기존 비밀번호 입력칸 */
+const $originalPassword = $('.original-password');
+/* 새로운 비밀번호 입력칸 */
+const $passwordInput = $('.new-password');
+/* 새로운 비밀번호 한번더 입력칸 */
+const $checkInput = $('.new-password-check');
+/* 변경하기 버튼 */
+const $changeButton = $('.change-button');
+
+let regexMessage = '위 비밀번호와 일치하지 않습니다. 다시 입력해주세요.';
+let passwordCheck;
+let passwordCheckAll = [false, false, false];
+
+$('.modal').hide();
+
+/* 기존 비밀번호 검사 */
+$originalPassword.on('blur', function () {
+    let value = $(this).val();
+
+    if (!value) {
+        passwordCheck = false;
+        passwordCheckAll[0] = passwordCheck;
+        return;
+    }
+
+    passwordCheckAll[0] = true;
+});
+
+/* 새로운 비밀번호 검사 */
+/* $passwordInput.on('blur', function () {
+  let value = $(this).val();
+
+  if (!value) {
+    $regexText.css('color', 'rgb(153, 153, 153)');
+    $passwordInput.css('border', '1px solid rgb(238, 238, 238)');
+    passwordCheck = false;
+    passwordCheckAll[1] = passwordCheck;
+    return;
+  } */
+
+/* 정규식 검사 */
+/*  let numberCheck = value.search(passwordNumberRegex);
+ let englishCheck = value.search(passwordEnglishRegex);
+ let specialCharacterCheck = value.search(passwordSpecialCharacterRegex);
+
+ var condition1 =
+   numberCheck >= 0 &&
+   englishCheck >= 0 &&
+   englishCheck >= 0 &&
+   specialCharacterCheck >= 0 &&
+   specialCharacterCheck >= 0 &&
+   numberCheck >= 0;
+ var condition2 = value.length > 9 && value.length < 21;
+ var condition3 = value.search(/\s/) < 0; */
+
+/* 정규식 검사 통과하면 true */
+/*  passwordCheck = condition1 && condition2 && condition3;
+
+ passwordCheckAll[1] = passwordCheck;
+
+ if (!passwordCheck) {
+   $regexText.css('color', 'rgb(222, 28, 34)');
+   $passwordInput.css('border', '1px solid rgb(222, 28, 34)');
+   passwordCheckAll[1] = passwordCheck;
+ } else {
+   $regexText.css('color', 'rgb(153, 153, 153)');
+   $passwordInput.css('border', '1px solid rgb(238, 238, 238)');
+ }
+}); */
+
+/* 새로운 비밀번호 한번 더 입력 검사 */
+/* $checkInput.on('blur', function () {
+  let value = $(this).val();
+
+  if (value != $passwordInput.val()) {
+    $warnText.show();
+    $warnText.text(regexMessage);
+    $checkInput.css('border', '1px solid rgb(222, 28, 34)');
+    passwordCheck = false;
+    passwordCheckAll[2] = passwordCheck;
+  } else {
+    $warnText.hide();
+    passwordCheck = true;
+    passwordCheckAll[2] = passwordCheck;
+  }
+
+  passwordCheckAll[2] = passwordCheck;
+
+  if (!passwordCheck) {
+    $warnText.show();
+    $warnText.text(regexMessage);
+    $checkInput.css('border', '1px solid rgb(222, 28, 34)');
+    passwordCheckAll[2] = passwordCheck;
+  } else {
+    $warnText.hide();
+    $checkInput.css('border', '1px solid rgb(238, 238, 238)');
+  }
+}); */
+
+/* 입력한 값들이 모두 true라면 변경하기 버튼 활성화 */
+/* $inputs.on('blur', function () {
+  if (passwordCheckAll.filter((check) => check).length == 1) {
+    $changeButton.attr('disabled', false);
+    return;
+  }
+  $changeButton.attr('disabled', true);
+});  */
+
+$changeButton.on('click', function () {
+    let modalMessage = '';
+    /* 기존 비밀번호 검사 후 false일 때 모달창 */
+    modalMessage = '기존 비밀번호가 일치하지 않습니다.';
+    showWarnModal(modalMessage);
+    /* 기존 비밀번호 검사 후 true일 때 모달창 */
+    /* modalMessage = "변경되었습니다.";
+      showWarnModal(modalMessage); */
+});
+
+/* 모달창 */
+let modalCheck;
+function showWarnModal(modalMessage){
+    modalCheck = false;
+    $("div#content-wrap").html(modalMessage)
+    $("div.warn-modal").css("animation", "popUp 0.5s");
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function(){modalCheck = true;}, 500);
+}
+
+$("div.modal").on("click", function(){
+    if(modalCheck){
+        $("div.warn-modal").css("animation", "popDown 0.5s");
+        $("div.modal").fadeOut(500);
+    }
+});
+
+
+const fileDOM = document.querySelector('#file');
+const previews = document.querySelectorAll('.image-box');
+
+fileDOM.addEventListener('change', () => {
+    const reader = new FileReader();
+    reader.onload = ({ target }) => {
+        previews[0].src = target.result;
+    };
+    reader.readAsDataURL(fileDOM.files[0]);
+});
