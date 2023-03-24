@@ -291,6 +291,11 @@ a{
     color: #545353;
 
 }
+
+.purchase_complete_btn:hover{
+    background-color: #009a3e5c;
+    color: #ffffff;
+}
 /* 쪽지함 디테일 모달창*/
 .this_modal {
     z-index: 998;
