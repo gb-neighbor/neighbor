@@ -10,6 +10,11 @@ public interface MemberMapper {
 //    전체 조회
     public List<MemberVO> selectAll();
 
+//    멤버 총 인원 수
+    public Integer selectTotalMembers();
+
+//    멤버 삭제
+    public void delete(Long userId);
 
 }
 

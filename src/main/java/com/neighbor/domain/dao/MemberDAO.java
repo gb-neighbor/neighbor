@@ -15,4 +15,16 @@ public class MemberDAO {
 
 //    대쉬보드 전체조회
     public List<MemberVO> list(){return memberMapper.selectAll();}
+
+//    회원관리 멤버삭제
+    public void delete(Long userId) {
+        memberMapper.delete(userId);
+    }
+
+//   회원관리 총 멤버 인원 수
+    public Integer totalMembers() {
+        return memberMapper.selectTotalMembers();
+    }
+
+
 }

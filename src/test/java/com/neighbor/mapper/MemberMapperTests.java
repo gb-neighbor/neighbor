@@ -22,6 +22,19 @@ public class MemberMapperTests {
         log.info(String.valueOf(listMember));
     }
     
-    
+    /*인원 수 조회*/
+    @Test
+    public void selectTotalMembersTest() {
+        Integer members = memberMapper.selectTotalMembers();
+        System.out.println(members);
+    }
+
+    /*회원관리 멤버 삭제*/
+    @Test
+    public void deleteTest() {
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId(4L);
+        memberMapper.delete(4L);
+    }
 
 }

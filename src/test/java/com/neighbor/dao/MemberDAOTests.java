@@ -17,10 +17,18 @@ public class MemberDAOTests {
     @Autowired
     private MemberDAO memberDAO;
 
+    /* 대시보드 멤버 전체 조회 테스트*/
     @Test
     public void memberListTest() {
         List<MemberVO> memberVOList = memberDAO.list();
         log.info(String.valueOf(memberVOList));
+    }
+
+    /*회원관리 멤버 총 인원수 테스트*/
+    @Test
+    public void memberTotalTest() {
+        int members = memberDAO.totalMembers();
+        System.out.println(members);
     }
 
 
