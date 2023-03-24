@@ -115,7 +115,7 @@ function getLength(num)
     {
         modalMessage = "1000자를 넘길 수 없습니다.";
         showWarnModal(modalMessage);
-        contentValue = contentValue.substring(0, str_len-1);
+        document.getElementById("write-section"+num).value = document.getElementById("write-section"+num).value.substring(0, str_len-1);
         txtlenValue.value = max_byte-1;
         return;
     }
