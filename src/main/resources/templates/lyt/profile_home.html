@@ -54,9 +54,11 @@
                     <div class="profile">
                         <div class="oneline_wrapper">
                             <div class="profile_image_section">
-                                <img class="profile_image" src="./images/profile_sample1.png">
+                                <img class="profile_image  image-box" src="./images/profile_sample1.png">
                                 <div class="profile_camera_image_section">
                                     <img class="profile_camera_image" src="./images/camera.png">
+                                    <input id="file" name="chooseFile" type="file" accept="image/*" />
+                                    <label class="upload_profile" for="file"></label>
                                 </div>
                             </div>
 
@@ -168,8 +170,34 @@
                         <div class="update-user-wrap">
                             <div>
                                 <label class="update-user-text">지역</label>
-                                <div class="update-user">
-                                    <input name="memberRegion" class="update-user-value" placeholder="강남구" />
+                                <div class="custom_select w1">
+                                    <select class="custom_select select-region-drop" name="gugun" id="gugun">
+                                        <option value="1">강남구</option>
+                                        <option value="2">강동구</option>
+                                        <option value="3">강북구</option>
+                                        <option value="4">강서구</option>
+                                        <option value="5">관악구</option>
+                                        <option value="6">광진구</option>
+                                        <option value="7">구로구</option>
+                                        <option value="8">금천구</option>
+                                        <option value="9">노원구</option>
+                                        <option value="10">도봉구</option>
+                                        <option value="11">동대문구</option>
+                                        <option value="12">동작구</option>
+                                        <option value="13">마포구</option>
+                                        <option value="14">서대문구</option>
+                                        <option value="15">서초구</option>
+                                        <option value="16">성동구</option>
+                                        <option value="17">성북구</option>
+                                        <option value="18">송파구</option>
+                                        <option value="19">양천구</option>
+                                        <option value="20">영등포구</option>
+                                        <option value="21">용산구</option>
+                                        <option value="22">은평구</option>
+                                        <option value="23">종로구</option>
+                                        <option value="24">중구</option>
+                                        <option value="25">중랑구</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +226,7 @@
                         </div>
                     </article>
                 </div>
-                <a class="third_content_upload_btn" href="">변경 사항 저장하기</a>
+                <button type="button" class="change-button">변경 사항 저장하기</button>
             </div>
 
         </div>
@@ -206,6 +234,11 @@
     </div>
 </section>
 <button id="topBtn">Top</button>
+<div class="modal">
+    <div class="warn-modal">
+        <div id="content-wrap"></div>
+    </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="../../static/js/lyt/profile_home.js"></script>
