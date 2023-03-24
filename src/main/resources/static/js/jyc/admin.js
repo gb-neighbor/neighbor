@@ -102,20 +102,25 @@ function modal(id) {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             msTransform: 'translate(-50%, -50%)',
-            webkitTransform: 'translate(-50%, -50%)'
+            webkitTransform: 'translate(-50%, -50%)',
         })
         .show()
         // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
         .find('.modal_close_btn')
         .on('click', function() {
+            console.log(this.parentElement)
             bg.remove();
             modal.hide();
         });
+
 }
+
+
 
 $('.modal1').on('click', function() {
     // 모달창 띄우기
     modal('my_modal1');
+
 });
 $('.modal2').on('click', function() {
     // 모달창 띄우기
@@ -144,16 +149,18 @@ $('.modal7').on('click', function() {
 /* 유찬 수정사항----------------------------------------------------------------------- */
 
 /* manage-board 게시글 내용 누르면 모달 */
-$('.board-contents span').on('click', function() {
+$('.board-contents span').on('click', function(e) {
     // 모달창 띄우기
     modal('my_modal7');
 });
 
 /* manage-reply 후기내용 누르면 모달 */
-$(".reply-content span").on('click', function() {
+$(".reply-content span").on('click', function(e) {
     // 모달창 띄우기
     modal('my_modal7');
 });
+
+const modal13 = document.querySelector("#my_modal7")
 
 /* ----------------------------------------------------------------------- */
 

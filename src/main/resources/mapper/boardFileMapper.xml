@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.BoardFileMapper">
+    <insert id="insert">
+        insert into neighbor.tbl_board_file
+        (board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id)
+        values(#{boardFileOriginalName}, #{boardFileUuid}, #{boardFilePath}, #{boardFileSize}, #{boardId})
+    </insert>
 
+    <select id="selectAll" resultType="boardFileVO">
+        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id
+        from tbl_board_file
+        where board_id = #{boardId}
+    </select>
+
+    <select id="selectYesterday" resultType="boardFileVO">
+        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id
+        from tbl_board_file where board_file_path = date_format(current_timestamp() - interval 1 day, '%Y/%m/%d')
+    </select>
+
+    <delete id="delete">
+        delete from tbl_board_file
+        WHERE board_id = #{boardId};
+    </delete>
 </mapper>

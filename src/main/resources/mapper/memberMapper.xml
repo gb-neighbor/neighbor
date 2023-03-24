@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.MemberMapper">
+    <!--대쉬보드 회원관리 전체 조회-->
+    <select id="selectAll" resultType="MemberVO">
+        select member_id, count(member_id) countMemberId,member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
+        from tbl_member
+    </select>
+
+    <!--회원관리 멤버 삭제-->
+    <delete id="delete">
+        delete from tbl_member
+        where member_id=#{memberId}
+    </delete>
+
+    <!--회원관리 멤버 총 인원-->
+    <select id="selectTotalMembers" resultType="Integer">
+        select count(distinct member_id) as totalmembers from tbl_member
+    </select>
 
 </mapper>

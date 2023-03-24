@@ -1,5 +1,6 @@
-package com.neighbor.mapper;
+package com.neighbor.dao;
 
+import com.neighbor.domain.dao.BoardFileDAO;
 import com.neighbor.domain.vo.BoardFileVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -8,34 +9,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class BoardFileMapperTests {
+public class BoardFileDAOTests {
     @Autowired
-    BoardFileMapper boardFileMapper;
+    BoardFileDAO boardFileDAO;
 
     @Test
-    public void testInsert(){
+    public void isnertDAOTest(){
         BoardFileVO boardFileVO = new BoardFileVO();
         boardFileVO.setBoardFileOriginalName("fdka");
         boardFileVO.setBoardFilePath("C:/upload/3/23");
         boardFileVO.setBoardFileUuid("dfdsa");
         boardFileVO.setBoardFileSize("20");
         boardFileVO.setBoardId(1L);
-        boardFileMapper.insert(boardFileVO);
+        boardFileDAO.save(boardFileVO);
     }
 
     @Test
-    public void testSelectAll(){
-        log.info(String.valueOf(boardFileMapper.selectAll(1L)));
+    public void deleteDAOTest(){
+        boardFileDAO.delete(3L);
     }
 
-    @Test
-    public void testDelete(){
-        boardFileMapper.delete(1L);
-    }
-
-    @Test
-    public void testSelectYesterday(){
-        boardFileMapper.selectYesterday();
-    }
-    
 }
