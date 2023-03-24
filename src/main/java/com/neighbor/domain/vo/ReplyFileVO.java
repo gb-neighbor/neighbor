@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class ReplyFileVO {
     private Long replyFileId;
-    private String replyFileSystemName;
+    private String replyFileUuid;
     private String replyFileOriginalName;
     private String filePath;
     private Long replyId;
