@@ -291,6 +291,13 @@ html{
     margin-top: 5%;
 }
 
+.wrap-button{
+    display:flex;
+    width: 315px;
+    justify-content: inherit;
+    margin-left:35px;
+}
+
 
 .watch-all-ask-button{
     background-color: #353C45;
@@ -339,7 +346,7 @@ html{
     transition: background-color 0.5s;
  }
 
-.watch-all-ask{
+/* .watch-all-ask{
     padding-left: 3%;  
 }
 
@@ -351,7 +358,7 @@ html{
 .member-delete-button-wrap{
     position: absolute;
     left: 21%;
-}
+} */
 
 .total-mentor{
     display: flex;
