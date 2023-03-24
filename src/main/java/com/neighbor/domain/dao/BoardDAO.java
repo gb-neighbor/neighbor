@@ -15,4 +15,6 @@ public class BoardDAO {
 
 //    대쉬보드 게시글 전체 조회
     public List<BoardDTO> list(){return boardMapper.selectAll();}
+
+
 }

@@ -18,5 +18,7 @@ public class ReplyDAO {
         return replyMapper.selectAll();
     }
 
+//  후기관리 삭제
+    public void delete(Long userId){replyMapper.delete(userId);}
 
 }

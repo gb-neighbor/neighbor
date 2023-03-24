@@ -6,7 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class BoardDTO {
+    private Long boardId;
+    private String boardTitle;
+    private String boardContent;
+    private String boardRegisterDate;
+    private String boardUpdateDate;
+    private Boolean boardStatus;
     private Long memberId;
+    private Integer boardRegion;
     private String memberIdentification;
     private String memberPassword;
     private String memberName;
@@ -16,14 +23,14 @@ public class BoardDTO {
     private Integer region;
     private String memberEmail;
     private String hiSentence;
-    private String memberProfileSystemName;
+    private String memberProfileSize;
     private String memberProfileOriginalName;
+    private String memberProfileUuid;
     private String memberProfilePath;
-    private Long boardId;
-    private String boardTitle;
-    private String boardContent;
-    private String boardRegisterDate;
-    private String boardUpdateDate;
-    private Boolean boardStatus;
-    private Integer boardRegion;
+    private Long boardFileId;
+    private String boardFileOriginalName;
+    private String boardFileUuid;
+    private String boardFilePath;
+    private String boardFileSize;
+    private Integer countTotalBoards;
 }
