@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.ReplyMapper">
-
+    <select id="selectAll" resultType="ReplyDTO">
+        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, board_id, member_nickname
+        from tbl_member m join tbl_reply r
+        on m.member_id = r.member_id
+    </select>
 </mapper>
