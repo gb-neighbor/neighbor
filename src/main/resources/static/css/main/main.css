@@ -1,0 +1,686 @@
+@charset "utf-8";
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+
+body {
+    zoom: 80%; /* 배율을 80%로 맞춘다. */
+    margin: auto 0;
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+}
+
+.bookmark-list li:last-child {
+    margin-right: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+ul, ol, li {
+    list-style: none;
+}
+
+body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, p, blockquote, button, input, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+#logo-wrapper {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+
+#logo {
+    background-image: url('https://www.shouse.garden/images/common/sp_common.png');
+    width: 155px;
+    height: 30px;
+    margin: auto;
+}
+
+#container-wrapper {
+    height: 500px;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+section.container {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+div.banner {
+    width: 8400px; /* 배너 5개라 * 7 */
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+div.banner div {
+    width: 1200px;
+    height: 460px;
+    float: left;
+    background-size: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+div.banner div:hover {
+    transform: scale(1.025);
+}
+
+div.move-arrow {
+    z-index: 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 6%;
+}
+
+div.move-arrow div {
+    background-color: white;
+    width: 32px;
+    height: 27px;
+    background-size: 7px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.prev {
+    background-image: url('https://www.shouse.garden/images/common/arrow03_l.png');
+}
+
+#dot-wrapper {
+    width: 6px;
+    height: 15px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#dot {
+    content: ' ';
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 1.2px;
+    top: 9.5px;
+    width: 4px;
+    height: 4px;
+    background-color: #b3b3b3;
+    border-radius: 100%;
+}
+
+div.next {
+    background-image: url('https://www.shouse.garden/images/common/arrow03_r.png');
+}
+
+div.buttons {
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 5px;
+}
+
+div.buttons button {
+    background: white;
+}
+
+div.buttons button:nth-child(1) {
+    background-color: black;
+    color: white;
+}
+
+.page-move-wrapper {
+    color: #808080 !important;
+    line-height: 27px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.05em;
+    font-family: 'Spoqa Han Sans', sans-serif;
+    font: 12px;
+}
+
+/* 배너 끝 */
+
+/* 최근 음식 게시물 */
+.recent-food {
+    margin-top: 80px !important;
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.recent-food-title {
+    line-height: 63px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.area-wrap {
+    margin-top: -10px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    height: 100%;
+    transition-property: transform;
+    box-sizing: content-box;
+    justify-content: space-between;
+}
+
+.area-wrap2 {
+    margin-top: 5px;
+    z-index: 1;
+    position: relative;
+    height: 100%;
+    transition-property: transform;
+    box-sizing: content-box;
+    justify-content: space-between;
+}
+
+.area-div-wrap li {
+    margin-top: 10px;
+    margin-right: 8px;
+    width: auto;
+    display: inline-block;
+}
+
+.area-div-wrap a {
+    z-index: 10;
+    position: relative;
+    display: block;
+    padding: 0 13px;
+    line-height: 37px;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+}
+
+.area-div-wrap .active a {
+    color: #fff;
+    background-color: #009a3e;
+}
+
+.recent-food-content ul {
+    width: calc(100% + 20px);
+}
+
+.area-wrap li a:hover {
+    background-color: #d9d9d9;
+}
+
+.area-wrap2 li a:hover {
+    background-color: #d9d9d9;
+}
+/* 지역구 끝 */
+
+/* 최근 게시물 시작. */
+.recent-food-content li {
+    float: left;
+    position: relative;
+    margin-top: 30px;
+    margin-right: 20px;
+    width: calc(25% - 20px);
+}
+
+.recent-food-picture-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    height: 189px;
+}
+
+.recent-food-picture {
+    padding-bottom: 66.67%;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+}
+
+.recent-food-picture-title {
+    line-height: 26px;
+    font-size: 28px;
+    width: 150px;
+    overflow: hidden;
+    position: absolute;
+    top: -175px;
+    left: 70px;
+    color: white;
+}
+
+.recent-food-user-info {
+    position: relative;
+    padding-top: 0;
+    padding-left: 45px;
+}
+
+.recent-food-user-info a {
+    position: static;
+    display: inline;
+}
+
+.recent-food-user-picture {
+    width: 70px;
+    height: 40px;
+    padding-bottom: 33px;
+    position: absolute;
+    top: 60px;
+    left: 107px;
+    border: 1px solid #d9d9d9;
+    border-radius: 100%;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+}
+
+.recent-food-user-nickname {
+    max-width: 100%;
+    line-height: 35px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    right: 114px;
+    top: 140px;
+    color: white;
+}
+
+.recent-food-list::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.recent-food-more-button {
+    padding-right: 17px;
+    color: #009a3e;
+    background-image: url('images/next.png');
+    background-size: 7px auto;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    height: 32px;
+    line-height: 31px;
+    font-size: 16px;
+    font-weight: 700;
+    background-position: right center;
+    background-repeat: no-repeat;
+    text-decoration: none;
+}
+
+.recent-food-more-write {
+    color: #009a3e;
+    line-height: 31px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.recent-food-image {
+    object-fit: cover;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    height: 190px;
+    width: 284px;
+}
+
+.recent-food-info-wrap {
+    display: none;
+}
+
+/* 최근 게시물 끝 */
+
+/* 별점 인기순 */
+
+.bookmark {
+    margin-top: 60px !important;
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.bookmark-full-list  {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookmark-title {
+    line-height: 63px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.bookmark-list {
+    border-top: 1px solid #d9d9d9;
+    list-style-type: disc;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+    list-style-position: inside;
+    width: 100%;
+}
+
+.bookmark-list li {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.bookmark-list li > a {
+    padding-right: 80px; /* 판매가격 오른쪽으로 몰 때 padding-right 조정 */
+    padding-left: 10px;
+    background-position-x: calc(100% - 10px);
+    position: relative;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-image: url('images/next.png');
+    background-position-y: 61px;
+    background-repeat: no-repeat;
+    background-size: 7px auto;
+}
+
+.bookmark-picture {
+    left: 33px;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #d9d9d9;
+    border-radius: 100%;
+    background-position: center center;
+    background-size: cover;
+}
+
+.bookmark-food-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: top;
+    max-width: calc(100% - 22px);
+    padding-right: 22px;
+    line-height: 26px;
+    font-size: 21px;
+    color: #4d4d4d;
+    position: absolute;
+    top: 48px;
+    left: 150px;
+    height: 30px;
+}
+
+.bookmark-sell-place {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 24px;
+    font-size: 16px;
+    color: #808080;
+    position: absolute;
+    top: 18px;
+    left: 150px;
+}
+
+.bookmark-profile-wrap {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.won {
+    width: 19px;
+    height: 21px;
+    padding-right: 4px;
+}
+
+.bookmark-sell-price {
+    vertical-align: top;
+    color: #222624;
+    float: right;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 30px;
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    top: 24px;
+    right: 48px;
+}
+
+
+.bookmark-sell-user-nickname {
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: center;
+    width: 70px;
+    margin-top: 7px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.bookmark-star {
+    margin-right: 10px;
+    position: absolute;
+    top: 83px;
+    left: 150px;
+}
+
+.bookmark-more-button {
+    padding-right: 17px;
+    color: #009a3e;
+    background-image: url('images/next.png');
+    background-size: 7px auto;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    height: 32px;
+    line-height: 31px;
+    font-size: 16px;
+    font-weight: 700;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.bookmark-more-write {
+    color: #009a3e;
+    line-height: 31px;
+    font-size: 16px;
+    font-weight: 700;
+}
+/* 즐겨찾기 인기순 끝 */
+
+/* 랜덤추천메뉴 시작 */
+
+.random-menu-full-wrap {
+    padding-bottom: 80px !important;
+    padding-top: 60px !important;
+    margin-top: 80px !important;
+}
+
+.banner-background-color {
+    background-color: #f2f2f2;
+    margin-left: -349px;
+    margin-right: -349px !important;
+}
+
+.random-menu-wrap {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.random-menu-title {
+    line-height: 63px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.random-menu-banner-full-wrap {
+    position: relative;
+}
+
+.random-menu-banner-wrap {
+    z-index: 1;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.random-menu-banner-list {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.random-menu-banner {
+    width: calc((100% - 60px) / 4);
+    position: relative;
+    flex-shrink: 0;
+    height: 100%;
+    transition-property: transform;
+}
+
+.random-menu-banner > a {
+    position: relative;
+    padding-bottom: 129.8%;
+}
+
+.random-menu-banner a {
+    display: block;
+}
+
+.random-menu-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 0;
+    background-size: 100% 100%;
+}
+
+.random-menu-banner-arrows {
+    text-align: center;
+}
+
+.random-menu-banner-left-arrow:hover {
+    background-color: rgba(0, 154, 62, 0.9);
+
+}
+
+.random-menu-banner-left-arrow {
+    background-color: rgba(0, 0, 0, 0.6);
+    background-image: url('images/randomPrev.png');
+    left: -20px;
+    top: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    outline: none;
+    z-index: 2;
+    position: absolute;
+}
+
+.random-menu-banner-right-arrow:hover {
+    background-color: rgba(0, 154, 62, 0.9);
+}
+
+.random-menu-banner-right-arrow {
+    background-image: url('images/randomNext.png');
+    right: -20px;
+    top: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* 마우스 hover 했을 때 */
+    /* background-color: rgba(0,154,62,0.9); */
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    outline: none;
+    z-index: 2;
+    position: absolute;
+    text-align: center;
+}
+/* 랜덤메뉴 끝 */
+
+/* 맨 위로 가는 버튼 */
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #009a3e;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease-in-out;
+}
+  
+#topBtn:hover {
+    background-color: #c2185b;
+}
+
+.bookmark-first-list {
+    margin-right: 8px;
+}
+
+.bookmark-second-list {
+    margin-left: 8px;
+}

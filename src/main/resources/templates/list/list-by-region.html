@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>목록 페이지</title>
+    <link rel="stylesheet" href="../../static/css/list/list-by-region.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/image/favicon.ico">
+</head>
+<body>
+<!-- 헤더-푸터를 포함한 전체 -->
+<div id="wrap">
+    <!-- section for header and navigation -->
+    <!-- //section for header and navigation -->
+
+    <!-- 본문 전체 -->
+    <section class="list-by-reigion-container">
+        <!-- 위 아래 패딩을 위한 컨테이너 -->
+        <article class="list-by-region-inner-container">
+            <!-- 양 옆 마진을 위한 컨테이너 -->
+            <div class="real-container">
+                <!-- 페이지 타이틀 -->
+                <h3 class="sub-title type2">
+                    싱그런 여행
+                    <span class="text-sub">식물, 친환경과 관련된 지역별 추천 장소를 소개합니다.</span>
+                </h3>
+                <!-- //페이지 타이틀 -->
+                <!-- 지역 선택 컨테이너 -->
+                <div class="region-select-container">
+                    <!-- 지도 -->
+                    <div class="map-seoul-container">
+                        <!-- 지도 이미지 및 레이블 컨테이너 -->
+                        <div class="map-seoul">
+                            <!-- 전체 -->
+                            <div class="region-name entire">
+                                <input type="radio" name="regionMap" class="input-selection entire" id="input-selection-entire" value="0" onclick="locationClick(0)" >
+                                <span class="img"></span>
+                            </div>
+                            <!-- //전체 -->
+                            <!-- 강남구 -->
+                            <div class="region-name gangnam">
+                                <input type="radio" name="regionMap" class="input-selection gangnam" id="input-selection-gangnam" value="1" onclick="locationClick(1)" >
+                                <label for="input-selection-gangnam">강남구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //강남구 -->
+                            <!-- 강동구 -->
+                            <!-- gangdong -->
+                            <div class="region-name gangdong">
+                                <input type="radio" name="regionMap" class="input-selection gangdong" id="input-selection-gangdong" value="2" onclick="locationClick(2)">
+                                <label for="input-selection-gangdong">강동구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //강동구 -->
+                            <!-- 강북구 -->
+                            <!-- gangbuk -->
+                            <div class="region-name gangbuk">
+                                <input type="radio" name="regionMap" class="input-selection gangbuk"  id="input-selection-gangbuk" value="3" onclick="locationClick(3)">
+                                <label for="input-selection-gangbuk">강북구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //강북구 -->
+                            <!-- 강서구 -->
+                            <!-- gangseo -->
+                            <div class="region-name gangseo">
+                                <input type="radio" name="regionMap" class="input-selection gangseo" id="input-selection-gangseo" value="4" onclick="locationClick(4)">
+                                <label for="input-selection-gangseo">강서구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //강서구 -->
+                            <!-- 관악구 -->
+                            <!-- gwanak -->
+                            <div class="region-name gwanak">
+                                <input type="radio" name="regionMap" class="input-selection gwanak" id="input-selection-gwanak" value="5" onclick="locationClick(5)">
+                                <label for="input-selection-gwanak">관악구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //관악구 -->
+                            <!-- 광진구 -->
+                            <!-- gwangjin -->
+                            <div class="region-name gwangjin">
+                                <input type="radio" name="regionMap" class="input-selection gwangjin" id="input-selection-gwangjin" value="6" onclick="locationClick(6)">
+                                <label for="input-selection-gwangjin">광진구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //광진구 -->
+                            <!-- 구로구 -->
+                            <!-- guro -->
+                            <div class="region-name guro">
+                                <input type="radio" name="regionMap" class="input-selection guro" id="input-selection-guro" value="7" onclick="locationClick(7)">
+                                <label for="input-selection-guro">구로구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //구로구 -->
+                            <!-- 금천구 -->
+                            <!-- geumchun -->
+                            <div class="region-name geumchun">
+                                <input type="radio" name="regionMap" class="input-selection geumchun"  id="input-selection-geumchun" value="8" onclick="locationClick(8)">
+                                <label for="input-selection-geumchun">금천구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //금천구 -->
+                            <!-- 노원구 -->
+                            <!-- nowon -->
+                            <div class="region-name nowon">
+                                <input type="radio" name="regionMap" class="input-selection nowon" id="input-selection-nowon" value="9" onclick="locationClick(9)">
+                                <label for="input-selection-nowon">노원구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //노원구 -->
+                            <!-- 도봉구 -->
+                            <!-- dobong -->
+                            <div class="region-name dobong">
+                                <input type="radio" name="regionMap" class="input-selection dobong" id="input-selection-dobong" value="10" onclick="locationClick(10)">
+                                <label for="input-selection-dobong">도봉구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //도봉구 -->
+                            <!-- 동대문 -->
+                            <!-- dongdaemun -->
+                            <div class="region-name dongdaemun">
+                                <input type="radio" name="regionMap" class="input-selection dongdaemun" id="input-selection-dongdaemun" value="11" onclick="locationClick(11)">
+                                <label for="input-selection-dongdaemun">동대문구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //동대문 -->
+                            <!-- 동작구 -->
+                            <!-- dongjak -->
+                            <div class="region-name dongjak">
+                                <input type="radio" name="regionMap" class="input-selection dongjak" id="input-selection-dongjak" value="12" onclick="locationClick(12)">
+                                <label for="input-selection-dongjak">동작구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //동작구 -->
+                            <!-- 마포구 -->
+                            <!-- mapo -->
+                            <div class="region-name mapo">
+                                <input type="radio" name="regionMap" class="input-selection mapo" id="input-selection-mapo" value="13" onclick="locationClick(13)">
+                                <label for="input-selection-mapo">마포구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //마포구 -->
+                            <!-- 서대문구 -->
+                            <!-- seodaemun -->
+                            <div class="region-name seodaemun">
+                                <input type="radio" name="regionMap" class="input-selection seodaemun" id="input-selection-seodaemun" value="14" onclick="locationClick(14)">
+                                <label for="input-selection-seodaemun">서대문구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //서대문구 -->
+                            <!-- 서초구 -->
+                            <!-- seocho -->
+                            <div class="region-name seocho">
+                                <input type="radio" name="regionMap" class="input-selection seocho"  id="input-selection-seocho" value="15" onclick="locationClick(15)">
+                                <label for="input-selection-seocho">서초구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //서초구 -->
+                            <!-- 성동구 -->
+                            <!-- sungdong -->
+                            <div class="region-name sungdong">
+                                <input type="radio" name="regionMap" class="input-selection sungdong" id="input-selection-sungdong" value="16" onclick="locationClick(16)">
+                                <label for="input-selection-sungdong">성동구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //성동구 -->
+                            <!-- 성북구 -->
+                            <!-- sungbuk -->
+                            <div class="region-name sungbuk">
+                                <input type="radio" name="regionMap" class="input-selection sungbuk" id="input-selection-sungbuk" value="17" onclick="locationClick(17)">
+                                <label for="input-selection-sungbuk">성북구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //성북구 -->
+                            <!-- 송파구 -->
+                            <!-- songpa -->
+                            <div class="region-name songpa">
+                                <input type="radio" name="regionMap" class="input-selection songpa" id="input-selection-songpa" value="18" onclick="locationClick(18)">
+                                <label for="input-selection-songpa">송파구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //송파구 -->
+                            <!-- 양천구 -->
+                            <!-- yangcheon -->
+                            <div class="region-name yangcheon">
+                                <input type="radio" name="regionMap" class="input-selection yangcheon" id="input-selection-yangcheon" value="19" onclick="locationClick(19)">
+                                <label for="input-selection-yangcheon">양천구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //양천구 -->
+                            <!-- 영등포구 -->
+                            <!-- youngdeungpo -->
+                            <div class="region-name youngdeungpo">
+                                <input type="radio" name="regionMap" class="input-selection youngdeungpo" id="input-selection-youngdeungpo" value="20" onclick="locationClick(20)">
+                                <label for="input-selection-youngdeungpo">영등포구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //영등포구 -->
+                            <!-- 용산구 -->
+                            <!-- yongsan -->
+                            <div class="region-name yongsan">
+                                <input type="radio" name="regionMap" class="input-selection yongsan" id="input-selection-yongsan" value="21" onclick="locationClick(21)">
+                                <label for="input-selection-yongsan">용산구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //용산구 -->
+                            <!-- 은평구 -->
+                            <!-- eunpyung -->
+                            <div class="region-name eunpyung">
+                                <input type="radio" name="regionMap" class="input-selection eunpyung" id="input-selection-eunpyung" value="22" onclick="locationClick(22)">
+                                <label for="input-selection-eunpyung">은평구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //은평구 -->
+                            <!-- 종로구 -->
+                            <!-- jongno -->
+                            <div class="region-name jongno">
+                                <input type="radio" name="regionMap" class="input-selection jongno" id="input-selection-jongno" value="23" onclick="locationClick(23)">
+                                <label for="input-selection-jongno">종로구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //종로구 -->
+                            <!-- 중구 -->
+                            <!-- junggu -->
+                            <div class="region-name junggu">
+                                <input type="radio" name="regionMap" class="input-selection junggu" id="input-selection-junggu" value="24" onclick="locationClick(24)">
+                                <label for="input-selection-junggu">중구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //중구 -->
+                            <!-- 중랑구 -->
+                            <!-- junglang -->
+                            <div class="region-name junglang">
+                                <input type="radio" name="regionMap" class="input-selection junglang"id="input-selection-junglang" value="25" onclick="locationClick(25)">
+                                <label for="input-selection-junglang">중랑구</label>
+                                <span class="img"></span>
+                            </div>
+                            <!-- //중랑구 -->
+                        </div>
+                        <!-- //지도 이미지 및 레이블 컨테이너 -->
+                    </div>
+                    <!-- //지도 -->
+                    <!-- 지역 선택 입력 창 -->
+                    <div class="map-select-container">
+                        <!-- 검색결과 추천 -->
+                        <div class="best-list-wrap">
+                            <!-- 제목 -->
+                            <h4 class="sub-title">추천장소</h4>
+                            <!-- //제목 -->
+                            <!-- 리스트 전체 컨테이너 -->
+                            <ul class="best-list type2">
+                                <!-- 항목1 -->
+                                <li>
+                                    <!-- 상세페이지로 바로가기 -->
+                                    <a href="#"></a>
+                                    <!-- 내용 -->
+                                    <div class="cont">
+                                        <!-- 썸네일 -->
+                                        <a href="#">
+                                            <div class="thumbs" style="background-image:url('../../static/css/list/image/dummy-thumbnail.jpg')"></div>
+                                        </a>
+                                        <!-- //썸네일 -->
+                                        <!-- 제목 -->
+                                        <p class="name">
+                                            <a href="#">그린조에</a>
+                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">지도</a>
+                                        </p>
+                                        <!-- //제목 -->
+                                        <!-- 기타 정보 -->
+                                        <div class="info-container">
+                                                    <span class="stars">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                    </span>
+                                            <span class="tag">funfunCook</span>
+                                        </div>
+                                        <!-- 기타 정보 -->
+                                        <!-- 좋아요 및 즐겨찾기 -->
+                                        <div class="state">
+                                            <span class="won">25,000</span>
+                                        </div>
+                                        <!-- //좋아요 및 즐겨찾기 -->
+                                    </div>
+                                    <!-- //내용 -->
+                                </li>
+                                <!-- //항목1 -->
+                                <!-- 항목2 -->
+                                <li>
+                                    <a href="#"></a>
+                                    <div class="cont">
+                                        <a href="#">
+                                            <div class="thumbs" style="background-image:url('../../static/css/list/image/dummy-thumbnail.jpg')"></div>
+                                        </a>
+                                        <p class="name">
+                                            <a href="#">그린조에</a>
+                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">지도</a>
+                                        </p>
+                                        <div class="info-container">
+                                                    <span class="stars">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                    </span>
+                                            <span class="tag">funfunCook</span>
+                                        </div>
+                                        <div class="state">
+                                            <span class="won">14,000</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- //항목2 -->
+                                <!-- 항목3 -->
+                                <li>
+                                    <a href="#"></a>
+                                    <div class="cont">
+                                        <a href="#">
+                                            <div class="thumbs" style="background-image:url('../../static/css/list/image/dummy-thumbnail.jpg')"></div>
+                                        </a>
+                                        <p class="name">
+                                            <a href="#">그린조에</a>
+                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">지도</a>
+                                        </p>
+                                        <div class="info-container">
+                                                    <span class="stars">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                            <img src="../../static/css/list/image/star.png">
+                                                    </span>
+                                            <span class="tag">funfunCook</span>
+                                        </div>
+                                        <div class="state">
+                                            <span class="won">100,000,000</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- //항목3 -->
+                            </ul>
+                            <!-- //리스트 전체 컨테이너 -->
+                        </div>
+                        <!-- //검색결과 추천 -->
+                        <!-- 검색창 컨테이너 -->
+                        <div class="search-area ">
+                            <!-- 검색 폼 -->
+                            <form name="form" action="">
+                                <!-- 서울 구 선택 + 검색창 -->
+                                <div class="wrp_frm region-select-container">
+                                    <!-- 서울시 + 구선택 -->
+                                    <div class="region-select-container gugun">
+                                        <!-- 시 -->
+                                        <!-- 구 -->
+                                        <div class="custom_select w1">
+                                            <select class="custom_select select-region-drop" name="gugun" id="gugun">
+                                                <option value="">구/군</option>
+                                                <option value="0">전체</option>
+                                                <option value="1">강남구</option>
+                                                <option value="2">강동구</option>
+                                                <option value="3">강북구</option>
+                                                <option value="4">강서구</option>
+                                                <option value="5">관악구</option>
+                                                <option value="6">광진구</option>
+                                                <option value="7">구로구</option>
+                                                <option value="8">금천구</option>
+                                                <option value="9">노원구</option>
+                                                <option value="10">도봉구</option>
+                                                <option value="11">동대문구</option>
+                                                <option value="12">동작구</option>
+                                                <option value="13">마포구</option>
+                                                <option value="14">서대문구</option>
+                                                <option value="15">서초구</option>
+                                                <option value="16">성동구</option>
+                                                <option value="17">성북구</option>
+                                                <option value="18">송파구</option>
+                                                <option value="19">양천구</option>
+                                                <option value="20">영등포구</option>
+                                                <option value="21">용산구</option>
+                                                <option value="22">은평구</option>
+                                                <option value="23">종로구</option>
+                                                <option value="24">중구</option>
+                                                <option value="25">중랑구</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- //서울시 + 구선택 -->
+                                    <!-- 검색창 -->
+                                    <div class="region-select-container w4">
+                                        <input type="text" class="search-box" title="장소명 or 해시태그 입력" name="tag" id="tag" value="" placeholder="검색어를 입력 하세요.">
+                                    </div>
+                                    <!-- //검색창 -->
+                                </div>
+                                <!-- //서울 구 선택 + 검색창 -->
+                                <!-- 검색 버튼 -->
+                                <div class="wrp_buttons">
+                                    <button type="submit" class="btn green" onclick="console.log('hello')">검색</button>
+                                    <button type="button" class="btn lgray" onclick="reset();resetMap();">초기화</button>
+                                </div>
+                            </form>
+                            <!-- //검색 폼 -->
+                            <!-- 게시글 작성하러 가기 -->
+                            <a href="#" class="gotowrite region-select-container">
+                                <span class="cell">나의 싱그러운 라이프를 소개해주세요.</span>
+                                <strong>작성하기</strong>
+                            </a>
+                            <!-- 게시글 작성하러 가기 -->
+                        </div>
+                        <!-- //검색창 컨테이너 -->
+                    </div>
+                    <!-- //지역 선택 입력 창 -->
+                </div>
+                <!-- //지역 선택 컨테이너 -->
+                <!-- 검색 결과 리스트 창 -->
+                <div class="search-result-area">
+                    <!-- 검색결과 타이틀 -->
+                    <h4 class="sub-title">
+                        <span class="selected-region">전체</span>
+                        LIST
+                        <span class="count-result">170</span>
+                    </h4>
+                    <!-- //검색결과 타이틀 -->
+                    <!-- 결과 리스트 묶음 전체 -->
+                    <ul class="infinite result-list clearfix" id="list">
+                        <!-- 리스트 한개 -->
+                        <li class="result-list-container">
+                            <div class="result-list-outer-box">
+                                <a href="#">
+                                    <div class="profile-area-box">
+                                        <div class="profile-area">
+                                            <div class="profile-area-inner">
+                                                <div class="thumbs" style="background-image:url('../../static/css/list/image/dummy-thumbnail.jpg')"></div>
+                                                <p class="id">
+                                                    <span onclick="location.href='#'">그린조에</span>
+                                                </p>
+                                                <div class="location">
+                                                    <span class="map">종로구</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <img src="../../static/css/list/image/arrow_r.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="title-area-box">
+                                        <div class="title-area">
+                                            <span class="list-title">도프커피</span>
+                                            <span class="stars">
+                                                <img src="../../static/css/list/image/star.png">
+                                                <img src="../../static/css/list/image/star.png">
+                                                <img src="../../static/css/list/image/star.png">
+                                                <img src="../../static/css/list/image/star.png">
+                                                <img src="../../static/css/list/image/star.png">
+                                            </span>
+                                        </div>
+                                        <div class="sub-info-area-box">
+                                            <div class="price">
+                                                <span class="won">25,000</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="pic-box">
+                                        <div class="pics-thumbs thumbs1"></div>
+                                        <div class="pics-thumbs thumbs2"></div>
+                                        <div class="pics-thumbs thumbs3"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <!-- //리스트 한개 -->
+                        
+                      
+                    </ul>
+                    <!-- //결과 리스트 묶음 전체 -->
+                </div>
+                <!-- //검색 결과 리스트 창 -->
+                <!-- ::after -->
+                <!-- top으로 가는 버튼  -->
+                <button id="topBtn">Top</button>
+                <!-- //top으로 가는 버튼  -->
+            </div>
+            <!-- //양 옆 마진을 위한 컨테이너 -->
+        </article>
+        <!-- //위 아래 패딩을 위한 컨테이너 -->
+    </section>
+    <!-- //본문 전체 -->
+    <!-- section for footer -->
+    <!-- //section for footer -->
+</div>
+<!-- //헤더-푸터를 포함한 전체 -->
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/list/list-by-region.js"></script>
+</html>

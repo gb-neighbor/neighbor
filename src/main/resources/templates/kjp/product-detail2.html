@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 상세 페이지</title>
     <link rel="stylesheet" href="../../static/css/kjp/product-detail2.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+<div th:insert="~{/main/header:: header}"></div>
     <!-- 상품상세 네비게이션 -->
     <article class="subinfo nospace">
         <div class="holder">
@@ -57,7 +60,7 @@
                                     <!-- <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span> -->
                                 
                                     <!-- Expanded image -->
-                                    <img id="expandedImg" style="width:100%" src="../../static/css/hhs/image/dummy-thumbnail-2.jpg">
+                                    <img id="expandedImg" style="width:100%" src="../../static/css/list/image/dummy-thumbnail-2.jpg">
                                 
                                     <!-- Image text -->
                                     <div id="imgtext"></div>
@@ -69,29 +72,29 @@
                                         <!-- The grid: four columns -->
                                         <ul class="row">
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail.jpg" onclick="myFunction(this);">
                                             </li>
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
                                             </li>
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail.jpg" onclick="myFunction(this);">
                                             </li>
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
                                             </li>
                                  
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
                                             </li>
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
                                             </li>
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
                                             </li>
                                             <li class="column">
-                                                <img src="../../static/css/hhs/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
+                                                <img src="../../static/css/list/image/dummy-thumbnail-2.jpg" onclick="myFunction(this);">
                                             </li>
                                 
                                         </ul>
@@ -200,11 +203,11 @@
                         <h4 class="review-my-score-title">
                             나의 점수
                         <span class="review-my-star-wrap">
-                                <img src="../../static/css/kdh/images/grey-star.png" class="review-my-star" data-index="1">
-                                <img src="../../static/css/kdh/images/grey-star.png" class="review-my-star" data-index="2">
-                                <img src="../../static/css/kdh/images/grey-star.png" class="review-my-star" data-index="3">
-                                <img src="../../static/css/kdh/images/grey-star.png" class="review-my-star" data-index="4">
-                                <img src="../../static/css/kdh/images/grey-star.png" class="review-my-star" data-index="5">
+                                <img src="../../static/css/main/images/grey-star.png" class="review-my-star" data-index="1">
+                                <img src="../../static/css/main/images/grey-star.png" class="review-my-star" data-index="2">
+                                <img src="../../static/css/main/images/grey-star.png" class="review-my-star" data-index="3">
+                                <img src="../../static/css/main/images/grey-star.png" class="review-my-star" data-index="4">
+                                <img src="../../static/css/main/images/grey-star.png" class="review-my-star" data-index="5">
                                 <span class="review-my-write-cancel">
                                     <input class="review-my-score-cancel" type="button" value="취소">
                                     <input class="review-my-score-submit" type="button" value="등록">
@@ -228,11 +231,11 @@
                         리뷰
                         <span class="review-count">9</span>
                         <span class="review-average-star-wrap">
-                            <img src="../../static/css/kdh/images/star.png" class="review-star">
-                            <img src="../../static/css/kdh/images/star.png" class="review-star">
-                            <img src="../../static/css/kdh/images/star.png" class="review-star">
-                            <img src="../../static/css/kdh/images/star.png" class="review-star">
-                            <img src="../../static/css/kdh/images/star.png" class="review-star">
+                            <img src="../../static/css/main/images/star.png" class="review-star">
+                            <img src="../../static/css/main/images/star.png" class="review-star">
+                            <img src="../../static/css/main/images/star.png" class="review-star">
+                            <img src="../../static/css/main/images/star.png" class="review-star">
+                            <img src="../../static/css/main/images/star.png" class="review-star">
                         </span>
                     </h4>
                     <input class="review-write" type="button" value="리뷰작성"> 
@@ -301,11 +304,11 @@
                                 <p class="review-user-nickname">구매자 이름</p>
                                 <p class="review-score-wrap">
                                     <span class="stars">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
                                     </span></p>
                                 <p class="review-date">작성 날짜</p>
                             </div>
@@ -359,11 +362,11 @@
                                 <p class="review-user-nickname">구매자 이름</p>
                                 <p class="review-score-wrap">
                                     <span class="stars">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
-                                        <img src="../../static/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
+                                        <img src="/css/kjp/star.png" class="star">
                                     </span></p>
                                 <p class="review-date">작성 날짜</p>
                             </div>
@@ -432,8 +435,8 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3 class="modal-title">쪽지 보내기</h3>
-                <label for="title" class="modal-label">받는 이 :
-                    <div class="nick-name">미키마우스</div>
+                <label for="writer-title" class="modal-label">받는 이 :
+                    <div id="writer-title" class="nick-name">미키마우스</div>
                 </label>
 
                 <br>
@@ -441,8 +444,8 @@
                     <div class="form-inner-wrapper">
                         <textarea class ="review-my-textarea msg" name="messageContent" cols="20" rows="7" onKeydown="getLength2(messageContent.value)" onKeyUp="getLength(content.value)" maxlength="1001"></textarea>
                         <div class="count-letters msg">
-                            <input class="review-write-count" id="review-write-count" type="text" NAME="messagetxtlen" value="0" readonly />
-                            <div class="review-write-full-count" id="review-write-full-count" type="text" value="/ 1000" readonly><span> / 1000</span></div>
+                            <input class="review-write-count" id="message-write-count" type="text" NAME="messagetxtlen" value="0" readonly />
+                            <div class="review-write-full-count" id="message-write-full-count" type="text" value="/ 1000" readonly><span> / 1000</span></div>
                         </div>
                     </div>
                     <div class="button-group">
@@ -452,9 +455,12 @@
                 </form>
         </div>
     </div>
-    <!-- <button id="openBtn">열기</button> -->
     <!-- 모달 -->
+    <!-- top으로 가는 버튼  -->
+    <button id="topBtn">Top</button>
+    <!-- //top으로 가는 버튼  -->
+    <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/kjp/product-detail2.js"></script>
+<script src="/js/kjp/product-detail2.js"></script>
 </html>
