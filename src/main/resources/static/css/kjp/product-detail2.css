@@ -650,14 +650,17 @@ div#content-wrap span{
 
 
 /************************banner-in-main****************************/
+.product-banner-container{
+    position: relative;
+
+}
 
 .row{
-    width: 100%;
+    width: 202%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    transition-property: transform;
+    /* display: flex; */
     box-sizing: content-box;
+    height: 100px;
 }
 
 ul, li {
@@ -668,32 +671,34 @@ ul, li {
   }
 
 .banner-wrapper{
-width: 100%;
-padding:0;
-margin: 0;
+    width: 80%;
+    padding:0;
+    margin: 0 auto;
 }
 
 
 
 /* The grid: Four equal columns that floats next to each other */
 .column {
-    height: 100px;
-    margin-right: 5px;
-    width: calc((100% - 20px) / 4);
+    /* flex: 1; */
+    float: left;
+    margin-left: 4.2px;
+    height: 100%;
+    width: calc((50% - 15px) / 4);
 }
 
-/* .column:nth-child(4){
+.column:nth-child(1) {
     margin: 0;
-} */
+}
 
 /* Style the images inside the grid */
 .column img {
   opacity: 0.8;
   cursor: pointer;
   display: block;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+  height: 100%;
+  width: 100%;;
 }
 
 .column img:hover {
@@ -711,7 +716,7 @@ margin: 0;
 .thumb-container {
   position: relative;
   display: block;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -752,7 +757,8 @@ margin: 0;
     line-height: 2.3em;
 }
 .banner-inner-wrapper{
-    position: relative;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .paging-container {
@@ -774,14 +780,14 @@ margin: 0;
     transform: scaleX(-1);
     position: absolute;
     left: 34px;
-    top: 40%;
+    top:  89.5%;
 }
 
 .next{
     background-image: url('arrow04_r.png');
     position: absolute;
     right: 34px;
-    top: 40%;
+    top: 89.5%;
 }
 
 /**************************************header-navigation**************************************/
@@ -834,6 +840,7 @@ margin: 0;
 .message-modal {
     display: none; /* 모달창 숨김 */
     position: fixed; /* 스크롤에 따라 모달창이 이동하지 않도록 고정 */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
