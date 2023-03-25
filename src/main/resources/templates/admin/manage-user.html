@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리</title>
+    <link rel="stylesheet" href="/css/admin/manage-user.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div class="wrap">
+    <div id="menu-side" class="container">
+        <div id="top-box" class="menu-box">
+            <img id="neighbor-logo" alt="neighbor" src="/css/admin/images/logo2.png">
+        </div>
+        <div id="middle-box" class="menu-box">
+            <div id="wrap-middle-box">
+                <div id="middle-box-contents">
+                    <div class="side-top-margin"></div>
+                    <span class="mouseOnEffect">
+                                <div id="middle-box-site-shortcut-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="home" src="/css/admin/images/home.png">
+                                    </div>
+                                    사이트 바로가기
+                                </div> 
+                            </span>
+
+                    <span class="mouseOnEffect">
+                                <div id="middle-box-dashBoard-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="dash-board"
+                                             src="/css/admin/images/dashBoard-icon.png">
+                                    </div>
+                                    대시보드
+                                </div>
+                            </span>
+
+                    <button type="button" class="no-collapsible mouseOnEffect">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
+                        </div>
+                        회원관리
+                    </button>
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="ask-answer"
+                                 src="/css/admin/images/ask-answer-icon2.png">
+                        </div>
+                        게시판 관리
+                        <img src="/css/admin/images/plus.png" class="collapse-button">
+                    </button>
+
+                    <div class="content">
+                        <p>게시글 목록</p>
+                        <p>후기 목록</p>
+                    </div>
+
+                    <button type="button" class="no-collapsible mouseOnEffect">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="ask-board"
+                                 src="/css/admin/images/ask-board-icon.png">
+                        </div>
+                        문의 게시판 관리
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="right-side" class="container">
+        <div class="right-header">
+            <div class="letter-space"></div>
+            회원 관리
+            <h1 id="clock" style="color:black;">clock</h1>
+            <img class="admin-profile" src="https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png">
+            <p class="admin-name">관리자</p>
+            <p class="name-logout-space">ㅣ</p>
+            <button class="admin-logout" type="submit" value="">LOGOUT</button>
+        </div>
+        <div class="right-body">
+            <div class="user-list-letter">
+                <p>회원 목록</p>
+            </div>
+
+            <div class="user-list-contents">
+                <div class="member-input-wrap">
+                    <div class="member-delete-button-wrap">
+                        <input class="member-delete-button" type="submit" value="회원 탈퇴">
+                    </div>
+
+                    <div class="member-search-wrap">
+                        <div class="search-border">
+                            <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
+                            <input class="member-search" type="text" placeholder="후기 검색">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-mentor">
+                    <p>총 회원 수</p>
+                    <p class="total-mentor-num">1</p>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="item-list-header">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check-all" class="all" value="all">
+                        </div>
+                        <div class="user-num">
+                            회원 번호
+                        </div>
+                        <div class="user-name">
+                            이름
+                        </div>
+                        <div class="user-email">
+                            이메일
+                        </div>
+                        <div class="user-nickname">
+                            닉네임
+                        </div>
+                        <div class="user-region">
+                            지역
+                        </div>
+                    </div>
+
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="user-num">
+                            1
+                        </div>
+                        <div class="user-name">
+                            정유찬
+                        </div>
+                        <div class="user-email">
+                            JeongYuchan2222@naver.com
+                        </div>
+                        <div class="user-nickname">
+                            chanchan
+                        </div>
+                        <div class="user-region">
+                            서울시 강동구
+                        </div>
+                    </div>
+                    <div class="page-button-box">
+                        <input class="page-button" type="submit" value="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+</html>

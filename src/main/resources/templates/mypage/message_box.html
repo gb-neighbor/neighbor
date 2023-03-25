@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 &gt; 쪽지함 | 이웃집 반찬</title>
-    <link rel="stylesheet" href="../../static/css/mypage/message_box.css">
-    <link rel="shortcut icon" type="image/x-icon" href="imageseighbor_logo.ico" />
+    <link rel="stylesheet" href="/css/mypage/message_box.css">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+<div th:insert="~{/main/header:: header}"></div>
 <!-- 서브네비게이션  -->
 <nav class="subnav">
     <div class="subnav_wrapper">
@@ -59,7 +62,7 @@
                     <div class="profile_wrap">
                         <div class="message_box_profile">
                             <a href="">
-                                <img class="message_box_profile_image" src="imagesrofile_sample1.png">
+                                <img class="message_box_profile_image" src="/css/mypage/images/profile_sample1.png">
                             </a>
                         </div>
                     </div>
@@ -84,7 +87,7 @@
                 <a class="modal_close_btn">✖</a>
                 <div class="box_top">
                     <div class="profile_image_section">
-                        <img class="profile_image" src="imagesrofile_sample1.png">
+                        <img class="profile_image" src="/css/mypage/images/profile_sample1.png">
                     </div>
                     <p class="detail_nick_name">구센치</p>
                     <div class="title_refresh_wrap">
@@ -92,7 +95,7 @@
                             맛있는 불고기
                         </h3>
                         <div class="refresh_image_wrap">
-                            <img class="refresh_image" src="imagesefresh_btn.png">
+                            <img class="refresh_image" src="/css/mypage/images/refresh_btn.png">
                         </div>
                     </div>
                     <div class="div_for_margin"></div>
@@ -294,6 +297,7 @@
         </ul>
     </article>
 </section>
+
 <div class="modal">
     <div class="warn-modal">
         <div id="content-wrap"></div>
@@ -301,7 +305,8 @@
 </div>
 <button id="topBtn">Top</button>
 <div class="modal_background" style="position: fixed; z-index: 998; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);"></div>
+<div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/mypage/message_box.js"></script>
+<script src="/js/mypage/message_box.js"></script>
 </html>

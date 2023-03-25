@@ -1,0 +1,416 @@
+@charset "UTF-8";
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+
+
+/************************************************************/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+body {
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+    margin: 0;
+    height: 100%;
+}
+
+html{
+    height: 100%;
+}
+
+.wrap {
+    width: 102%;
+    height: 100%;
+    display: flex;
+    min-width: 1300px;
+}
+
+#menu-side {
+    width: 13%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    background-color: #474E68;
+}
+
+.menub-box {
+    height: 100%;
+}
+
+#neighbor-logo {
+    width: 90%;
+}
+
+#top-box {
+    display: flex;
+    height: 7vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #474E68;
+}
+
+#wrap-middle-box{
+    height: 100%;
+}
+
+#middle-box {
+    width: 100%;
+    height: 100%;
+    
+}
+
+#middle-box-contents {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+}
+
+.side-top-margin{
+    margin-top: 20%;
+}
+
+.checkbox-group{
+    width: 100%;
+    height: 60%;
+}
+
+.mouseOnEffect:hover{
+    background-color: #404258;
+    transition: background-color 0.5s;
+}
+
+.side-icons {
+    width: 20px;
+    height: 20px;
+    filter: invert(100%) sepia(2%) saturate(7459%) hue-rotate(3deg) brightness(109%) contrast(105%);
+}
+
+.side-bar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-weight: 300;
+    margin: 5%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.icon-gap{
+    margin-right: 5%;
+}
+
+.collapsible {
+    display: flex;
+    background-color: #474E68;
+    color: white;
+    cursor: pointer;
+    padding: 5%;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 13px;
+    align-items: center;
+}
+
+.no-collapsible{
+    display: flex;
+    background-color: #474E68;
+    color: white;
+    cursor: pointer;
+    padding: 5%;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 13px;
+    align-items: center;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #1f2537;
+    color: #fff;
+}
+
+.content p{
+    line-height: 2em;
+}
+
+.collapse-button{
+    width: 30px;
+    height: 30px;
+    margin-left: 50px;
+}
+/* 여기까지 사이드바 */
+
+#right-side {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: auto;
+    position: relative;
+}
+
+.right-header {
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    height: 7vh;
+    box-shadow: 10px 10px 10px 10px gray;
+}
+
+.letter-space {
+    width: 10%;
+    padding-left: 5%;
+}
+
+#clock{
+    margin-left: 60%;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.admin-profile{
+    width: 2.3%;
+    margin-left: 1%;
+}
+
+.admin-name{
+    font-size: 0.9rem;
+    margin-left: 0.5%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.admin-logout{
+    background-color: #fff;
+    margin-top: 2.5px;
+    padding-left: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.name-logout-space{
+    font-weight: 300;
+}
+
+.right-body{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    background-color: #EEEEEE;
+}
+
+.container-flex-top, .container-flex-bottom{
+    width: 50%;
+}
+
+.dashboard-label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3%;
+    height: 5vh;
+}
+
+.detail-button{
+    width: 11%;
+    height: 1.7rem;
+    margin-right: 3%;
+    border: none;
+    background-color: #F1FAFF;
+}
+
+.detail-button:hover{
+    background-color:   #8bc2df;
+    transition: background-color 0.5s;
+}
+
+.user-list-letter{
+    margin-left: 5%;
+    font-size: 1.3rem;
+}
+
+.user-list-contents{
+    border-radius: 10px;
+    height: 43vh;
+    margin: 10px;
+    background-color: #fff;
+    font-size: 0.8rem;
+    box-shadow: 5px 5px 5px 0 gray;
+}
+
+.user-list-contents:hover{
+    border: 2px solid #8bc2df;
+}
+
+.item-list-header{
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    background-color: #EEEEEE;
+
+}
+
+.item-list-contents{
+    margin-left: 3%;
+    margin-right: 3%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #EEEEEE;
+
+}
+
+/* 신규 회원 대시보드 */
+
+.new-user{
+    overflow-y: hidden;
+    height: 70%;
+}
+
+.user-num{
+    text-align: center;
+    width: 70px;
+
+}
+
+.user-name{
+    text-align: center;
+    width: 50px;
+
+}
+
+.user-email{
+    text-align: center;
+    width: 200px;
+
+}
+
+
+.user-nickname{
+    text-align: center;
+    width: 100px;
+
+}
+
+
+.user-region{
+    text-align: center;
+    width: 200px;
+
+}
+
+.dashboard-label{
+    margin-left: 1rem;
+    font-size: 0.9rem;
+}
+
+/* 문의사항 대시보드 */
+
+.qna-num{
+    text-align: center;
+    width: 70px;
+}
+
+.qna-title{
+    text-align: center;
+    width: 250px;
+}
+
+.qna-writer{
+    text-align: center;
+    width: 140px;
+}
+
+
+.qna-write-day{
+    text-align: center;
+    width: 120px;
+}
+
+/* 게시판 */
+
+.board-num{
+    text-align: center;
+    width: 30px;
+}
+
+.board-region{
+    text-align: center;
+    width: 50px;
+}
+
+.board-title{
+    text-align: center;
+    width: 230px;
+}
+
+.writer-nick{
+    text-align: center;
+    width: 80px;
+}
+
+.board-write-day{
+    width: 120px;
+    text-align: center;
+}
+
+.board-status{
+    width: 50px;
+    text-align: center;
+}
+
+/* 최근 멘토 답변글 */
+
+.reply-num{
+    text-align: center;
+    width: 80px;
+}
+.reply-board-num{
+    text-align: center;
+    width:120px;
+    
+}
+
+.reply-content{
+    text-align: center;
+    width: 300px;
+}
+
+
+
+.reply-write-day{
+    text-align: center;
+    width: 120px;
+}
+
+

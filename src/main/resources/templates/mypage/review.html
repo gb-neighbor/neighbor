@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 &gt; 후기 | 이웃집 반찬</title>
-    <link rel="stylesheet" href="../../static/css/mypage/review.css">
-    <link rel="shortcut icon" type="image/x-icon" href="imageseighbor_logo.ico" />
+    <link rel="stylesheet" href="/css/mypage/review.css">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+<div th:insert="~{/main/header:: header}"></div>
 <!-- 서브네비게이션  -->
 <nav class="subnav">
     <div class="subnav_wrapper">
@@ -84,11 +87,11 @@
                     </a>
                 </li>
                 <li class="star_score">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
                 </li>
                 <li class="review_date">2023.03.15</li>
             </ul>
@@ -108,11 +111,11 @@
                     </a>
                 </li>
                 <li class="star_score">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
                 </li>
                 <li class="review_date">2023.03.15</li>
             </ul>
@@ -132,11 +135,11 @@
                     </a>
                 </li>
                 <li class="star_score">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
                 </li>
                 <li class="review_date">2023.03.15</li>
             </ul>
@@ -156,11 +159,11 @@
                     </a>
                 </li>
                 <li class="star_score">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
                 </li>
                 <li class="review_date">2023.03.15</li>
             </ul>
@@ -180,25 +183,26 @@
                     </a>
                 </li>
                 <li class="star_score">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
-                    <img src="imagestar.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
                 </li>
                 <li class="review_date">2023.03.15</li>
             </ul>
         </div>
 
         <div id="pagingDisplay" class="paging_navigation">
-            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="imagesaging_left_arrow.png"></a>
+            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>
             <a href="" class="paging_num">1</a>
             <a href="" class="paging_next_num">2</a>
-            <a href="" class="arrow next"><img class="arrow_right" src="imagesaging_right_arrow.png"></a>
+            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>
         </div>
     </article>
 </section>
+<div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/mypage/review.js"></script>
+<script src="/js/mypage/review.js"></script>
 </html>

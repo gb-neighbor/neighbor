@@ -184,14 +184,14 @@ a{
 }
 
 .collapsible:after {
-    content: url(./images/arrow22.png);
+    content: url('images/arrow22.png');
     color: white;
     font-weight: bold;
     float: right;
     margin-left: auto;
 }
 .active:after {
-    content: url(./images/arrow21.png);
+    content: url('images/arrow21.png');
 }
 
 .content_items{
@@ -220,6 +220,7 @@ a{
     height: 100%;
     border: 1px solid #d9d9d9;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .profile_camera_image_section{
@@ -485,7 +486,7 @@ input::placeholder {
     text-align: left;
     font-size: 15px;
     color: rgb(17, 17, 17);
-    background: rgb(250, 250, 250) url('./images/arrow_down.png') calc(100% - 19px) center no-repeat;
+    background: rgb(250, 250, 250) url('images/arrow_down.png') calc(100% - 19px) center no-repeat;
     background-size: 10px auto;
     border-radius: 4px;
     box-sizing: border-box;

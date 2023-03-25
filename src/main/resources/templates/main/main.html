@@ -174,7 +174,7 @@
                                     <div class="recent-food-info-wrap">
                                         <p class="recent-food-picture-title">게시물 제목</p>
                                         <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url(/css/main/images/004.jpg);"></div>
+                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/004.jpg');"></div>
                                             <p class="recent-food-user-nickname">닉네임</p>
                                         </a>
                                     </div>
@@ -498,9 +498,9 @@
             </div>
         </article>
     </div>
-<div th:insert="~{/main/footer:: footer}"></div>
     <!-- 맨 위로 가는 버튼 -->
-    <button id="topBtn">Top</button>
+<button id="topBtn">Top</button>
+<div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/js/main/main.js"></script>

@@ -180,6 +180,7 @@ a{
     height: 100%;
     border-radius: 100%;
     border: 1px solid #d9d9d9;
+    object-fit: cover;
 }
 
 .message_box_detail{
@@ -436,6 +437,7 @@ a{
     height: 100%;
     border: 1px solid #d9d9d9;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 

@@ -63,7 +63,7 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
 }
 
 #container-wrapper {
-    height: 500px;
+    height: fit-content;
     position: relative;
     width: 1200px;
     margin: 0 auto;
@@ -101,7 +101,6 @@ div.move-arrow {
     justify-content: space-around;
     position: absolute;
     right: 0px;
-    bottom: 0px;
     width: 6%;
 }
 
@@ -168,7 +167,6 @@ div.buttons button:nth-child(1) {
     text-align: center;
     letter-spacing: -0.05em;
     font-family: 'Spoqa Han Sans', sans-serif;
-    font: 12px;
 }
 
 /* 배너 끝 */

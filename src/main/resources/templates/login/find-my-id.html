@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 • 비밀번호 찾기</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/login/password-update.css"/>
+</head>
+<body>
+<div th:insert="~{/main/header:: header}"></div>
+<div class="entire-wrapper">
+    <main id="find-id-password">
+        <div class="find-header">
+            <h3 class="selected">아이디 찾기</h3>
+            <h3 class="not-selected">비밀번호 찾기</h3>
+        </div>
+
+        <form class="find-form">
+            <div>
+                <input
+                        type="email"
+                        name="memberEamil"
+                        placeholder="이메일 입력"
+                        class="email"
+                />
+            </div>
+            </p>
+            <button disabled="" class="change-button">전송하기</button>
+        </form>
+    </main>
+</div>
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
+</html>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</html>
