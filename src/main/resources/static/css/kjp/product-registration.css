@@ -107,6 +107,7 @@ input#cover-file {
 }
 
 .img{
+    text-align: center;
     width: 100%;
     height: 100%;
 }
@@ -308,7 +309,7 @@ img#thumbnail {
 }
 
 #thumbnail-container1{
-    display: flex;
+    display: block;
 }
 
 #thumbnail-container1 img{

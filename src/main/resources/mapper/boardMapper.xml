@@ -8,6 +8,12 @@
         VALUES(#{boardTitle}, #{boardContent}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{memberId}, #{boardRegion});
     </insert>
 
+    <!--마지막에 추가된 boardId가져오기 -->
+    <select id="getLastBoardId" resultType="long">
+        SELECT LAST_INSERT_ID() lastNum from tbl_member tm
+        group by lastNum;
+    </select>
+
 <!-- BoardDTO로 모든 정보 가져오기 -->
     <select id="select" resultType="BoardDTO">
         select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, b.board_id, board_title,
