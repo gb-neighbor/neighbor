@@ -25,7 +25,7 @@ public class BoardDAO {
     }
 
 //    대시보드 게시글 전체 조회
-    public List<BoardDTO> list(){return boardMapper.selectAll();}
+    public List<BoardDTO> findAll(){return boardMapper.selectAll();}
 
 //    게시판 목록 삭제
     public void delete(Long boardId) {

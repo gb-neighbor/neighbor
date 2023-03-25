@@ -21,7 +21,7 @@ public class ReplyDAOTests {
     /*대시보드 후기글 목록 조회 테스트*/
     @Test
     public void dashBoardReplyListTest() {
-        List<ReplyDTO> replyDTOList = replyDAO.list();
+        List<ReplyDTO> replyDTOList = replyDAO.findAll();
         log.info(String.valueOf(replyDTOList));
     }
 
