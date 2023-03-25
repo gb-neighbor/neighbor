@@ -2,11 +2,6 @@
 
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
 
-h1, h2, h3, h4, h5, h6 {
-    font-size: 1em;
-    font-weight: normal;
-}
-
 a {
     color: inherit;
     text-decoration: none;

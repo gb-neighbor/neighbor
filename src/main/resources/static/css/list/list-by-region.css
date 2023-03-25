@@ -179,7 +179,7 @@ p {
 
 .map-seoul{
     position: relative;
-    background-image: url('static/css/list/image/seoul-map.png');
+    background-image: url('image/seoul-map.png');
     margin: 0;
     width: 100%;
     padding-bottom: calc(58.82% * 1.3843);
@@ -347,79 +347,79 @@ p {
 
 /* 잊지말고 클릭했을 때 이미지 바꾸기 백단에서 파라미터로 넘기는거 같음*/
 .map-seoul .region-name.gangnam input:checked ~ .img {
-    background-image: url(image/seoul-map-1.png);
+    background-image: url('image/seoul-map-1.png');
 }
 .map-seoul .region-name.gangdong input:checked ~ .img {
-    background-image: url(image/seoul-map-2.png);
+    background-image: url('image/seoul-map-2.png');
 }
 .map-seoul .region-name.gangbuk input:checked ~ .img {
-    background-image: url(image/seoul-map-3.png);
+    background-image: url('image/seoul-map-3.png');
 }
 .map-seoul .region-name.gangseo input:checked ~ .img {
-    background-image: url(image/seoul-map-4.png);
+    background-image: url('image/seoul-map-4.png');
 }
 .map-seoul .region-name.gwanak input:checked ~ .img {
-    background-image: url(image/seoul-map-5.png);
+    background-image: url('image/seoul-map-5.png');
 }
 .map-seoul .region-name.gwangjin input:checked ~ .img {
-    background-image: url(image/seoul-map-6.png);
+    background-image: url('image/seoul-map-6.png');
 }
 .map-seoul .region-name.guro input:checked ~ .img {
-    background-image: url(image/seoul-map-7.png);
+    background-image: url('image/seoul-map-7.png');
 }
 .map-seoul .region-name.geumchun input:checked ~ .img {
-    background-image: url(image/seoul-map-8.png);
+    background-image: url('image/seoul-map-8.png');
 }
 .map-seoul .region-name.nowon input:checked ~ .img {
-    background-image: url(image/seoul-map-9.png);
+    background-image: url('image/seoul-map-9.png');
 }
 .map-seoul .region-name.dobong input:checked ~ .img {
-    background-image: url(image/seoul-map-10.png);
+    background-image: url('image/seoul-map-10.png');
 }
 .map-seoul .region-name.dongdaemun input:checked ~ .img {
-    background-image: url(image/seoul-map-11.png);
+    background-image: url('image/seoul-map-11.png');
 }
 .map-seoul .region-name.dongjak input:checked ~ .img {
-    background-image: url(image/seoul-map-12.png);
+    background-image: url('image/seoul-map-12.png');
 }
 .map-seoul .region-name.mapo input:checked ~ .img {
-    background-image: url(image/seoul-map-13.png);
+    background-image: url('image/seoul-map-13.png');
 }
 .map-seoul .region-name.seodaemun input:checked ~ .img {
-    background-image: url(image/seoul-map-14.png);
+    background-image: url('image/seoul-map-14.png');
 }
 .map-seoul .region-name.seocho input:checked ~ .img {
-    background-image: url(image/seoul-map-15.png);
+    background-image: url('image/seoul-map-15.png');
 }
 .map-seoul .region-name.sungdong input:checked ~ .img {
-    background-image: url(image/seoul-map-16.png);
+    background-image: url('image/seoul-map-16.png');
 }
 .map-seoul .region-name.sungbuk input:checked ~ .img {
-    background-image: url(image/seoul-map-17.png);
+    background-image: url('image/seoul-map-17.png');
 }
 .map-seoul .region-name.songpa input:checked ~ .img {
-    background-image: url(image/seoul-map-18.png);
+    background-image: url('image/seoul-map-18.png');
 }
 .map-seoul .region-name.yangcheon input:checked ~ .img {
-    background-image: url(image/seoul-map-19.png);
+    background-image: url('image/seoul-map-19.png');
 }
 .map-seoul .region-name.youngdeungpo input:checked ~ .img {
-    background-image: url(image/seoul-map-20.png);
+    background-image: url('image/seoul-map-20.png');
 }
 .map-seoul .region-name.yongsan input:checked ~ .img {
-    background-image: url(image/seoul-map-21.png);
+    background-image: url('image/seoul-map-21.png');
 }
 .map-seoul .region-name.eunpyung input:checked ~ .img {
-    background-image: url(image/seoul-map-22.png);
+    background-image: url('image/seoul-map-22.png');
 }
 .map-seoul .region-name.jongno input:checked ~ .img {
-    background-image: url(image/seoul-map-23.png);
+    background-image: url('image/seoul-map-23.png');
 }
 .map-seoul .region-name.junggu input:checked ~ .img {
-    background-image: url(image/seoul-map-24.png);
+    background-image: url('image/seoul-map-24.png');
 }
 .map-seoul .region-name.junglang input:checked ~ .img {
-    background-image: url(image/seoul-map-25.png);
+    background-image: url('image/seoul-map-25.png');
 }
 
 .map-select-container {
@@ -443,7 +443,7 @@ p {
     display: block;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-image: url('static/css/list/image/arrow_r.png');
+    background-image: url('image/arrow_r.png');
     background-position-y: center;
     background-repeat: no-repeat;
     background-size: 7px auto;
@@ -465,7 +465,7 @@ p {
     position: relative;
     display: block;
     padding-bottom: 1.3em;
-    background-image: url('static/css/list/image/arrow_r.png');
+    background-image: url('image/arrow_r.png');
     background-position-y: center;
     background-repeat: no-repeat;
     background-size: 7px auto;
@@ -537,7 +537,7 @@ p {
     position: absolute;
     right: 0;
     top: 0;
-    background: url('static/css/list/image/place_link.png') no-repeat 0 center/auto 16px;
+    background: url('image/place_link.png') no-repeat 0 center/auto 16px;
     z-index: 5;
     padding-left: 16px;
     font-size: 14px;
@@ -557,12 +557,12 @@ p {
 
 .best-list .state .won,
 .price .won {
-    background-image: url('static/css/list/image/won.png');
+    background-image: url('image/won.png');
 }
 
 .best-list .state .scrap {
     width: 35px;
-    background-image: url('static/css/list/image/state_scrap.png');
+    background-image: url('image/state_scrap.png');
 }
 
 .search-area{
@@ -593,7 +593,7 @@ p {
     text-align: left;
     font-size: 15px;
     color: #808080;
-    background: #fff url('static/css/list/image/arrow_down.png') calc(100% - 19px) center no-repeat;
+    background: #fff url('image/arrow_down.png') calc(100% - 19px) center no-repeat;
     background-size: 10px auto;
     border-radius: 4px;
     box-sizing: border-box;
@@ -836,7 +836,7 @@ option {
 
 .profile-area-box .location .map {
     display: block;
-    background: url('static/css/list/image/place_link.png') no-repeat 0 center/auto 16px;
+    background: url('image/place_link.png') no-repeat 0 center/auto 16px;
     font-size: 14px;
     color: #4d4d4d;
     padding-left: 16px;
@@ -859,13 +859,13 @@ option {
 
 
 .pic-box .thumbs1{
-    background-image: url('static/css/list/image/dummy-thumbnail-2.jpg');
+    background-image: url('image/dummy-thumbnail-2.jpg');
 }
 .pic-box .thumbs2{
-    background-image: url('static/css/list/image/dummy-thumbnail-2.jpg');
+    background-image: url('image/dummy-thumbnail-2.jpg');
 }
 .pic-box .thumbs3{
-    background-image: url('static/css/list/image/dummy-thumbnail-2.jpg');
+    background-image: url('image/dummy-thumbnail-2.jpg');
 }
 
 .pic-box .pics-thumbs+.pics-thumbs{

@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문의 &gt; 1:1 문의 | 이웃집 반찬</title>
-    <link rel="stylesheet" href="../../static/css/mypage/inquiry_to_admin_write.css">
-    <link rel="shortcut icon" type="image/x-icon" href="imageseighbor_logo.ico" />
+    <link rel="stylesheet" href="/css/mypage/inquiry_to_admin_write.css">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+<div th:insert="~{/main/header:: header}"></div>
 <!-- 서브네비게이션  -->
 <nav class="subnav">
     <div class="subnav_wrapper">
@@ -69,12 +72,14 @@
 
             <div class="inquiry_title_wrap">
                 <dt class="inquiry_title">제목</dt>
-                <input type="text" name="title" id="subject" value="" class="write_title" title="제목을 입력해 주세요" placeholder="제목을 입력해 주세요">
+                <input type="text" name="title" id="subject" value="" class="write_title" title="제목을 입력해 주세요"
+                       placeholder="제목을 입력해 주세요">
             </div>
 
             <div class="inquiry_content_wrap">
                 <dt class="inquiry_content">문의내용</dt>
-                <textarea name="content" id="content" class="write_content" title="문의내용을 입력하세요" placeholder="문의내용을 입력하세요"></textarea>
+                <textarea name="content" id="content" class="write_content" title="문의내용을 입력하세요"
+                          placeholder="문의내용을 입력하세요"></textarea>
             </div>
 
             <div class="inquiry_write_btn">
@@ -90,6 +95,8 @@
         <div id="content-wrap"></div>
     </div>
 </div>
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/mypage/inquiry_to_admin_write.js"></script>
+<script src="/js/mypage/inquiry_to_admin_write.js"></script>
 </html>

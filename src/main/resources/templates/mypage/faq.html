@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문의 &gt; FAQ | 이웃집 반찬</title>
-    <link rel="stylesheet" href="../../static/css/mypage/faq.css">
-    <link rel="shortcut icon" type="image/x-icon" href="imageseighbor_logo.ico" />
-    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/mypage/faq.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+<div th:insert="~{/main/header:: header}"></div>
 <!-- 서브네비게이션  -->
 <nav class="subnav">
     <div class="subnav_wrapper">
@@ -99,7 +101,7 @@
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</a>
+            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
@@ -111,7 +113,7 @@
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</a>
+            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
@@ -123,7 +125,7 @@
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</a>
+            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
@@ -135,7 +137,7 @@
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</a>
+            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
@@ -147,18 +149,19 @@
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</a>
+            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
         </div>
 
         <div id="pagingDisplay" class="paging_navigation">
-            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="imagesaging_left_arrow.png"></a>
+            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>
             <a href="" class="paging_num">1</a>
             <a href="" class="paging_next_num">2</a>
-            <a href="" class="arrow next"><img class="arrow_right" src="imagesaging_right_arrow.png"></a>
+            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>
         </div>
     </article>
 </section>
+<div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/mypage/faq.js"></script>
+<script src="/js/mypage/faq.js"></script>
 </html>

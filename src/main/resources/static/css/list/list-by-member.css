@@ -146,11 +146,14 @@ p {
     width: 80%;
     text-align: left;
     padding-left: 35px;
+    line-height: 2em;
 }
 
 .hi-sentence-container {
     margin: auto 0;
     text-align: left;
+    margin-bottom: 18px;
+    line-height: 7em;
 }
 
 .hi-sentence-container p{
@@ -179,6 +182,7 @@ p {
 .info-list li{
     display: flex;
     align-items: center;
+    line-height: 3em;
 }
 
 .info-list li span{

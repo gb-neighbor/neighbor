@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>설정 &gt; 회원탈퇴 | 이웃집 반찬</title>
-    <link rel="stylesheet" href="../../static/css/mypage/user_leave.css">
-    <link rel="shortcut icon" type="image/x-icon" href="imageseighbor_logo.ico" />
+    <link rel="stylesheet" href="/css/mypage/user_leave.css">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+<div th:insert="~{/main/header:: header}"></div>
 <!-- 서브네비게이션  -->
 <nav class="subnav">
     <div class="subnav_wrapper">
@@ -55,7 +58,7 @@
                     <div class="profile">
                         <div class="oneline_wrapper">
                             <div class="profile_image_section">
-                                <img class="profile_image" src="imagesrofile_sample1.png">
+                                <img class="profile_image" src="/css/mypage/images/profile_sample1.png">
                             </div>
 
                             <div class="info_desk" >
@@ -153,7 +156,8 @@
         </div>
     </div>
 </section>
+<div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/mypage/user_leave.js"></script>
+<script src="/js/mypage/user_leave.js"></script>
 </html>
