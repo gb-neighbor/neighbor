@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 목록 페이지</title>
+    <link rel="stylesheet" href="/css/list/list-by-member.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div th:insert="~{/main/header:: header}"></div>
+<!-- 밖 위 아래 패딩을 위한 div -->
+<div class="wrap">
+    <!-- 양 옆 마진을 위한  -->
+    <article class="wrap-inner">
+        <!-- 프로필 영역 전체 감싸는 -->
+        <div class="info-container">
+            <!-- 프로필 영역 안쪽 패딩 -->
+            <div class="info-inner">
+                <!-- 프로필사진 -->
+                <div class="profile-thumbs"></div>
+                <!-- //프로필사진 -->
+                <!-- 정보 영역 -->
+                <div class="info-box">
+                    <!-- 한줄 소개 -->
+                    <div class="hi-sentence-container">
+                        <p><strong>깨끗하고 건강한 집 밥! 함께해요~~ @>--</strong></p>
+                    </div>
+                    <!-- //한줄 소개 -->
+                    <!-- 기타 정보 -->
+                    <div class="info-box-inner">
+                        <ul class="info-list clearfix">
+                            <li class="nickName r-side">
+                                <p class="list-title">닉네임 : </p>
+                                <span>뿌꾸빵</span>
+                            </li>
+                            <li class="region-location r-side">
+                                <p class="list-title">판매 위치 : </p>
+                                <p>
+                                    <span class="map-link">종로구</span>
+                                </p>
+                            </li>
+                            <li class="email r-side">
+                                <p class="list-title">이메일 : </p>
+                                <span>francine0624@gmail.com</span>
+                            </li>
+                            <li class="stars l-side">
+                                <p class="list-title">평균 별점 : </p>
+                                <span class="stars">
+                                        <img src="/css/list/image/star.png">
+                                        <img src="/css/list/image/star.png">
+                                        <img src="/css/list/image/star.png">
+                                        <img src="/css/list/image/star.png">
+                                        <img src="/css/list/image/star.png">
+                                    </span>
+                            </li>
+                            <li class="total-review l-side">
+                                <p class="list-title">총 후기 : </p>
+                                <span>45</span>
+                            </li>
+                            <li class="total-sold l-side">
+                                <p class="list-title">판매 완료 : </p>
+                                <span>22</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //기타 정보 -->
+                </div>
+                <!-- //정보 영역 -->
+
+
+            </div>
+            <!-- //프로필 영역 안쪽 패딩 -->
+        </div>
+        <!-- //프로필 영역 전체 감싸는 -->
+        <!-- 게시글 내역 감싸는 -->
+        <div class="list-container">
+            <!-- 제목 -->
+            <h3 class="sub-title">
+                게시글 내역
+                <span class="count-board">22</span>
+            </h3>
+            <!-- //제목 -->
+            <!-- 내용 전체 감싸는  -->
+            <div class="list-container">
+                <ul class="list-outer">
+                    <!-- 게시글 한개 -->
+                    <li>
+                        <a href="#" style="display: block;" id="parent-block" onclick="addLabel()">
+                            <div class="board-thumb-wrapper">
+                                <div class="board-thumb"></div>
+                            </div>
+                            <p class="board-title">정원여행자</p>
+                            <p class="board-date">2023.03.24</p>
+                            <span class="label-spot"></span>
+                        </a>
+                    </li>
+                    <!-- //게시글 한개 -->
+
+                </ul>
+            </div>
+            <!-- //내용 전체 감싸는  -->
+        </div>
+        <!-- //게시글 내역 감싸는 -->
+        <!-- top으로 가는 버튼  -->
+        <button id="topBtn">Top</button>
+        <!-- //top으로 가는 버튼  -->
+    </article>
+    <!-- //양 옆 마진을 위한  -->
+</div>
+<!-- //밖 위 아래 패딩을 위한 div -->
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/list/list-by-member.js"></script>
+</html>

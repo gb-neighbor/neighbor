@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 &gt; 홈 | 이웃집 반찬</title>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/mypage/profile_home.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div th:insert="~{/main/header:: header}"></div>
+<!-- 서브네비게이션  -->
+<nav class="subnav">
+    <div class="subnav_wrapper">
+        <ul class="subnav_list">
+            <li class="list_profile">
+                <a href="" class="first_letter select">프로필</a>
+                <div class="list_profile_items disply_bundle">
+                    <a href="" class="second_letter select">홈</a>
+                    <a href="" class="second_letter except_home_letter">쪽지함</a>
+                    <a href="" class="second_letter except_home_letter">내가 올린 반찬</a>
+                    <a href="" class="second_letter except_home_letter">후기</a>
+                </div>
+            </li>
+
+            <li class="list_my_shopping">
+                <a href="" class="first_letter">문의</a>
+                <div class="list_my_shopping_items disply_bundle">
+                    <a href="" class="second_letter">홈</a>
+                    <a href="" class="second_letter except_home_letter">FAQ</a>
+                    <a href="" class="second_letter except_home_letter">1:1 문의</a>
+                </div>
+            </li>
+
+            <li class="list_setting">
+                <a href="" class="first_letter">설정</a>
+                <div class="list_my_setting_items disply_bundle">
+                    <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
+                    <a href="" class="second_letter except_home_letter">회원탈퇴</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- 콘텐츠부분 시작 -->
+<section class="wrap">
+    <div class="all_wrapper">
+        <div class="menu_container">
+            <div class="menu_box">
+                <div class="menu_contents">
+
+                    <div class="profile">
+                        <div class="oneline_wrapper">
+                            <div class="profile_image_section">
+                                <img class="profile_image  image-box" src="/css/mypage/images/profile_sample1.png">
+                                <div class="profile_camera_image_section">
+                                    <img class="profile_camera_image" src="/css/mypage/images/camera.png">
+                                    <input id="file" name="chooseFile" type="file" accept="image/*" />
+                                    <label class="upload_profile" for="file"></label>
+                                </div>
+                            </div>
+
+                            <div class="info_desk" >
+                                <div class="nick_name">
+                                    <p class="nick_name_letter">싱그러운반찬</p>
+                                </div>
+
+                                <div class="my_state">
+                                    <div class="scrap">
+                                        <a class="scrap_link" href="">
+                                            <p class="scrap_message">게시물&nbsp</p>
+                                            <p class="scrap_count">0</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="alarm">
+                                        <a class="alarm_link" href="">
+                                            <p class="alarm_message">후기&nbsp</p>
+                                            <p class="alarm_count">0</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        프로필
+                    </button>
+                    <div class="content">
+                        <p class="content_items_padding"></p>
+                        <a href="" class="content_items">홈</a>
+                        <a href="" class="content_items">쪽지함</a>
+                        <a href="" class="content_items">내가 올린 반찬</a>
+                        <a href="" class="content_items">후기</a>
+                        <p class="content_items_padding"></p>
+                    </div>
+
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        문의
+                    </button>
+                    <div class="content">
+                        <p class="content_items_padding"></p>
+                        <a href="" class="content_items">FAQ</a>
+                        <a href="" class="content_items">1:1 문의</a>
+                        <p class="content_items_padding"></p>
+                    </div>
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        설정
+                    </button>
+                    <div class="content">
+                        <p class="content_items_padding"></p>
+                        <a href="" class="content_items">비밀번호 변경</a>
+                        <a href="" class="content_items">회원탈퇴</a>
+                        <p class="content_items_padding"></p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="contents_container">
+
+            <div class="third_content">
+                <h3 class="third_content_title">내 정보</h3>
+                <div class="third_content_image_section">
+                    <article class="update-user-info">
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">닉네임</label>
+                                <div class="update-user-nickname">
+                                    <input name="memberNickname" class="update-user-value change-value" value="" placeholder="싱그러운반찬" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">휴대폰 번호</label>
+                                <div class="update-user">
+                                    <input name="memberPhone" class="update-user-value" value="" placeholder="01072716604" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">이메일</label>
+                                <div class="update-user">
+                                    <input name="memberEmail" class="update-user-value" value="" placeholder="lym3031@naver.com" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">생년월일</label>
+                                <div class="update-user">
+                                    <input name="memberBirth" class="update-user-value change-value" value="" placeholder="2000.01.01" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">지역</label>
+                                <div class="custom_select w1">
+                                    <select class="custom_select select-region-drop" name="gugun" id="gugun">
+                                        <option value="1">강남구</option>
+                                        <option value="2">강동구</option>
+                                        <option value="3">강북구</option>
+                                        <option value="4">강서구</option>
+                                        <option value="5">관악구</option>
+                                        <option value="6">광진구</option>
+                                        <option value="7">구로구</option>
+                                        <option value="8">금천구</option>
+                                        <option value="9">노원구</option>
+                                        <option value="10">도봉구</option>
+                                        <option value="11">동대문구</option>
+                                        <option value="12">동작구</option>
+                                        <option value="13">마포구</option>
+                                        <option value="14">서대문구</option>
+                                        <option value="15">서초구</option>
+                                        <option value="16">성동구</option>
+                                        <option value="17">성북구</option>
+                                        <option value="18">송파구</option>
+                                        <option value="19">양천구</option>
+                                        <option value="20">영등포구</option>
+                                        <option value="21">용산구</option>
+                                        <option value="22">은평구</option>
+                                        <option value="23">종로구</option>
+                                        <option value="24">중구</option>
+                                        <option value="25">중랑구</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">한 줄 소개</label>
+                                <div class="update-user">
+                                    <input name="memberHiSentence" class="update-user-value" placeholder="유기농 재료로 만든 반찬 판매합니다." />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="update-user-wrap">
+                            <div>
+                                <label class="update-user-text">비밀번호 확인</label>
+                                <div class="update-user">
+                                    <input
+                                            type="password"
+                                            name="memberPassword"
+                                            class="update-user-value"
+                                            value=""
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <button type="button" class="change-button">변경 사항 저장하기</button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<button id="topBtn">Top</button>
+<div class="modal">
+    <div class="warn-modal">
+        <div id="content-wrap"></div>
+    </div>
+</div>
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/mypage/profile_home.js"></script>
+</html>

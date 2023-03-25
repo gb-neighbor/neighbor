@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 &gt; 후기 | 이웃집 반찬</title>
+    <link rel="stylesheet" href="/css/mypage/review.css">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div th:insert="~{/main/header:: header}"></div>
+<!-- 서브네비게이션  -->
+<nav class="subnav">
+    <div class="subnav_wrapper">
+        <ul class="subnav_list">
+            <li class="list_profile">
+                <a href="" class="first_letter select">프로필</a>
+                <div class="list_profile_items disply_bundle">
+                    <a href="" class="second_letter">홈</a>
+                    <a href="" class="second_letter except_home_letter">쪽지함</a>
+                    <a href="" class="second_letter except_home_letter">내가 올린 반찬</a>
+                    <a href="" class="second_letter except_home_letter select">후기</a>
+                </div>
+            </li>
+
+            <li class="list_my_shopping">
+                <a href="" class="first_letter">문의</a>
+                <div class="list_my_shopping_items disply_bundle">
+                    <a href="" class="second_letter except_home_letter">FAQ</a>
+                    <a href="" class="second_letter except_home_letter">1:1 문의</a>
+                </div>
+            </li>
+
+            <li class="list_setting">
+                <a href="" class="first_letter">설정</a>
+                <div class="list_my_setting_items disply_bundle">
+                    <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
+                    <a href="" class="second_letter except_home_letter">회원탈퇴</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- 콘텐츠부분 시작 -->
+
+<!-- 메뉴 -->
+<section class="wrap">
+
+    <article class="faq_content">
+
+        <form class="faq_search">
+            <div class="search_wrap">
+                <h3 class="message_box_title">내가 쓴 후기</h3>
+                <div class="search_container">
+                    <input type="text" name="search_text" id="search_text" class="search_input" value="" placeholder="제목으로 검색">
+                    <button type="submit" class="search_btn">검색</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="review_table">
+            <ul class="review_info">
+                <li class="review_num">번호</li>
+                <li class="review_title">제목</li>
+                <li class="review_content">내용</li>
+                <li class="star_score_letter">별점</li>
+                <li class="review_date">등록일</li>
+            </ul>
+
+            <ul class="my_review">
+                <li class="review_num"> 1</li>
+                <li class="review_my_title">
+                    <a class="detail_link" href="">
+                        맛있는 불고기
+
+                    </a>
+                </li>
+                <li class="review_my_content">
+                    <a class="detail_link" href="">
+                        정말 맛있어요!
+
+                    </a>
+                </li>
+                <li class="star_score">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                </li>
+                <li class="review_date">2023.03.15</li>
+            </ul>
+
+            <ul class="my_review">
+                <li class="review_num"> 2</li>
+                <li class="review_my_title">
+                    <a class="detail_link" href="">
+                        맛있는 불고기
+
+                    </a>
+                </li>
+                <li class="review_my_content">
+                    <a class="detail_link" href="">
+                        정말 맛있어요!
+
+                    </a>
+                </li>
+                <li class="star_score">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                </li>
+                <li class="review_date">2023.03.15</li>
+            </ul>
+
+            <ul class="my_review">
+                <li class="review_num"> 3</li>
+                <li class="review_my_title">
+                    <a class="detail_link" href="">
+                        맛있는 불고기
+
+                    </a>
+                </li>
+                <li class="review_my_content">
+                    <a class="detail_link" href="">
+                        정말 맛있어요!
+
+                    </a>
+                </li>
+                <li class="star_score">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                </li>
+                <li class="review_date">2023.03.15</li>
+            </ul>
+
+            <ul class="my_review">
+                <li class="review_num"> 4</li>
+                <li class="review_my_title">
+                    <a class="detail_link" href="">
+                        맛있는 불고기
+
+                    </a>
+                </li>
+                <li class="review_my_content">
+                    <a class="detail_link" href="">
+                        정말 맛있어요!
+
+                    </a>
+                </li>
+                <li class="star_score">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                </li>
+                <li class="review_date">2023.03.15</li>
+            </ul>
+
+            <ul class="my_review">
+                <li class="review_num"> 5</li>
+                <li class="review_my_title">
+                    <a class="detail_link" href="">
+                        맛있는 불고기
+
+                    </a>
+                </li>
+                <li class="review_my_content">
+                    <a class="detail_link" href="">
+                        정말 맛있어요!
+
+                    </a>
+                </li>
+                <li class="star_score">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                    <img src="/css/mypage/images/star.png">
+                </li>
+                <li class="review_date">2023.03.15</li>
+            </ul>
+        </div>
+
+        <div id="pagingDisplay" class="paging_navigation">
+            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>
+            <a href="" class="paging_num">1</a>
+            <a href="" class="paging_next_num">2</a>
+            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>
+        </div>
+    </article>
+</section>
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/mypage/review.js"></script>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 &gt; 쪽지함 | 이웃집 반찬</title>
+    <link rel="stylesheet" href="/css/mypage/message_box.css">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div th:insert="~{/main/header:: header}"></div>
+<!-- 서브네비게이션  -->
+<nav class="subnav">
+    <div class="subnav_wrapper">
+        <ul class="subnav_list">
+            <li class="list_profile">
+                <a href="" class="first_letter select">프로필</a>
+                <div class="list_profile_items disply_bundle">
+                    <a href="" class="second_letter">홈</a>
+                    <a href="" class="second_letter except_home_letter select">쪽지함</a>
+                    <a href="" class="second_letter except_home_letter">내가 올린 반찬</a>
+                    <a href="" class="second_letter except_home_letter">후기</a>
+                </div>
+            </li>
+
+            <li class="list_my_shopping">
+                <a href="" class="first_letter">문의</a>
+                <div class="list_my_shopping_items disply_bundle">
+                    <a href="" class="second_letter except_home_letter">FAQ</a>
+                    <a href="" class="second_letter except_home_letter">1:1 문의</a>
+                </div>
+            </li>
+
+            <li class="list_setting">
+                <a href="" class="first_letter">설정</a>
+                <div class="list_my_setting_items disply_bundle">
+                    <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
+                    <a href="" class="second_letter except_home_letter">회원탈퇴</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- 콘텐츠부분 시작 -->
+
+<!-- 메뉴 -->
+<section class="wrap">
+    <article class="message_box_content">
+        <p class="message_box_title">쪽지함</p>
+        <ul id="message_box_list">
+
+
+            <li class="message_list">
+                <button class="detail_btn" onclick="openModalBanner(1)"> <!-- 괄호에 쪽지번호 ${message.messageId} -->
+                </button>
+                <div class="message_box_wrapper">
+                    <div class="profile_wrap">
+                        <div class="message_box_profile">
+                            <a href="">
+                                <img class="message_box_profile_image" src="/css/mypage/images/profile_sample1.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="message_box_detail">
+                        <div class="detail_message">
+                            <a href="" class="nick_name">구센치</a>
+                        </div>
+                        <div class="message_box_info">
+                            <p class="board_title">맛있는 불고기 반찬</p>
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="purchase_complete_form">
+                    <div class="purchase_complete_wrap">
+                        <p id="purchase_complete_message1" class="complete_message">거래완료</p>
+                        <button type="button" id="purchase_done1" class="purchase_complete_btn" onclick="changeToText(1)">구매완료</button>
+                    </div>
+                </form>
+            </li>
+            <div id="my_modal" class="my_modal1 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
+                <a class="modal_close_btn">✖</a>
+                <div class="box_top">
+                    <div class="profile_image_section">
+                        <img class="profile_image" src="/css/mypage/images/profile_sample1.png">
+                    </div>
+                    <p class="detail_nick_name">구센치</p>
+                    <div class="title_refresh_wrap">
+                        <h3 class="detail_title">
+                            맛있는 불고기
+                        </h3>
+                        <div class="refresh_image_wrap">
+                            <img class="refresh_image" src="/css/mypage/images/refresh_btn.png">
+                        </div>
+                    </div>
+                    <div class="div_for_margin"></div>
+                    <a class="go_to_board" href="">
+                        <p class="go_to_board_text">상세보기&nbsp</p>
+                        <p class="go_to_board_text right_text">></p>
+                    </a>
+                </div>
+                <div class="box_text">
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">안녕하세요</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">혹시, 저번에 파시던 불고기 반찬 또 파실 수 있나요?</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="opponent_text_wrap">
+                        <div class="opponent_text">
+                            <p class="opponent_text_content">네 원하시면 만들어 드릴게요</p>
+                        </div>
+                        <div class="opponent_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">혹시 어디서 거래하고 싶으세요?</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="opponent_text_wrap">
+                        <div class="opponent_text">
+                            <p class="opponent_text_content">내일 역삼역 앞으로 7시까지 와주실 수 있나요?<br>출근할때 드리면 좋을 것 같아요~^^</p>
+                        </div>
+                        <div class="opponent_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">네~ 그럼 7시까지 그리로 갈게요~</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <form action="" class="send_form" name="form" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                        <textarea class="write-section" id="write-section1" name="content" cols="20" rows="5" onKeydown="getLength(1)" onKeyUp="getLength(1)" maxlength="1001"></textarea>
+                        <div class="text_send_wrap">
+                            <input id="text_length1" class="count_letter" type="text" size="3" NAME="txtlen" value="0" readonly><input disabled class="count_letter_max" type="text" size="10" value="/1000">
+                            <button id="send_btn_id" class="send_btn">전송</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <li class="message_list">
+                <button class="detail_btn" onclick="openModalBanner(2)"> <!-- 괄호에 쪽지번호 ${message.messageId} -->
+                </button>
+                <div class="message_box_wrapper">
+                    <div class="profile_wrap">
+                        <div class="message_box_profile">
+                            <a href="">
+                                <img class="message_box_profile_image" src="imagesrofile_sample1.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="message_box_detail">
+                        <div class="detail_message">
+                            <a href="" class="nick_name">구센치</a>
+                        </div>
+                        <div class="message_box_info">
+                            <p class="board_title">맛있는 불고기 반찬</p>
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="purchase_complete_form">
+                    <div class="purchase_complete_wrap">
+                        <p id="purchase_complete_message2" class="complete_message">거래완료</p>
+                        <button type="button" id="purchase_done2" class="purchase_complete_btn" onclick="changeToText(2)">구매완료</button>
+                    </div>
+                </form>
+            </li>
+            <div id="my_modal" class="my_modal2 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
+                <a class="modal_close_btn">✖</a>
+                <div class="box_top">
+                    <div class="profile_image_section">
+                        <img class="profile_image" src="imagesrofile_sample1.png">
+                    </div>
+                    <p class="detail_nick_name">구센치</p>
+                    <div class="title_refresh_wrap">
+                        <h3 class="detail_title">
+                            맛있는 불고기
+                        </h3>
+                        <div class="refresh_image_wrap">
+                            <img class="refresh_image" src="imagesefresh_btn.png">
+                        </div>
+                    </div>
+                    <div class="div_for_margin"></div>
+                    <a class="go_to_board" href="">
+                        <p class="go_to_board_text">상세보기&nbsp</p>
+                        <p class="go_to_board_text right_text">></p>
+                    </a>
+                </div>
+                <div class="box_text">
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">안녕하세요</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">혹시, 저번에 파시던 불고기 반찬 또 파실 수 있나요?</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="opponent_text_wrap">
+                        <div class="opponent_text">
+                            <p class="opponent_text_content">네 원하시면 만들어 드릴게요</p>
+                        </div>
+                        <div class="opponent_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">혹시 어디서 거래하고 싶으세요?</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="opponent_text_wrap">
+                        <div class="opponent_text">
+                            <p class="opponent_text_content">내일 역삼역 앞으로 7시까지 와주실 수 있나요?<br>출근할때 드리면 좋을 것 같아요~^^</p>
+                        </div>
+                        <div class="opponent_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+                    <div class="my_text_wrap">
+                        <div class="my_text">
+                            <p class="my_text_content">네~ 그럼 7시까지 그리로 갈게요~</p>
+                        </div>
+                        <div class="my_text_time">
+                            <p class="message_box_time">2023.03.13 13:53</p>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <form action="" class="send_form" name="form" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                        <textarea class="write-section" id="write-section2" name="content" cols="20" rows="5" onKeydown="getLength(2)" onKeyUp="getLength(2)" maxlength="1001"></textarea>
+                        <div class="text_send_wrap">
+                            <input id="text_length2" class="count_letter" type="text" size="3" NAME="txtlen" value="0" readonly><input disabled class="count_letter_max" type="text" size="10" value="/1000">
+                            <button id="send_btn_id" class="send_btn">전송</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </ul>
+    </article>
+</section>
+
+<div class="modal">
+    <div class="warn-modal">
+        <div id="content-wrap"></div>
+    </div>
+</div>
+<button id="topBtn">Top</button>
+<div class="modal_background" style="position: fixed; z-index: 998; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);"></div>
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/mypage/message_box.js"></script>
+</html>

@@ -1,0 +1,399 @@
+body{
+    letter-spacing: -0.05em;
+    margin: 0;
+}
+
+*{
+    font-family: 'Spoqa Han Sans', sans-serif
+}
+
+/* 서브네비게이션 */
+.subnav{
+    border-bottom: 1px solid #d9d9d9;
+}
+
+ul, ol, li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+}
+
+.subnav a{
+    display: inline-block;
+    line-height: 49px;
+}
+
+.subnav_wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subnav_list {
+    padding: 0;
+    margin: 0;
+}
+
+.disply_bundle{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.first_letter{
+    font-size: 15px;
+    font-weight: 700;
+    color: #222624;
+}
+
+.second_letter{
+    font-size: 14px;
+    font-weight: 400;
+    color: #808080;
+}
+
+.except_home_letter{
+    margin-left: 15px;
+}
+
+.subnav li + li {
+    margin-left: 32px;
+}
+
+/* 네비게이션 항목 설정 */
+.select{
+    color: #009a3e;
+}
+
+.list_my_setting_items{
+    display: none;
+}
+
+.list_profile_items{
+    display: none;
+}
+
+
+/*컨텐츠*/
+.wrap{
+    letter-spacing: -0.05em;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.divide_btns{
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn_setting{
+    display: block;
+    color: #4D4D4D;
+    background-color: #F2F2F2;
+    padding: 0 12px;
+    line-height: 37px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.select_btn{
+    color: #fff;
+    background-color: #009a3e;
+}
+
+.btn_list{
+    margin: 0;
+    padding: 0;
+}
+
+.user_center_num{
+    margin-top: 10px;
+    margin-bottom: 0;
+    line-height: 20px;
+    font-size: 13px;
+    color: #4D4D4D;
+}
+
+.divide_btns li:not(.activate) a:hover{
+    background-color: #d9d9d9;
+}
+
+.faq_content{
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.search_wrap{
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 4px;
+}
+
+
+.search_container{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 셀렉트 박스 */
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+/* 셀렉트 영역 스타일 */
+.selectOne{
+    position: relative;
+    padding: 5px 10px;
+    width: 208px;
+    height: 50px;
+    border-radius: 4px;
+    border:1px solid #d9d9d9;
+    background-color: #fff;
+    color: #b3b3b3;
+    background-image: url("images/arrow13_b.png");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 19px) center;
+    background-size: 10px;
+    cursor: pointer;
+    list-style: none;
+    padding: 0;
+    margin-right: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.selected-option{
+    position: absolute;
+    top: 30%;
+    left: 7%;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding-right: 30px;
+}
+/* 옵션 영역 스타일 */
+.selectOne ul{
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    border:1px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 10px 0;
+    margin: 0;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+.selectOne ul li{
+    z-index: 1;
+    padding: 5px 19px;
+    font-size: 14px;
+    box-sizing: border-box;
+    color: #4D4D4D;
+}
+
+.search_input{
+    width: calc(100% - 367px);
+    padding-right: 64px;
+    text-indent: 19px;
+    box-sizing: border-box;
+    line-height: 32px;
+    width: 268px;
+    height: 50px;
+    font-size: 15px;
+    color: #808080 ;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #b3b3b3;
+    font-size: 14px;
+}
+
+.search_btn{
+    position: absolute;
+    left: 419px;
+    width: 65px;
+    height: 50px;
+    font-size: 15px;
+    color: #009a3e;
+    background-color: #fff;
+    outline: none;
+    border:1px solid #d9d9d9;
+    border-left:0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.goingToAsk{
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 120px;
+    height: 50px;
+    line-height: 1;
+    font-size: 15px;
+    color: #009a3e;
+    background-color: #e5f5eb;
+    border: 1px solid #009a3e;
+    border-radius: 4px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+.inquiry_table{
+    width: 100%;
+    border-top: 2px solid #808080;
+    border-bottom-color: #d9d9d9;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 700;
+    color: #4D4D4D;
+    background-color: #f7f7f7;
+}
+
+.inquiry_info{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.my_inquiry{
+    margin-top: -1px;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 20px 0;
+    color: #808080;
+    font-weight: 500;
+    background-color: #f7fafd;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.inquiry_num{
+    width: 8.33%;
+}
+
+.inquiry_title{
+    width: 61.67%;
+}
+
+.inquiry_status{
+    width: 15%;
+}
+
+.inquiry_status_color{
+    color: #009a3e;
+}
+
+.inquiry_date{
+    width: 15%;
+}
+
+.inquiry_my_title{
+    width: 61.67%;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+}
+
+.detail_link{
+    cursor: pointer;
+    color: #808080;
+}
+
+.paging_navigation{
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.prev{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 32px;
+}
+
+.paging_num{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 35px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #009a3e;
+}
+
+.paging_next_num{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #b3b3b3;
+    margin-left: 20px;
+}
+
+.next{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 32px;
+    margin-left: 35px;
+}
+
+.arrow_left{
+    width: 7px;
+}
+
+.arrow_right{
+    width: 7px;
+}
+
+
+/* 스크롤 CSS */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,168 @@
+@charset "utf-8";
+
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    zoom: 80%; /* 배율을 80%로 맞춘다. */
+    margin: auto 0;
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+}
+
+body {
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+}
+
+hr, table caption, legend,
+.blind {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+
+section, article, header, footer, nav, aside, hgroup, figure, figcaption {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+input, select, button, textarea {
+    font: 12px/1.2 'Spoqa Han Sans', sans-serif;
+    color: #4d4d4d;
+    letter-spacing: inherit;
+    outline: none;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+button {
+    vertical-align: top;
+    background: transparent;
+    font-family: 'Spoqa Han Sans', sans-serif;
+}
+
+label, button {
+    cursor: pointer;
+}
+
+img, fieldset, button, input {
+    border: 0;
+    vertical-align: middle;
+}
+
+body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, p, blockquote, button, input, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    letter-spacing: -0.05em;
+}
+
+/* 메인 페이지 헤더 부분에 회색줄  */
+#header .header-grey-line {
+    line-height: 40px;
+    background-color: #f2f2f2;
+    /* letter-spacing: -0.05em; */
+}
+
+.header-grey-line-inner {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+/* 회색부분에 로그인 회원가입 버튼 */
+.header-logIn-signUp {
+    float: right;
+}
+
+#header .header-logIn-signUp {
+    color: #808080;
+}
+
+#header .header-logIn-signUp li {
+    float: left;
+}
+
+#header .header-logIn-signUp li + li {
+    margin-left: 20px;
+}
+
+.header-grey-line-inner::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* 여기까지가 헤더의 회색줄 부분. */
+
+/* 여기서 부터 헤더의 회색줄 아래 부분 */
+
+.header-grey-line-bottom {
+    padding-top: 20px;
+    margin-bottom: 6px;
+}
+
+#header .header-home a {
+    margin: 0 auto;
+    display: block;
+    width: 155px;
+    height: fit-content;
+    margin: 0 auto;
+}
+
+#header .header-home .header-home-name {
+    display: block;
+    margin:  auto;
+    width: 90px;
+    height: 90px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.header-home-name.special {
+    background-image: url('/image/logo_entire_150_150.png');
+}
+
+.header-home-name {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+    background-repeat: no-repeat;
+}
+
+/* 로그인 안되어 있을 때 이 2개 띄워줌 */
+/* .header-logIn {
+    display: none;
+}
+
+.header-signUp {
+    display: none;
+} */
+
+/* 로그인 됐을 시 이 3개 띄워줌 */
+
+.header-logOut {
+    display: none;
+}
+
+.header-write {
+    display: none;
+}
+
+.header-my {
+    display: none;
+}

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의게시판 관리</title>
+    <link rel="stylesheet" href="/css/admin/manage-qna.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div class="wrap">
+    <div id="menu-side" class="container">
+        <div id="top-box" class="menu-box">
+            <img id="neighbor-logo" alt="neighbor" src="/css/admin/images/logo2.png">
+        </div>
+        <div id="middle-box" class="menu-box">
+            <div id="wrap-middle-box">
+                <div id="middle-box-contents">
+                    <div class="side-top-margin"></div>
+                    <span class="mouseOnEffect">
+                                <div id="middle-box-site-shortcut-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="home" src="/css/admin/images/home.png">
+                                    </div>
+                                    사이트 바로가기
+                                </div> 
+                            </span>
+
+                    <span class="mouseOnEffect">
+                                <div id="middle-box-dashBoard-bar" class="side-bar">
+                                    <div class="icon-gap">
+                                        <img class="side-icons" alt="dash-board"
+                                             src="/css/admin/images/dashBoard-icon.png">
+                                    </div>
+                                    대시보드
+                                </div>
+                            </span>
+
+                    <button type="button" class="no-collapsible mouseOnEffect">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
+                        </div>
+                        회원관리
+                    </button>
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="ask-answer"
+                                 src="/css/admin/images/ask-answer-icon2.png">
+                        </div>
+                        게시판 관리
+                        <img src="/css/admin/images/plus.png" class="collapse-button">
+                    </button>
+
+                    <div class="content">
+                        <p>게시글 목록</p>
+                        <p>후기 목록</p>
+                    </div>
+
+                    <button type="button" class="no-collapsible mouseOnEffect">
+                        <div class="icon-gap">
+                            <img class="side-icons" alt="ask-board"
+                                 src="/css/admin/images/ask-board-icon.png">
+                        </div>
+                        문의 게시판 관리
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="right-side" class="container">
+        <div class="right-header">
+            <div class="letter-space">
+                문의 게시판 관리
+            </div>
+            <h1 id="clock" style="color:black;">clock</h1>
+            <img class="admin-profile" src="https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png">
+            <p class="admin-name">관리자</p>
+            <p class="name-logout-space">ㅣ</p>
+            <button class="admin-logout" type="submit" value="">LOGOUT</button>
+        </div>
+        <div class="right-body">
+            <div class="user-list-letter">
+                <p>문의 목록</p>
+            </div>
+
+            <div class="user-list-contents">
+                <div class="member-input-wrap">
+                    <!-- <div class="watch-all-ask">
+                        <input class="watch-all-ask-button" type="submit" value="전체보기">
+                    </div>
+                    <div class="watch-waiting-ask">
+                        <input class="watch-waiting-ask-button" type="submit" value="대기 문의 보기">
+                    </div>
+                    <div class="member-delete-button-wrap">
+                        <input class="member-delete-button" type="submit" value="선택 삭제">
+                    </div> -->
+                    <!-- 버튼만 묶어놓기 -->
+                    <div class="wrap-button">
+                        <div class="watch-all-ask">
+                            <input class="watch-all-ask-button" type="submit" value="전체보기">
+                        </div>
+                        <div class="watch-waiting-ask">
+                            <input class="watch-waiting-button" type="submit" value="대기 문의 보기">
+                        </div>
+                        <div class="member-delete-button-wrap">
+                            <input class="member-delete-button" type="submit" value="게시글 삭제">
+                        </div>
+                    </div>
+
+                    <div class="member-search-wrap">
+                        <div class="search-border">
+                            <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
+                            <input class="member-search" type="text" placeholder="문의 검색">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-mentor">
+                    <p>전체 문의</p>
+                    <p class="total-mentor-num">15</p>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="item-list-header">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check-all" class="all" value="all">
+                        </div>
+                        <div class="qna-num">
+                            문의 번호
+                        </div>
+                        <div class="qna-title">
+                            제목
+                        </div>
+                        <div class="user-nick-name">
+                            작성자
+                        </div>
+                        <div class="qna-ask-day">
+                            작성일시
+                        </div>
+                        <div class="qna-answer-day">
+                            답변일시
+                        </div>
+                        <div class="qna-status">
+                            진행 상태
+                        </div>
+                        <div class="detail">
+                            답변하기
+                        </div>
+                    </div>
+
+                    <!-- 여기부터 내용 -->
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="qna-num">
+                            15
+                        </div>
+                        <div class="qna-title">
+                            메일이 안와요
+                        </div>
+                        <div class="user-nick-name">
+                            벅벅코딩
+                        </div>
+                        <div class="qna-ask-day">
+                            2023-02-22 16:42:39
+                        </div>
+                        <div class="qna-answer-day">
+                            -
+                        </div>
+                        <div class="qna-status qna-status-false">
+                            답변 대기중
+                        </div>
+                        <div class="detail">
+                            <button class="detail-button modal7" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal7" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="qna-num">
+                            15
+                        </div>
+                        <div class="qna-title">
+                            메일이 안와요
+                        </div>
+                        <div class="user-nick-name">
+                            벅벅코딩
+                        </div>
+                        <div class="qna-ask-day">
+                            2023-02-22 16:42:39
+                        </div>
+                        <div class="qna-answer-day">
+                            -
+                        </div>
+                        <div class="qna-status qna-status-false">
+                            답변 대기중
+                        </div>
+                        <div class="detail">
+                            <button class="detail-button modal7" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal7" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="qna-num">
+                            15
+                        </div>
+                        <div class="qna-title">
+                            메일이 안와요
+                        </div>
+                        <div class="user-nick-name">
+                            벅벅코딩
+                        </div>
+                        <div class="qna-ask-day">
+                            2023-02-22 16:42:39
+                        </div>
+                        <div class="qna-answer-day">
+                            -
+                        </div>
+                        <div class="qna-status qna-status-false">
+                            답변 대기중
+                        </div>
+                        <div class="detail">
+                            <button class="detail-button modal7" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal7" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="qna-num">
+                            15
+                        </div>
+                        <div class="qna-title">
+                            메일이 안와요
+                        </div>
+                        <div class="user-nick-name">
+                            벅벅코딩
+                        </div>
+                        <div class="qna-ask-day">
+                            2023-02-22 16:42:39
+                        </div>
+                        <div class="qna-answer-day">
+                            -
+                        </div>
+                        <div class="qna-status qna-status-false">
+                            답변 대기중
+                        </div>
+                        <div class="detail">
+                            <button class="detail-button modal7" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal7" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="qna-num">
+                            15
+                        </div>
+                        <div class="qna-title">
+                            메일이 안와요
+                        </div>
+                        <div class="user-nick-name">
+                            벅벅코딩
+                        </div>
+                        <div class="qna-ask-day">
+                            2023-02-22 16:42:39
+                        </div>
+                        <div class="qna-answer-day">
+                            -
+                        </div>
+                        <div class="qna-status qna-status-false">
+                            답변 대기중
+                        </div>
+                        <div class="detail">
+                            <button class="detail-button modal7" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal7" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check4" class="normal" value="">
+                        </div>
+                        <div class="qna-num">
+                            9
+                        </div>
+                        <div class="qna-title">
+                            배너 광고 문의드립니다.
+                        </div>
+                        <div class="user-nick-name">
+                            네이버 마케팅팀
+                        </div>
+                        <div class="qna-ask-day">
+                            2023-02-23 14:54:21
+                        </div>
+                        <div class="qna-answer-day">
+                            2023-02-23 19:41:31
+                        </div>
+                        <div class="qna-status qna-status-true">
+                            답변완료
+                        </div>
+                        <div class="detail">
+                            <button class="detail-button modal2" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal2" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-button-box">
+                        <input class="page-button" type="submit" value="1">
+                        <input class="page-button2" type="submit" value="2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+</html>

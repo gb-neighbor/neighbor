@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/login/login.css"/>
+</head>
+<body>
+<div th:insert="~{/main/header:: header}"></div>
+<div class="wrapper">
+    <div class="login-content">
+        <div class="logo">
+            <a href="#">
+                <span class="logo-name">이웃집 반찬</span>
+            </a>
+        </div>
+        <div class="form-wrapper">
+            <form action="" name="loginForm">
+                <input type="text" placeholder="아이디" class="id" name="memberIdentification">
+                <input type="password" placeholder="비밀번호 8자 이상" class="password" name="memberPassword">
+                <button type="button" class="login-button btn" onclick="send()">로그인</button>
+
+                <div class="bottom-wrap">
+                    <label class="is-checked">
+                        <input type="checkbox" name="saveEmail" onclick="" class="checkbox">
+                        <span>이메일 저장</span>
+                    </label>
+
+                    <div class="link">
+                        <a href="#">아이디 • 비밀번호 찾기</a>
+                        <a href="#">회원가입</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <dl class="auth">
+            <dt><span class="easy-login">간편로그인</span></dt>
+            <dd>
+                <button class="kakao btn">
+                        <span class="inner">
+                            <span class="icon"></span>
+                            카카오로 로그인
+                        </span>
+                </button>
+            </dd>
+
+            <dd>
+                <button class="naver btn">
+                        <span class="inner">
+                            <span class="icon"></span>
+                            네이버로 로그인
+                        </span>
+                </button>
+            </dd>
+
+
+    </div>
+</div>
+</div>
+<div th:insert="~{/main/footer:: footer}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/login/member.js"></script>
+</html>
