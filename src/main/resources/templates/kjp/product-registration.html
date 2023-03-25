@@ -10,12 +10,12 @@
 </head>
 <body>
 <section class="container">
-    <form action="">
+    <form th:action="@{write}" name="board" method="POST">
         <article class="write-text fullh">
             <h3 class="subtitle">
                 <span class="subtitle-icon"></span>
                 스토리 글쓰기
-                <span class="subtitle-text">이웃집반찬 라이프 스타일</span>
+                <span class="subtitle-text">이웃집반찬 글 올리기</span>
             </h3>
             <div class="cover-container">
                 <div class="detail-title">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="cover-title">
                     <label for="">
-                        <input type="text" class="input-title" placeholder="* 스토리 제목을 입력해주세요">
+                        <input type="text" class="input-title" name="boardTitle" placeholder="* 스토리 제목을 입력해주세요">
                     </label>
                 </div>
                 <div class="detail-title">
@@ -32,7 +32,7 @@
                 <div class="detail-text">
                     <div class="text-top">
                         <div class="cartagori">
-                            <select name="memberRegion" id="select-region">
+                            <select name="boardRegion" id="select-region">
                                 <option value="1">강남구</option>
                                 <option value="2">강동구</option>
                                 <option value="3">강북구</option>
@@ -86,7 +86,7 @@
             <div class="detail-form">
                 <div class="detail-photo">
                             <label for="detail-file" class="detail-label">
-                                <input type="file" class="" id="detail-file" multiple>
+                                <input type="file" class="" id="detail-file" name="additionalPhoto" multiple>
                                     <img id="thumbnail" style="display: none;"/>
                             </label>
                     <div id="thumbnail-container1"></div>
@@ -97,9 +97,8 @@
                     <label for="detail-file">
                             <span class="add-button-img"></span>
                             사진을 추가하세요!
+                    </label>
                 </div>
-            </label>
-        </article>
         <article class="submit-article">
             <div class="inner">
                 <button type="submit" class="submit-button">

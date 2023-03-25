@@ -153,89 +153,148 @@ fileInput.addEventListener("change", function() {
 
 */
 /* --------------------------------------------------------------------------------------------------- js썸네일*/
+/* 메인 사진 추가 썸네일*/
+FileList.prototype.forEach = Array.prototype.forEach;
+globalThis.arrayFile2 = new Array();
+globalThis.j = 0;
+const dataTransfer = new DataTransfer();
+$("input[id='cover-file']").on("change", function() {
+    const $files2 = $("input[id=cover-file]")[0].files;
+    // console.log($files[0])
+//    파일 객체에 접근함
+    let formData = new FormData();
+    Array.from($files2).forEach(file => globalThis.arrayFile2.push(file));
+    // 파일 Array의 file들을 하나씩 담아줌
+    console.log(globalThis.arrayFile2)
+    $files2.forEach(file => {
+        formData.append("file", file)
+    });
+    $.ajax({
+        url: "/board-files/upload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (uuid) {
+            globalThis.uuid = uuid;
+            console.log(globalThis.uuid)
+
+            $files2.forEach((file, i) => {
+                $("span.cover-txt").hide();
+                $("div.cover-img").hide();
+                $(".img").append(`<img src="/board-files/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${file.name}" class="mainPhoto">`);
+                $(".img img").css("width", "50%");
+                $(".img img").css("height", "100%");
+            });
+
+            $("input[id='cover-file']")[0].files = dataTransfer.files;
+            let text2 = "";
+            console.log("uuid는 " + globalThis.uuids)
+
+            $files2.forEach(file => {
+                text2 +=
+                    `
+                    <input type="hidden" name="fileMainName" value="${file.name}">
+                    <input type="hidden" name=".fileMainUuid" value="${globalThis.uuid}">
+                    <input type="hidden" name=".fileMainPath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name=".fileMainSize" value="${file.size}">
+                    `
+                i++;
+            });
+            $("form[name='board']").append(text2);
+        }
+    });
+});
+
+
+
+
+$(".submit-button").on("click", function(){
+    const $files = $("input[name=file]")[0].files;
+    let files = new Array();
+
+    console.log(globalThis.uuids + "uuid왜 안나옴")
+
+    $files.forEach((file, i) => {
+        let fileVO = new Object();
+        fileVO.fileOriginalName = file.name;
+        fileVO.fileUuid = globalThis.uuids[i];
+        fileVO.filePath = toStringByFormatting(new Date());
+        fileVO.fileSize = file.size;
+        fileVO.boardId = 5;
+        files.push(fileVO);
+    });
+})
+
+
+
 FileList.prototype.forEach = Array.prototype.forEach;
 globalThis.arrayFile = new Array();
 globalThis.i = 0;
-
-$("input[id=detail-file]").on("change", function(){
+let text= "";
+$("input[id='detail-file']").on("change", function() {
     const $files = $("input[id=detail-file]")[0].files;
     // console.log($files[0])
 //    파일 객체에 접근함
     let formData = new FormData();
     Array.from($files).forEach(file => globalThis.arrayFile.push(file));
     // 파일 Array의 file들을 하나씩 담아줌
+    console.log(globalThis.arrayFile)
     $files.forEach(file => {
         formData.append("file", file)
     });
-
     $.ajax({
-        url: "/boards/upload",
+        url: "/board-files/upload",
         type: "post",
         data: formData,
         contentType: false,
         processData: false,
         success: function (uuids) {
             globalThis.uuids = uuids;
+            console.log(globalThis.uuids)
+
             $files.forEach((file, i) => {
-                    $("#thumbnail").append(`<span>><img src="/files/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"></a></span>`);
+                $("#thumbnail-container1").append(`<img src="/board-files/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}">`);
+                $(".add-button").css("margin-top", "172px");
             });
-        }
-    });
 
-
-});
-/*FileList.prototype.forEach = Array.prototype.forEach;
-globalThis.arrayFile = new Array();
-globalThis.i = 0;
-
-$("input[id='thumbnail']").on("change", function(){
-    const $files = $("input[name=file]")[0].files;
-    let formData = new FormData();
-
-    Array.from($files).forEach(file => globalThis.arrayFile.push(file));
-
-    console.log(globalThis.arrayFile);
-
-    $files.forEach(file => {
-        formData.append("file", file)
-    });
-    $.ajax({
-        url: "/files/upload",
-        type: "post",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(uuids) {
-            globalThis.uuids = uuids;
-            $files.forEach((file, i) => {
-                if(file.type.startsWith("image")){
-                    $("#thumbnail").append(`<li><a href="/files/download?fileName=${toStringByFormatting(new Date())}/${uuids[i]}_${file.name}"><img src="/files/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"></a></li>`);
-                }else{
-                    $("#thumbnail").append(`<li><a href="/files/download?fileName=${toStringByFormatting(new Date())}/${uuids[i]}_${file.name}"><img src="/attach.png" width="100"></a></li>`);
-                }
-            });
-            /!********************************************************************!/
-            /!*게시글 추가 부분*!/
             const dataTransfer = new DataTransfer();
-            globalThis.arrayFile.forEach(file => dataTransfer.items.add(file));
-            $("input[name='file']")[0].files = dataTransfer.files;
+            $("input[id='detail-file']")[0].files = dataTransfer.files;
             console.log(dataTransfer.files);
             let text = "";
+            console.log("uuid는 " + globalThis.uuids)
+
             $files.forEach(file => {
                 text +=
                     `
-                    <input type="hidden" name="files[${i}].fileName" value="${file.name}">
-                    <input type="hidden" name="files[${i}].fileUuid" value="${globalThis.uuids[i]}">
-                    <input type="hidden" name="files[${i}].filePath" value="${toStringByFormatting(new Date())}">
-                    <input type="hidden" name="files[${i}].fileSize" value="${file.size}">
-                    <input type="hidden" name="files[${i}].fileType" value="${file.type.startsWith("image")}">
+                    <input type="hidden" name="files[${i}].fileDetailName" value="${file.name}">
+                    <input type="hidden" name="files[${i}].fileDetailUuid" value="${globalThis.uuids[i]}">
+                    <input type="hidden" name="files[${i}].fileDetailPath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name="files[${i}].fileDetailSize" value="${file.size}">
                     `
                 i++;
             });
-            $("form[name='write-form']").append(text);
+            $("form[name='board']").append(text);
         }
     });
-});*/
+});
+
+
+$(".submit-button").on("submit", function () {
+    const $files = $("input[id='detail-file']")[0].files;
+    let files = new Array();
+
+    $files.forEach((file, i) => {
+        let boardFileVO = new Object();
+        boardFileVO.fileOriginalName = file.name;
+        boardFileVO.fileUuid = globalThis.uuids[i];
+        boardFileVO.filePath = toStringByFormatting(new Date());
+        boardFileVO.fileSize = file.size;
+        boardFileVO.fileType = file.type.startsWith("image");
+        files.push(boardFileVO);
+    });
+})
+
 
 
 
