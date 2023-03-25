@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
-    <link rel="stylesheet" href="/css/main/header.css">
-    <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/login/join.css"/>
 </head>
 <body>
-<div th:insert="~{/main/header:: header}"></div>
 <div class="wrapper">
     <form action="">
         <div class="join-wrapper">
-
+            <div class="logo">
+                <a href="#">
+                    <span class="logo-name">이웃집 반찬</span>
+                </a>
+            </div>
             <div class="join-content">
                 <dl style="text-align: center;">
                     <label for="profile" id="profile_label">
@@ -571,7 +572,6 @@
             </div>
         </div>
     </div>
-    <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/login/member.js"></script>

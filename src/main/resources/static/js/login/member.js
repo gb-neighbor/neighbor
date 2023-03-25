@@ -63,6 +63,7 @@ profileClose.addEventListener('click', function (e) {
     profile.value = "";
     profileClose.style.display="none";
     profileDiv.style.backgroundImage =  `url('/css/login/images/profile2.png')`;
+    $(".camera").show();
     profileDiv.style.width = "100%";
     profileDiv.style.display = "block";
 });
@@ -79,8 +80,10 @@ profile.addEventListener('change', function (e) {
             profileDiv.style.backgroundImage = `url('${result}')`;
             profileClose.style.display = "inline-block";
             profileDiv.style.width = "100%";
+            $(".camera").hide();
         } else {
             profileDiv.style.backgroundImage = `url('/css/login/images/profile2.png')`;
+            $(".camera").show();
         }
     };
 });

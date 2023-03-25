@@ -92,14 +92,21 @@ select{
     padding-top: 60px;
     padding-bottom: 110px;
 }
-
-.logo .title{
-    margin-bottom: 30px;
-    line-height: 30px;
-    font-size: 14px;
-    font-weight: 800;
-    color: #009a3e;
+.logo{
     text-align: center;
+}
+
+.logo-name{
+    width: 140px;
+    height: 150px;
+    vertical-align: top;
+    background-image: url('/image/logo_entire_450_450.png');
+    background-size: 100% 100%;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+    background-repeat: no-repeat;
 }
 
 .sp{
