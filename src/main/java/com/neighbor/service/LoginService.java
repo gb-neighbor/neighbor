@@ -1,4 +1,4 @@
 package com.neighbor.service;
 
-public class LogInService {
+public class LoginService {
 }
