@@ -17,6 +17,11 @@ public class MemberService {
         return memberDAO.findAll();
     }
 
+    //    대쉬보드 일부조회
+    public List<MemberDTO> getListBy(){
+        return memberDAO.findAllBy();
+    }
+
     //   회원관리 멤버삭제
     public void delete(Long memberId) {
         memberDAO.delete(memberId);

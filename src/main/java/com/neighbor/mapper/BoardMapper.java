@@ -18,6 +18,8 @@ public interface BoardMapper {
     public BoardDTO select(Integer boardRegion);
 //    게시글 전체 조회
     public List<BoardDTO> selectAll();
+//  대시보드  게시글 부분 조회
+    public List<BoardDTO> selectAllBy();
 
 //    게시글 삭제
     public void delete(Long boardId);

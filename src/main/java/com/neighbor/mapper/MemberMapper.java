@@ -10,7 +10,8 @@ import java.util.List;
 public interface MemberMapper {
 //    전체 조회
     public List<MemberDTO> selectAll();
-
+    //    일부 조회
+    public List<MemberDTO> selectAllBy();
 //    멤버 삭제
     public void delete(Long userId);
 

@@ -13,7 +13,7 @@ public class ReplyDAO {
 
     private final ReplyMapper replyMapper;
 
-//    대쉬보드 게시글 관리
+//  전체 후기글 조회
     public List<ReplyDTO> findAll() {
         return replyMapper.selectAll();
     }
@@ -21,4 +21,8 @@ public class ReplyDAO {
 //  후기관리 삭제
     public void delete(Long memberId){replyMapper.delete(memberId);}
 
+//  대시보드 후기글 부분 조회
+    public List<ReplyDTO> findAllBy() {
+    return replyMapper.selectAllBy();
+}
 }

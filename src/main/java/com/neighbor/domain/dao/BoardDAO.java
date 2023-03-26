@@ -1,6 +1,7 @@
 package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.mapper.BoardFileMapper;
@@ -24,8 +25,11 @@ public class BoardDAO {
         return boardMapper.getLastBoardId();
     }
 
-//    대시보드 게시글 전체 조회
+//    게시글 전체 조회
     public List<BoardDTO> findAll(){return boardMapper.selectAll();}
+
+//    대시보드 게시글 부분 조회
+    public List<BoardDTO> findAllBy(){return boardMapper.selectAllBy();}
 
 //    게시판 목록 삭제
     public void delete(Long boardId) {
