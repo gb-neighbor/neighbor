@@ -6,6 +6,7 @@ import com.neighbor.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -31,7 +32,15 @@ public class BoardController {
     }
 
     @PostMapping("write")
-    public RedirectView writeBoard(BoardVO boardVO,  List<BoardFileVO> files){
+    public RedirectView writeBoard(BoardVO boardVO, Model model, @RequestBody List<BoardFileVO> /*js에서는 이름을 files로 지어야함*/ files){
+        model.addAttribute(boardVO.getBoardContent());
+        model.addAttribute(boardVO.getBoardRegion());
+        model.addAttribute(boardVO.getBoardTitle());
+        /*맴버 아이디는 세션에 저장된 값을 사용해야함*/
+//        model.addAttribute(boardVO.getMemberId());
+        log.info(files.toString());
+
+
 
         return new RedirectView( "main");
     }
