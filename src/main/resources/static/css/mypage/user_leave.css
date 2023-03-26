@@ -121,6 +121,7 @@ a{
 
 
 .collapsible {
+    display: block;
     background-color: #ffffff;
     color: #222624;
     cursor: pointer;
@@ -129,7 +130,7 @@ a{
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: 1px solid #d9d9d9;
+    border: 0;
     padding: 0;
     text-align: left;
     text-indent: 9px;
@@ -155,7 +156,7 @@ a{
     display: block;
     color: #808080;
     line-height: 36px;
-    text-indent: 19px;
+    text-indent: 30px;
     font-size: 14px;
 }
 
@@ -164,6 +165,7 @@ a{
 }
 
 /*컨텐츠*/
+
 
 .profile_image_section{
     position: relative;
@@ -195,7 +197,6 @@ a{
 .my_state{
     display: flex;
     align-items: center;
-    justify-content:space-around;
     width: 89%;
     margin-top: 5%;
     margin-bottom: 15%;
@@ -204,11 +205,9 @@ a{
 }
 
 .alarm{
-    width: 50%;
 }
 
 .alarm_message{
-    margin-left: 8%;
     margin-top: 0;
     margin-bottom: 0;
     text-align: center;
@@ -218,20 +217,22 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    color: #009a3e;
-    border: 1px solid #009a3e;
-    width: 60px;
+    font-size: 9px;
+    color: #ffffff;
+    border: 1px solid #FFC2C3;
+    background-color:  #FFC2C3;
     height: 20px;
     border-radius: 15px;
+    padding-left: 4px;
+    padding-right: 4px;
     box-sizing: border-box;
 }
 
 .alarm_count{
-    font-size: 15px;
+    font-size: 10px;
     font-weight: 500;
-    margin-left: 3px;
-    color: #009a3e;
+    margin-left: 2px;
+    color: #ffffff;
 }
 
 .alarm_link:hover .alarm_count:not(.alarm_message){
@@ -239,34 +240,34 @@ a{
 }
 
 .scrap{
-    width: 50%;
+    margin-right: 3%;
 }
 
 .scrap_message{
     margin: 0;
     text-align: center;
-    margin-left: 8%;
 }
 
 .scrap_link{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    color: #009a3e;
-    border: 1px solid #009a3e;
-    width: 60px;
+    font-size: 9px;
+    color: #ffffff;
+    border: 1px solid #99D9EA;
+    background-color: #99D9EA;
     height: 20px;
     border-radius: 15px;
     padding-right: 4px;
+    padding-left: 4px;
     box-sizing: border-box;
 }
 
 .scrap_count{
-    font-size: 15px;
+    font-size: 10px;
     font-weight: 500;
-    margin-left: 3px;
-    color: #009a3e;
+    margin-left: 2px;
+    color: #ffffff;
 }
 
 .scrap_link:hover .scrap_count:not(.scrap_message){
