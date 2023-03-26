@@ -8,6 +8,8 @@ import com.neighbor.domain.vo.BoardVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService implements FileService{
@@ -22,6 +24,16 @@ public class BoardService implements FileService{
         boardFileVO.setBoardId(boardDAO.getBoardId());
 //        그걸 다시 boardFileDAO에 저장
         boardFileDAO.save(boardFileVO);
+    }
+
+    //    대시보드 게시글 전체 조회
+    public List<BoardDTO> getList(){
+        return boardDAO.findAll();
+    }
+
+    //    게시판 목록 삭제
+    public void delete(Long boardId) {
+        boardDAO.delete(boardId);
     }
 
 }
