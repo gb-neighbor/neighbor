@@ -15,11 +15,11 @@ public class MemberDAO {
     private final MemberMapper memberMapper;
 
 //    대쉬보드 전체조회
-    public List<MemberDTO> list(){return memberMapper.selectAll();}
+    public List<MemberDTO> findAll(){return memberMapper.selectAll();}
 
 //    회원관리 멤버삭제
-    public void delete(Long userId) {
-        memberMapper.delete(userId);
+    public void delete(Long memberId) {
+        memberMapper.delete(memberId);
     }
 
 

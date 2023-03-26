@@ -1,32 +1,31 @@
 package com.neighbor.controller;
 
-import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.service.SignUpService;
+import com.neighbor.domain.dto.MemberDTO;
+import com.neighbor.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-@Controller
-@RequiredArgsConstructor
-@RequestMapping("/member/*")
-public class MemberController {
-    private final SignUpService signUpService;
+import java.util.List;
 
-    //    등록
-    @GetMapping("sign-up")
-    public void register(Model model){
-        model.addAttribute(new MemberVO());
+@RestController
+@RequestMapping("/members/*")
+@RequiredArgsConstructor
+public class MemberController {
+
+    private final MemberService memberService;
+
+    //    대쉬보드 전체조회 (PostMan까지 끝냄.)
+    @GetMapping("list")
+    public List<MemberDTO> showList(){
+        return memberService.getList();
     }
 
-    //    등록 완료
-    @PostMapping("sign-up")
-    public RedirectView register(MemberVO memberVO) {
-        signUpService.signUp(memberVO);
-        return new RedirectView("");
+    //   회원관리 멤버삭제 (PostMan까지 끝냄.)
+    @DeleteMapping("delete/{memberId}")
+    public void delete(@PathVariable Long memberId) {
+        memberService.delete(memberId);
     }
 
 }

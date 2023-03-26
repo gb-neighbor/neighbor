@@ -14,5 +14,20 @@ import java.util.List;
 @Slf4j
 public class MemberServiceTests {
 
+    @Autowired
+    MemberService memberService;
+
+    @Test
+    public void getListTest() {
+        memberService.getList();
+    }
+
+    @Test
+    public void deleteTest() {
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId(3L);
+        memberService.delete(memberVO.getMemberId());
+    }
+
 
 }

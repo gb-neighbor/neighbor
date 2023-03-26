@@ -27,7 +27,7 @@ public class BoardDAOTests {
     /*대시보드 게시판 목록 조회*/
     @Test
     public void dashBoardListTest() {
-        List<BoardDTO> boardDAOList = boardDAO.list();
+        List<BoardDTO> boardDAOList = boardDAO.findAll();
         log.info(String.valueOf(boardDAOList));
     }
 

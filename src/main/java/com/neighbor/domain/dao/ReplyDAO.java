@@ -14,11 +14,11 @@ public class ReplyDAO {
     private final ReplyMapper replyMapper;
 
 //    대쉬보드 게시글 관리
-    public List<ReplyDTO> list() {
+    public List<ReplyDTO> findAll() {
         return replyMapper.selectAll();
     }
 
 //  후기관리 삭제
-    public void delete(Long userId){replyMapper.delete(userId);}
+    public void delete(Long memberId){replyMapper.delete(memberId);}
 
 }

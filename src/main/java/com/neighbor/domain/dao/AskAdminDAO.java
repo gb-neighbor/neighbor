@@ -14,7 +14,7 @@ public class AskAdminDAO {
     private final AskAdminMapper askAdminMapper;
 
 //    대쉬보드 전체 조회
-    public List<AskAdminDTO> list(){return askAdminMapper.selectAll();}
+    public List<AskAdminDTO> findAll(){return askAdminMapper.selectAll();}
 
 //    관리자페이지 문의 목록 삭제
     public void delete(Long askAdminId){
