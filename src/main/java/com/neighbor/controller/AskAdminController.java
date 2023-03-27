@@ -38,13 +38,14 @@ public class AskAdminController {
 
         memberDTOS = memberService.getListBy();
         for(MemberDTO memberDTO:memberDTOS){
-            memberDTO.Change(memberDTO.getMemberRegion());
+            memberDTO.change(memberDTO.getMemberRegion());
         };
         model.addAttribute("members", memberDTOS);
 
         boardDTOS = boardService.getListBy();
         for(BoardDTO boardDTO:boardDTOS){
-            boardDTO.Change(boardDTO.getBoardRegion());
+            boardDTO.change(boardDTO.getBoardRegion());
+            boardDTO.saleChange(boardDTO.getBoardStatus());
         };
         model.addAttribute("boards", boardDTOS);
         
