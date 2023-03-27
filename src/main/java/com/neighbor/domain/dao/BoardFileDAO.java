@@ -17,7 +17,7 @@ public class BoardFileDAO {
     /* 파일 추가 */
     public void save(BoardDTO boardDTO){
         boardFileMapper.insertMain(boardDTO);
-        boardFileMapper.insertDetail(boardDTO.getFiles());
+        boardFileMapper.insertDetail(boardDTO);
     }
 
     public Long getCurrentSeq(){

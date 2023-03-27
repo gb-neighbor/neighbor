@@ -11,7 +11,7 @@ public interface BoardFileMapper {
 //    메인 파일 추가
     public void insertMain(BoardDTO boardDTO);
 //     디테일 파일 추가
-    public void insertDetail(List<BoardFileVO> files);
+    public void insertDetail(BoardDTO boardDTO);
 
 //    마지막에 추가된 보드 아이디 가져오기
     public Long getCurrentSequenceForFile();

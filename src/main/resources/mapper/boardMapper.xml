@@ -14,17 +14,16 @@
         group by lastNum
     </select>
 
-<!-- BoardDTO로 모든 정보 가져오기 -->
-    <select id="select" resultType="BoardDTO">
-        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, b.board_id, board_title,
-        board_content, board_register_date, board_update_date, board_status, board_region, m.member_id, member_email, member_name, member_nickname,
-        member_birth, m.member_region, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
-        from tbl_board_file bf left join tbl_board b on bf.board_id = b.board_id join tbl_member m on m.member_id = b.member_id
-        where b.board_region = #{boardRegion}
+    <!-- BoardDTO로 내가 등록한 디테일페이지의 모든 정보 가져오기 -->
+    <select id="getBoardInfo" resultType="boardDTO">
+        select b.board_id, board_title, board_content, board_register_date, board_update_date, board_status, board_region, member_id,
+        board_file_original_name, board_file_uuid, board_file_path, board_file_size
+        from tbl_board b join tbl_board_file bf
+        where b.board_id = bf.board_id;
     </select>
 
     <!-- 게시판 판매대기중 조회 -->
-    <select id="selectWait" resultType="BoardDTO">
+    <select id="selectWait" resultType="boardDTO">
         select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
         from tbl_member m join tbl_board b
         where board_status = 0
@@ -32,27 +31,27 @@
     </select>
 
     <!-- 게시판 전체 조회 -->
-    <select id="selectAll" resultType="BoardDTO">
+    <select id="selectAll" resultType="boardDTO">
         select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
         from tbl_member m join tbl_board b
         on m.member_id = b.member_id order by board_id desc
     </select>
 
     <!-- 게시판 총 글 수-->
-    <select id="countAll" resultType="Integer">
+    <select id="countAll" resultType="integer">
         select count(distinct board_id) countTotalBoards
         from tbl_board
     </select>
 
     <!-- 게시판 판매대기중 글 수-->
-    <select id="count" resultType="Integer">
+    <select id="count" resultType="integer">
         select count(distinct board_id) countTotalBoards
         from tbl_board
         where board_status=0
     </select>
 
     <!-- 관리자 대시보드 게시판 조회 -->
-    <select id="selectAllBy" resultType="BoardDTO">
+    <select id="selectAllBy" resultType="boardDTO">
         select board_id, board_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
         from tbl_member m join tbl_board b
         on m.member_id = b.member_id order by board_id desc
