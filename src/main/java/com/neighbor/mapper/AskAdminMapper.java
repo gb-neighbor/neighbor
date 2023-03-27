@@ -28,4 +28,11 @@ public interface AskAdminMapper {
 //    대시보드 문의사항 부분조회
     public List<AskAdminDTO> selectAllBy();
 
+
+    //    작성
+    public void insert(AskAdminVO askAdminVO);
+
+    //    내가 작성한 문의 조회
+    public List<AskAdminVO> selectOne(Long memberId);
+
 }

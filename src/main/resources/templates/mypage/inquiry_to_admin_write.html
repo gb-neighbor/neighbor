@@ -52,34 +52,17 @@
 <section class="wrap">
 
     <article class="faq_content">
-        <form class="faq_search" name="inquiryForm">
-            <div class="search_wrap">
-                <div class="search_container">
-                    <dt class="inquiry_category_info">문의유형</dt>
-                    <div class="selectOne" data-role="selectBox">
-                        <span date-value="optValue" id="option" name="selectOne" class="selected-option"><!-- 선택된 옵션 값이 출력되는 부분 --></span>
-                        <!-- 옵션 영역 -->
-                        <ul class="hide">
-                            <li class="first">문의유형을 선택해주세요</li>
-                            <li>회원정보관련</li>
-                            <li>거래관련</li>
-                            <li>상품관련</li>
-                            <li>기타</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+        <form class="faq_search" name="inquiryForm" th:action="@{write}" th:object="${askAdminVO}" method="post">
             <div class="inquiry_title_wrap">
                 <dt class="inquiry_title">제목</dt>
-                <input type="text" name="title" id="subject" value="" class="write_title" title="제목을 입력해 주세요"
-                       placeholder="제목을 입력해 주세요">
+                <input type="text" name="title" id="title" value="" class="write_title" title="제목을 입력해 주세요"
+                       placeholder="제목을 입력해 주세요" th:field="*{askAdminTitle}">
             </div>
 
             <div class="inquiry_content_wrap">
                 <dt class="inquiry_content">문의내용</dt>
                 <textarea name="content" id="content" class="write_content" title="문의내용을 입력하세요"
-                          placeholder="문의내용을 입력하세요"></textarea>
+                          placeholder="문의내용을 입력하세요" th:field="*{askAdminContent}"></textarea>
             </div>
 
             <div class="inquiry_write_btn">

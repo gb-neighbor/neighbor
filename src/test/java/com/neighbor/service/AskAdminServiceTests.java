@@ -39,4 +39,5 @@ public class AskAdminServiceTests {
         askAdminVO.setAskAdminId(3L);
         askAdminService.delete(askAdminVO.getAskAdminId());
     }
+
 }
