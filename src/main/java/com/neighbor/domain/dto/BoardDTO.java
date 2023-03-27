@@ -42,9 +42,13 @@ public class BoardDTO {
             "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구",
             "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구",
             "중구", "중랑구"};
-
-    public void Change(Integer index){
+    public void change(Integer index){
         this.boardRegionKo = this.boardRegionArr[index];
     }
+
+    private String boardSaleStatus;
+    private String[] boardSaleStatusArr = {"판매대기중", "판매완료"};
+    public void saleChange(Boolean index) {this.boardSaleStatus = index ? this.boardSaleStatusArr[1] : this.boardSaleStatusArr[0];}
+
 
 }

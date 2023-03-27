@@ -27,7 +27,7 @@ public class MemberDTO {
             "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구",
             "중구", "중랑구"};
 
-    public void Change(Integer index){
+    public void change(Integer index){
         this.memberRegionKo = this.memberRegionArr[index];
     }
 }
