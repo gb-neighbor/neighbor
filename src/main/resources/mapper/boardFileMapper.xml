@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.BoardFileMapper">
+    <insert id="insertDetail">
+            insert into tbl_board_file
+            (board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id)
+            <foreach collection="files" item="file" separator=",">
+                values(#{file.fileDetailName}, #{file.fileDetailUuid}, #{file.fileDetailPath}, #{file.fileDetailSize}, #{boardId})
+            </foreach>
+    </insert>
+
+    <!--마지막에 추가된 boardId가져오기 -->
     <insert id="insertMain">
         insert into tbl_board_file
         (board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id)
-        values(#{fileMainName}, #{boardFileUuid}, #{fileMainSize}, #{fileMainPath}, (SELECT LAST_INSERT_ID() lastNum from tbl_member
-        group by lastNum))
+        values(#{fileMainName}, #{fileMainUuid}, #{fileMainPath}, #{fileMainSize}, #{boardId})
     </insert>
 
-    <insert id="insertDetail">
-        insert insert into tbl_board_file
-        (board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id)
-        values(#{files.fileDetailName}, #{files.fileDetailUuid}, #{files.fileDetailPath}, #{files.fileDetailSize}, (SELECT LAST_INSERT_ID() lastNum from tbl_member
-        group by lastNum))
-    </insert>
+    <select id="getCurrentSequenceForFile" resultType="long">
+		select last_insert_id()
+	</select>
 
     <select id="selectAll" resultType="boardFileVO">
         select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id

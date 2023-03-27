@@ -1,7 +1,9 @@
 package com.neighbor.domain.dao;
 
+import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.mapper.BoardFileMapper;
+import com.neighbor.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +15,14 @@ public class BoardFileDAO {
 
     private final BoardFileMapper boardFileMapper;
     /* 파일 추가 */
-    public void save(BoardFileVO boardFileVO){boardFileMapper.insertMain(boardFileVO);}
+    public void save(BoardDTO boardDTO){
+        boardFileMapper.insertMain(boardDTO);
+        boardFileMapper.insertDetail(boardDTO.getFiles());
+    }
+
+    public Long getCurrentSeq(){
+        return boardFileMapper.getCurrentSequenceForFile();
+    }
     
     /* boardId로 파일 전체 가져오기*/
     public List<BoardFileVO> findByBoardId(Long boardId){return boardFileMapper.selectAll(boardId);}

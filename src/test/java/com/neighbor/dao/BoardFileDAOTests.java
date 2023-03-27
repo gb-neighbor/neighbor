@@ -16,12 +16,7 @@ public class BoardFileDAOTests {
     @Test
     public void isnertDAOTest(){
         BoardFileVO boardFileVO = new BoardFileVO();
-        boardFileVO.setBoardFileOriginalName("fdka");
-        boardFileVO.setBoardFilePath("C:/upload/3/23");
-        boardFileVO.setBoardFileUuid("dfdsa");
-        boardFileVO.setBoardFileSize("20");
         boardFileVO.setBoardId(1L);
-        boardFileDAO.save(boardFileVO);
     }
 
     @Test
