@@ -11,7 +11,7 @@
     <!--마지막에 추가된 boardId가져오기 -->
     <select id="getLastBoardId" resultType="long">
         SELECT LAST_INSERT_ID() lastNum from tbl_member tm
-        group by lastNum;
+        group by lastNum
     </select>
 
 <!-- BoardDTO로 모든 정보 가져오기 -->

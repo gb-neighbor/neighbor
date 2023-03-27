@@ -1,5 +1,6 @@
 package com.neighbor.mapper;
 
+import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.vo.BoardFileVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -14,13 +15,18 @@ public class BoardFileMapperTests {
 
     @Test
     public void testInsert(){
-        BoardFileVO boardFileVO = new BoardFileVO();
-        boardFileVO.setBoardFileOriginalName("fdka");
-        boardFileVO.setBoardFilePath("C:/upload/3/23");
-        boardFileVO.setBoardFileUuid("dfdsa");
-        boardFileVO.setBoardFileSize("20");
-        boardFileVO.setBoardId(1L);
-        boardFileMapper.insert(boardFileVO);
+        BoardDTO boardDTO= new BoardDTO();
+        boardDTO.setFileMainName("jfdk");
+        boardDTO.setFileMainPath("C:upload");
+        boardDTO.setFileMainSize("20MB");
+        boardDTO.setFileMainUuid("fdsafdsafdafdsa");
+        boardDTO.setBoardId(3L);
+        boardFileMapper.insertMain(boardDTO);
+    }
+
+    @Test
+    public void testInsertMain(){
+
     }
 
     @Test

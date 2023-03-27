@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
 //   게시판 글 추가
-    public void insert(BoardVO boardVO);
+    public void insert(BoardDTO boardDTO);
 
 //    마지막에 추가된 boardId 가져오기
     public Long getLastBoardId();
