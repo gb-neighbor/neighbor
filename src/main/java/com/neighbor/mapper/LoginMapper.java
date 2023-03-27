@@ -1,4 +1,4 @@
 package com.neighbor.mapper;
 
-public interface LogInMapper {
+public interface LoginMapper {
 }
