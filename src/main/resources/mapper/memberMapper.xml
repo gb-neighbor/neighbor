@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.MemberMapper">
-    <!-- 회원관리 전체 조회 회원관리 멤버 총 인원 포함-->
+    <!-- 회원관리 전체 조회 회원관리-->
     <select id="selectAll" resultType="MemberDTO">
-        select member_id, member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size,(select count(distinct member_id) from tbl_member) countTotalMembers
+        select member_id, member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
         from tbl_member order by member_id desc
     </select>
 
     <!-- 대시보드 회원관리 목록-->
     <select id="selectAllBy" resultType="MemberDTO">
-        select
-    member_id, member_identification, member_password, member_name, member_nickname,
+    select member_id, member_identification, member_password, member_name, member_nickname,
     member_birth, member_phone, member_region, member_email, member_hi_sentence,
-    member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size,
-    (select count(distinct member_id) from tbl_member) counttotalmembers
+    member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
     from tbl_member
     order by member_id desc
     limit 5
@@ -24,5 +22,11 @@
         delete from tbl_member
         where member_id=#{memberId}
     </delete>
+
+    <!--회원 총 수-->
+    <select id="countAll" resultType="Integer">
+        select count(distinct member_id) countTotalMembers
+        from tbl_member
+    </select>
 
 </mapper>

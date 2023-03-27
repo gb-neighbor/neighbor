@@ -27,5 +27,9 @@ public class MemberService {
         memberDAO.delete(memberId);
     }
 
+//    회원관리 멤버 총 수
+    public Integer getCountAll() {
+        return memberDAO.countAll();
+    }
 
 }

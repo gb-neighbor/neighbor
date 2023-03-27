@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 public class BoardFileVO {
 
     private Long boardFileId;
-    private String fileDetailName;
-    private String fileDetailUuid;
-    private String fileDetailPath;
-    private String fileDetailSize;
+    private String boardFileDetailName;
+    private String boardFileDetailUuid;
+    private String boardFileDetailPath;
+    private String boardFileDetailSize;
     private Long boardId;
 
 }

@@ -13,7 +13,7 @@ public class BoardFileDAO {
 
     private final BoardFileMapper boardFileMapper;
     /* 파일 추가 */
-    public void save(BoardFileVO boardFileVO){boardFileMapper.insert(boardFileVO);}
+    public void save(BoardFileVO boardFileVO){boardFileMapper.insertMain(boardFileVO);}
     
     /* boardId로 파일 전체 가져오기*/
     public List<BoardFileVO> findByBoardId(Long boardId){return boardFileMapper.selectAll(boardId);}

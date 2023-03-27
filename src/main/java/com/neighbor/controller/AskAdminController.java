@@ -34,12 +34,20 @@ public class AskAdminController {
     @GetMapping("listAll")
     public String showAllList(Model model){
         List<BoardDTO> boardDTOS = new ArrayList<>();
-        model.addAttribute("members", memberService.getListBy());
+        List<MemberDTO> memberDTOS = new ArrayList<>();
+
+        memberDTOS = memberService.getListBy();
+        for(MemberDTO memberDTO:memberDTOS){
+            memberDTO.Change(memberDTO.getMemberRegion());
+        };
+        model.addAttribute("members", memberDTOS);
+
         boardDTOS = boardService.getListBy();
         for(BoardDTO boardDTO:boardDTOS){
             boardDTO.Change(boardDTO.getBoardRegion());
         };
         model.addAttribute("boards", boardDTOS);
+        
         model.addAttribute("asks", askAdminService.getListBy());
         model.addAttribute("replys", replyService.getListBy());
         return "admin/dash-board";

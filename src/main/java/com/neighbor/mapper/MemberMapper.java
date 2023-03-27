@@ -15,5 +15,8 @@ public interface MemberMapper {
 //    멤버 삭제
     public void delete(Long userId);
 
+//    멤버 총 수
+    public Integer countAll();
+
 }
 

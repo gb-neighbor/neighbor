@@ -18,7 +18,7 @@ public class BoardDAO {
     private final BoardMapper boardMapper;
 
 //    게시글 추가
-    public void save(BoardVO boardVO){boardMapper.insert(boardVO);}
+//    public void save(BoardVO boardVO){boardMapper.insert(boardVO);} 이거 수정하세요 팀장님
     
 //    마지막에 추가된 BoardId 가져오기
     public Long getBoardId(){
