@@ -25,4 +25,9 @@ public class ReplyDAO {
     public List<ReplyDTO> findAllBy() {
     return replyMapper.selectAllBy();
 }
+
+// 후기글 전체 글 수
+    public Integer countAll() {
+        return replyMapper.countAll();
+    }
 }
