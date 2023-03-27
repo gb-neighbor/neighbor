@@ -36,9 +36,9 @@ public class BoardController {
     public String goMain(){
         return "main/main";
     }
-    
-    
-//    boardDTO 실패
+
+
+    //    boardDTO 실패
 //    boardVO랑 파일 List로 받아오는거 실패
     @PostMapping("save")
     public ResponseEntity<String> writeBoard( List<BoardDTO> files){

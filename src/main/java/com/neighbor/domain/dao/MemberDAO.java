@@ -17,6 +17,9 @@ public class MemberDAO {
 //    대쉬보드 전체조회
     public List<MemberDTO> findAll(){return memberMapper.selectAll();}
 
+//    대쉬보드 일부조회
+    public List<MemberDTO> findAllBy(){return memberMapper.selectAllBy();}
+
 //    회원관리 멤버삭제
     public void delete(Long memberId) {
         memberMapper.delete(memberId);

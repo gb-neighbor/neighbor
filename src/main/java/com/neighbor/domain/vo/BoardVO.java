@@ -14,4 +14,5 @@ public class BoardVO {
     private Boolean boardStatus;
     private Long memberId;
     private Integer boardRegion;
+
 }

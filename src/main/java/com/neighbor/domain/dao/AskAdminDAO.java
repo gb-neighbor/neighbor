@@ -1,6 +1,7 @@
 package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.AskAdminDTO;
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.mapper.AskAdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,11 +14,30 @@ public class AskAdminDAO {
 
     private final AskAdminMapper askAdminMapper;
 
-//    대쉬보드 전체 조회
-    public List<AskAdminDTO> findAll(){return askAdminMapper.selectAll();}
+//   전체 조회
+    public List<AskAdminDTO> findAll(Criteria criteria){return askAdminMapper.selectAll(criteria);}
+
+//    문의사항 답변 대기중 조회
+    public List<AskAdminDTO> findAskAnswer() {
+        return askAdminMapper.selectWaitAnswer();
+    }
+
+//    문의사항 전체 질문 수
+    public Integer countAll() {
+        return askAdminMapper.countAll();
+    }
+
+//    문의사항 답변 대기 중 질문 수
+    public Integer count() {
+        return askAdminMapper.count();
+    }
 
 //    관리자페이지 문의 목록 삭제
     public void delete(Long askAdminId){
         askAdminMapper.delete(askAdminId);
     }
+
+    //  대시보드 문의사항 부분 조회
+    public List<AskAdminDTO> findAllBy(){return askAdminMapper.selectAllBy();}
+
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class ReplyController {
     private final ReplyService replyService;
 
-    //    대쉬보드 게시글 관리 (PostMan까지 확인함.)
+//    //    대쉬보드 게시글 관리 (PostMan까지 확인함.)
     @GetMapping("list")
     public List<ReplyDTO> showList() {
         return replyService.getList();

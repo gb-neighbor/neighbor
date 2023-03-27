@@ -11,8 +11,5 @@ import java.util.List;
 public interface AskAdminAnswerMapper {
 
 //    관리자 페이지 문의사항에 답변하기
-    public void insertAskAdminAnswer(AskAdminAnswerVO askAdminAnswerVO);
-
-//    관리자 페이지 문의목록 전체보기
-    public List<AskAdminAnswerDTO> selectAll();
+    public void insertAskAdminAnswer(AskAdminAnswerDTO askAdminAnswerDTO);
 }
