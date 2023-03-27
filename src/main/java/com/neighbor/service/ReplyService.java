@@ -28,4 +28,9 @@ public class ReplyService {
         return replyDAO.findAllBy();
     }
 
+//    후기글 전체글 수
+    public Integer getCountAll() {
+        return replyDAO.countAll();
+    }
+
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.ReplyMapper">
-    <!--후기 전체조회-->
+    <!-- 후기 전체 조회-->
     <select id="selectAll" resultType="ReplyDTO">
-        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, board_id, member_nickname, (select count(distinct reply_id) from tbl_reply) as countTotalReplys
+        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, board_id, member_nickname
         from tbl_member m join tbl_reply r
         on m.member_id = r.member_id order by reply_id desc
     </select>
@@ -16,10 +16,16 @@
 
     <!--대시보드 후기글 부분 조회-->
     <select id="selectAllBy" resultType="ReplyDTO">
-        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, board_id, member_nickname, (select count(distinct reply_id) from tbl_reply) as countTotalReplys
+        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, board_id, member_nickname
         from tbl_member m join tbl_reply r
         on m.member_id = r.member_id order by reply_id desc
         limit 5
+    </select>
+
+    <!--후기 총 수-->
+    <select id="countAll" resultType="Integer">
+        select count(distinct reply_id) as countTotalReplys
+        from tbl_reply
     </select>
 
 </mapper>

@@ -17,4 +17,7 @@ public interface ReplyMapper {
 
 //    대시보드 부분 조회
     public List<ReplyDTO> selectAllBy();
+
+//    후기목록 전체 글 수
+    public Integer countAll();
 }
