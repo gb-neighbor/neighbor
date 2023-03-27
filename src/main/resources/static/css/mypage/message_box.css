@@ -45,6 +45,7 @@ div#content-wrap span{
 body{
     letter-spacing: -0.05em;
     margin: 0;
+    zoom: 100%;
 }
 
 *{
