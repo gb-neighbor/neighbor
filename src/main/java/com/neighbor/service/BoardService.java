@@ -26,7 +26,7 @@ public class BoardService implements FileService{
         boardFileDAO.save(boardFileVO);
     }
 
-    //    대시보드 게시글 전체 조회
+    //  게시글 전체 조회
     public List<BoardDTO> getList(){
         return boardDAO.findAll();
     }
@@ -34,6 +34,11 @@ public class BoardService implements FileService{
     //    게시판 목록 삭제
     public void delete(Long boardId) {
         boardDAO.delete(boardId);
+    }
+
+//    대시보드 게시글 조회
+    public List<BoardDTO> getListBy() {
+        return boardDAO.findAllBy();
     }
 
 }

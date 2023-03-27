@@ -13,7 +13,7 @@ public class ReplyService {
 
     private final ReplyDAO replyDAO;
 
-    //    대쉬보드 게시글 관리
+    //    후기글 전체 조회
     public List<ReplyDTO> getList() {
         return replyDAO.findAll();
     }
@@ -22,4 +22,10 @@ public class ReplyService {
     public void delete(Long memberId){
         replyDAO.delete(memberId);
     }
+
+    //  대시보드 후기글 부분 조회
+    public List<ReplyDTO> getListBy() {
+        return replyDAO.findAllBy();
+    }
+
 }
