@@ -25,10 +25,6 @@ public class BoardMapperTests {
         boardDTO.setBoardRegion(1);
         boardDTO.setBoardTitle("테스트 제목 1");
         boardDTO.setMemberId(1L);
-        boardDTO.setFileMainName("156");
-        boardDTO.setFileMainPath("C:path");
-        boardDTO.setFileMainSize("20");
-        boardDTO.setFileMainUuid("fjdklsjfklds");
         boardMapper.insert(boardDTO);
     }
 

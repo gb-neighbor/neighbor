@@ -31,10 +31,10 @@ public class BoardDTO {
     private String memberProfileUuid;
     private String memberProfilePath;
     private Long boardFileId;
-    private String boardFileMainName;
-    private String boardFileMainUuid;
-    private String boardFileMainSize;
-    private String boardFileMainPath;
+    private String fileMainName;
+    private String fileMainUuid;
+    private String fileMainSize;
+    private String fileMainPath;
     private List<BoardFileVO> files;
 
     private String boardRegionKo;
