@@ -18,11 +18,11 @@ public class AskAdminDTO {
     private String memberIdentification;
     private String memberPassword;
     private String memberNickname;
-    private String birth;
-    private String phone;
-    private Integer region;
+    private String memberBirth;
+    private String memberPhone;
+    private Integer memberRegion;
     private String memberEmail;
-    private String hiSentence;
+    private String memberHiSentence;
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
     private String memberProfilePath;

@@ -9,6 +9,6 @@ public class ReplyFileVO {
     private Long replyFileId;
     private String replyFileUuid;
     private String replyFileOriginalName;
-    private String filePath;
+    private String replyFilePath;
     private Long replyId;
 }

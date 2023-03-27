@@ -24,6 +24,11 @@ public class MemberDAO {
     public void delete(Long memberId) {
         memberMapper.delete(memberId);
     }
+    
+//    회원관리 멤버 총 수
+    public Integer countAll() {
+        return memberMapper.countAll();
+    }
 
 
 }
