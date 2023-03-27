@@ -41,8 +41,11 @@ public class BoardController {
     //    boardDTO 실패
 //    boardVO랑 파일 List로 받아오는거 실패
     @PostMapping("save")
-    public ResponseEntity<String> writeBoard( List<BoardDTO> files){
-        return ResponseEntity.ok("완료");
+    public void writeBoard(BoardDTO boardDTO){
+//        log.info(boardDTO.getBoardContent());
+//        log.info(boardDTO.getFiles().toString());
+//        log.info(boardDTO.getFileMainName());
+//        잘 나오는 거 확인
     }
 
 

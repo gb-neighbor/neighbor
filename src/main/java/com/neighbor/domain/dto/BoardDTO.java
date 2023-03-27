@@ -1,7 +1,10 @@
 package com.neighbor.domain.dto;
 
+import com.neighbor.domain.vo.BoardFileVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Data
@@ -28,11 +31,11 @@ public class BoardDTO {
     private String memberProfileUuid;
     private String memberProfilePath;
     private Long boardFileId;
-    private String boardFileOriginalName;
-    private String boardFileUuid;
-    private String boardFilePath;
-    private String boardFileSize;
-    private Integer countTotalBoards;
+    private String fileMainName;
+    private String fileMainUuid;
+    private String fileMainSize;
+    private String fileMainPath;
+    private List<BoardFileVO> files;
 
     private String boardRegionKo;
     private String[] boardRegionArr = {"전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
@@ -43,4 +46,5 @@ public class BoardDTO {
     public void Change(Integer index){
         this.boardRegionKo = this.boardRegionArr[index];
     }
+
 }

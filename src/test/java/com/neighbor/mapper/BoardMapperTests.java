@@ -1,6 +1,7 @@
 package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +19,17 @@ public class BoardMapperTests {
 
     @Test
     public void testInsert(){
-        BoardVO boardVO = new BoardVO();
-        boardVO.setBoardContent("테스트 내용1 ");
-        boardVO.setBoardRegion(1);
-        boardVO.setBoardTitle("테스트 제목 1");
-        boardVO.setMemberId(1L);
-        boardMapper.insert(boardVO);
+        BoardDTO boardDTO = new BoardDTO();
+        BoardFileVO boardFileVO = new BoardFileVO();
+        boardDTO.setBoardContent("테스트 내용1 ");
+        boardDTO.setBoardRegion(1);
+        boardDTO.setBoardTitle("테스트 제목 1");
+        boardDTO.setMemberId(1L);
+        boardDTO.setFileMainName("156");
+        boardDTO.setFileMainPath("C:path");
+        boardDTO.setFileMainSize("20");
+        boardDTO.setFileMainUuid("fjdklsjfklds");
+        boardMapper.insert(boardDTO);
     }
 
     @Test

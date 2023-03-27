@@ -6,11 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class BoardFileVO {
+
     private Long boardFileId;
-    private String boardFileOriginalName;
-    private String boardFileUuid;
-    private String boardFilePath;
-    private String boardFileSize;
+    private String fileDetailName;
+    private String fileDetailUuid;
+    private String fileDetailPath;
+    private String fileDetailSize;
     private Long boardId;
 
 }

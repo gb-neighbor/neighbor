@@ -7,8 +7,10 @@ import java.util.List;
 
 @Mapper
 public interface BoardFileMapper {
-//    파일 추가
-    public void insert(BoardFileVO boardFileVO);
+//    메인 파일 추가
+    public void insertMain(BoardFileVO boardFileVO);
+//     디테일 파일 추가
+    public void insertDetail(List<BoardFileVO> files);
 //  파일 전체 조회
     public List<BoardFileVO> selectAll(Long boardId);
 //    파일 삭제
