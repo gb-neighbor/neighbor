@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,7 @@ public class BoardController {
         return "kjp/product-registration";
     }
 
+
     @GetMapping("main")
     public String goMain(){
         return "main/main";
@@ -41,20 +43,23 @@ public class BoardController {
     //    boardDTO 실패
 //    boardVO랑 파일 List로 받아오는거 실패
     @PostMapping("save")
-    public RedirectView writeBoard(BoardDTO boardDTO){
+    public RedirectView writeBoard(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
 //        나중에 session에서 Id값 가져오기
         boardDTO.setMemberId(1L);
         boardService.write(boardDTO);
         boardFileService.upload(boardDTO);
-
-        return new RedirectView("list");
+        return new RedirectView("boards/detail/{boardId}");
     }
 
-    @GetMapping("list")
-    public void goList(){
-        
+    @GetMapping("detail")
+    public String goDetail(){
+        return "kjp/product-detail2";
     }
 
+    @GetMapping("detail/{boardId}")
+    public String goList(@PathVariable("boardId") Long boardId){
+        return "";
+    }
 
 
 

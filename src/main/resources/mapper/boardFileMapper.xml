@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.BoardFileMapper">
-    <insert id="insertDetail">
+    <insert id="insertDetail" parameterType="java.util.List">
             insert into tbl_board_file
             (board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id)
+            values
             <foreach collection="files" item="file" separator=",">
-                values(#{file.fileDetailName}, #{file.fileDetailUuid}, #{file.fileDetailPath}, #{file.fileDetailSize}, #{boardId})
+                (#{file.fileDetailName}, #{file.fileDetailUuid}, #{file.fileDetailPath}, #{file.fileDetailSize}, #{boardId})
             </foreach>
     </insert>
 

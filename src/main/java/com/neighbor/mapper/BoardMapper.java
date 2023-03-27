@@ -13,8 +13,11 @@ public interface BoardMapper {
 
 //    마지막에 추가된 boardId 가져오기
     public Long getLastBoardId();
+    
+//    BoardDetail로 이동시 모든 정보 가져오기
+    public BoardDTO getBoardInfo();
 
-//    게시글 조회
+//     지역으로 게시글 조회
     public BoardDTO select(Integer boardRegion);
 
 //  관리자 페이지 판매 게시글 관리 판매 대기중목록 불러오기
