@@ -92,4 +92,24 @@ public class TestController {
         return "mypage/user_leave";
     }
 
+    @GetMapping("19")
+    public String manageBoard(){
+        return "admin/manage-board";
+    }
+
+    @GetMapping("20")
+    public String manageQna(){
+        return "admin/manage-qna";
+    }
+
+    @GetMapping("21")
+    public String manageReply(){
+        return "admin/manage-reply";
+    }
+
+    @GetMapping("22")
+    public String manageUser(){
+        return "admin/manage-user";
+    }
+
 }

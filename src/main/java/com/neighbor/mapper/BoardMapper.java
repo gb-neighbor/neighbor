@@ -16,8 +16,19 @@ public interface BoardMapper {
 
 //    게시글 조회
     public BoardDTO select(Integer boardRegion);
-//    게시글 전체 조회
+
+//  관리자 페이지 판매 게시글 관리 판매 대기중목록 불러오기
+    public List<BoardDTO> selectWait();
+
+//    관리자 페이지 판매 게시글 관리 전체 글 수
+    public Integer countAll();
+
+//    관리자 페이지 판매 게시글 판매 대기중 글 수
+    public Integer count();
+
+//    관리자 페이지 게시글 전체 조회
     public List<BoardDTO> selectAll();
+
 //  대시보드  게시글 부분 조회
     public List<BoardDTO> selectAllBy();
 

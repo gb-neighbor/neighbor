@@ -24,9 +24,6 @@ public class PageDTO {
         return createPageDTO(criteria, total, 10);
     }
 
-
-
-
     public PageDTO createPageDTO(Criteria criteria, int total, int pageCount){
         this.criteria = criteria;
         this.total = total;
