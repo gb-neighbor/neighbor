@@ -16,5 +16,6 @@
         <typeAlias type="com.neighbor.domain.dto.AskAdminAnswerDTO" alias="askAdminAnswerDTO"/>
         <typeAlias type="com.neighbor.domain.dto.ReplyDTO" alias="replyDTO"/>
         <typeAlias type="com.neighbor.domain.dto.MemberDTO" alias="memberDTO"/>
+        <typeAlias type="com.neighbor.domain.dto.MessageDTO" alias="messageDTO"/>
     </typeAliases>
 </configuration>

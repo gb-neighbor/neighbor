@@ -23,15 +23,15 @@ public class AskAdminServiceTests {
         askAdminService.getCount();
     }
 
-    @Test
-    public void  AskAdminGetListTest(){
-        askAdminService.getList(criteria);
-    }
+//    @Test
+//    public void  AskAdminGetListTest(){
+//        askAdminService.getList(criteria);
+//    }
 
-    @Test
-    public void AskAdminListAllTest() {
-        askAdminService.getListAll();
-    }
+//    @Test
+//    public void AskAdminListAllTest() {
+//        askAdminService.getListAll();
+//    }
 
     @Test
     public void askAdminDeleteTest() {

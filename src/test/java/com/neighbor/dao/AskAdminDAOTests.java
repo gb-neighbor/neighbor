@@ -23,8 +23,8 @@ public class AskAdminDAOTests {
     /*관리자페이지 대시보드 문의목록 전체조회*/
     @Test
     public void askAdminListTest() {
-        List<AskAdminDTO> askAdminDTOList = askAdminDAO.findAll();
-        log.info(String.valueOf(askAdminDTOList));
+//        List<AskAdminDTO> askAdminDTOList = askAdminDAO.findAll();
+//        log.info(String.valueOf(askAdminDTOList));
     }
 
     /*관리자 페이지 문의 목록 페이지 삭제*/

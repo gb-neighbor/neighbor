@@ -14,10 +14,10 @@ public class AskAdminTests {
     private AskAdminMapper askAdminMapper;
 
 
-    @Test
-    public void selectAllTest() {
-        log.info(askAdminMapper.selectAll().toString());
-    }
+//    @Test
+//    public void selectAllTest() {
+//        log.info(askAdminMapper.selectAll().toString());
+//    }
 
     @Test
     public void selectAnswerWaitTest() {

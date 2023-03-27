@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.PurchaseMapper">
-
+    <!-- 거래 내역 -->
+    <select id="selectOne" resultType="purchaseVO">
+        select purchase_id, board_id, customer_id
+        from tbl_purchase where customer_id = #{customerId} and board_id = #{boardId}
+    </select>
 </mapper>
