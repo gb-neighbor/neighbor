@@ -26,7 +26,7 @@ public class BoardService implements FileService{
         boardFileDAO.save(boardFileVO);
     }
 
-    //  게시글 전체 조회
+    //  관리자 페이지 판매 목록 게시글 전체 조회
     public List<BoardDTO> getList(){
         return boardDAO.findAll();
     }
@@ -39,6 +39,21 @@ public class BoardService implements FileService{
 //    대시보드 게시글 조회
     public List<BoardDTO> getListBy() {
         return boardDAO.findAllBy();
+    }
+
+//    관리자 페이지 판매목록 게시글 판매 대기중인 목록만 보기
+    public List<BoardDTO> getWaitList() {
+        return boardDAO.findWait();
+    }
+
+//    관리자 페이지 판매 목록 게시글 전체 글 수
+    public Integer getCountAll() {
+        return boardDAO.countAll();
+    }
+
+//  관리자 페이지 판매 목록 게시글 판매대기중인 글 수
+    public Integer getCount() {
+        return boardDAO.count();
     }
 
 }

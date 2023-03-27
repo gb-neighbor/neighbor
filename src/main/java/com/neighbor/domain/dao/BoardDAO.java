@@ -25,8 +25,23 @@ public class BoardDAO {
         return boardMapper.getLastBoardId();
     }
 
-//    게시글 전체 조회
+//    관리자 페이지 판매목록 게시글 전체 조회
     public List<BoardDTO> findAll(){return boardMapper.selectAll();}
+
+//    관리자 페이지 판매 목록 게시글
+    public List<BoardDTO> findWait() {
+        return boardMapper.selectWait();
+    }
+
+//    관리자 페이지 판매 목록 전체 글 수
+    public Integer countAll() {
+        return boardMapper.countAll();
+    }
+
+//    관리자 페이지 판매 목록 판매 대기중인 글 수
+    public Integer count() {
+        return boardMapper.count();
+    }
 
 //    대시보드 게시글 부분 조회
     public List<BoardDTO> findAllBy(){return boardMapper.selectAllBy();}
@@ -35,6 +50,5 @@ public class BoardDAO {
     public void delete(Long boardId) {
         boardMapper.delete(boardId);
     }
-
 
 }
