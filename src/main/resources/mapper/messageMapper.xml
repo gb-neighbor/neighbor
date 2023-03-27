@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.MessageMapper">
-<!-- 내가 보낸 쪽지 전체 -->
-    <select id="findBySenderId" resultType="memberVO">
-        select message_id, message_content, message_register_date, ms.board_id, board_title, member_nickname, message_sender_id, message_getter_id
-from tbl_message ms join tbl_board b on ms.board_id=b.board_id join tbl_member m on m.member_id=ms.message_getter_id  where message_sender_id = #{messageSenderId}
+    <!-- 내가 보낸 쪽지 전체 -->
+    <select id="selectAll" resultType="messageDTO">
+        select
+            if(m.message_sender_id = #{memberId}, m.message_getter_id, m.message_sender_id) as target_id,
+            max(m.message_content) as message_content,
+             date_format(max(m.message_register_date), '%y-%m-%d %h:%i') as message_register_date,
+            b.board_title,
+            max(m2.member_nickname) as target_nickname,
+            max(m2.member_profile_uuid) as target_profile_uuid,
+            max(m2.member_profile_path) as target_profile_path
+        from
+            tbl_message m
+            join tbl_board b on m.board_id = b.board_id
+            join tbl_member m1 on m1.member_id = m.message_sender_id or m1.member_id = m.message_getter_id
+            join tbl_member m2 on m2.member_id = if(m.message_sender_id = #{memberId}, m.message_getter_id, m.message_sender_id)
+        where
+            m.message_sender_id = #{memberId} or m.message_getter_id = #{memberId}
+        group by
+            partner_id, board_title
+        order by
+            message_register_date desc
     </select>
 
-    <select id="findByBoardId" resultType="memberVO">
-        select message_id, message_content, message_register_date, board_id, message_sender_id, message_getter_id
-        from tbl_message where message_sender_id = #{messageSenderId} and board_id = #{boardId}
-    </select>
-
-    <select id="findBy" resultType="purchaseVO">
-        select purchase_id, board_id, customer_id
-        from tbl_purchase where customer_id = #{customerId} and board_id = #{boardId}
+    <!-- 해당 게시글의 쪽지 내역-->
+    <select id="selectByBoardId" resultType="messageVO">
+        select message_id, message_content, message_register_date, board_id, message_sender_id, message_getter_id from tbl_message
+        where board_id=#{boardId} and ((message_getter_id =#{memberId} and message_sender_id =#{targetId}) or (message_getter_id =#{targetId} and message_sender_id =#{memberId}))
+        order by message_register_date desc
     </select>
 
 </mapper>

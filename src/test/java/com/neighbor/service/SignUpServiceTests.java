@@ -25,11 +25,11 @@ public class SignUpServiceTests {
         memberVO.setMemberPassword("ids30312345!");
         memberVO.setMemberNickname("lym");
         memberVO.setMemberName("임의택");
-        memberVO.setBirth("19980728");
+        memberVO.setMemberBirth("19980728");
         memberVO.setMemberEmail("dlstk3031@naver.com");
-        memberVO.setPhone("01072716604");
-        memberVO.setRegion(1);
-        memberVO.setHiSentence("안녕하세요");
+        memberVO.setMemberPhone("01072716604");
+        memberVO.setMemberRegion(1);
+        memberVO.setMemberHiSentence("안녕하세요");
         memberVO.setMemberProfileOriginalName("테스트1.png");
         memberVO.setMemberProfilePath("2023/3/27");
         memberVO.setMemberProfileSize("1024");
