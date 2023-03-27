@@ -115,7 +115,7 @@
                     <div class="member-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
-                            <input class="member-search" type="text" placeholder="문의 검색">
+                            <input class="member-search" type="text" placeholder="문의 검색" th:field="*{keyword}">
                         </div>
                     </div>
                 </div>
@@ -153,298 +153,80 @@
                         </div>
                     </div>
 
+                    <div th:each="Ask:${Asks}">
+                        <div class="item-list-contents" th:object="${Ask}">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="">
+                            </div>
+                            <div class="qna-num" th:text="*{askAdminId}">
+
+                            </div>
+                            <div class="qna-title" th:text="*{askAdminTitle}">
+
+                            </div>
+                            <div class="user-nick-name" th:text="*{memberId}">
+
+                            </div>
+                            <div class="qna-ask-day" th:text="*{askAdminRegisterDate}">
+
+                            </div>
+                            <div class="qna-answer-day">
+                                -
+                            </div>
+                            <div class="qna-status qna-status-false" th:text="*{askAdminStatus}">
+                                답변 대기중
+                            </div>
+                            <div class="detail">
+                                <button class="detail-button modal7" type="submit">
+                                    <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                                </button>
+                            </div>
+                            <div id="my_modal7" class="my_modal">
+                                <a class="modal_close_btn">✖</a>
+                                <div class="comment-writer">작성자: 벅벅코딩</div>
+                                <div class="comment-title">제목: 메일이 안와요</div>
+                                <div class="comment-detail">
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                </div>
+                                <div class="qna-manage">
+                                    <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                    <input class="qna-submit-btn" type="submit" value="전송하기">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    <div th:if="${not #lists.isEmpty(results)}">-->
+<!--                        <ul>-->
+<!--                            <li th:each="result : ${results}" th:text="${result}" />-->
+<!--                        </ul>-->
+<!--                    </div>-->
                     <!-- 여기부터 내용 -->
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="qna-num">
-                            15
-                        </div>
-                        <div class="qna-title">
-                            메일이 안와요
-                        </div>
-                        <div class="user-nick-name">
-                            벅벅코딩
-                        </div>
-                        <div class="qna-ask-day">
-                            2023-02-22 16:42:39
-                        </div>
-                        <div class="qna-answer-day">
-                            -
-                        </div>
-                        <div class="qna-status qna-status-false">
-                            답변 대기중
-                        </div>
-                        <div class="detail">
-                            <button class="detail-button modal7" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal7" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="qna-num">
-                            15
-                        </div>
-                        <div class="qna-title">
-                            메일이 안와요
-                        </div>
-                        <div class="user-nick-name">
-                            벅벅코딩
-                        </div>
-                        <div class="qna-ask-day">
-                            2023-02-22 16:42:39
-                        </div>
-                        <div class="qna-answer-day">
-                            -
-                        </div>
-                        <div class="qna-status qna-status-false">
-                            답변 대기중
-                        </div>
-                        <div class="detail">
-                            <button class="detail-button modal7" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal7" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="qna-num">
-                            15
-                        </div>
-                        <div class="qna-title">
-                            메일이 안와요
-                        </div>
-                        <div class="user-nick-name">
-                            벅벅코딩
-                        </div>
-                        <div class="qna-ask-day">
-                            2023-02-22 16:42:39
-                        </div>
-                        <div class="qna-answer-day">
-                            -
-                        </div>
-                        <div class="qna-status qna-status-false">
-                            답변 대기중
-                        </div>
-                        <div class="detail">
-                            <button class="detail-button modal7" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal7" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="qna-num">
-                            15
-                        </div>
-                        <div class="qna-title">
-                            메일이 안와요
-                        </div>
-                        <div class="user-nick-name">
-                            벅벅코딩
-                        </div>
-                        <div class="qna-ask-day">
-                            2023-02-22 16:42:39
-                        </div>
-                        <div class="qna-answer-day">
-                            -
-                        </div>
-                        <div class="qna-status qna-status-false">
-                            답변 대기중
-                        </div>
-                        <div class="detail">
-                            <button class="detail-button modal7" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal7" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="qna-num">
-                            15
-                        </div>
-                        <div class="qna-title">
-                            메일이 안와요
-                        </div>
-                        <div class="user-nick-name">
-                            벅벅코딩
-                        </div>
-                        <div class="qna-ask-day">
-                            2023-02-22 16:42:39
-                        </div>
-                        <div class="qna-answer-day">
-                            -
-                        </div>
-                        <div class="qna-status qna-status-false">
-                            답변 대기중
-                        </div>
-                        <div class="detail">
-                            <button class="detail-button modal7" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal7" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check4" class="normal" value="">
-                        </div>
-                        <div class="qna-num">
-                            9
-                        </div>
-                        <div class="qna-title">
-                            배너 광고 문의드립니다.
-                        </div>
-                        <div class="user-nick-name">
-                            네이버 마케팅팀
-                        </div>
-                        <div class="qna-ask-day">
-                            2023-02-23 14:54:21
-                        </div>
-                        <div class="qna-answer-day">
-                            2023-02-23 19:41:31
-                        </div>
-                        <div class="qna-status qna-status-true">
-                            답변완료
-                        </div>
-                        <div class="detail">
-                            <button class="detail-button modal2" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal2" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="page-button-box">
-                        <input class="page-button" type="submit" value="1">
-                        <input class="page-button2" type="submit" value="2">
+                        <div th:object="${pagination}">
+                            <div style="text-align: center">
+                                <a class="page-button" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                                <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                    <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                                    <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                                </th:block>
+                                <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+                            </div>
+                            <form th:action="@{/askAdmins/list}" th:object="${criteria}" name="pageForm">
+                                <input type="hidden" th:field="*{page}">
+                            </form>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -453,4 +235,36 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+
+    let $pages = $("a.page-button");
+    // let queryString = "${pagination.criteria.queryString}";
+
+    $pages.on("click", function(e){
+        e.preventDefault();
+        let page = $(this).attr("href");
+        let amount = 6;
+        let url = "/askAdmins/list?page=" + page+"&amount="+amount;
+
+        location.href = url;
+    });
+    // input 태그 선택
+    const $input = $("a.member-search");
+
+    // 입력이 시작되면 자동완성 결과를 보여주는 이벤트 리스너
+    $input.addEventListener('input', function() {
+        // 입력된 검색어를 가져옴
+        const keyword = $input.value;
+
+        // 검색어를 기반으로 검색 결과를 가져옴
+        fetch('/search?keyword=' + encodeURIComponent(keyword))
+            .then(response => response.json())
+            .then(data => {
+                // 검색 결과를 화면에 보여줌
+                innerHTML = data.html;
+            });
+    });
+
+
+</script>
 </html>

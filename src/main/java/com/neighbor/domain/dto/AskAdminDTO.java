@@ -26,5 +26,4 @@ public class AskAdminDTO {
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
     private String memberProfilePath;
-    private Integer countTotalAsks;
 }

@@ -19,7 +19,7 @@
             </a>
         </div>
         <div class="form-wrapper">
-            <form action="" name="loginForm">
+            <form th:action="@{/logins/log-in}" method="post">
                 <input type="text" placeholder="아이디" class="id" name="memberIdentification">
                 <input type="password" placeholder="비밀번호 8자 이상" class="password" name="memberPassword">
                 <button type="button" class="login-button btn" onclick="send()">로그인</button>
