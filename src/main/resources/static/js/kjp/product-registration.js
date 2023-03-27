@@ -34,12 +34,10 @@ $("input[id='cover-file']").on("change", function() {
 
             $("input[id='cover-file']")[0].files = dataTransfer.files;
             let text2 = "";
-            console.log("uuid는 " + globalThis.uuids)
-
                 text2 =
                     `
                     <input type="hidden" name="fileMainName" value="${$files2.name}">
-                    <input type="hidden" name="fileMainUuid" value="${globalThis}">
+                    <input type="hidden" name="fileMainUuid" value="${globalThis.uuid}">
                     <input type="hidden" name="fileMainPath" value="${toStringByFormatting(new Date())}">
                     <input type="hidden" name="fileMainSize" value="${$files2.size}">
                     `
