@@ -32,7 +32,7 @@
                 <a href="" class="first_letter select">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
                     <a href="" class="second_letter except_home_letter">FAQ</a>
-                    <a href="" class="second_letter except_home_letter select">1:1 문의</a>
+                    <a th:href="@{write}" class="second_letter except_home_letter select">1:1 문의</a>
                 </div>
             </li>
 
@@ -53,7 +53,7 @@
     <article class="divide_btns">
         <ul class="btn_list">
             <li class="activate">
-                <a class="btn_setting select_btn" href="">1:1문의</a>
+                <a class="btn_setting select_btn" th:href="@{write}">1:1문의</a>
             </li>
             <li>
                 <a class="btn_setting" href="">FAQ</a>
@@ -88,7 +88,7 @@
                     </div>
                     <input type="text" name="search_text" id="search_text" class="search_input" value="" placeholder="제목으로 검색">
                     <button type="submit" class="search_btn">검색</button>
-                    <a href="" class="goingToAsk">1:1문의 쓰기</a>
+                    <a th:href="@{write}" class="goingToAsk">1:1문의 쓰기</a>
                 </div>
             </div>
         </form>
@@ -101,74 +101,17 @@
                 <li class="inquiry_date">등록일</li>
             </ul>
 
-            <ul class="my_inquiry">
-                <li class="inquiry_num"></span> 1</li>
+            <ul class="my_inquiry" th:each="item:${askAdmin}">
+                <li class="inquiry_num"></span>1</li>
                 <li class="inquiry_my_title">
                     <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" href="">
+                    <a class="detail_link" href="" th:text="${item.askAdminTitle}">
                         로그인이 안돼요!
-
                     </a>
                     </span>
                 </li>
                 <li class="inquiry_status"><span class="inquiry_status_color">답변완료</span></li>
-                <li class="inquiry_date">2023.03.15</li>
-            </ul>
-
-            <ul class="my_inquiry">
-                <li class="inquiry_num"></span> 2</li>
-                <li class="inquiry_my_title">
-                    <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" href="">
-                        로그인이 안돼요!
-
-                    </a>
-                    </span>
-                </li>
-                <li class="inquiry_status"><span class="inquiry_status_color">답변완료</span></li>
-                <li class="inquiry_date">2023.03.15</li>
-            </ul>
-
-            <ul class="my_inquiry">
-                <li class="inquiry_num"></span> 3</li>
-                <li class="inquiry_my_title">
-                    <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" href="">
-                        로그인이 안돼요!
-
-                    </a>
-                    </span>
-                </li>
-                <li class="inquiry_status"><span class="inquiry_status_color">답변완료</span></li>
-                <li class="inquiry_date">2023.03.15</li>
-            </ul>
-
-            <ul class="my_inquiry">
-                <li class="inquiry_num"></span> 4</li>
-                <li class="inquiry_my_title">
-                    <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" href="">
-                        로그인이 안돼요!
-
-                    </a>
-                    </span>
-                </li>
-                <li class="inquiry_status"><span class="inquiry_status_color">답변완료</span></li>
-                <li class="inquiry_date">2023.03.15</li>
-            </ul>
-
-            <ul class="my_inquiry">
-                <li class="inquiry_num"></span> 5</li>
-                <li class="inquiry_my_title">
-                    <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" href="">
-                        로그인이 안돼요!
-
-                    </a>
-                    </span>
-                </li>
-                <li class="inquiry_status"><span class="inquiry_status_color">답변완료</span></li>
-                <li class="inquiry_date">2023.03.15</li>
+                <li class="inquiry_date" th:text="${item.askAdminRegisterDate}"></li>
             </ul>
         </div>
 

@@ -3,6 +3,7 @@ package com.neighbor.service;
 import com.neighbor.domain.dao.AskAdminDAO;
 import com.neighbor.domain.dto.AskAdminDTO;
 import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.vo.AskAdminVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,17 @@ public class AskAdminService {
 
     //   대시보드 문의사항 부분조회
     public List<AskAdminDTO> getListBy(){return askAdminDAO.findAllBy();}
+
+
+    //    문의 작성
+    public void write(AskAdminVO askAdminVO){
+        askAdminDAO.register(askAdminVO);
+    }
+
+    //    내가 작성한 글 리스트
+    public List<AskAdminVO> listOne(Long memberId){
+        return askAdminDAO.findById(memberId);
+    }
 
 
 }

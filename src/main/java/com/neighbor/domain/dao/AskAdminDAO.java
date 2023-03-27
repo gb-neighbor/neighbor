@@ -2,6 +2,7 @@ package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.AskAdminDTO;
 import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.vo.AskAdminVO;
 import com.neighbor.mapper.AskAdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -39,5 +40,16 @@ public class AskAdminDAO {
 
     //  대시보드 문의사항 부분 조회
     public List<AskAdminDTO> findAllBy(){return askAdminMapper.selectAllBy();}
+
+
+    //     질문 작성
+    public void register(AskAdminVO askAdminVO){
+        askAdminMapper.insert(askAdminVO);
+    }
+
+    //     내가 작성한 문의 목록
+    public List<AskAdminVO> findById(Long memberId) {
+        return askAdminMapper.selectOne(memberId);
+    }
 
 }

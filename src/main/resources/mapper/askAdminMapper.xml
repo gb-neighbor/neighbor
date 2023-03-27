@@ -42,12 +42,24 @@
     where ask_admin_status = 0
     </select>
 
-
-
     <delete id="delete">
         delete from tbl_ask_admin
         where ask_admin_id=#{askAdminId}
     </delete>
+
+    <insert id="insert" parameterType="AskAdminVO">
+        INSERT INTO tbl_ask_admin
+        (ask_admin_title, ask_admin_content, ask_admin_register_date,member_id)
+        VALUES(#{askAdminTitle}, #{askAdminContent}, CURRENT_TIMESTAMP, #{memberId});
+    </insert>
+
+    <select id="selectOne" parameterType="long" resultType="AskAdminVO">
+        SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
+        FROM tbl_ask_admin
+        where member_id = #{member_id};
+    </select>
+
+
 
 
 </mapper>
