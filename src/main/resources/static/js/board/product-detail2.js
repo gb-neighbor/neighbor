@@ -143,12 +143,6 @@ function openModalBanner(num){ /* 괄호에 num으로 받기 */
 }
 
 
-$('.modalAdd').on('click', function() {
-	// 모달창 띄우기
-	modal($('.my_modalAdd'));
-});
-
-
 function getLength(num)
 {
 	var contentValue = document.getElementById("write-section"+num).value;

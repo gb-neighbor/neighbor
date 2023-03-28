@@ -14,7 +14,7 @@ public interface MessageMapper {
     public List<MessageRoomDTO> selectAll(Long memberId);
 
 //    <!-- 해당 게시글의 쪽지 내역-->
-    public List<MessageVO> selectOne(Long messageRoomId);
+    public List<MessageVO> selectMessage(Long messageRoomId);
 
 //    <!-- 전체 쪽지 개수 -->
     public Integer selectCountList(Long memberId);
@@ -24,6 +24,9 @@ public interface MessageMapper {
 
 //    <!-- 쪽지 대화 내역 중 가장 최근 날짜 -->
     public String selectLatestDate(Long messageRoomId);
+
+//    <!-- 대화방 번호 가져오기 -->
+    public Long selectMessageRoomId(Long memberId, Long boardId);
 
 
 
