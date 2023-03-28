@@ -15,8 +15,8 @@ public class ReplyService {
     private final ReplyDAO replyDAO;
 
     //  후기관리 삭제
-    public void delete(Long memberId){
-        replyDAO.delete(memberId);
+    public void delete(List<String> replyIds){
+        replyIds.stream().map(replyId -> Long.parseLong(replyId)).forEach(replyDAO::delete);
     }
 
     //  대시보드 후기글 부분 조회

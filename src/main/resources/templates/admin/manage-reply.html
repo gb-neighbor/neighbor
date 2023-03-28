@@ -99,7 +99,7 @@
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
                             <form class="reply-search-form" th:action="@{/replys/list}">
                                 <input class="reply-search keyword" name="keyword" type="text" placeholder="후기 검색">
-                                <button type="submit">검색</button>
+                                <button type="submit" onclick="search()">검색</button>
                             </form>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                     <!-- 여기부터 내용 -->
                     <div class="item-list-contents" th:each="reply:${replys}">
                         <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
+                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">
                         </div>
                         <div class="reply-num" th:text="*{reply.replyId}"></div>
                         <div class="board-num" th:text="*{reply.boardId}"></div>
@@ -258,38 +258,46 @@
         });
     }
 
+    /*검색어 계속 남아 있게 하는 js 시작*/
+    // 페이지가 로드될 때 실행되는 함수
+    window.onload = function() {
+        // 검색어가 저장되어 있으면 검색창에 표시
+        var savedKeyword = sessionStorage.getItem('savedKeyword');
+        if (savedKeyword !== null) {
+            document.querySelector('.keyword').value = savedKeyword;
+        }
+    }
+
+    // 검색 버튼 클릭 시 실행되는 함수
+    function search() {
+        // 검색어 저장
+        var keyword = document.querySelector('.keyword').value;
+        sessionStorage.setItem('savedKeyword', keyword);
+    }
+    /*검색어 계속 남아 있게 하는 js 끝*/
 
 
+    /* delete 버튼 클릭 시 ajax실행*/
+    $('.reply-delete-button').on('click', function() {
+        var checkedIds = new Array();
+        // 체크 박스 체크된 값
+        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function(){
+            console.log(this.innerText);
+            checkedIds.push(this.innerText);
+        });
 
+        console.log(checkedIds);
 
+        $.ajax({
+            url: "/replys/delete",
+            type: "delete",
+            data: {"checkedIds": checkedIds},
+            success: function(){
+                location.reload();
+            }
 
-    /*  답글 삭제를 위한 JS */
-    // $('.reply-delete-button').on("click", function() {
-    //     if($("input:checkbox[id='check1']:checked").length==0) {
-    //         alert("삭제할 항목을 선택해 주세요");
-    //         return;
-    //     }
-    //     var txt = '';
-    //
-    //     $("input:checkbox[id='check1']:checked").each(function(i,e){
-    //
-    //         let replyId = $(this).parent().children(".reply-num").text();
-    //
-    //         /*$.ajax({
-    //             url: contextPath + "/adminMenteeDeleteAction.admin",
-    //             data:{menteeId: menteeId},
-    //             success: function(result){
-    //                 alert(result + "삭제 완료");
-    //             }
-    //
-    //         });*/
-    //
-    //         txt+="&"+"replyId=" + replyId ;
-    //
-    //     });
-    //     txt=txt.replace("&", "");
-    //     location.href = contextPath + "/replys/list?"+txt;
-    // });
+        });
+    });
 
 </script>
 </html>

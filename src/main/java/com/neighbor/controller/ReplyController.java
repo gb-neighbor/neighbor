@@ -19,29 +19,6 @@ import java.util.List;
 public class ReplyController {
     private final ReplyService replyService;
 
-//    //    대쉬보드 게시글 관리 (PostMan까지 확인함.)
-//    @GetMapping("list")
-//    @ResponseBody
-//    public String showList(Criteria criteria, Model model,@RequestParam("keyword") String keyword) {
-//        ReplyDTO replyDTO = new ReplyDTO();
-//        if(criteria.getPage() == 0){
-//            criteria.create(1,6);
-//        }
-//
-//        model.addAttribute("Replys", replyService.getList(criteria.create(criteria.getPage(), criteria.getAmount()))); // 업데이트된 Criteria 객체 전달
-//        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, replyService.getCountAll()));
-//        List<ReplyDTO> replyDTOS = new ArrayList<>();
-//        replyDTOS = replyService.getList(criteria);
-//        for(ReplyDTO replyDTO:replyDTOS){
-//            replyDTO.change(replyDTO.getBoardRegion());
-//        };
-//        model.addAttribute("replys", replyDTOS);
-//        model.addAttribute("replyCount",replyService.getCountAll());
-//        replyDTO.setKeyword(keyword);
-//
-//        return "admin/manage-reply";
-//    }
-
     @GetMapping("list")
     public String showList(Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
         if (criteria.getPage() == 0) {
@@ -64,9 +41,10 @@ public class ReplyController {
 
 
     //  후기관리 삭제 (PostMan까지 확인함.)
-    @DeleteMapping("delete/{memberId}")
-    public void delete(@PathVariable("memberId") Long memberId){
-        replyService.delete(memberId);
+    @DeleteMapping("delete")
+    @ResponseBody
+    public void delete(@RequestParam("checkedIds[]") List<String> checkIds){
+        replyService.delete(checkIds);
     }
 
 
