@@ -69,10 +69,52 @@ check.click(function(){
 
 
 /* 모달창 js */
+// function modal(id) {
+//     var zIndex = 9998;
+//     var modal = $('#my_modal' + id);
+//
+//     // 모달 div 뒤에 희끄무레한 레이어
+//     var bg = $('<div>')
+//         .css({
+//             position: 'fixed',
+//             zIndex: zIndex,
+//             left: '0px',
+//             top: '0px',
+//             width: '100%',
+//             height: '100%',
+//             overflow: 'auto',
+//             // 레이어 색갈은 여기서 바꾸면 됨
+//             backgroundColor: 'rgba(0,0,0,0.4)'
+//         })
+//         .appendTo('body');
+//
+//     modal
+//         .css({
+//             position: 'fixed',
+//             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+//
+//             // 시꺼먼 레이어 보다 한칸 위에 보이기
+//             zIndex: zIndex + 1,
+//
+//             // div center 정렬
+//             top: '50%',
+//             left: '50%',
+//             transform: 'translate(-50%, -50%)',
+//             msTransform: 'translate(-50%, -50%)',
+//             webkitTransform: 'translate(-50%, -50%)'
+//         })
+//         .show()
+//         // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+//         .find('.modal_close_btn')
+//         .on('click', function() {
+//             bg.remove();
+//             modal.hide();
+//         });
+// }
 
 function modal(id) {
-    var zIndex = 9999;
-    var modal = $('#' + id);
+    var zIndex = 9998;
+    var modal = $('#my_modal' + id);
 
     // 모달 div 뒤에 희끄무레한 레이어
     var bg = $('<div>')
@@ -90,6 +132,14 @@ function modal(id) {
         .appendTo('body');
 
     modal
+        .show()
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        .find('.modal_close_btn')
+        .on('click', function() {
+            bg.remove();
+            modal.hide();
+        })
+        .end()
         .css({
             position: 'fixed',
             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
@@ -102,97 +152,15 @@ function modal(id) {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             msTransform: 'translate(-50%, -50%)',
-            webkitTransform: 'translate(-50%, -50%)',
-        })
-        .show()
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-        .find('.modal_close_btn')
-        .on('click', function() {
-            console.log(this.parentElement)
-            bg.remove();
-            modal.hide();
+            webkitTransform: 'translate(-50%, -50%)'
         });
-
 }
 
 
-
-$('.modal1').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal1');
-
-});
-$('.modal2').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal2');
-});
-$('.modal3').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal3');
-});
-$('.modal4').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal4');
-});
-$('.modal5').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal5');
-});
-$('.modal6').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal6');
-});
-$('.modal7').on('click', function() {
-    // 모달창 띄우기
-    modal('my_modal7');
-});
-/* 유찬 수정사항----------------------------------------------------------------------- */
-
-/* manage-board 게시글 내용 누르면 모달 */
-$('.board-contents span').on('click', function(e) {
-    // 모달창 띄우기
-    modal('my_modal7');
-});
-
-/* manage-reply 후기내용 누르면 모달 */
-$(".reply-content span").on('click', function(e) {
-    // 모달창 띄우기
-    modal('my_modal7');
-});
-
-const modal13 = document.querySelector("#my_modal7")
-
-// /* ----------------------------------------------------------------------- */
-//
-// // var submit = document.getElementById('submitButton');
-// // submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
-//
-// function showImage() {
-//     var newImage = document.getElementById('image-show').lastElementChild;
-//     newImage.style.display = "";
-// }
-//
-//
-// function loadFile(input) {
-//     var file = input.files[0];
-//
-//     var name = document.getElementById('fileName');
-//     name.textContent = file.name;
-//
-//     var newImage = document.createElement("img");
-//     newImage.setAttribute("class", 'img');
-//
-//
-//     newImage.src = URL.createObjectURL(file);
-//
-//     newImage.style.width = "70%";
-//     newImage.style.height = "70%";
-//     newImage.style.display = "none";   //버튼을 누르기 전까지는 이미지 숨기기
-//     newImage.style.objectFit = "contain";
-//
-//     var container = document.getElementById('image-show');
-//     container.appendChild(newImage);
-// };
-
+/* manage-reply 게시글 내용 누르면 모달 */
+function openModal(id) {
+    console.log(id);
+    modal(id);
+}
 
 
