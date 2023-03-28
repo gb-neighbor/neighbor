@@ -53,8 +53,13 @@ public class AskAdminService {
 
     //    내가 작성한 글 리스트
     public List<AskAdminVO> listOne(Long memberId){
+
         return askAdminDAO.findById(memberId);
     }
 
+    //    문의 상세 페이지
+    public AskAdminVO detail(Long askAdminId){
+        return askAdminDAO.findByAskAdminId(askAdminId);
+    }
 
 }

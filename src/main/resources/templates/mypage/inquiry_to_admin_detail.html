@@ -50,16 +50,14 @@
 
 <!-- 메뉴 -->
 <section class="wrap">
-
     <article class="detail_content">
         <div class="inquiry_detail_title">
-            <strong>[회원정보문의] </strong><!-- (추가) -->
-            로그인이 안돼요!
-            <p class="inquiry_date">2023-03-15 11:05:23</p><!-- (추가) -->
+            <strong th:text="${askAdmin.askAdminTitle}">[회원정보문의] </strong><!-- (추가) -->
+            <p class="inquiry_date" th:text="${askAdmin.askAdminRegisterDate}">2023-03-15 11:05:23</p><!-- (추가) -->
         </div>
 
-        <div class="inquiry_detail_content">
-            ASDSADSA<br><br>
+        <div class="inquiry_detail_content" th:text="${askAdmin.askAdminContent}">
+            <br><br>
         </div>
 
         <div class="inquiry_detail_reply">
@@ -74,8 +72,8 @@
             <div class="contents">
                 <p>안녕하세요,  이웃집 반찬 입니다.&nbsp;</p>
                 <p><br></p>
-                <p>문의하여 주신 내용으로는 답변을 드리기 어려워,</p>
-                <p><span>1대1 문의로 문의하고자 하시는 내용을 다시 보내주시면 답변 드리겠습니다.&nbsp;</span></p>
+                <p>문의하여 주신 내용을 답변준비중입니다</p>
+                <p><span>문의하고자 하시는 내용이 추가로 있다면 1:1 문의로 문의 부탁드립니다 답변 드리겠습니다.&nbsp;</span></p>
                 <p><span><br></span></p>
                 <p><span>감사합니다.&nbsp;&nbsp;</span></p>
                 <p>&nbsp;</p>
@@ -83,7 +81,7 @@
             </div>
         </div>
 
-        <div class="inquiry_detail_btn">
+        <div class="inquiry_detail_btn" >
             <form>
                 <button type="submit" name="detail_delete" class="detail_delete_btn">삭제</button>
             </form>

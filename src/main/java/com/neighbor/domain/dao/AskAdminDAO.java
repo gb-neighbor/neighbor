@@ -52,4 +52,9 @@ public class AskAdminDAO {
         return askAdminMapper.selectOne(memberId);
     }
 
+    //    문의 상세페이지
+    public AskAdminVO findByAskAdminId(Long askAdminId) {
+        return askAdminMapper.selectDetail(askAdminId);
+    }
+
 }
