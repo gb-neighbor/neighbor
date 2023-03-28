@@ -14,18 +14,4 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
-
-    //    대쉬보드 전체조회 (PostMan까지 끝냄.)
-    @GetMapping("list")
-    public List<MemberDTO> showList(){
-        return memberService.getList();
-    }
-
-    //   회원관리 멤버삭제 (PostMan까지 끝냄.)
-    @DeleteMapping("delete/{memberId}")
-    public void delete(@PathVariable Long memberId) {
-        memberService.delete(memberId);
-    }
-
 }
