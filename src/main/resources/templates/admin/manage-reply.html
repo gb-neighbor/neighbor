@@ -97,7 +97,7 @@
                     <div class="member-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
-                            <form class="reply-search-form" th:action="@{/replys/list}">
+                            <form class="reply-search-form" th:action="@{/admins/reply/list}">
                                 <input class="reply-search keyword" name="keyword" type="text" placeholder="후기 검색">
                                 <button type="submit" onclick="search()">검색</button>
                             </form>
@@ -182,53 +182,22 @@
 <script>
 
     let $pages = $("a.page-button");
-    // let queryString = "${pagination.criteria.queryString}";
 
     $pages.on("click", function(e){
         e.preventDefault();
         let page = $(this).attr("href");
         let amount = 6;
-        let url = "/replys/list?page=" + page+"&amount="+amount;
+        let url = "/admins/reply/list?page=" + page+"&amount="+amount;
 
         location.href = url;
     });
-    // // input 태그 선택
-    // const $input = $(".member-search");
-    //
-    // // 입력이 시작되면 자동완성 결과를 보여주는 이벤트 리스너
-    // $input.on('input', function() {
-    //     // 입력된 검색어를 가져옴
-    //     const keyword = $input.val();
-    //     console.log(keyword);
-    //
-    //     // 검색어를 기반으로 검색 결과를 가져옴
-    //     fetch('/search?keyword=' + encodeURIComponent(keyword))
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // 검색 결과를 화면에 보여줌
-    //             innerHTML = data.html;
-    //         });
-    // });
-
-    // 입력값 가져오기
-    // $('.reply-search').on('input', function() {
-    //     const keyword = $(this).val();
-    //     console.log(keyword);
-    //     fetch('/search?keyword=' + encodeURIComponent(keyword))
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // 검색 결과를 화면에 보여줌
-    //             innerHTML = data.html;
-    //         });
-    // });
-
 
 
     function showList() {
         var keyword = $("input.reply-search").val();
         $.ajax({
             type: "GET",
-            url: "/replys/list",
+            url: "/admins/reply/list",
             data: { keyword: keyword },
             success: function(result){
                 // 테이블 초기화
@@ -289,7 +258,7 @@
         console.log(checkedIds);
 
         $.ajax({
-            url: "/replys/delete",
+            url: "/admins/reply/delete",
             type: "delete",
             data: {"checkedIds": checkedIds},
             success: function(){

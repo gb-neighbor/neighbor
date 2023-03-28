@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/admin/*")
+@RequestMapping("/admins/*")
 public class AdminController {
 
     private final MemberService memberService;
@@ -29,14 +29,14 @@ public class AdminController {
     /*AskAdmin 시작*/
 
     //   문의목록 문의사항 삭제
-    @DeleteMapping("delete/{askAdminId}")
-    public void delete(@PathVariable Long askAdminId) {
+    @DeleteMapping("ask-admin-delete")
+    public void askAdminDelete(@PathVariable Long askAdminId) {
         askAdminService.delete(askAdminId);
     }
 
     //    대시보드 전체조회
-    @GetMapping("listAll")
-    public String showAllList(Model model){
+    @GetMapping("dash-board-listAll")
+    public String dashBoardShowList(Model model){
         List<BoardDTO> boardDTOS = new ArrayList<>();
         List<MemberDTO> memberDTOS = new ArrayList<>();
 
@@ -59,8 +59,8 @@ public class AdminController {
     }
 
     // 문의목록 문의사항 답변대기중 조회
-    @GetMapping("list")
-    public String showList(Criteria criteria, Model model) {
+    @GetMapping("ask-admin-wait-list")
+    public String askAdminShowList(Criteria criteria, Model model) {
         if(criteria.getPage() == 0){
             criteria.create(1,6);
         }
@@ -73,13 +73,13 @@ public class AdminController {
 
 
     //    문의목록 총 질문 수
-    @GetMapping("countAll")
-    public Integer getTotal() {
+    @GetMapping("ask-admin-countAll")
+    public Integer getAskAdminTotal() {
         return askAdminService.getCountAll();
     }
 
     //    문의목록 답변 대기 중인 질문 수
-    @GetMapping("count")
+    @GetMapping("ask-admin-count")
     public Integer getWaitAnswerTotal() {
         return askAdminService.getCount();
     }
@@ -89,14 +89,14 @@ public class AdminController {
     /*member 시작*/
 
     //    대쉬보드 전체조회 (PostMan까지 끝냄.)
-    @GetMapping("list")
-    public List<MemberDTO> showList(){
+    @GetMapping("dashboard-list")
+    public List<MemberDTO> memberShowList(){
         return memberService.getList();
     }
 
     //   회원관리 멤버삭제 (PostMan까지 끝냄.)
-    @DeleteMapping("delete/{memberId}")
-    public void adminDelete(@PathVariable Long memberId) {
+    @DeleteMapping("member-delete")
+    public void memberDelete(@PathVariable Long memberId) {
         memberService.delete(memberId);
     }
 
@@ -104,8 +104,8 @@ public class AdminController {
 
     /*reply 시작*/
 
-    @GetMapping("list")
-    public String showList(Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
+    @GetMapping("reply/list")
+    public String replyShowList(Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
         if (criteria.getPage() == 0) {
             criteria = criteria.create(1, 6);
         }
@@ -126,12 +126,12 @@ public class AdminController {
 
 
     //  후기관리 삭제 (PostMan까지 확인함.)
-    @DeleteMapping("delete")
+    @DeleteMapping("reply/delete")
     @ResponseBody
-    public void delete(@RequestParam("checkedIds[]") List<String> checkIds){
-        replyService.delete(checkIds);
+    public void replyDelete(@RequestParam("checkedIds[]") List<String> checkIds){
+        replyService.remove(checkIds);
     }
 
-    /*reply 끝*/
+//    /*reply 끝*/
 
 }
