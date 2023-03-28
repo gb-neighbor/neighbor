@@ -261,7 +261,7 @@ html{
     padding-right: 3%;
 }
 
-.member-search{
+.ask-search{
     width: 40vh;
     height: 5vh;
     border: none;
@@ -335,7 +335,7 @@ html{
     transition: background-color 0.5s;
  }
 
-.member-delete-button{
+.ask-delete-button{
     background-color: #F1416C;
     color: #fff;
     border: none;
@@ -345,24 +345,10 @@ html{
     margin-top: 5%;
 }
 
-.member-delete-button:hover{
+.ask-delete-button:hover{
     background-color:#ff0000;
     transition: background-color 0.5s;
  }
-
-/* .watch-all-ask{
-    padding-left: 3%;  
-}
-
-.watch-waiting-ask{
-    position: absolute;
-    left: 12%;
-}
-
-.member-delete-button-wrap{
-    position: absolute;
-    left: 21%;
-} */
 
 .total-mentor{
     display: flex;

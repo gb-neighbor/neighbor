@@ -107,15 +107,15 @@
                         <div class="watch-waiting-ask">
                             <input class="watch-waiting-button" type="submit" value="대기 문의 보기">
                         </div>
-                        <div class="member-delete-button-wrap">
-                            <input class="member-delete-button" type="submit" value="게시글 삭제">
+                        <div class="ask-delete-button-wrap">
+                            <input class="ask-delete-button" type="submit" value="게시글 삭제">
                         </div>
                     </div>
 
                     <div class="member-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
-                            <input class="member-search" type="text" placeholder="문의 검색" th:field="*{keyword}">
+                            <input class="ask-search" type="text" placeholder="문의 검색" th:field="*{keyword}">
                         </div>
                     </div>
                 </div>
@@ -202,14 +202,6 @@
                             </div>
                         </div>
                     </div>
-
-<!--                    <div th:if="${not #lists.isEmpty(results)}">-->
-<!--                        <ul>-->
-<!--                            <li th:each="result : ${results}" th:text="${result}" />-->
-<!--                        </ul>-->
-<!--                    </div>-->
-                    <!-- 여기부터 내용 -->
-
 
                     <div class="page-button-box">
                         <div th:object="${pagination}">
