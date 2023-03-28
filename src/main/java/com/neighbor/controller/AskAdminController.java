@@ -115,4 +115,12 @@ public class AskAdminController {
         return "mypage/inquiry_to_admin_detail";
     }
 
+
+    @GetMapping("detailDelete/{askAdminId}")
+    public RedirectView deleteDetail(Model model,@PathVariable Long askAdminId){
+        askAdminService.deleteDetail(askAdminId);
+        log.info("삭제들어옴");
+        return new RedirectView("/askAdmins/inquiryList");
+    }
+
 }

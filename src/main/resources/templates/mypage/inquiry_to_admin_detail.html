@@ -52,8 +52,8 @@
 <section class="wrap">
     <article class="detail_content">
         <div class="inquiry_detail_title">
-            <strong th:text="${askAdmin.askAdminTitle}">[회원정보문의] </strong><!-- (추가) -->
-            <p class="inquiry_date" th:text="${askAdmin.askAdminRegisterDate}">2023-03-15 11:05:23</p><!-- (추가) -->
+            <strong th:text="${askAdmin.askAdminTitle}"> </strong><!-- (추가) -->
+            <p class="inquiry_date" th:text="${askAdmin.askAdminRegisterDate}"></p><!-- (추가) -->
         </div>
 
         <div class="inquiry_detail_content" th:text="${askAdmin.askAdminContent}">
@@ -82,9 +82,7 @@
         </div>
 
         <div class="inquiry_detail_btn" >
-            <form>
-                <button type="submit" name="detail_delete" class="detail_delete_btn">삭제</button>
-            </form>
+                <a type="button" name="askAdminId" class="detail_delete_btn" id="delete-button" th:href="@{/askAdmins/detailDelete/{askAdminId}(askAdminId=${askAdmin.askAdminId})}">삭제</a>
             <a href="" class="go_to_inquiry_list">목록</a>
         </div>
     </article>
@@ -94,4 +92,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/mypage/inquiry_to_admin_detail.js"></script>
+<script th:inline="javascript">
+    // askAdmin = [[${askAdmin}]];
+    // console.log(askAdmin);
+    // console.log(askAdmin.askAdminId);
+    // const value2 = "/askAdmins/detailDelete/" + askAdmin.askAdminId;
+    // $("#delete-button").attr('href', value2);
+</script>
 </html>

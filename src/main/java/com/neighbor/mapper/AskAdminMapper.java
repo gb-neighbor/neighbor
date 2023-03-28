@@ -37,4 +37,8 @@ public interface AskAdminMapper {
 
     //  문의 상세페이지
     public AskAdminVO selectDetail(Long askAdminId);
+
+    //   문의 삭제
+    public void deleteDetail(Long askAdminId);
+
 }

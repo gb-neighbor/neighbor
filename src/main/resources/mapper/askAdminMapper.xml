@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.AskAdminMapper">
     <!--대쉬보드 문의사항 답변 대기중 리스트-->
-    <select id="selectWaitAnswer" resultType="AskAdminDTO">
+    <select id="selectWaitAnswer" resultType="askAdminDTO">
         select ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, aa.member_id, member_nickname, ask_admin_status
         from tbl_ask_admin aa
         join tbl_member m on aa.member_id = m.member_id
@@ -11,7 +11,7 @@
     </select>
 
     <!--문의사항 전체 조회-->
-    <select id="selectAll" resultType="AskAdminDTO">
+    <select id="selectAll" resultType="askAdminDTO">
         select aa.ask_admin_id, aa.ask_admin_title, aa.ask_admin_content, aa.ask_admin_register_date, aa.member_id, m.member_nickname, aa.ask_admin_status
         from tbl_ask_admin aa
         join tbl_member m on aa.member_id = m.member_id
@@ -20,7 +20,7 @@
     </select>
 
     <!--대시보드 문의사항 -->
-    <select id="selectAllBy" resultType="AskAdminDTO">
+    <select id="selectAllBy" resultType="askAdminDTO">
         select aa.ask_admin_id, aa.ask_admin_title, aa.ask_admin_content, aa.ask_admin_register_date, aa.member_id, m.member_nickname, aa.ask_admin_status
         from tbl_ask_admin aa
         join tbl_member m on aa.member_id = m.member_id
@@ -47,16 +47,16 @@
         where ask_admin_id=#{askAdminId}
     </delete>
 
-    <insert id="insert" parameterType="AskAdminVO">
+    <insert id="insert" parameterType="askAdminVO">
         INSERT INTO tbl_ask_admin
         (ask_admin_title, ask_admin_content, ask_admin_register_date,member_id)
         VALUES(#{askAdminTitle}, #{askAdminContent}, CURRENT_TIMESTAMP, #{memberId});
     </insert>
 
-    <select id="selectOne" parameterType="long" resultType="AskAdminVO">
+    <select id="selectOne" parameterType="long" resultType="askAdminVO">
         SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
         FROM tbl_ask_admin
-        where member_id = #{member_id};
+        where member_id = #{member_id} order by ask_admin_id desc
     </select>
 
     <select id="selectDetail" parameterType="long" resultType="askAdminVO">
@@ -65,6 +65,10 @@
         where ask_admin_id = #{ask_admin_id}
     </select>
 
+    <delete id="deleteDetail" parameterType="long">
+        DELETE FROM tbl_ask_admin
+        WHERE ask_admin_id= #{askAdminId}
+    </delete>
 
 
 </mapper>

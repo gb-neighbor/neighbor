@@ -57,4 +57,9 @@ public class AskAdminDAO {
         return askAdminMapper.selectDetail(askAdminId);
     }
 
+    //    문의 삭제
+    public void deleteDetail(Long askAdminId){
+        askAdminMapper.deleteDetail(askAdminId);
+    }
+
 }
