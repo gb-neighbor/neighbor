@@ -3,6 +3,7 @@ package com.neighbor.service;
 import com.neighbor.domain.dao.MessageDAO;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
+import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.MessageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,11 @@ public class MessageService {
 
     //    <!-- 대화방 번호 가져오기 -->
     public Long getMessageRoomId(Long memberId, Long boardId){return messageDAO.findMessageRoomId(memberId, boardId);}
+
+    //    <!-- 쪽지 상대방 정보 가져오기 -->
+    public MemberVO getTargetInfo(Long memberId){return messageDAO.findTargetInfo(memberId);}
+
+    //    <!--  쪽지 입력  -->
+    public void saveMessageVO(MessageVO messageVO){messageDAO.saveMessageVO(messageVO);}
 
 }

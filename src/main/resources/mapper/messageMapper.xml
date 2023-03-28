@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.MessageMapper">
-    <!-- 내가 보낸 쪽지 전체 -->
+    <!-- 내가 보낸 쪽지방 전체 -->
     <select id="selectAll" resultType="messageRoomDTO">
         select if(seller_id=#{memberId}, customer_id, seller_id) target_id, message_room_id, board_id
         from tbl_message_room where (seller_id=#{memberId} or customer_id=#{memberId})
@@ -35,5 +35,18 @@
     <select id="selectMessageRoomId" resultType="long">
         select message_room_id from tbl_message_room where board_id = #{boardId} and customer_id = #{memberId}
     </select>
+
+    <!--  쪽지 상대방 정보  -->
+    <select id="selectTargetInfo" resultType="memberVO">
+        select member_id, member_nickname, member_profile_uuid, member_profile_path from tbl_member where member_id = #{member_id}
+    </select>
+
+    <!--  쪽지 입력  -->
+    <insert id="insertMessageVO">
+        insert into tbl_message
+        (message_content, board_id, message_room_id, message_sender_id, message_getter_id)
+        values(#{messageContent}, #{boardId}, #{messageRoomId}, #{messageSenderId}, #{messageGetterId})
+    </insert>
+
 
 </mapper>

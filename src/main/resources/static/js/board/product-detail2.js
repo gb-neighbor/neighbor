@@ -96,7 +96,7 @@ stars.forEach((star) => {
 function modal(name, id) {
 	var zIndex = 998;
 	var modal = $(name+id);
-	console.log(modal);
+
 	// 모달 div 뒤에 희끄무레한 레이어
 	var bg = $('.modal_background')
 		.css({
@@ -138,10 +138,134 @@ function modal(name, id) {
 		});
 }
 
+
+/*********************************************************************************************/
+const $messageBox = $(".box_text");
+const $infoBox = $('.box_top');
+
+function getMessageRoom(){
+	messageService.targetInfo(showTargetInfo);
+	messageService.list(showMessage);
+}
+
+
+
 function openModalBanner(num){ /* 괄호에 num으로 받기 */
 	modal('.my_modal', num);
 }
 
+const messageService=(function(){
+	function list(callback){
+		$.ajax({
+			url: "/messages/detail/"+boardId,
+			dataType: "json",
+			method: "post",
+			success: function(messages){
+				if(callback){
+					callback(messages);
+				}
+
+			}
+		});
+	}
+
+	function targetInfo(callback){
+		$.ajax({
+			url: "/messages/targetInfo/"+sellerId +"/"+boardId,
+			dataType: "json",
+			method: "post",
+			success: function(Infos){
+				if(callback){
+					callback(Infos);
+				}
+				openModalBanner(2);
+			}
+		});
+	}
+	return {list:list, targetInfo:targetInfo};
+})();
+
+
+function showTargetInfo(Infos){
+
+	let target = `
+		<div class="profile_image_section">
+            <img class="profile_image" src="/css/board/images/food.jpeg">
+        </div>
+        <p class="detail_nick_name">${Infos.targetInfo.memberNickname}</p>
+        <div class="title_refresh_wrap">
+            <h3 class="detail_title">
+                ${Infos.boardTitle}
+            </h3>
+            <div class="refresh_image_wrap">
+                <img class="refresh_image" src="/css/board/images/refresh_btn.png">
+            </div>
+        </div>
+        <div class="div_for_margin"></div>
+        <a class="go_to_board" href="">
+            <p class="go_to_board_text">상세보기&nbsp</p>
+            <p class="go_to_board_text right_text">></p>
+        </a>
+	`;
+	$infoBox.html(target);
+}
+
+function showMessage(messages){
+	let messagesList = "";
+	messages.forEach(message => {
+		if(message.messageSenderId==memberId){
+			messagesList+=`
+        <div class="my_text_wrap">
+          <div class="my_text">
+            <p class="my_text_content">${message.messageContent}</p>
+          </div>
+          <div class="my_text_time">
+            <p class="message_box_time">${message.messageRegisterDate}</p>
+          </div>
+        </div>`;
+		}else{
+			messagesList+=`
+        <div class="opponent_text_wrap">
+          <div class="opponent_text">
+            <p class="opponent_text_content">${message.messageContent}</p>
+          </div>
+          <div class="opponent_text_time">
+            <p class="message_box_time">${message.messageRegisterDate}</p>
+          </div>
+        </div>`;
+		}
+	});
+	$messageBox.html(messagesList);
+}
+
+/*********************************************************************************************/
+
+$('.send_form').submit(function(e) {
+	e.preventDefault();
+	console.log(boardId);
+	let messageVO = {
+		boardId: 1,
+		memberId: 2,
+		messageSenderId: 1,
+		messageGetterId: 2,
+		messageContent: $("#write-section2").val()
+	};
+	$.ajax({
+		url: "/messages/insert",
+		type: $(this).attr('method'),
+		data: JSON.stringify(messageVO),
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json',
+		success: function(data) {
+			messageService.list(showMessage);
+		}
+	});
+
+});
+
+
+
+/*********************************************************************************************/
 
 function getLength(num)
 {
