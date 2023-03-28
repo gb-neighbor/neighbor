@@ -221,44 +221,42 @@
     //             innerHTML = data.html;
     //         });
     // });
-    function showList(event) {
-        event.preventDefault(); // 폼 제출 이벤트 막기
-        var keyword = document.querySelector('.reply-search').value; // 검색어 가져오기
-        location.href = '/replys/list?keyword=' + keyword; // URL 변경
+
+
+
+    function showList() {
+        var keyword = $("input.reply-search").val();
+        $.ajax({
+            type: "GET",
+            url: "/replys/list",
+            data: { keyword: keyword },
+            success: function(result){
+                // 테이블 초기화
+                $('.item-list-contents').empty();
+                if(result.length >= 1){
+                    result.forEach(function(reply){
+                        var str = '<div class="checkbox-zip">\n' +
+                            '<input type="checkbox" id="check1" class="normal" value="">\n' +
+                            '</div>';
+
+                        str += '<div class="board-num">' + reply.replyId + '</div>';
+                        str += '<div class="region">' + reply.replyRegionKo + '</div>';
+                        str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
+                        str += '<div class="reply-content">';
+                        str += '<span>' + reply.replyContent + '</span>';
+                        str += '<div id="my_modal7" class="my_modal">';
+                        str += '<a class="modal_close_btn">' + '✖' + '</a>';
+                        str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
+                        str += '<div class="comment-detail">' + reply.replyContent + '</div>';
+                        str += '</div>';
+                        str += '</div>';
+                        str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
+                        $('.item-list-contents').append(str);
+                    });
+                }
+            }
+        });
     }
-    // function showList() {
-    //     var keyword = $("input.reply-search").val();
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "/replys/list",
-    //         data: { keyword: keyword },
-    //         success: function(result){
-    //             // 테이블 초기화
-    //             $('.item-list-contents').empty();
-    //             if(result.length >= 1){
-    //                 result.forEach(function(reply){
-    //                     var str = '<div class="checkbox-zip">\n' +
-    //                         '<input type="checkbox" id="check1" class="normal" value="">\n' +
-    //                         '</div>';
-    //
-    //                     str += '<div class="board-num">' + reply.replyId + '</div>';
-    //                     str += '<div class="region">' + reply.replyRegionKo + '</div>';
-    //                     str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
-    //                     str += '<div class="reply-content">';
-    //                     str += '<span>' + reply.replyContent + '</span>';
-    //                     str += '<div id="my_modal7" class="my_modal">';
-    //                     str += '<a class="modal_close_btn">' + '✖' + '</a>';
-    //                     str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
-    //                     str += '<div class="comment-detail">' + reply.replyContent + '</div>';
-    //                     str += '</div>';
-    //                     str += '</div>';
-    //                     str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
-    //                     $('.item-list-contents').append(str);
-    //                 });
-    //             }
-    //         }
-    //     });
-    // }
 
 
 

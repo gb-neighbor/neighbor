@@ -131,7 +131,7 @@ a{
 
 .message_box_title{
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 40px;
     line-height: 1;
     font-size: 18px;
     font-weight: bold;
@@ -161,7 +161,6 @@ a{
 #message_box_list{
     display: block;
     padding: 0;
-    margin-top: 30px;
     margin-bottom: 0;
 }
 

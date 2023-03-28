@@ -14,11 +14,6 @@ public class ReplyDAO {
 
     private final ReplyMapper replyMapper;
 
-//  전체 후기글 조회
-    public List<ReplyDTO> findAll(Criteria criteria) {
-        return replyMapper.selectAll(criteria);
-    }
-
 //  후기관리 삭제
     public void delete(Long memberId){replyMapper.delete(memberId);}
 
@@ -33,7 +28,7 @@ public class ReplyDAO {
     }
 
     //    후기목록 검색용 글 조회
-    public List<ReplyDTO> findSearch(Criteria criteria, ReplyDTO replyDTO) {
-        return replyMapper.selectSearch(criteria, replyDTO);
+    public List<ReplyDTO> findAll(Criteria criteria, String keyword) {
+        return replyMapper.selectAll(criteria, keyword);
     }
 }
