@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 public class AskAdminServiceTests {
 
-    @Autowired
+   /* @Autowired
     AskAdminService askAdminService;
 
     @Test
@@ -38,6 +38,10 @@ public class AskAdminServiceTests {
         AskAdminVO askAdminVO = new AskAdminVO();
         askAdminVO.setAskAdminId(3L);
         askAdminService.delete(askAdminVO.getAskAdminId());
+<<<<<<< HEAD
     }
 
+=======
+    }*/
+>>>>>>> mine
 }

@@ -155,14 +155,3 @@ body, div, dl, dt, dd, th, td, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldse
 
 /* 로그인 됐을 시 이 3개 띄워줌 */
 
-.header-logOut {
-    display: none;
-}
-
-.header-write {
-    display: none;
-}
-
-.header-my {
-    display: none;
-}
