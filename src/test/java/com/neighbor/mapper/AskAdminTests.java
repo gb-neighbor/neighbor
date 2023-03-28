@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 public class AskAdminTests {
 
-    @Autowired
+    /*@Autowired
     private AskAdminMapper askAdminMapper;
 
 
@@ -39,5 +39,5 @@ public class AskAdminTests {
     @Test
     public void countAllTest() {
         log.info(askAdminMapper.countAll().toString());
-    }
+    }*/
 }

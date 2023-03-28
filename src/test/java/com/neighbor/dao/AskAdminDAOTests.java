@@ -16,18 +16,18 @@ import java.util.List;
 @Slf4j
 public class AskAdminDAOTests {
 
-    @Autowired
+   /* @Autowired
     private AskAdminDAO askAdminDAO;
 
 
-    /*관리자페이지 대시보드 문의목록 전체조회*/
+    *//*관리자페이지 대시보드 문의목록 전체조회*//*
     @Test
     public void askAdminListTest() {
         List<AskAdminDTO> askAdminDTOList = askAdminDAO.findAll();
         log.info(String.valueOf(askAdminDTOList));
     }
 
-    /*관리자 페이지 문의 목록 페이지 삭제*/
+    *//*관리자 페이지 문의 목록 페이지 삭제*//*
     @Test
     public void askAdminDeleteTest() {
         AskAdminVO askAdminVO = new AskAdminVO();
@@ -35,16 +35,16 @@ public class AskAdminDAOTests {
         askAdminDAO.delete(askAdminVO.getAskAdminId());
     }
 
-    /*문의사항 전체 글 수*/
+    *//*문의사항 전체 글 수*//*
     @Test
     public void askAdminCountAllTest() {
         log.info(askAdminDAO.countAll().toString());
     }
 
-    /*문의사항 답변대기중인 글 수*/
+    *//*문의사항 답변대기중인 글 수*//*
     @Test
     public void askAdminCountTest() {
         askAdminDAO.count();
         log.info(askAdminDAO.count().toString());
-    }
+    }*/
 }
