@@ -17,6 +17,8 @@ public class BoardService implements FileService {
     public void write(BoardDTO boardDTO) {
         boardDAO.save(boardDTO);
     }
+    
+    /* 목록페이지 게시글 가져오기 */
 
     //  관리자 페이지 판매 목록 게시글 전체 조회
     public List<BoardDTO> getList() {

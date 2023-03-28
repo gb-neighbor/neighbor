@@ -140,8 +140,6 @@ $("input[id='detail-file']").on("change", function() {
         }
     });
 });
-//  array를 어떻게 컨트롤러로 보내지?
-//  formdata에 넣어서 보낸다음에 컨트롤러에서 requestBody로 받으면 되나?
 
 /*****************************************************/
 function leftPad(value) {
