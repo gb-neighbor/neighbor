@@ -145,8 +145,8 @@
                         <div class="region" th:text="*{reply.replyRegionKo}"></div>
                         <div class="writer-nick" th:text="*{reply.memberNickname}"></div>
                         <div class="reply-content">
-                            <span th:text="*{reply.replyContent}"></span>
-                            <div id="my_modal7" class="my_modal">
+                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>
+                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">
                                 <a class="modal_close_btn">✖</a>
                                 <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>
                                 <div class="comment-detail" th:text="*{reply.replyContent}"></div>
@@ -193,39 +193,7 @@
     });
 
 
-    function showList() {
-        var keyword = $("input.reply-search").val();
-        $.ajax({
-            type: "GET",
-            url: "/admins/reply/list",
-            data: { keyword: keyword },
-            success: function(result){
-                // 테이블 초기화
-                $('.item-list-contents').empty();
-                if(result.length >= 1){
-                    result.forEach(function(reply){
-                        var str = '<div class="checkbox-zip">\n' +
-                            '<input type="checkbox" id="check1" class="normal" value="">\n' +
-                            '</div>';
 
-                        str += '<div class="board-num">' + reply.replyId + '</div>';
-                        str += '<div class="region">' + reply.replyRegionKo + '</div>';
-                        str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
-                        str += '<div class="reply-content">';
-                        str += '<span>' + reply.replyContent + '</span>';
-                        str += '<div id="my_modal7" class="my_modal">';
-                        str += '<a class="modal_close_btn">' + '✖' + '</a>';
-                        str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
-                        str += '<div class="comment-detail">' + reply.replyContent + '</div>';
-                        str += '</div>';
-                        str += '</div>';
-                        str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
-                        $('.item-list-contents').append(str);
-                    });
-                }
-            }
-        });
-    }
 
     /*검색어 계속 남아 있게 하는 js 시작*/
     // 페이지가 로드될 때 실행되는 함수
@@ -233,7 +201,36 @@
         // 검색어가 저장되어 있으면 검색창에 표시
         var savedKeyword = sessionStorage.getItem('savedKeyword');
         if (savedKeyword !== null) {
-            document.querySelector('.keyword').value = savedKeyword;
+              $.ajax({
+                type: "get",
+                url: "/admins/reply/list",
+                data: { keyword: keyword },
+                success: function(result){
+                    // 테이블 초기화
+                    $('.item-list-contents').empty();
+                    if(result.length >= 1){
+                        result.forEach(function(reply){
+                            var replyId = reply.replyId;
+                            var str = '<div class="checkbox-zip">\n' +
+                                '<input type="checkbox" id="check1" class="normal" value="">\n' +
+                                '</div>';
+                            str += '<div class="board-num">' + reply.boardId + '</div>';
+                            str += '<div class="region">' + reply.replyRegionKo + '</div>';
+                            str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
+                            str += '<div class="reply-content">';
+                            str += '<span>' + reply.replyContent + '</span>';
+                            str += '<div id="my_modal' + replyId + '" class="my_modal">';
+                            str += '<a class="modal_close_btn">' + '✖' + '</a>';
+                            str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
+                            str += '<div class="comment-detail">' + reply.replyContent + '</div>';
+                            str += '</div>';
+                            str += '</div>';
+                            str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
+                            $('.item-list-contents').append(str);
+                        });
+                    }
+                }
+            });
         }
     }
 
@@ -242,6 +239,19 @@
         // 검색어 저장
         var keyword = document.querySelector('.keyword').value;
         sessionStorage.setItem('savedKeyword', keyword);
+        /* 총 후기 갯수 ajax*/
+        $.ajax({
+            url: "/admins/reply/list",
+            type: "get",
+            data: {"keyword": keyword},
+            success: function(replyCount){
+                // 테이블 초기화
+                $('.total-mentor').empty();
+                var count = `<p>후기</p>`
+                count += '<p class="total-mentor-num">' + replyCount + '</p>';
+                $('.total-mentor').append(count);
+            }
+        });
     }
     /*검색어 계속 남아 있게 하는 js 끝*/
 
@@ -267,6 +277,10 @@
 
         });
     });
+
+    /*검색했을 때 ajax실행*/
+
+
 
 </script>
 </html>
