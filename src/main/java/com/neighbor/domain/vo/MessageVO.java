@@ -12,4 +12,5 @@ public class MessageVO {
     private Long boardId;
     private Long messageSenderId;
     private Long messageGetterId;
+    private Long messageRoomId;
 }

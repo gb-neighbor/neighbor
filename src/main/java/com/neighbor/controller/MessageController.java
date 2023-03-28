@@ -1,46 +1,55 @@
 package com.neighbor.controller;
 
-import com.neighbor.domain.dto.MessageDTO;
-import com.neighbor.domain.dto.MessageRoomDTO;
+import com.neighbor.domain.vo.MemberVO;
+import com.neighbor.domain.vo.MessageVO;
 import com.neighbor.service.BoardService;
 import com.neighbor.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import java.lang.reflect.Member;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/mypage/*")
+@RequestMapping("/messages/*")
 @RequiredArgsConstructor
 public class MessageController {
 
     private final MessageService messageService;
     private final BoardService boardService;
 
-//   세션 매개변수로 받기
-    @GetMapping("message_box")
-//    @RestController()
-    public void goToMessageBox(Model model){
-        Long memberId = 1L;
-        List<MessageDTO> result = new ArrayList<>();
-        List<MessageRoomDTO> entireList = messageService.showList(memberId);
-
-        for (MessageRoomDTO messageRoom : entireList) {
-            MessageDTO messageDTO = new MessageDTO();
-
-            messageDTO.setBoardTitle(boardService.showBoardTitle(messageRoom.getBoardId()));
-            messageDTO.setLatestRegisterDate(messageService.showLatestDate(messageRoom.getMessageRoomId()));
-
-            result.add(messageDTO);
-        }
-
-        model.addAttribute("targetInfo", result);
+    @PostMapping("detail/{boardId}")
+    @ResponseBody
+    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, HttpSession session){
+        return messageService.showMessage(messageService.getMessageRoomId(1L, boardId));
     }
+
+    @PostMapping("targetInfo/{sellerId}/{boardId}")
+    @ResponseBody
+    public Map<String, Object> getTargetInfos(@PathVariable("sellerId") Long memberId, @PathVariable("boardId") Long boardId){
+        MemberVO memberVO = messageService.getTargetInfo(memberId);
+        String boardTitle = boardService.showBoardTitle(boardId);
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("targetInfo", memberVO);
+        result.put("boardTitle", boardTitle);
+
+        return result;
+    }
+
+    @PostMapping("insert")
+    @ResponseBody
+    public MessageVO insertMessage(@RequestBody MessageVO messageVO){
+        messageVO.setMessageRoomId(messageService.getMessageRoomId(messageVO.getMessageSenderId(), messageVO.getBoardId()));
+        messageService.saveMessageVO(messageVO);
+        return messageVO;
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
+import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.MessageVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -28,8 +29,10 @@ public interface MessageMapper {
 //    <!-- 대화방 번호 가져오기 -->
     public Long selectMessageRoomId(Long memberId, Long boardId);
 
+//    <!-- 쪽지 상대방 정보 가져오기 -->
+    public MemberVO selectTargetInfo(Long memberId);
 
-
-
+//    <!--  쪽지 입력  -->
+    public void insertMessageVO(MessageVO messageVO);
 
 }

@@ -200,7 +200,8 @@
                     </div>
                     <div class="buy">
                         <input type="button" value="판매자 보러가기"/>
-                        <input type="button" value="쪽지" id="openBtn" onclick="openModalBanner(2)"/>
+                        <input type="button" value="쪽지" id="openBtn" onclick="getMessageRoom()"/>
+<!--                        <input type="button" value="쪽지" id="openBtn" onclick="openModalBanner([[${boardId}]], [[${session.memberId}]])"/>-->
                     </div>
                 </div>
             </div>
@@ -446,69 +447,32 @@
     </div>
 </div>
 
+<!--  쪽지 모달 위치  -->
 <!--modal-->
 <div id="my_modal" class="my_modal2 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
     <a class="modal_close_btn">✖</a>
     <div class="box_top">
-        <div class="profile_image_section">
-            <img class="profile_image" src="/css/board/images/food.jpeg">
-        </div>
-        <p class="detail_nick_name">구센치</p>
-        <div class="title_refresh_wrap">
-            <h3 class="detail_title">
-                맛있는 불고기
-            </h3>
-            <div class="refresh_image_wrap">
-                <img class="refresh_image" src="/css/board/images/refresh_btn.png">
-            </div>
-        </div>
-        <div class="div_for_margin"></div>
-        <a class="go_to_board" href="">
-            <p class="go_to_board_text">상세보기&nbsp</p>
-            <p class="go_to_board_text right_text">></p>
-        </a>
+
     </div>
     <div class="box_text">
-        <div class="my_text_wrap">
-            <div class="my_text">
-                <p class="my_text_content">안녕하세요</p>
-            </div>
-            <div class="my_text_time">
-                <p class="message_box_time">2023.03.13 13:53</p>
-            </div>
-        </div>
-
-        <div class="my_text_wrap">
-            <div class="my_text">
-                <p class="my_text_content">혹시, 저번에 파시던 불고기 반찬 또 파실 수 있나요?</p>
-            </div>
-            <div class="my_text_time">
-                <p class="message_box_time">2023.03.13 13:53</p>
-            </div>
-        </div>
-
-        <div class="opponent_text_wrap">
-            <div class="opponent_text">
-                <p class="opponent_text_content">네 원하시면 만들어 드릴게요</p>
-            </div>
-            <div class="opponent_text_time">
-                <p class="message_box_time">2023.03.13 13:53</p>
-            </div>
-        </div>
 
     </div>
-    <form action="" class="send_form" name="form" method="post" enctype="multipart/form-data">
+<!--    <form th:action="@{/messages/insert}" th:object="${boardVO}" class="send_form" name="form" method="post" >-->
+    <form class="send_form" name="form" method="post" >
         <div class="text-container">
-            <textarea class="write-section" id="write-section2" name="content" cols="20" rows="5"
-                      onKeydown="getLength(2)" onKeyUp="getLength(2)" maxlength="1001"></textarea>
+        <textarea class="write-section" id="write-section2" name="messageContent" cols="20" rows="5"
+                  onKeydown="getLength(2)" onKeyUp="getLength(2)" maxlength="1001"></textarea>
             <div class="text_send_wrap">
-                <input id="text_length2" class="count_letter" type="text" size="3" NAME="txtlen" value="0"
-                       readonly><input disabled class="count_letter_max" type="text" size="10" value="/1000">
-                <button id="send_btn_id" class="send_btn">전송</button>
+                <input id="text_length2" class="count_letter" type="text" size="3" name="txtlen" value="0"
+                       readonly>
+                <input disabled class="count_letter_max" type="text" size="10" value="/1000" readonly>
+                <button type="submit" id="send_btn_id" class="send_btn">전송</button>
             </div>
         </div>
     </form>
+
 </div>
+<!--  // 쪽지 모달 위치  -->
 
 <div class="modal_background" style="position: fixed; z-index: 998; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);"></div>
 <!-- top으로 가는 버튼  -->
@@ -517,5 +481,11 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    const boardId = 1;
+    const memberId = 1;
+    const sellerId = 2;
+</script>
+
 <script src="/js/board/product-detail2.js"></script>
 </html>
