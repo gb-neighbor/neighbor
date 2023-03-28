@@ -19,10 +19,10 @@
             </a>
         </div>
         <div class="form-wrapper">
-            <form th:action="@{/logins/log-in}" method="post">
-                <input type="text" placeholder="아이디" class="id" name="memberIdentification">
+            <form action="/members/login" name="loginForm" method="post">
+                <input type="text" placeholder="아이디" id="id" class="id" name="memberIdentification">
                 <input type="password" placeholder="비밀번호 8자 이상" class="password" name="memberPassword">
-                <button type="button" class="login-button btn" onclick="send()">로그인</button>
+                <button type="button" class="login-button btn" onclick="sendJoin()">로그인</button>
 
                 <div class="bottom-wrap">
                     <label class="is-checked">
@@ -31,9 +31,10 @@
                     </label>
 
                     <div class="link">
-                        <a href="#">아이디 • 비밀번호 찾기</a>
-                        <a href="#">회원가입</a>
-                    </div>
+                        <div>
+                        <a href="http://localhost:10000/members/find-id">아이디 • 비밀번호찾기</a>
+                        <a href="http://localhost:10000/members/register">회원가입</a>
+                 </div>
                 </div>
             </form>
         </div>
@@ -58,8 +59,7 @@
                         </span>
                 </button>
             </dd>
-
-
+        </dl>
     </div>
 </div>
 </div>
