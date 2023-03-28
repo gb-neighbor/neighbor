@@ -14,11 +14,6 @@ public class ReplyService {
 
     private final ReplyDAO replyDAO;
 
-    //    후기글 전체 조회
-    public List<ReplyDTO> getList(Criteria criteria) {
-        return replyDAO.findAll(criteria);
-    }
-
     //  후기관리 삭제
     public void delete(Long memberId){
         replyDAO.delete(memberId);
@@ -34,8 +29,8 @@ public class ReplyService {
         return replyDAO.countAll();
     }
 
-    //    후기목록 검색용 글 조회
-    public List<ReplyDTO> getSearchList(Criteria criteria, ReplyDTO replyDTO) {
-        return replyDAO.findSearch(criteria, replyDTO);
+    //    후기목록 전체 조회 검색포함
+    public List<ReplyDTO> getList(Criteria criteria, String keyword) {
+        return replyDAO.findAll(criteria, keyword);
     }
 }

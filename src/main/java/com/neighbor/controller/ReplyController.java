@@ -45,18 +45,11 @@ public class ReplyController {
     @GetMapping("list")
     public String showList(Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
         if (criteria.getPage() == 0) {
-            criteria.create(1, 6);
+            criteria = criteria.create(1, 6);
         }
-
-        ReplyDTO replyDTO = new ReplyDTO();
-        replyDTO.setKeyword(keyword); // ReplyDTO에 keyword 설정
 
         List<ReplyDTO> replyDTOS;
-        if (keyword != null) { // keyword가 전달된 경우
-            replyDTOS = replyService.getSearchList(criteria, replyDTO);
-        } else { // keyword가 전달되지 않은 경우
-            replyDTOS = replyService.getList(criteria);
-        }
+        replyDTOS = replyService.getList(criteria, keyword);
 
         for (ReplyDTO dto : replyDTOS) {
             dto.change(dto.getBoardRegion());
