@@ -20,5 +20,4 @@ public class MemberVO {
     private String memberProfileOriginalName;
     private String memberProfileUuid;
     private String memberProfilePath;
-    private Boolean memberProfileType;
 }

@@ -1,7 +1,5 @@
 package com.neighbor.mapper;
 
-import com.neighbor.domain.dao.SignUpDAO;
-import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

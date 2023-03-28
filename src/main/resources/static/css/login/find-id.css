@@ -6,22 +6,22 @@
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 body {
     font: 12px/1.2 'Spoqa Han Sans', sans-serif;
@@ -57,20 +57,20 @@ dd{
 }
 
 button{
-  color: #fff;
-  background-color: #009a3e;
-  height: 50px;
-  line-height: 50px;
-  font-size: 15px;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  box-sizing: border-box;
-  border-radius: 4px;
-  width:100%;
-  outline: none;
-  border:none;
-  cursor:pointer;
+    color: #fff;
+    background-color: #009a3e;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width:100%;
+    outline: none;
+    border:none;
+    cursor:pointer;
 }
 
 input{

@@ -5,16 +5,17 @@
 /*로그인 비밀번호 암호화*/
 function sendLogin(){
     location.replace(location.href);
-    $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
+    $('.id').val(btoa($('.id').val()));
     document.loginForm.submit();
-    }
+}
+
 
 /* 회원가입시 비밀번호 암호화 */
 function sendJoin(){
     location.replace(location.href);
-    $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
-    document.joinForm.submit();
-    }
+    $(".password").val(btoa($(".password").val()));
+    document.loginForm.submit();
+}
 
 
 /* login.html 이메일 저장 버튼 클릭시 alert 이벤트 */
@@ -33,23 +34,26 @@ $(".checkbox").on("click", function(){
 /* 엔터이벤트 막기 */
 $('input').keydown(function(event) {
     if (event.keyCode === 13) {
-      event.preventDefault();
+        event.preventDefault();
     };
-  });
+});
 
 
 /* 인풋테그에 값이 있으면 순서대로 true로 변경 */
-let checkAll = [false, false, false, false, false, false, false, false, false];
-/* 순서대로 
+let checkAll = [false, false, false, false, false, false, false, false, false, false, false, false];
+/* 순서대로
     0 -> 비밀번호를 정확히 입력했다면 true
     1 -> 비밀번호와 비밀번호 확인이 같다면 true
     2 -> 닉네임
     3 -> 이름
-    4 -> 생일 
+    4 -> 생일
     5 -> 핸드폰 번호
     6 -> 이메일
     7 -> 아이디
     8 -> 전체동의
+    9 -> 아이디 중복
+    10 -> 이메일 중복
+    11 -> 닉네임 중복
 */
 
 /* 프로필 사진 썸네일 */
@@ -88,7 +92,7 @@ profile.addEventListener('change', function (e) {
     };
 });
 /* -------------------------------아이디----------------------------------------------- */
-$("#join-identification").on("blur", function () {
+$(".identification").on("blur", function () {
     if(!$(this).val()){
         $(".id-err").text("아이디를 입력해주세요");
         checkAll[7] = false;
@@ -101,7 +105,7 @@ $("#join-identification").on("blur", function () {
 
 
 /* ---------------------------------------비밀번호----------------------------------- */
-const $passwordInput = $("#join-password");
+const $passwordInput = $(".pw");
 const $passwordCheck = $("#join-check-password");
 const $errPassword = $(".err-password");
 const $errPasswordCheck = $(".err-password-check")
@@ -163,32 +167,32 @@ $passwordCheck.keyup(function(e){
 
 /* 닉네임 */
 $errNick = $(".err-nickname")
-$("#nickname").on("keyup",function(){
+$(".nick-name").on("keyup",function(){
     if ($(this).val().length > 8){
         alert("최대 8자까지 입력 가능합니다.");
-         $(this).val($(this).val().substring(0, 9));
-         $('#nick_name').html(9);
+        $(this).val($(this).val().substring(0, 9));
+        $('.nick-name').html(9);
 
-        } else if($(this).val()){
-            $errNick.text("")
-            checkAll[2] = true;
-            changeButton();
+    } else if($(this).val()){
+        $errNick.text("")
+        checkAll[2] = true;
+        changeButton();
 
-        }
-        
-        if(!$(this).val()){
-            checkAll[2] = false;
-            $errNick.text("닉네임을 입력해주세요")
-        } else if($(this).val()){
-            $errNick.text("")
-            checkAll[2] = true;
-            changeButton();
+    }
 
-        }
+    if(!$(this).val()){
+        checkAll[2] = false;
+        $errNick.text("닉네임을 입력해주세요")
+    } else if($(this).val()){
+        $errNick.text("")
+        checkAll[2] = true;
+        changeButton();
+
+    }
 })
 
 /* 이름엔 영어와 한글만 가능하게 */
-$("#name").on("keyup", function() {
+$(".name").on("keyup", function() {
     $(this).val($(this).val().replace(/[^(ㄱ-힣a-zA-Z)]/gi, ''));
     if($(this).val() != ""){
         checkAll[3] = true;
@@ -196,12 +200,12 @@ $("#name").on("keyup", function() {
     } else {
         checkAll[3] = false;
     }
- });
+});
 
- /* 생일 */
- let regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+/* 생일 */
+let regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 
- $("#birth").on("keyup", function() {
+$(".birth").on("keyup", function() {
     if($(this).val() != "" && $(this).val().length == 8 && regBirth.test($(this).val())){
         checkAll[4] = true;
         $(".err-birth").text("");
@@ -210,12 +214,12 @@ $("#name").on("keyup", function() {
         checkAll[4] = false;
         $(".err-birth").text("생일을 정확히 입력해주세요")
     }
- });
+});
 
 /* 핸드폰 번호 */
 /* 글자수에 따라서 검사 */
 let regPhone= /^\d{2,3}-?\d{3,4}-?\d{4}$/;
-$("#phone").on("keyup", function(){
+$(".phone").on("keyup", function(){
     if($(this).val() != "" && $(this).val().length == 11 && regPhone.test($(this).val())){
         checkAll[5] = true;
         $(".err-phone").text("");
@@ -243,26 +247,28 @@ $("#phone").on("keyup", function(){
 
 
 /* 이메일 */
-const $email = $("#email");
+const $email = $(".email");
 const $helpEmail = $(".err-email")
 
 var regExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
 $email.keyup(function(){
-    if( !$email.val() ){ 
+    if( !$email.val() ){
         $helpEmail.text("이메일을 입력해주세요")
-        $email.focus(); 
-     } else if (!regExp.test($email.val())) { 
-           $helpEmail.text("이메일이 유효하지 않습니다.")
-           $email.focus();
-            checkAll[6] = false;
-        } else {
-            $helpEmail.text("");
-            checkAll[6] = true;
-            changeButton();
+        $errEmail.css('color', 'red')
+        $email.focus();
+    } else if (!regExp.test($email.val())) {
+        $helpEmail.text("이메일이 유효하지 않습니다.")
+        $errEmail.css('color', 'red')
+        $email.focus();
+        checkAll[6] = false;
+    } else {
+        $helpEmail.text("");
+        checkAll[6] = true;
+        changeButton();
 
-        }
-        
+    }
+
 })
 
 
@@ -278,7 +284,7 @@ $(".check span").on("click", function(){
     } else{
         $(this).attr("class", "span-check");
     }
-    
+
     /*만약 3개가 다 체크되어있다면 check-all은 checked로 바뀜*/
     if($(".check span").eq(0).attr("class") == "span-checked" && $(".check span").eq(1).attr("class") == "span-checked"){
         $(".check-all span").attr("class", "span-checked")
@@ -302,13 +308,133 @@ $(".check-all span").on("click", function () {
     }
 })
 
+const $joinHelp = $(".id-err");
+const $joinInputId = $('.identification');
+var value = $joinInputId.val();
+
+/*아이디 중복*/
+$joinInputId.on("blur",function(){$.ajax({
+    url:"/members/checkId" ,
+    data: {"memberIdentification": $joinInputId.val()},
+    success: function(result){
+        let message;
+        if(result == 1) {
+            message = "중복된 아이디입니다.";
+            $joinHelp.css('color', 'red')
+            $joinHelp.css('display', 'block');
+            checkAll[9] = false;
+
+        }else if($joinInputId.val().length < 1){
+            $joinHelp.css('display', 'block');
+            $joinHelp.css('color', 'red');
+            message = "필수 입력 사항입니다";
+            checkAll[9] = false;
+
+        }else{
+            message = "사용 가능한 아이디입니다.";
+            $joinHelp.css('display', 'block');
+            $joinHelp.css('color', '#2bb673');
+            checkAll[9] = true;
+            changeButton();
+
+
+        }
+        $joinHelp.text(message);
+        console.log("checkID 들어옴")
+        console.log($joinInputId);
+        console.log(checkAll[9]);
+
+    }
+});
+});
+
+/*이메일 중복*/
+const $inputEmail = $(".email");
+const $errEmail = $(".err-email");
+
+$inputEmail.on("blur", function(){$.ajax({
+    url:"/members/checkEmail" ,
+    data: {"memberEmail": $inputEmail.val()},
+    success: function(result){
+        let message;
+        if(result == 1){
+            message = "중복된 이메일입니다.";
+            $errEmail.css('color', 'red')
+            $errEmail.css('display', 'block');
+            checkAll[10] = false;
+
+        } else if($inputEmail.val().length < 1){
+            $errEmail.css('display', 'block');
+            $errEmail.css('color', 'red');
+            message = "필수 입력 사항입니다";
+            checkAll[10] = false;
+
+        } else if(!regExp.test($inputEmail.val())){
+            $errEmail.css('display', 'block');
+            $errEmail.css('color', 'red');
+            message = "이메일 형식에 맞춰주세요";
+            checkAll[10] = false;
+
+        } else{
+            message = "사용 가능한 이메일입니다.";
+            $errEmail.css('display', 'block');
+            $errEmail.css('color', '#2bb673');
+            checkAll[10] = true;
+            changeButton();
+        }
+
+        $errEmail.text(message);
+        console.log("checkEamil 들어옴")
+        console.log($inputEmail);
+        console.log(checkAll[10]);
+    }
+});
+});
+
+/*닉네임 중복*/
+const $joinInputNickname = $(".nick-name");
+const $errorNickname = $(".err-nickname");
+
+$joinInputNickname.on("blur",function(){$.ajax({
+    url:"/members/checkNickname" ,
+    data: {"memberNickname": $joinInputNickname.val()},
+    success: function(result){
+        let message;
+
+        if(result == 1){
+            message = "중복된 닉네임입니다.";
+            $errorNickname.css('color', 'red')
+            $errorNickname.css('display', 'block');
+            checkAll[11] = false;
+
+        }else if($joinInputId.val().length < 1){
+            $errorNickname.css('display', 'block');
+            $errorNickname.css('color', 'red');
+            message = "필수 입력 사항입니다";
+            checkAll[11] = false;
+        }else {
+            message = "사용 가능한 닉네임입니다.";
+            $errorNickname.css('display', 'block');
+            $errorNickname.css('color', '#2bb673');
+            checkAll[11] = true;
+            changeButton();
+        }
+        $errorNickname.text(message);
+        console.log("checkNickname 들어옴");
+        console.log($joinInputNickname);
+        console.log(checkAll[11]);
+
+    }
+});
+});
+
 
 /* 모든 정보가 있어야만 클릭 가능*/
 function changeButton(){
-    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8]){
-        $(".join").attr("disabled", false)
+    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11]){
+        $(".join").attr("disabled", false);
     } else {
-        $(".join").attr("disabled", true)
+        $(".join").attr("disabled", true);
     }
 }
 
@@ -321,7 +447,7 @@ function show1 () {
 }
 
 const closeBtn1 = modal1.querySelector("#modal-agree .close-area")
-    closeBtn1.addEventListener("click", e => {
+closeBtn1.addEventListener("click", e => {
     modal1.style.display = "none"
 })
 
@@ -334,7 +460,7 @@ function show2 () {
 }
 
 const closeBtn2 = modal2.querySelector("#modal-privacy .close-area")
-    closeBtn2.addEventListener("click", e => {
+closeBtn2.addEventListener("click", e => {
     modal2.style.display = "none"
 })
 
@@ -350,3 +476,24 @@ modal2.addEventListener("click", function(e){
         modal2.style.display = "none";
     }
 })
+
+/*파일*/
+
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+
+    return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+
+    return [year, month, day].join(delimiter);
+}
+
+
+

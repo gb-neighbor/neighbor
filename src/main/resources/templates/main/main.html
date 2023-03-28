@@ -13,492 +13,492 @@
 </head>
 <body>
 <div th:insert="~{/main/header:: header}"></div>
-    <div id="container-wrapper" class="all-container">
-        <section class="container">
-            <!-- 메인 배너 -->
-            <div class="banner">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-
-            <!-- 선택 버튼 -->
-            <div class="buttons">
-                <button style="background: white; color: black">1</button>
-                <button style="background: white; color: black">2</button>
-                <button style="background: white; color: black">3</button>
-                <button style="background: black; color: white">4</button>
-                <button style="background: white; color: black">5</button>
-            </div>
-        </section>
-        <div class="move-arrow">
-            <!-- 이전 버튼 -->
-            <div class="prev"></div>
-            <!-- 사이 -->
-            <div class="page-move-wrapper">
-                <span id="page-now">1</span>
-                <div id="dot-wrapper">
-                    <span id="dot"></span>
-                </div>
-                <span id="page-total"> 5 </span>
-            </div>
-            <!-- 다음 버튼 -->
-            <div class="next"></div>
+<div id="container-wrapper" class="all-container">
+    <section class="container">
+        <!-- 메인 배너 -->
+        <div class="banner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <article class="recent-food">
-            <h3 class="recent-food-title">최근 게시물</h3>
-            <!-- 최근 게시물 지역구 목록 -->
-            <div class="area-div-wrap">
-                <ul class="area-wrap">
-                    <li class="area active">
-                        <a href="">전체</a>
-                    </li>
-                    <li class="area">
-                        <!-- 주소이동할 때 이거쓰기 <a href="자바스크립트">강남구</a> -->
-                        <a>강남구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">강동구</a> -->
-                        <a>강동구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">강북구</a> -->
-                        <a>강북구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">강서구</a> -->
-                        <a>강서구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">관악구</a> -->
-                        <a>관악구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">광진구</a> -->
-                        <a>광진구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">구로구</a> -->
-                        <a>구로구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">금천구</a> -->
-                        <a>금천구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">노원구</a>-->
-                        <a>노원구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">도봉구</a> -->
-                        <a>도봉구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">동대문구</a> -->
-                        <a>동대문구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">동작구</a> -->
-                        <a>동작구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">마포구</a> -->
-                        <a>마포구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">서대문구</a> -->
-                        <a>서대문구</a>
-                    </li>
-                </ul>
-                <ul class="area-wrap2">
-                    <li class="area">
-                        <!-- <a href="자바스크립트">서초구</a> -->
-                        <a>서초구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">성동구</a> -->
-                        <a>성동구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">성북구</a> -->
-                        <a>성북구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">송파구</a> -->
-                        <a>송파구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">양천구</a> -->
-                        <a>양천구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">영등포구</a> -->
-                        <a>영등포구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">용산구</a> -->
-                        <a>용산구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">은평구</a> -->
-                        <a>은평구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">종로구</a> -->
-                        <a>종로구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">중구</a> -->
-                        <a>중구</a>
-                    </li>
-                    <li class="area">
-                        <!-- <a href="자바스크립트">중랑구</a> -->
-                        <a>중랑구</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- 최근 게시물 지역구 끝 -->
-            <!-- 최근 게시물 게시글 시작 -->
-            <div class="recent-food-content">
-                <!-- lst_gallery 부분-->
-                <ul class="recent-food-list">
-                    <!-- =clearfix -->
-                    <!-- 게시물 하나 -->
-                    <li>
-                        <a href="해당 게시물 링크" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/css/main/images/005.jpg" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title">게시물 제목</p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/004.jpg');"></div>
-                                            <p class="recent-food-user-nickname">닉네임</p>
-                                        </a>
-                                    </div>
-                                </div>3
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 게시물하나 끝 -->
-                    <!-- 게시물 하나 -->
-                    <li>
-                        <a href="해당 게시물 링크" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/css/main/images/002.jpg" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title">게시물 제목</p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/003.jpg');"></div>
-                                            <p class="recent-food-user-nickname">닉네임</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 게시물하나 끝 -->
-                    <!-- 게시물 하나 -->
-                    <li>
-                        <a href="해당 게시물 링크" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/css/main/images/005.jpg" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title">게시물 제목</p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/005.jpg');"></div>
-                                            <p class="recent-food-user-nickname">닉네임</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 게시물하나 끝 -->
-                    <!-- 게시물 하나 -->
-                    <li>
-                        <a href="해당 게시물 링크" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/css/main/images/001.jpg" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title">게시물 제목</p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/003.jpg');"></div>
-                                            <p class="recent-food-user-nickname">닉네임</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 게시물하나 끝 -->
-                    <!-- 게시물 하나 -->
-                    <li>
-                        <a href="해당 게시물 링크" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/css/main/images/002.jpg" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title">게시물 제목</p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/002.jpg');"></div>
-                                            <p class="recent-food-user-nickname">닉네임</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 게시물하나 끝 -->
-                    <!-- 게시물 하나 -->
-                    <li>
-                        <a href="해당 게시물 링크" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/css/main/images/003.jpg" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title">게시물 제목</p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture" style="background-image: url('/css/main/images/001.jpg');"></div>
-                                            <p class="recent-food-user-nickname">닉네임</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 게시물하나 끝 -->
-                    <!-- after있음 -->
-                </ul>
-            </div>
-            <!-- 최근 게시물 더보기 -->
-            <a href="" class="recent-food-more-button">
-                <span class="recent-food-more-write">더보기</span>
-            </a>
-        </article>
 
-        <!-- 별점 인기순 시작 -->
-        <article class="bookmark">
-            <h3 class="bookmark-title">별점 인기순</h3>
-            <div class="bookmark-full-list">
-                <ul class="bookmark-list">
-                    <!-- 별점 인기순 리스트 하나 -->
-                    <li class="bookmark-first-list">
-                        <a href="">
-                            <div class="bookmark-place"></div>
-                            <div class="bookmark-profile-wrap">
-                                <div class="bookmark-picture" style="background-image: url('/css/main/images/004.jpg')" ></div>
-                                <p class="bookmark-sell-user-nickname">아</p>
+        <!-- 선택 버튼 -->
+        <div class="buttons">
+            <button style="background: white; color: black">1</button>
+            <button style="background: white; color: black">2</button>
+            <button style="background: white; color: black">3</button>
+            <button style="background: black; color: white">4</button>
+            <button style="background: white; color: black">5</button>
+        </div>
+    </section>
+    <div class="move-arrow">
+        <!-- 이전 버튼 -->
+        <div class="prev"></div>
+        <!-- 사이 -->
+        <div class="page-move-wrapper">
+            <span id="page-now">1</span>
+            <div id="dot-wrapper">
+                <span id="dot"></span>
+            </div>
+            <span id="page-total"> 5 </span>
+        </div>
+        <!-- 다음 버튼 -->
+        <div class="next"></div>
+    </div>
+    <article class="recent-food">
+        <h3 class="recent-food-title">최근 게시물</h3>
+        <!-- 최근 게시물 지역구 목록 -->
+        <div class="area-div-wrap">
+            <ul class="area-wrap">
+                <li class="area active">
+                    <a href="">전체</a>
+                </li>
+                <li class="area">
+                    <!-- 주소이동할 때 이거쓰기 <a href="자바스크립트">강남구</a> -->
+                    <a>강남구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">강동구</a> -->
+                    <a>강동구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">강북구</a> -->
+                    <a>강북구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">강서구</a> -->
+                    <a>강서구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">관악구</a> -->
+                    <a>관악구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">광진구</a> -->
+                    <a>광진구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">구로구</a> -->
+                    <a>구로구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">금천구</a> -->
+                    <a>금천구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">노원구</a>-->
+                    <a>노원구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">도봉구</a> -->
+                    <a>도봉구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">동대문구</a> -->
+                    <a>동대문구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">동작구</a> -->
+                    <a>동작구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">마포구</a> -->
+                    <a>마포구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">서대문구</a> -->
+                    <a>서대문구</a>
+                </li>
+            </ul>
+            <ul class="area-wrap2">
+                <li class="area">
+                    <!-- <a href="자바스크립트">서초구</a> -->
+                    <a>서초구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">성동구</a> -->
+                    <a>성동구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">성북구</a> -->
+                    <a>성북구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">송파구</a> -->
+                    <a>송파구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">양천구</a> -->
+                    <a>양천구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">영등포구</a> -->
+                    <a>영등포구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">용산구</a> -->
+                    <a>용산구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">은평구</a> -->
+                    <a>은평구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">종로구</a> -->
+                    <a>종로구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">중구</a> -->
+                    <a>중구</a>
+                </li>
+                <li class="area">
+                    <!-- <a href="자바스크립트">중랑구</a> -->
+                    <a>중랑구</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 최근 게시물 지역구 끝 -->
+        <!-- 최근 게시물 게시글 시작 -->
+        <div class="recent-food-content">
+            <!-- lst_gallery 부분-->
+            <ul class="recent-food-list">
+                <!-- =clearfix -->
+                <!-- 게시물 하나 -->
+                <li>
+                    <a href="해당 게시물 링크" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/css/main/images/005.jpg" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title">게시물 제목</p>
+                                    <a href="글쓴이 링크">
+                                        <div class="recent-food-user-picture" style="background-image: url('/css/main/images/004.jpg');"></div>
+                                        <p class="recent-food-user-nickname">닉네임</p>
+                                    </a>
+                                </div>
+                            </div>3
+                        </div>
+                    </a>
+                </li>
+                <!-- 게시물하나 끝 -->
+                <!-- 게시물 하나 -->
+                <li>
+                    <a href="해당 게시물 링크" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/css/main/images/002.jpg" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title">게시물 제목</p>
+                                    <a href="글쓴이 링크">
+                                        <div class="recent-food-user-picture" style="background-image: url('/css/main/images/003.jpg');"></div>
+                                        <p class="recent-food-user-nickname">닉네임</p>
+                                    </a>
+                                </div>
                             </div>
-                            <span class="bookmark-sell-place">판매장소</span>
-                            <p class="bookmark-food-name">판매음식</p>
-                            <span class="bookmark-sell-price" >
+                        </div>
+                    </a>
+                </li>
+                <!-- 게시물하나 끝 -->
+                <!-- 게시물 하나 -->
+                <li>
+                    <a href="해당 게시물 링크" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/css/main/images/005.jpg" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title">게시물 제목</p>
+                                    <a href="글쓴이 링크">
+                                        <div class="recent-food-user-picture" style="background-image: url('/css/main/images/005.jpg');"></div>
+                                        <p class="recent-food-user-nickname">닉네임</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- 게시물하나 끝 -->
+                <!-- 게시물 하나 -->
+                <li>
+                    <a href="해당 게시물 링크" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/css/main/images/001.jpg" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title">게시물 제목</p>
+                                    <a href="글쓴이 링크">
+                                        <div class="recent-food-user-picture" style="background-image: url('/css/main/images/003.jpg');"></div>
+                                        <p class="recent-food-user-nickname">닉네임</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- 게시물하나 끝 -->
+                <!-- 게시물 하나 -->
+                <li>
+                    <a href="해당 게시물 링크" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/css/main/images/002.jpg" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title">게시물 제목</p>
+                                    <a href="글쓴이 링크">
+                                        <div class="recent-food-user-picture" style="background-image: url('/css/main/images/002.jpg');"></div>
+                                        <p class="recent-food-user-nickname">닉네임</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- 게시물하나 끝 -->
+                <!-- 게시물 하나 -->
+                <li>
+                    <a href="해당 게시물 링크" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/css/main/images/003.jpg" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title">게시물 제목</p>
+                                    <a href="글쓴이 링크">
+                                        <div class="recent-food-user-picture" style="background-image: url('/css/main/images/001.jpg');"></div>
+                                        <p class="recent-food-user-nickname">닉네임</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- 게시물하나 끝 -->
+                <!-- after있음 -->
+            </ul>
+        </div>
+        <!-- 최근 게시물 더보기 -->
+        <a href="" class="recent-food-more-button">
+            <span class="recent-food-more-write">더보기</span>
+        </a>
+    </article>
+
+    <!-- 별점 인기순 시작 -->
+    <article class="bookmark">
+        <h3 class="bookmark-title">별점 인기순</h3>
+        <div class="bookmark-full-list">
+            <ul class="bookmark-list">
+                <!-- 별점 인기순 리스트 하나 -->
+                <li class="bookmark-first-list">
+                    <a href="">
+                        <div class="bookmark-place"></div>
+                        <div class="bookmark-profile-wrap">
+                            <div class="bookmark-picture" style="background-image: url('/css/main/images/004.jpg')" ></div>
+                            <p class="bookmark-sell-user-nickname">아</p>
+                        </div>
+                        <span class="bookmark-sell-place">판매장소</span>
+                        <p class="bookmark-food-name">판매음식</p>
+                        <span class="bookmark-sell-price" >
                                 <img class="won" src="/css/main/images/won.png" />
                                 <span class="bookmark-food-price">47,000</span>
                                 <span class="bookmark-next"></span>
                             </span>
-                            <span class="bookmark-star">
+                        <span class="bookmark-star">
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                             </span>
-                            
-                        </a>
-                    </li>
+
+                    </a>
+                </li>
                 <!-- 리스트 하나 끝 -->
-                    <li class="bookmark-first-list">
-                        <a href="">
-                            <div class="bookmark-picture" style="background-image: url('/css/main/images/005.jpg')"></div>
-                            <span class="bookmark-sell-place">시그니엘</span>
-                            <p class="bookmark-food-name">김치찌개</p>
-                            <span class="bookmark-sell-price">
+                <li class="bookmark-first-list">
+                    <a href="">
+                        <div class="bookmark-picture" style="background-image: url('/css/main/images/005.jpg')"></div>
+                        <span class="bookmark-sell-place">시그니엘</span>
+                        <p class="bookmark-food-name">김치찌개</p>
+                        <span class="bookmark-sell-price">
                                 <img class="won" src="/css/main/images/won.png" />
                                 <span class="bookmark-food-price">47,000,000,000</span>
                             </span>
-                            <span class="bookmark-star">
+                        <span class="bookmark-star">
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                             </span>
-                            <p class="bookmark-sell-user-nickname">아니야아</p>
-                        </a>
-                    </li>
-                    <li class="bookmark-first-list">
-                        <a href="">
-                            <div class="bookmark-picture" style="background-image: url('/css/main/images/003.jpg')"></div>
-                            <span class="bookmark-sell-place">분당</span>
-                            <p class="bookmark-food-name">돈까스</p>
-                            <span class="bookmark-sell-price">
+                        <p class="bookmark-sell-user-nickname">아니야아</p>
+                    </a>
+                </li>
+                <li class="bookmark-first-list">
+                    <a href="">
+                        <div class="bookmark-picture" style="background-image: url('/css/main/images/003.jpg')"></div>
+                        <span class="bookmark-sell-place">분당</span>
+                        <p class="bookmark-food-name">돈까스</p>
+                        <span class="bookmark-sell-price">
                                 <img class="won" src="/css/main/images/won.png" />
                                 <span class="bookmark-food-price">1,000,000,000</span>
                             </span>
-                            <span class="bookmark-star">
+                        <span class="bookmark-star">
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                             </span>
-                            <p class="bookmark-sell-user-nickname">아니야아아</p>
-                        </a>
-                    </li>
-                    <!-- 별점 인기순 리스트 하나 -->
-                    <li class="bookmark-second-list">
-                        <a href="">
-                            <div class="bookmark-place"></div>
-                            <div class="bookmark-picture" style="background-image: url('/css/main/images/004.jpg')" ></div>
-                            <span class="bookmark-sell-place">판매장소</span>
-                            <p class="bookmark-food-name">판매음식</p>
-                            <span class="bookmark-sell-price" >
+                        <p class="bookmark-sell-user-nickname">아니야아아</p>
+                    </a>
+                </li>
+                <!-- 별점 인기순 리스트 하나 -->
+                <li class="bookmark-second-list">
+                    <a href="">
+                        <div class="bookmark-place"></div>
+                        <div class="bookmark-picture" style="background-image: url('/css/main/images/004.jpg')" ></div>
+                        <span class="bookmark-sell-place">판매장소</span>
+                        <p class="bookmark-food-name">판매음식</p>
+                        <span class="bookmark-sell-price" >
                                 <img class="won" src="/css/main/images/won.png" />
                                 <span class="bookmark-food-price">47,000</span>
                             </span>
-                            <span class="bookmark-star">
+                        <span class="bookmark-star">
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                             </span>
-                            <p class="bookmark-sell-user-nickname">아니야아아아</p>
-                        </a>
-                    </li>
+                        <p class="bookmark-sell-user-nickname">아니야아아아</p>
+                    </a>
+                </li>
                 <!-- 리스트 하나 끝 -->
                 <!-- 리스트 하나 시작 -->
-                    <li class="bookmark-second-list">
-                        <a href="">
-                            <div class="bookmark-picture" style="background-image: url('/css/main/images/005.jpg')"></div>
-                            <span class="bookmark-sell-place">시그니엘</span>
-                            <p class="bookmark-food-name">김치찌개</p>
-                            <span class="bookmark-sell-price">
+                <li class="bookmark-second-list">
+                    <a href="">
+                        <div class="bookmark-picture" style="background-image: url('/css/main/images/005.jpg')"></div>
+                        <span class="bookmark-sell-place">시그니엘</span>
+                        <p class="bookmark-food-name">김치찌개</p>
+                        <span class="bookmark-sell-price">
                                 <img class="won" src="/css/main/images/won.png" />
                                 <span class="bookmark-food-price">47,000,000,000</span>
                             </span>
-                            <span class="bookmark-star">
+                        <span class="bookmark-star">
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                             </span>
-                            <p class="bookmark-sell-user-nickname">아니야아아아아</p>
-                        </a>
-                    </li>
-                    <!-- 리스트 하나 끝 -->
-                    <!-- 리스트 하나 시작 -->
-                    <li class="bookmark-second-list">
-                        <a href="">
-                            <div class="bookmark-picture" style="background-image: url('/css/main/images/003.jpg')"></div>
-                            <p class="bookmark-sell-user-nickname">아니야아아아아아</p>
-                            <span class="bookmark-sell-place">분당</span>
-                            <p class="bookmark-food-name">돈까스</p>
-                            <span class="bookmark-sell-price">
+                        <p class="bookmark-sell-user-nickname">아니야아아아아</p>
+                    </a>
+                </li>
+                <!-- 리스트 하나 끝 -->
+                <!-- 리스트 하나 시작 -->
+                <li class="bookmark-second-list">
+                    <a href="">
+                        <div class="bookmark-picture" style="background-image: url('/css/main/images/003.jpg')"></div>
+                        <p class="bookmark-sell-user-nickname">아니야아아아아아</p>
+                        <span class="bookmark-sell-place">분당</span>
+                        <p class="bookmark-food-name">돈까스</p>
+                        <span class="bookmark-sell-price">
                                 <img class="won" src="/css/main/images/won.png" />
                                 <span class="bookmark-food-price">1,000,000,000</span>
                         </span>
-                            
-                            <span class="bookmark-star">
+
+                        <span class="bookmark-star">
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                                 <img src="/css/main/images/grey-star.png" />
                             </span>
-                            
-                        </a>
-                    </li>
-                    <!-- 리스트 하나 끝 -->
-                </ul>
-            </div>
-            <div class="bookmark-more-button-wrap">
-                <a href="" class="bookmark-more-button">
-                    <span class="bookmark-more-write">더보기</span>
-                </a>
-            </div>
-        </article>
+
+                    </a>
+                </li>
+                <!-- 리스트 하나 끝 -->
+            </ul>
+        </div>
+        <div class="bookmark-more-button-wrap">
+            <a href="" class="bookmark-more-button">
+                <span class="bookmark-more-write">더보기</span>
+            </a>
+        </div>
+    </article>
 
 
-        <article class="random-menu-full-wrap banner-background-color">
-            <div class="random-menu-wrap">
-                <h3 class="random-menu-title">랜덤 추천 메뉴</h3>
-                <div class="random-menu-banner-full-wrap">
-                    <div class="random-menu-banner-wrap">
-                        <!-- 배너 -->
-                        <ul class="random-menu-banner-list">
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random001.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random002.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random003.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random004.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random005.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random006.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style=" background-image: url('/css/main/images/random007.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->
-                            <!-- 배너 1개 시작 -->
-                            <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
-                                    <div class="random-menu-img" style="background-image: url('/css/main/images/random008.png');"></div>
-                                </a>
-                            </li>
-                            <!-- 배너 1개 끝 -->                                     
-                        </ul>
-                    </div>
-                    <div class="random-menu-banner-left-arrow"></div>
-                    <div class="random-menu-banner-right-arrow"></div>
+    <article class="random-menu-full-wrap banner-background-color">
+        <div class="random-menu-wrap">
+            <h3 class="random-menu-title">랜덤 추천 메뉴</h3>
+            <div class="random-menu-banner-full-wrap">
+                <div class="random-menu-banner-wrap">
+                    <!-- 배너 -->
+                    <ul class="random-menu-banner-list">
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random001.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random002.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random003.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random004.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random005.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random006.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style=" background-image: url('/css/main/images/random007.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                        <!-- 배너 1개 시작 -->
+                        <li class="random-menu-banner" style="margin-right: 20px">
+                            <a>
+                                <div class="random-menu-img" style="background-image: url('/css/main/images/random008.png');"></div>
+                            </a>
+                        </li>
+                        <!-- 배너 1개 끝 -->
+                    </ul>
                 </div>
+                <div class="random-menu-banner-left-arrow"></div>
+                <div class="random-menu-banner-right-arrow"></div>
             </div>
-        </article>
-    </div>
-    <!-- 맨 위로 가는 버튼 -->
+        </div>
+    </article>
+</div>
+<!-- 맨 위로 가는 버튼 -->
 <button id="topBtn">Top</button>
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
