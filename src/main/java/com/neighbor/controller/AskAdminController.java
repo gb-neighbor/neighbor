@@ -108,8 +108,10 @@ public class AskAdminController {
         return "mypage/inquiry_to_admin";
     }
 
-    @GetMapping("detail")
-    public String detail(){
+    @GetMapping("detail/{askAdminId}")
+    public String detail(Model model, @PathVariable Long askAdminId){
+        model.addAttribute("askAdmin",askAdminService.detail(askAdminId));
+        log.info(askAdminId.toString());
         return "mypage/inquiry_to_admin_detail";
     }
 

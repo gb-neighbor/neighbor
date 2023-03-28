@@ -88,7 +88,7 @@
                     </div>
                     <input type="text" name="search_text" id="search_text" class="search_input" value="" placeholder="제목으로 검색">
                     <button type="submit" class="search_btn">검색</button>
-                    <a th:href="@{write}" class="goingToAsk">1:1문의 쓰기</a>
+                    <a th:href="@{write}" class="goingToAsk" >1:1문의 쓰기</a>
                 </div>
             </div>
         </form>
@@ -105,12 +105,12 @@
                 <li class="inquiry_num"></span>1</li>
                 <li class="inquiry_my_title">
                     <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" href="" th:text="${item.askAdminTitle}">
+                    <a class="detail_link" th:href="@{detail/{askAdminId}(askAdminId=${item.askAdminId})}" th:text="${item.askAdminTitle}">
                         로그인이 안돼요!
                     </a>
                     </span>
                 </li>
-                <li class="inquiry_status"><span class="inquiry_status_color">답변완료</span></li>
+                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${item.askAdminStatus} == true">답변완료</span></li>
                 <li class="inquiry_date" th:text="${item.askAdminRegisterDate}"></li>
             </ul>
         </div>

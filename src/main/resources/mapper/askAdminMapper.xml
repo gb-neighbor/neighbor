@@ -59,6 +59,11 @@
         where member_id = #{member_id};
     </select>
 
+    <select id="selectDetail" parameterType="long" resultType="askAdminVO">
+        SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
+        FROM tbl_ask_admin
+        where ask_admin_id = #{ask_admin_id}
+    </select>
 
 
 

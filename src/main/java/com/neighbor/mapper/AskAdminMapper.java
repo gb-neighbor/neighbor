@@ -35,4 +35,6 @@ public interface AskAdminMapper {
     //    내가 작성한 문의 조회
     public List<AskAdminVO> selectOne(Long memberId);
 
+    //  문의 상세페이지
+    public AskAdminVO selectDetail(Long askAdminId);
 }
