@@ -236,7 +236,7 @@ body {
     box-shadow: 5px 5px 10px 0 gray;
 }
 
-.member-input-wrap{
+.board-input-wrap{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -249,11 +249,11 @@ body {
     position: relative;
 }
 
-.member-search-wrap {
+.board-search-wrap {
     padding-right: 3%;
 }
 
-.member-search{
+.board-search{
     width: 40vh;
     height: 5vh;
     border: none;
@@ -298,7 +298,7 @@ body {
     transition: background-color 0.5s;
  }
 
-.member-delete-button{
+.board-delete-button{
     background-color: #F1416C;
     color: #fff;
     border: none;
@@ -309,7 +309,7 @@ body {
     margin-right: 15%;
 }
 
-.member-delete-button:hover{
+.board-delete-button:hover{
     background-color:#ff0000;
     transition: background-color 0.5s;
  }

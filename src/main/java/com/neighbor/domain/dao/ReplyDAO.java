@@ -1,5 +1,6 @@
 package com.neighbor.domain.dao;
 
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.ReplyDTO;
 import com.neighbor.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +15,8 @@ public class ReplyDAO {
     private final ReplyMapper replyMapper;
 
 //  전체 후기글 조회
-    public List<ReplyDTO> findAll() {
-        return replyMapper.selectAll();
+    public List<ReplyDTO> findAll(Criteria criteria) {
+        return replyMapper.selectAll(criteria);
     }
 
 //  후기관리 삭제
@@ -29,5 +30,10 @@ public class ReplyDAO {
 // 후기글 전체 글 수
     public Integer countAll() {
         return replyMapper.countAll();
+    }
+
+    //    후기목록 검색용 글 조회
+    public List<ReplyDTO> findSearch(Criteria criteria, ReplyDTO replyDTO) {
+        return replyMapper.selectSearch(criteria, replyDTO);
     }
 }

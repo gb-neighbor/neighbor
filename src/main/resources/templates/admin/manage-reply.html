@@ -90,21 +90,24 @@
 
             <div class="user-list-contents">
                 <div class="member-input-wrap">
-                    <div class="member-delete-button-wrap">
-                        <input class="member-delete-button" type="submit" value="후기 삭제">
+                    <div class="reply-delete-button-wrap">
+                        <input class="reply-delete-button" type="submit" value="후기 삭제">
                     </div>
 
                     <div class="member-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
-                            <input class="member-search" type="text" placeholder="후기 검색">
+                            <form class="reply-search-form" th:action="@{/replys/list}">
+                                <input class="reply-search keyword" name="keyword" type="text" placeholder="후기 검색">
+                                <button type="submit">검색</button>
+                            </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="total-mentor">
                     <p>후기</p>
-                    <p class="total-mentor-num">15</p>
+                    <p class="total-mentor-num" th:text="${replyCount}"></p>
                 </div>
 
                 <div class="checkbox-group">
@@ -133,186 +136,162 @@
                     </div>
 
                     <!-- 여기부터 내용 -->
-                    <div class="item-list-contents">
+                    <div class="item-list-contents" th:each="reply:${replys}">
                         <div class="checkbox-zip">
                             <input type="checkbox" id="check1" class="normal" value="">
                         </div>
-                        <div class="reply-num">
-                            1
-                        </div>
-                        <div class="board-num">
-                            3
-                        </div>
-                        <div class="region">
-                            서울시 강동구
-                        </div>
-                        <div class="writer-nick">
-                            lyt1234
-                        </div>
+                        <div class="reply-num" th:text="*{reply.replyId}"></div>
+                        <div class="board-num" th:text="*{reply.boardId}"></div>
+                        <div class="region" th:text="*{reply.replyRegionKo}"></div>
+                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>
                         <div class="reply-content">
-                            <span>후기 내용입니다.</span>
+                            <span th:text="*{reply.replyContent}"></span>
                             <div id="my_modal7" class="my_modal">
                                 <a class="modal_close_btn">✖</a>
-                                <div class="comment-writer">작성자: 김동한</div>
-                                <div class="comment-detail">
-                                    그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
-                                    그대의 눈동자에 cheers.
-                                </div>
+                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>
+                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>
                             </div>
                         </div>
-                        <div class="reply-day">
-                            2023-05-05
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="reply-num">
-                            1
-                        </div>
-                        <div class="board-num">
-                            3
-                        </div>
-                        <div class="region">
-                            서울시 강동구
-                        </div>
-                        <div class="writer-nick">
-                            lyt1234
-                        </div>
-                        <div class="reply-content">
-                            <span>후기 내용입니다.</span>
-                            <div id="my_modal7" class="my_modal">
-                                <a class="modal_close_btn">✖</a>
-                                <div class="comment-writer">작성자: 김동한</div>
-                                <div class="comment-detail">
-                                    그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
-                                    그대의 눈동자에 cheers.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="reply-day">
-                            2023-05-05
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="reply-num">
-                            1
-                        </div>
-                        <div class="board-num">
-                            3
-                        </div>
-                        <div class="region">
-                            서울시 강동구
-                        </div>
-                        <div class="writer-nick">
-                            lyt1234
-                        </div>
-                        <div class="reply-content">
-                            오징어볶음 맛있어요
-                        </div>
-                        <div class="reply-day">
-                            2023-05-05
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="reply-num">
-                            1
-                        </div>
-                        <div class="board-num">
-                            3
-                        </div>
-                        <div class="region">
-                            서울시 강동구
-                        </div>
-                        <div class="writer-nick">
-                            lyt1234
-                        </div>
-                        <div class="reply-content">
-                            오징어볶음 맛있어요
-                        </div>
-                        <div class="reply-day">
-                            2023-05-05
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="reply-num">
-                            1
-                        </div>
-                        <div class="board-num">
-                            3
-                        </div>
-                        <div class="region">
-                            서울시 강동구
-                        </div>
-                        <div class="writer-nick">
-                            lyt1234
-                        </div>
-                        <div class="reply-content">
-                            <span>후기 내용입니다.</span>
-                            <div id="my_modal7" class="my_modal">
-                                <a class="modal_close_btn">✖</a>
-                                <div class="comment-writer">작성자: 김동한</div>
-                                <div class="comment-detail">
-                                    그때 그시절. 우리가 먹던 그 반찬들을 추억하며,
-                                    그대의 눈동자에 cheers.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="reply-day">
-                            2023-05-05
-                        </div>
-                    </div>
-
-                    <div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="reply-num">
-                            1
-                        </div>
-                        <div class="board-num">
-                            3
-                        </div>
-                        <div class="region">
-                            서울시 강동구
-                        </div>
-                        <div class="writer-nick">
-                            lyt1234
-                        </div>
-                        <div class="reply-content">
-                            오징어볶음 맛있어요
-                        </div>
-                        <div class="reply-day">
-                            2023-05-05
-                        </div>
-
+                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>
                     </div>
                 </div>
 
                 <div class="page-button-box">
-                    <input class="page-button" type="submit" value="1">
-                    <input class="page-button2" type="submit" value="2">
+                    <div th:object="${pagination}">
+                        <div style="text-align: center">
+                            <a class="page-button" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                            <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                                <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                            </th:block>
+                            <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+                        </div>
+                        <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
+                            <input type="hidden" th:field="*{page}">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+
+    let $pages = $("a.page-button");
+    // let queryString = "${pagination.criteria.queryString}";
+
+    $pages.on("click", function(e){
+        e.preventDefault();
+        let page = $(this).attr("href");
+        let amount = 6;
+        let url = "/replys/list?page=" + page+"&amount="+amount;
+
+        location.href = url;
+    });
+    // // input 태그 선택
+    // const $input = $(".member-search");
+    //
+    // // 입력이 시작되면 자동완성 결과를 보여주는 이벤트 리스너
+    // $input.on('input', function() {
+    //     // 입력된 검색어를 가져옴
+    //     const keyword = $input.val();
+    //     console.log(keyword);
+    //
+    //     // 검색어를 기반으로 검색 결과를 가져옴
+    //     fetch('/search?keyword=' + encodeURIComponent(keyword))
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // 검색 결과를 화면에 보여줌
+    //             innerHTML = data.html;
+    //         });
+    // });
+
+    // 입력값 가져오기
+    // $('.reply-search').on('input', function() {
+    //     const keyword = $(this).val();
+    //     console.log(keyword);
+    //     fetch('/search?keyword=' + encodeURIComponent(keyword))
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // 검색 결과를 화면에 보여줌
+    //             innerHTML = data.html;
+    //         });
+    // });
+    function showList(event) {
+        event.preventDefault(); // 폼 제출 이벤트 막기
+        var keyword = document.querySelector('.reply-search').value; // 검색어 가져오기
+        location.href = '/replys/list?keyword=' + keyword; // URL 변경
+    }
+    // function showList() {
+    //     var keyword = $("input.reply-search").val();
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "/replys/list",
+    //         data: { keyword: keyword },
+    //         success: function(result){
+    //             // 테이블 초기화
+    //             $('.item-list-contents').empty();
+    //             if(result.length >= 1){
+    //                 result.forEach(function(reply){
+    //                     var str = '<div class="checkbox-zip">\n' +
+    //                         '<input type="checkbox" id="check1" class="normal" value="">\n' +
+    //                         '</div>';
+    //
+    //                     str += '<div class="board-num">' + reply.replyId + '</div>';
+    //                     str += '<div class="region">' + reply.replyRegionKo + '</div>';
+    //                     str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
+    //                     str += '<div class="reply-content">';
+    //                     str += '<span>' + reply.replyContent + '</span>';
+    //                     str += '<div id="my_modal7" class="my_modal">';
+    //                     str += '<a class="modal_close_btn">' + '✖' + '</a>';
+    //                     str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
+    //                     str += '<div class="comment-detail">' + reply.replyContent + '</div>';
+    //                     str += '</div>';
+    //                     str += '</div>';
+    //                     str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
+    //                     $('.item-list-contents').append(str);
+    //                 });
+    //             }
+    //         }
+    //     });
+    // }
+
+
+
+
+
+
+    /*  답글 삭제를 위한 JS */
+    // $('.reply-delete-button').on("click", function() {
+    //     if($("input:checkbox[id='check1']:checked").length==0) {
+    //         alert("삭제할 항목을 선택해 주세요");
+    //         return;
+    //     }
+    //     var txt = '';
+    //
+    //     $("input:checkbox[id='check1']:checked").each(function(i,e){
+    //
+    //         let replyId = $(this).parent().children(".reply-num").text();
+    //
+    //         /*$.ajax({
+    //             url: contextPath + "/adminMenteeDeleteAction.admin",
+    //             data:{menteeId: menteeId},
+    //             success: function(result){
+    //                 alert(result + "삭제 완료");
+    //             }
+    //
+    //         });*/
+    //
+    //         txt+="&"+"replyId=" + replyId ;
+    //
+    //     });
+    //     txt=txt.replace("&", "");
+    //     location.href = contextPath + "/replys/list?"+txt;
+    // });
+
+</script>
 </html>

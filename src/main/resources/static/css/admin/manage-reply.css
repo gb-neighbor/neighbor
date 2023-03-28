@@ -257,7 +257,7 @@ html{
     padding-right: 3%;
 }
 
-.member-search{
+.reply-search{
     width: 40vh;
     height: 5vh;
     border: none;
@@ -281,7 +281,7 @@ html{
 }
 
 
-.member-delete-button{
+.reply-delete-button{
     background-color: #F1416C;
     color: #fff;
     border: none;
@@ -292,12 +292,12 @@ html{
     margin-right: 15%;
 }
 
-.member-delete-button:hover{
+.reply-delete-button:hover{
     background-color:#ff0000;
     transition: background-color 0.5s;
  }
 
-.member-delete-button-wrap{
+.reply-delete-button-wrap{
     padding-left: 3%;
 }
 
