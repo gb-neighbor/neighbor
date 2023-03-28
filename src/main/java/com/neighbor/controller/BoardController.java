@@ -52,7 +52,8 @@ public class BoardController {
     }
 
     @GetMapping("list")
-    public String goList(){
+    public String goList(Model model){
+        model.addAttribute("boardDTOS", boardService.getBoardMemberFile());
         return "list/list-by-region";
     }
 

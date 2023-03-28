@@ -29,6 +29,10 @@ public class BoardMapperTests {
     }
 
     @Test
+    public void testAllBoardMemberFile(){
+    }
+
+    @Test
     public void testSelect(){
         BoardDTO boardDTO = boardMapper.select(1);
         Assertions.assertThat(boardDTO.getBoardRegion()).isEqualTo(1);
