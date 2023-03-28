@@ -22,6 +22,13 @@
         where b.board_id = bf.board_id;
     </select>
 
+    <!--BoardId로 사용자 정보 가져오기-->
+    <select id="getMemberInfoByBoardId">
+        select member_name, member_nickname, member_region, member_email, member_hi_sentence from tbl_board b join tbl_member m
+        on b.member_id = m.member_id
+        where board_id = #{boardId}
+    </select>
+
     <!-- 게시판 판매대기중 조회 -->
     <select id="selectWait" resultType="boardDTO">
         select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status

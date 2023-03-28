@@ -2,6 +2,7 @@ package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.vo.BoardVO;
+import com.neighbor.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public interface BoardMapper {
 //    마지막에 추가된 boardId 가져오기
     public Long getLastBoardId();
     
-//    BoardDetail로 이동시 모든 정보 가져오기
-    public BoardDTO getBoardInfo();
+//    보드아이디로 맴버정보 가져오기
+    public MemberVO getMemberInfoByBoardId(Long boardId);
 
 //     지역으로 게시글 조회
     public BoardDTO select(Integer boardRegion);

@@ -48,7 +48,7 @@ public class BoardController {
         boardDTO.setMemberId(1L);
         boardService.write(boardDTO);
         boardFileService.upload(boardDTO);
-        return new RedirectView("boards/detail/{boardId}");
+        return new RedirectView("boards/list");
     }
 
     @GetMapping("detail")
