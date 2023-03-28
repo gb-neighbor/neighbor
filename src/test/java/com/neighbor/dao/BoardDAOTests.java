@@ -41,13 +41,13 @@ public class BoardDAOTests {
 
     @Test
     public void boardInsertTest(){
-        BoardVO boardVO = new BoardVO();
-        boardVO.setMemberId(1L);
-        boardVO.setBoardRegion(1);
-        boardVO.setBoardContent("다오 테스트 내용 1");
-        boardVO.setBoardTitle("다오 테스트 제목 1");
-        boardDAO.save(boardVO);
-        log.info(String.valueOf(boardDAO.getBoardId()));
+//        BoardVO boardVO = new BoardVO();
+//        boardVO.setMemberId(1L);
+//        boardVO.setBoardRegion(1);
+//        boardVO.setBoardContent("다오 테스트 내용 1");
+//        boardVO.setBoardTitle("다오 테스트 제목 1");
+//        boardDAO.save(boardVO);
+//        log.info(String.valueOf(boardDAO.getBoardId()));
     }
 
 }

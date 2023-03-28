@@ -52,10 +52,10 @@
 <section class="wrap">
     <article class="message_box_content">
         <p class="message_box_title">쪽지함</p>
-        <ul id="message_box_list">
+        <ul id="message_box_list" th:each="target: ${targetInfo}">
 
 
-            <li class="message_list">
+            <li class="message_list" th:object="${target}">
                 <button class="detail_btn" onclick="openModalBanner(1)"> <!-- 괄호에 쪽지번호 ${message.messageId} -->
                 </button>
                 <div class="message_box_wrapper">
@@ -68,18 +68,20 @@
                     </div>
                     <div class="message_box_detail">
                         <div class="detail_message">
-                            <a href="" class="nick_name">구센치</a>
+                            <a href="" class="nick_name"></a>
                         </div>
                         <div class="message_box_info">
-                            <p class="board_title">맛있는 불고기 반찬</p>
-                            <p class="message_box_time">2023.03.13 13:53</p>
+                            <p class="board_title" th:text="*{boardTitle}"></p>
+                            <p class="message_box_time" th:text="*{latestRegisterDate}"></p>
                         </div>
                     </div>
                 </div>
                 <form class="purchase_complete_form">
                     <div class="purchase_complete_wrap">
                         <p id="purchase_complete_message1" class="complete_message">거래완료</p>
-                        <button type="button" id="purchase_done1" class="purchase_complete_btn" onclick="changeToText(1)">구매완료</button>
+                        <button type="button" id="purchase_done1" class="purchase_complete_btn"
+                                onclick="changeToText(1)">구매완료
+                        </button>
                     </div>
                 </form>
             </li>
@@ -160,14 +162,15 @@
                     </div>
 
 
-
-
                 </div>
                 <form action="" class="send_form" name="form" method="post" enctype="multipart/form-data">
                     <div class="container">
-                        <textarea class="write-section" id="write-section1" name="content" cols="20" rows="5" onKeydown="getLength(1)" onKeyUp="getLength(1)" maxlength="1001"></textarea>
+                        <textarea class="write-section" id="write-section1" name="content" cols="20" rows="5"
+                                  onKeydown="getLength(1)" onKeyUp="getLength(1)" maxlength="1001"></textarea>
                         <div class="text_send_wrap">
-                            <input id="text_length1" class="count_letter" type="text" size="3" NAME="txtlen" value="0" readonly><input disabled class="count_letter_max" type="text" size="10" value="/1000">
+                            <input id="text_length1" class="count_letter" type="text" size="3" NAME="txtlen" value="0"
+                                   readonly><input disabled class="count_letter_max" type="text" size="10"
+                                                   value="/1000">
                             <button id="send_btn_id" class="send_btn">전송</button>
                         </div>
                     </div>
@@ -198,7 +201,9 @@
                 <form class="purchase_complete_form">
                     <div class="purchase_complete_wrap">
                         <p id="purchase_complete_message2" class="complete_message">거래완료</p>
-                        <button type="button" id="purchase_done2" class="purchase_complete_btn" onclick="changeToText(2)">구매완료</button>
+                        <button type="button" id="purchase_done2" class="purchase_complete_btn"
+                                onclick="changeToText(2)">구매완료
+                        </button>
                     </div>
                 </form>
             </li>
@@ -279,14 +284,15 @@
                     </div>
 
 
-
-
                 </div>
                 <form action="" class="send_form" name="form" method="post" enctype="multipart/form-data">
                     <div class="container">
-                        <textarea class="write-section" id="write-section2" name="content" cols="20" rows="5" onKeydown="getLength(2)" onKeyUp="getLength(2)" maxlength="1001"></textarea>
+                        <textarea class="write-section" id="write-section2" name="content" cols="20" rows="5"
+                                  onKeydown="getLength(2)" onKeyUp="getLength(2)" maxlength="1001"></textarea>
                         <div class="text_send_wrap">
-                            <input id="text_length2" class="count_letter" type="text" size="3" NAME="txtlen" value="0" readonly><input disabled class="count_letter_max" type="text" size="10" value="/1000">
+                            <input id="text_length2" class="count_letter" type="text" size="3" NAME="txtlen" value="0"
+                                   readonly><input disabled class="count_letter_max" type="text" size="10"
+                                                   value="/1000">
                             <button id="send_btn_id" class="send_btn">전송</button>
                         </div>
                     </div>
@@ -304,7 +310,8 @@
     </div>
 </div>
 <button id="topBtn">Top</button>
-<div class="modal_background" style="position: fixed; z-index: 998; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);"></div>
+<div class="modal_background"
+     style="position: fixed; z-index: 998; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);"></div>
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

@@ -8,6 +8,7 @@
         <typeAlias type="com.neighbor.domain.vo.BoardFileVO" alias="boardFileVO"/>
         <typeAlias type="com.neighbor.domain.vo.MemberVO" alias="memberVO"/>
         <typeAlias type="com.neighbor.domain.vo.MessageVO" alias="messageVO"/>
+        <typeAlias type="com.neighbor.domain.vo.MessageRoomVO" alias="messageRoomVO"/>
         <typeAlias type="com.neighbor.domain.vo.PurchaseVO" alias="purchaseVO"/>
         <typeAlias type="com.neighbor.domain.vo.ReplyVO" alias="replyVO"/>
         <typeAlias type="com.neighbor.domain.vo.ReplyFileVO" alias="replyFileVO"/>
@@ -17,5 +18,6 @@
         <typeAlias type="com.neighbor.domain.dto.ReplyDTO" alias="replyDTO"/>
         <typeAlias type="com.neighbor.domain.dto.MemberDTO" alias="memberDTO"/>
         <typeAlias type="com.neighbor.domain.dto.MessageDTO" alias="messageDTO"/>
+        <typeAlias type="com.neighbor.domain.dto.MessageRoomDTO" alias="messageRoomDTO"/>
     </typeAliases>
 </configuration>
