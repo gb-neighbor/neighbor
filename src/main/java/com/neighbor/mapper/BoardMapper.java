@@ -39,4 +39,6 @@ public interface BoardMapper {
 //    게시글 삭제
     public void delete(Long boardId);
 
+//    보드 제목
+    public String selectBoardTitle(Long boardId);
 }

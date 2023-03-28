@@ -25,8 +25,7 @@ public interface MessageMapper {
 //    <!-- 쪽지 대화 내역 중 가장 최근 날짜 -->
     public String selectLatestDate(Long messageRoomId);
 
-//    <!-- 보드 제목 -->
-    public String selectBoardTitle(Long boardId);
+
 
 
 

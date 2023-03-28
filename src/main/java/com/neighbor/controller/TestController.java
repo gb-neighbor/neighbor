@@ -15,7 +15,7 @@ public class TestController {
 
     @GetMapping("1")
     public String productdetail(){
-        return "/kjp/product-detail2";
+        return "/board/product-detail2";
     }
 
 

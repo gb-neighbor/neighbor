@@ -51,4 +51,7 @@ public class BoardDAO {
         boardMapper.delete(boardId);
     }
 
+//    게시글 제목
+    public String findBoardTitle(Long boardId){return boardMapper.selectBoardTitle(boardId);}
+
 }
