@@ -17,7 +17,7 @@
     </select>
 
     <!--후기 총 수-->
-    <select id="countAll" resultType="Integer">
+    <select id="countAll" resultType="int">
         select count(distinct reply_id) as countTotalReplys
         from tbl_reply
     </select>

@@ -15,7 +15,7 @@ public class ReplyService {
     private final ReplyDAO replyDAO;
 
     //  후기관리 삭제
-    public void delete(List<String> replyIds){
+    public void remove(List<String> replyIds){
         replyIds.stream().map(replyId -> Long.parseLong(replyId)).forEach(replyDAO::delete);
     }
 
