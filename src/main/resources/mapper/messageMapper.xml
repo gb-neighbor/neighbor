@@ -8,8 +8,8 @@
     </select>
 
     <!-- 해당 게시글의 쪽지 내역-->
-    <select id="selectOne" resultType="messageVO">
-        select message_content, message_register_date, message_room_id, message_sender_id
+    <select id="selectMessage" resultType="messageVO">
+        select message_id, board_id, message_content, message_register_date, message_room_id, message_sender_id, message_getter_id
         from tbl_message where message_room_id =#{messageRoomId}
     </select>
 
@@ -29,6 +29,11 @@
     <select id="selectLatestDate" resultType="string">
         select date_format(max(message_register_date), '%y-%m-%d %h:%i') as latest_register_date
         from tbl_message where message_room_id = #{messageRoomId}
+    </select>
+
+    <!-- 대화방 번호 가져오기-->
+    <select id="selectMessageRoomId" resultType="long">
+        select message_room_id from tbl_message_room where board_id = #{boardId} and customer_id = #{memberId}
     </select>
 
 </mapper>
