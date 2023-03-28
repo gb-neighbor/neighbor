@@ -477,19 +477,19 @@
                             </div>
                         </li>
                         <!-- //리스트 한개 -->
-                        <a th:each = "boardDTO : ${boardDTOS}">
-                            <li class="result-list-container">
+                        <a th:each = "boardDTO : ${boardDTOList}">
+                            <li class="result-list-container" >
                                 <div class="result-list-outer-box">
                                     <a href="#">
                                         <div class="profile-area-box">
                                             <div class="profile-area">
                                                 <div class="profile-area-inner">
-                                                    <div class="thumbs" style="background-image:url('/css/list/image/dummy-thumbnail.jpg')"></div>
+                                                    <div class="thumbs"></div>
                                                     <p class="id">
-                                                        <span onclick="location.href='#'" th:text="${boardDTO.memberNickname}"></span>
+                                                        <span onclick="location.href='#'"  th:text="${boardDTO.memberNickname}"></span>
                                                     </p>
                                                     <div class="location">
-                                                        <span class="map" th:text="${boardDTO.boardRegion}"></span>
+                                                        <span class="map"  th:text="${boardDTO.boardRegion}"></span>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -510,17 +510,22 @@
                                             </div>
                                             <div class="sub-info-area-box">
                                                 <div class="price">
-                                                    <span class="won" th:text="${boardDTO.boardPrice}"></span>
+                                                    <span class="won" th:text=" ${boardDTO.boardPrice}"></span>
                                                 </div>
                                             </div>
 
                                         </div>
 
                                         <div class="pic-box">
-                                            <div class="pics-thumbs thumbs1"></div>
-                                            <div class="pics-thumbs thumbs2"></div>
-                                            <div class="pics-thumbs thumbs3"></div>
+                                            <div class="pics-thumbs thumbs1" th:each="file : ${boardDTO.files}" th:data-board-file-path="${file.boardFilePath}" th:data-board-file-uuid="${file.boardFileUuid}"
+                                                 th:data-board-file-original-name="${file.boardFileOriginalName}"></div>
                                         </div>
+<!--                                        <div class="pic-box">-->
+<!--                                            <div class="pics-thumbs thumbs1" th:each="file : ${boardDTO.files}"></div>-->
+<!--                                            <div class="pics-thumbs thumbs2"></div>-->
+<!--                                            <div class="pics-thumbs thumbs3"></div>-->
+<!--                                        </div>-->
+
                                     </a>
                                 </div>
                             </li>
@@ -549,5 +554,33 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.thumbs2').each(function () {
+            let boardFilePath = $(this).data('board-file-path');
+            let boardFileUuid = $(this).data('board-file-uuid');
+            let boardFileOriginalName = $(this).data('board-file-original-name');
+            let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+            $(this).css('background-image', 'url(' + boardUrl + ')');
+        });
+
+        $('.thumbs').each(function () {
+            let boardFilePath = $(this).data('board-file-path');
+            let boardFileUuid = $(this).data('board-file-uuid');
+            let boardFileOriginalName = $(this).data('board-file-original-name');
+            let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+            $(this).css('background-image', 'url(' + boardUrl + ')');
+        });
+
+        $(".thumbs").each(function () {
+            let profileFilePath = $(this).data('profile-file-path');
+            let profileFileUuid = $(this).data('profile-file-uuid');
+            let profileFileOriginalName = $(this).data('profile-file-original-name');
+            //프로필 사진 컨트롤러 보고 작성해야함
+            let profileUrl = '/display?fileName=' + profileFilePath + '/t_' + profileFileUuid + '_' + profileFileOriginalName;
+            $(this).css('background-image', 'url(' + profileUrl + ')');
+        });
+    });
+</script>
 <script src="/js/list/list-by-region.js"></script>
 </html>

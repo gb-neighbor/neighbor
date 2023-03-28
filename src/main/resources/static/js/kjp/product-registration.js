@@ -106,7 +106,7 @@ $("input[id='detail-file']").on("change", function() {
             console.log(globalThis.uuids)
 
             $files.forEach((file, i) => {
-                $("#thumbnail-container1").append(`<img src="/board-files/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}">`);
+                $("#thumbnail-container1").append(`<img src="/board-files/display?fileName=/${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}">`);
                 $(".add-button").css("margin-top", "172px");
             });
 
@@ -119,24 +119,14 @@ $("input[id='detail-file']").on("change", function() {
             $files.forEach(file => {
                 text +=
                     `
-                    <input type="hidden" name="files[${i}].fileDetailName" value="${file.name}">
-                    <input type="hidden" name="files[${i}].fileDetailUuid" value="${globalThis.uuids[i]}">
-                    <input type="hidden" name="files[${i}].fileDetailPath" value="${toStringByFormatting(new Date())}">
-                    <input type="hidden" name="files[${i}].fileDetailSize" value="${file.size}">
+                    <input type="hidden" name="files[${i}].boardFileOriginalName" value="${file.name}">
+                    <input type="hidden" name="files[${i}].boardFileUuid" value="${globalThis.uuids[i]}">
+                    <input type="hidden" name="files[${i}].boardFilePath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name="files[${i}].boardFileSize" value="${file.size}">
                     `
                 i++;
             });
             $("form[name='board']").append(text);
-
-            $files.forEach((file, i) => {
-                let boardFileVO2 = new Object();
-                boardFileVO2.fileOriginalName = file.name;
-                boardFileVO2.fileUuid = globalThis.uuids[i];
-                boardFileVO2.filePath = toStringByFormatting(new Date());
-                boardFileVO2.fileSize = file.size;
-                files.push(boardFileVO2);
-                console.log(boardFileVO2.fileUuid)
-            });
         }
     });
 });

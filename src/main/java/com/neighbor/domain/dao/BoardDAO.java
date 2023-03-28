@@ -26,6 +26,7 @@ public class BoardDAO {
     }
     
 //    맴버, 보드, 보드파일의 정보 가져오기
+    public List<BoardDTO> findAllBoardMember(){return boardMapper.selectAllBoardMember();}
 
 //    관리자 페이지 판매목록 게시글 전체 조회
     public List<BoardDTO> findAll(){return boardMapper.selectAll();}

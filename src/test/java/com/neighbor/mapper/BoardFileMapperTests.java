@@ -17,6 +17,10 @@ public class BoardFileMapperTests {
     public void testInsert(){
         BoardDTO boardDTO= new BoardDTO();
         boardDTO.setBoardId(3L);
+        boardDTO.setFileMainSize("20MB");
+        boardDTO.setFileMainName("djfk");
+        boardDTO.setFileMainUuid("fdsaf");
+        boardDTO.setFileMainPath("C:upload");
         boardFileMapper.insertMain(boardDTO);
     }
 
