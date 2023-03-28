@@ -12,6 +12,7 @@ public class BoardVO {
     private String boardRegisterDate;
     private String boardUpdateDate;
     private Boolean boardStatus;
+    private Integer boardPrice;
     private Long memberId;
     private Integer boardRegion;
 

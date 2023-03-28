@@ -45,7 +45,9 @@ public class BoardController {
 //        나중에 session에서 Id값 가져오기
         boardDTO.setMemberId(1L);
         boardService.write(boardDTO);
-        boardFileService.upload(boardDTO);
+        if(boardDTO.getFileMainName() != null){
+            boardFileService.upload(boardDTO);
+        }
         return new RedirectView("list");
     }
 
