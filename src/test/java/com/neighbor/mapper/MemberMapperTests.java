@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
 @Slf4j
@@ -29,6 +30,26 @@ public class MemberMapperTests {
         MemberVO memberVO = new MemberVO();
         memberVO.setMemberId(4L);
         memberMapper.delete(4L);
+    }
+
+    @Test
+    public void testInsert(){
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId(1L);
+        memberVO.setMemberIdentification("dlstk3031");
+        memberVO.setMemberPassword("ids30312345!");
+        memberVO.setMemberNickname("lym");
+        memberVO.setMemberName("임의택");
+        memberVO.setMemberBirth("19980728");
+        memberVO.setMemberEmail("dlstk3031@naver.com");
+        memberVO.setMemberPhone("01072716604");
+        memberVO.setMemberRegion(1);
+        memberVO.setMemberHiSentence("안녕하세요");
+        memberVO.setMemberProfileOriginalName("테스트1.png");
+        memberVO.setMemberProfilePath("2023/3/27");
+        memberVO.setMemberProfileSize("1024");
+        memberVO.setMemberProfileUuid(UUID.randomUUID().toString());
+        memberMapper.insert(memberVO);
     }
 
 }

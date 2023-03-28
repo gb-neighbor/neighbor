@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>헤더</title>
-        <link rel="stylesheet" href="../../static/css/main/header.css" />
-    </head>
-    <body>
-        <header th:fragment="header" id="header">
-            <!-- 메인 페이지 헤더 부분에 회색줄 -->
-            <nav class="header-grey-line">
-                <div class="header-grey-line-inner">
-                    <ul class="header-logIn-signUp">
-                        <li class="header-my">
-                            <a href="">마이페이지</a>
-                        </li>
-                        <li class="header-write">
-                            <a href="">글쓰기</a>
-                        </li>
-                        <li class="header-logIn">
-                            <a href="">로그인</a>
-                        </li>
-                        <li class="header-signUp">
-                            <a href="">회원가입</a>
-                        </li>
-                        <li class="header-logOut">
-                            <a href="">로그아웃</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- grey-line-inner after 있음 -->
-            </nav>
-            <!-- 헤더 부분 회색 줄 아래부분. -->
-            <article class="header-grey-line-bottom">
-                <h1 class="header-home">
-                    <a href="">
-                        <span class="header-home-name special">싱그러운 집</span>
-                    </a>
-                </h1>
-            </article>
-        </header>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>헤더</title>
+    <link rel="stylesheet" href="../../static/css/main/header.css" />
+</head>
+<body>
+<header th:fragment="header" id="header">
+    <!-- 메인 페이지 헤더 부분에 회색줄 -->
+    <nav class="header-grey-line">
+        <div class="header-grey-line-inner">
+            <ul class="header-logIn-signUp">
+                <li class="header-my">
+                    <a th:if="${session.memberId != null}" href="">마이페이지</a>
+                </li>
+                <li class="header-write">
+                    <a th:if="${session.memberId != null}" href="">글쓰기</a>
+                </li>
+                <li class="header-logIn">
+                    <a th:if="${session.memberId == null}" href="http://localhost:10000/members/login">로그인</a>
+                </li>
+                <li class="header-signUp">
+                    <a th:if="${session.memberId == null}" href="http://localhost:10000/members/register">회원가입</a>
+                </li>
+                <li class="header-logOut">
+                    <a th:if="${session.memberId != null}" href="http://localhost:10000/members/logout">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+        <!-- grey-line-inner after 있음 -->
+    </nav>
+    <!-- 헤더 부분 회색 줄 아래부분. -->
+    <article class="header-grey-line-bottom">
+        <h1 class="header-home">
+            <a href="">
+                <span class="header-home-name special">싱그러운 집</span>
+            </a>
+        </h1>
+    </article>
+</header>
+</body>
 </html>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <form th:action="@{/signups/sign-up}" method="post" th:object="${memberVO}">
+    <form action="/members/register" method="post" name="write-form">
         <div class="join-wrapper">
             <div class="logo">
                 <a href="#">
@@ -21,60 +21,61 @@
                 <dl style="text-align: center;">
                     <label for="profile" id="profile_label">
                         <div class="img">
+                            <img id="image" src="">
                             <div class="camera">
-                                <img src="/css/admin/images/camera.png" width="20" alt="">
+                                <img class="img" src="/css/admin/images/camera.png" width="20" alt="">
                             </div>
                         </div>
                         <span class="close" style="display:none">X</span>
                     </label>
                     <!-- 이미지만을 업로드할 수 있게 -->
-                    <input type="file" id="profile" style="display: none" accept="image/*"/>
+                    <input type="file" name="file" id="profile" style="display: none" accept="image/*"/>
                 </dl>
                 <dl>
                     <dt>아이디</dt>
                     <dd class="id-check">
-                        <input type="text" id="join-identification" name="memberIdentification" th:field="*{memberIdentification}" placeholder="아이디">
+                        <input type="text" class="identification"  name="memberIdentification" placeholder="아이디">
                         <p class="id-err err"></p>
                     </dd>
                 </dl>
                 <dl>
                     <dt>비밀번호</dt>
                     <dd class="password">
-                        <input type="password" id="join-password" name="memberPassword" placeholder="비밀번호">
+                        <input type="password" class="pw" name="memberPassword" placeholder="비밀번호">
                         <p class="err-password err"></p>
                     </dd>
                     <dd style="margin-top:5px">
-                        <input type="password" id="join-check-password" th:field="*{memberPassword}" placeholder="비밀번호 확인">
+                        <input type="password" id="join-check-password" placeholder="비밀번호 확인">
                         <p class="err-password-check err"></p>
                     </dd>
                 </dl>
                 <dl>
                     <dt>닉네임</dt>
                     <dd>
-                        <input type="text" id="nickname" name="memberNickname" th:field="*{memberNickname}" placeholder="닉네임(2~10자)">
+                        <input type="text" class="nick-name" name="memberNickname" placeholder="닉네임(2~10자)">
                         <p class="err-nickname err"></p>
                     </dd>
                 </dl>
                 <dl>
                     <dt>이름</dt>
                     <dd>
-                        <input type="text" id="name" name="memberName" th:field="*{memberName}" placeholder="이름">
+                        <input type="text" class="name" name="memberName" placeholder="이름">
                         <p class="err-name err"></p>
                     </dd>
                 </dl>
                 <dl>
                     <dt>생일</dt>
-                    <input type="text" id="birth" name="memberBirth" th:field="*{birth}" placeholder="생일 ex)19980101">
+                    <input type="text" class="birth" name="memberBirth" placeholder="생일 ex)19980101">
                     <p class="err-birth err"></p>
                 </dl>
                 <dl>
                     <dt>핸드폰 번호</dt>
-                    <input type="text" id="phone" name="memberPhone" th:field="*{phone}" placeholder="전화번호 ex)01041938215">
+                    <input type="text" class="phone" name="memberPhone" placeholder="전화번호 ex)01041938215">
                     <p class="err-phone err"></p>
                 </dl>
                 <dl>
                     <dt>지역</dt>
-                    <select name="memberRegion" id="select-region" th:field="*{region}">
+                    <select name="memberRegion">
                         <option value="1">강남구</option>
                         <option value="2">강동구</option>
                         <option value="3">강북구</option>
@@ -106,13 +107,12 @@
                 </dl>
                 <dl>
                     <dt>이메일</dt>
-                    <input type="text" id="email" name="memberEmail" th:field="*{memberEmail}" placeholder="이메일">
+                    <input class="email" type="text" name="memberEmail" placeholder="이메일">
                     <p class="err-email" err></p>
                 </dl>
                 <dl>
                     <dt>자기소개</dt>
-                    <textarea placeholder="20자 이내로 써주세요" th:field="*{hiSentence}"></textarea>
-                    <p class="err-email" err></p>
+                    <textarea placeholder="20자 이내로 써주세요" name="memberHiSentence"></textarea>
                 </dl>
                 <dl>
                     <dt>약관동의</dt>
@@ -142,7 +142,7 @@
                     </dd>
                 </dl>
             </div>
-            <button type="button" class="join" onclick="sendJoin()">회원가입 완료</button>
+            <button type="submit" class="join" onclick="sendJoin()">회원가입 완료</button>
         </div>
     </form>
 
@@ -565,14 +565,52 @@
                             </div>
                         </div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-                        <p>본 방침은 : 2021년 2월 4일부터 시행됩니다.</p>
-                    </div>
+                    <p>본 방침은 : 2021년 2월 4일부터 시행됩니다.</p>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/login/member.js"></script>
+<script>
+    globalThis.arrayFile2 = new Array();
+    globalThis.j = 0;
+    const dataTransfer = new DataTransfer();
+    $("input[id='profile']").on("change", function() {
+        const $files2 = $("input[id=profile]")[0].files[0];
+        console.log($files2)
+//    파일 객체에 접근함
+        let formData = new FormData();
+        globalThis.arrayFile2.push($files2);
+        // 파일 Array의 file들을 하나씩 담아줌
+        console.log(globalThis.arrayFile2)
+        formData.append("file", $files2)
+        $.ajax({
+            url: "/members/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (uuid) {
+                globalThis.uuid = uuid;
+                console.log(globalThis.uuid)
+
+                $("input[id='profile']")[0].files = dataTransfer.files;
+                let text2 = "";
+                text2 =
+                    `
+                    <input type="hidden" name="memberProfileOriginalName" value="${$files2.name}">
+                    <input type="hidden" name="memberProfileUuid" value="${globalThis.uuid}">
+                    <input type="hidden" name="memberProfilePath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name="memberProfileSize" value="${$files2.size}">
+                    `
+                $("form[name='write-form']").append(text2);
+                console.log(text2);
+            }
+        });
+    });
+</script>
 </html>

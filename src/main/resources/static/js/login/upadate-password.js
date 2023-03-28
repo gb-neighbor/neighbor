@@ -75,4 +75,4 @@ function sendPassword(){
     location.replace(location.href);
     $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
     document.joinForm.submit();
-    }
+}
