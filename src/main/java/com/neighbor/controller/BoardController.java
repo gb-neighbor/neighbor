@@ -40,15 +40,18 @@ public class BoardController {
     }
 
 
-    //    boardDTO 실패
-//    boardVO랑 파일 List로 받아오는거 실패
     @PostMapping("save")
     public RedirectView writeBoard(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
 //        나중에 session에서 Id값 가져오기
         boardDTO.setMemberId(1L);
         boardService.write(boardDTO);
         boardFileService.upload(boardDTO);
-        return new RedirectView("boards/list");
+        return new RedirectView("list");
+    }
+
+    @GetMapping("list")
+    public String goList(){
+        return "list/list-by-region";
     }
 
     @GetMapping("detail")
