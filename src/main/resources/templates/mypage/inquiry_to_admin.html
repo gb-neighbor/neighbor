@@ -101,17 +101,17 @@
                 <li class="inquiry_date">등록일</li>
             </ul>
 
-            <ul class="my_inquiry" th:each="item:${askAdmin}">
+            <ul class="my_inquiry" th:each="askAdmin:${askAdmin}">
                 <li class="inquiry_num"></span>1</li>
                 <li class="inquiry_my_title">
                     <strong> <span class="cat">[회원정보문의]</span></strong>
-                    <a class="detail_link" th:href="@{detail/{askAdminId}(askAdminId=${item.askAdminId})}" th:text="${item.askAdminTitle}">
+                    <a class="detail_link" th:href="@{detail/{askAdminId}(askAdminId=${askAdmin.askAdminId})}" th:text="${askAdmin.askAdminTitle}">
                         로그인이 안돼요!
                     </a>
                     </span>
                 </li>
-                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${item.askAdminStatus} == true">답변완료</span></li>
-                <li class="inquiry_date" th:text="${item.askAdminRegisterDate}"></li>
+                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${askAdmin.askAdminStatus} == true">답변완료</span></li>
+                <li class="inquiry_date" th:text="${askAdmin.askAdminRegisterDate}"></li>
             </ul>
         </div>
 

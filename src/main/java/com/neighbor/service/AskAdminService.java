@@ -62,4 +62,9 @@ public class AskAdminService {
         return askAdminDAO.findByAskAdminId(askAdminId);
     }
 
+    //    문의 삭제
+    public void deleteDetail(Long askAdminId){
+        askAdminDAO.deleteDetail(askAdminId);
+    }
+
 }
