@@ -1,3 +1,23 @@
+const input = document.querySelector('.input-price');
+input.addEventListener('keyup', function(e) {
+    let value = e.target.value;
+    value = Number(value.replaceAll(',', ''));
+    if(isNaN(value)) {
+        input.value = 0;
+    }else {
+        const formatValue = value.toLocaleString('ko-KR');
+        input.value = formatValue;
+    }
+})
+let form = document.querySelector("form[name=board]")
+$("form").on("submit", function (e) {
+    e.preventDefault();
+    input.value = input.value.replace(",", "")
+    form.submit();
+
+})
+
+
 /* --------------------------------------------------------------------------------------------------- js썸네일*/
 /* 메인 사진 추가 썸네일*/
 FileList.prototype.forEach = Array.prototype.forEach;
@@ -140,3 +160,5 @@ function toStringByFormatting(source, delimiter = '/') {
     return [year, month, day].join(delimiter);
 }
 /*****************************************************/
+
+

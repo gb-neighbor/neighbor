@@ -4,8 +4,8 @@
 
     <insert id="insert">
         insert into tbl_board
-        (board_title, board_content, board_register_date, board_update_date, member_id, board_region)
-        VALUES(#{boardTitle}, #{boardContent}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{memberId}, #{boardRegion});
+        (board_title, board_content, board_register_date, board_update_date, member_id, board_region, board_price)
+        VALUES(#{boardTitle}, #{boardContent}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{memberId}, #{boardRegion}, #{boardPrice});
     </insert>
 
     <!--마지막에 추가된 boardId가져오기 -->

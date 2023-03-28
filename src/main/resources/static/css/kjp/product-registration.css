@@ -49,23 +49,23 @@ strong.st {
 }
 
 input.input-title {
-    height: 50px !important;
-    font-size: 15px !important;
-    color: #808080 !important;
-    border: 1px solid #d9d9d9 !important;
-    border-radius: 4px !important;
+    height: 50px;
+    font-size: 15px;
+    color: #808080;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
     box-sizing: border-box;
-    width: 100% !important;
+    width: 100%;
     text-indent: 19px;
     outline: none;
 }
 
 .cover-title {
-    margin-top: 30px !important;
+    margin-top: 30px;
 }
 
 .cover-photo {
-    margin-top: 20px !important;
+    margin-top: 20px;
     position: relative;
     margin: 0 auto;
     max-width: 1169px;
@@ -317,7 +317,23 @@ img#thumbnail {
 }
 
 /* 테스트 */
-.input-price{
-    width:22%;
+
+.price-title{
+    width: 22%;
+    display: flex;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.price-title span{
+    line-height: 46px;
+    padding-right: 12px;
+    font-size: 15px;
+    color: #808080;
+}
+
+.cover-title .input-price{
+    border: none;
 }
 

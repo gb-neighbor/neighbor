@@ -15,10 +15,10 @@ public class BoardFileDAO {
 
     private final BoardFileMapper boardFileMapper;
     /* 파일 추가 */
-    public void save(BoardDTO boardDTO){
+    public void saveMain(BoardDTO boardDTO){
         boardFileMapper.insertMain(boardDTO);
-        boardFileMapper.insertDetail(boardDTO);
     }
+    public void saveDetail(BoardDTO boardDTO){boardFileMapper.insertDetail(boardDTO);}
 
     public Long getCurrentSeq(){
         return boardFileMapper.getCurrentSequenceForFile();
