@@ -14,8 +14,21 @@ public class MessageMapperTests {
 
     @Test
     public void messageListTest(){
-        messageMapper.selectAll(1L).forEach(messageDTO -> log.info(String.valueOf(messageDTO)));
+        messageMapper.selectAll(1L).forEach(messageRoomDTO -> log.info(String.valueOf(messageRoomDTO)));
     }
+
+    @Test
+    public void messageDetailTest(){
+        messageMapper.selectOne(1L).forEach(messageVO -> log.info(String.valueOf(messageVO)));
+    }
+
+    @Test
+    public void messageCountTest(){
+
+    }
+
+
+
 
 
 }

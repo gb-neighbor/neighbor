@@ -78,64 +78,101 @@ stars.forEach((star) => {
 		// 클릭된 star 이미지와 그 이전 이미지의 모든 grey-star 이미지를 변경
 		for (let i = 1; i <= index; i++) {
 			const img = document.querySelector(`.review-my-star[data-index="${i}"]`);
-			img.setAttribute('src', '../../static/css/kdh/images/star.png');
+			img.setAttribute('src', '/css/board/images/star.png');
 		}
 
 		// 클릭된 star 이미지 이후의 grey-star 이미지를 변경
 		for (let i = parseInt(index) + 1; i <= 5; i++) {
 			const img = document.querySelector(`.review-my-star[data-index="${i}"]`);
-			img.setAttribute('src', '../../static/css/kdh/images/grey-star.png');
+			img.setAttribute('src', '/css/board/images/grey-star.png');
 		}
 	});
 });
 
-/**************************************모달***************************************** */
-// 모달창 열기
-var modal = document.getElementById("message-modal");
-var openBtn = document.getElementById("openBtn");
-openBtn.onclick = function() {
-    modal.style.display = "block";
+/* *************************************모달***************************************** */
+
+/* 모달창 js */
+
+function modal(name, id) {
+	var zIndex = 998;
+	var modal = $(name+id);
+	console.log(modal);
+	// 모달 div 뒤에 희끄무레한 레이어
+	var bg = $('.modal_background')
+		.css({
+			position: 'fixed',
+			zIndex: zIndex,
+			left: '0px',
+			top: '0px',
+			width: '100%',
+			height: '100%',
+			overflow: 'auto',
+			// 레이어 색갈은 여기서 바꾸면 됨
+			backgroundColor: 'rgba(0,0,0,0.4)'
+		})
+		.show();
+
+	modal
+		.css({
+			position: 'fixed',
+			boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+			// 시꺼먼 레이어 보다 한칸 위에 보이기
+			zIndex: zIndex + 1,
+
+			// div center 정렬
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			msTransform: 'translate(-50%, -50%)',
+			webkitTransform: 'translate(-50%, -50%)'
+		})
+		.show()
+		// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+		.find('.modal_close_btn')
+		.on('click', function() {
+			bg.hide();
+			modal.hide();
+			$('#write-section'+id).val('');
+			document.getElementById("text_length"+id).value = 0;
+		});
 }
 
-// 모달창 닫기
-var closeBtn = document.getElementsByClassName("close")[0];
-var cancelBtn = document.getElementById("cancelBtn");
-closeBtn.onclick = function() {
-    modal.style.display = "none";
+function openModalBanner(num){ /* 괄호에 num으로 받기 */
+	modal('.my_modal', num);
 }
-// cancelBtn.onclick = function() {
-//     var title = document.getElementById("title").value;
-//     modal.style.display = "none";
-// }
 
-// 쪽지 보내기
-// var form = document.getElementById("noteForm");
-// form.addEventListener("submit", function(event) {
-//   event.preventDefault(); // 폼 전송 막기
-//   var title = document.getElementById("title").value;
-//   var content = document.getElementById("content").value;
-//   console.log("제목:", title);
-//   console.log("내용:", content);
-//   modal.style.display = "none"; // 모달창 닫기
-// });
 
-/* 글자수 */
-function getLength2(str) {
-	var max_byte = str.length;
-	var str_len = document.messageForm.messageContent.value.length;
+$('.modalAdd').on('click', function() {
+	// 모달창 띄우기
+	modal($('.my_modalAdd'));
+});
 
-	if (max_byte == 1001) {
-		modalMessage = '1000자를 넘길 수 없습니다.';
+
+function getLength(num)
+{
+	var contentValue = document.getElementById("write-section"+num).value;
+	var txtlenValue = document.getElementById("text_length"+num);
+	var max_byte = contentValue.length;
+	var str_len = contentValue.length;
+
+	if (max_byte == 1001)
+	{
+		modalMessage = "1000자를 넘길 수 없습니다.";
 		showWarnModal(modalMessage);
-		document.messageForm.messageContent.value = document.messageForm.messageContent.value.substring(0, str_len - 1);
-		document.messageForm.messagetxtlen.value = max_byte - 1;
+		document.getElementById("write-section"+num).value = document.getElementById("write-section"+num).value.substring(0, str_len-1);
+		txtlenValue.value = max_byte-1;
 		return;
-	} else {
-		document.messageForm.messagetxtlen.value = max_byte;
 	}
+	else
+	{
+		txtlenValue.value = max_byte;
+	}
+
 }
 
-/*********************************************************************************/
+
+/* **************************************banner***************************************** */
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 /* 랜덤추천 메뉴 */
 const imageRandomDiv = document.querySelectorAll('ul.row img');
