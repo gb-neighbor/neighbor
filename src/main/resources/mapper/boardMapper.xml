@@ -71,5 +71,10 @@
         where board_id=#{boardId}
     </delete>
 
+    <!-- 보드 제목 -->
+    <select id="selectBoardTitle" resultType="string">
+        select board_title from tbl_board where board_id = #{boardId}
+    </select>
+
 
 </mapper>

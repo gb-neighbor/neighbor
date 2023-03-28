@@ -2,6 +2,7 @@ package com.neighbor.controller;
 
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
+import com.neighbor.service.BoardService;
 import com.neighbor.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MessageController {
 
     private final MessageService messageService;
+    private final BoardService boardService;
 
 //   세션 매개변수로 받기
     @GetMapping("message_box")
@@ -32,7 +34,7 @@ public class MessageController {
         for (MessageRoomDTO messageRoom : entireList) {
             MessageDTO messageDTO = new MessageDTO();
 
-            messageDTO.setBoardTitle(messageService.showBoardTitle(messageRoom.getBoardId()));
+            messageDTO.setBoardTitle(boardService.showBoardTitle(messageRoom.getBoardId()));
             messageDTO.setLatestRegisterDate(messageService.showLatestDate(messageRoom.getMessageRoomId()));
 
             result.add(messageDTO);

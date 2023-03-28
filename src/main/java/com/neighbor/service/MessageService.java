@@ -19,6 +19,5 @@ public class MessageService {
 
     public String showLatestDate(Long messageRoomId){return messageDAO.findLatestDate(messageRoomId);}
 
-    public String showBoardTitle(Long boardId){return messageDAO.findBoardTitle(boardId);}
 
 }

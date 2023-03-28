@@ -19,6 +19,6 @@ public class MessageDAO {
 
     public String findLatestDate(Long messageRoomId){return messageMapper.selectLatestDate(messageRoomId);}
 
-    public String findBoardTitle(Long boardId){return messageMapper.selectBoardTitle(boardId);}
+
 
 }
