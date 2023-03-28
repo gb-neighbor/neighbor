@@ -75,8 +75,56 @@ function changeInputState() {
   
   topBtn.addEventListener("click", topFunction);
 
+$("result-list-container").append(
+                    `
+                        <li class="result-list-container">
+                            <div class="result-list-outer-box">
+                                <a href="#">
+                                    <div class="profile-area-box">
+                                        <div class="profile-area">
+                                            <div class="profile-area-inner">
+                                                <div class="thumbs" th:style="'background-image:url('+@{boardDTO}'+)'"></div>
+                                                <p class="id">
+                                                    <span onclick="location.href='#'">그린조에</span>
+                                                </p>
+                                                <div class="location">
+                                                    <span class="map">종로구</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <img src="/css/list/image/arrow_r.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="title-area-box">
+                                        <div class="title-area">
+                                            <span class="list-title">도프커피</span>
+                                            <span class="stars">
+                                                <img src="/css/list/image/star.png">
+                                                <img src="/css/list/image/star.png">
+                                                <img src="/css/list/image/star.png">
+                                                <img src="/css/list/image/star.png">
+                                                <img src="/css/list/image/star.png">
+                                            </span>
+                                        </div>
+                                        <div class="sub-info-area-box">
+                                            <div class="price">
+                                                <span class="won">25,000</span>
+                                            </div>
+                                        </div>
 
-
+                                    </div>
+                                    
+                                    <div class="pic-box">
+                                        <div class="pics-thumbs thumbs1"></div>
+                                        <div class="pics-thumbs thumbs2"></div>
+                                        <div class="pics-thumbs thumbs3"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    `
+)
 
 
 

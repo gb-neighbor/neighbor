@@ -8,6 +8,11 @@
         VALUES(#{boardTitle}, #{boardContent}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{memberId}, #{boardRegion}, #{boardPrice});
     </insert>
 
+    <select id="selectAllBoard">
+        select board_id, board_title, board_content, board_register_date, board_update_date, board_status, member_id, board_region, board_price
+        from tbl_board
+    </select>
+
     <!--마지막에 추가된 boardId가져오기 -->
     <select id="getLastBoardId" resultType="long">
         SELECT LAST_INSERT_ID() lastNum from tbl_member tm
@@ -19,7 +24,7 @@
         select b.board_id, board_title, board_content, board_register_date, board_update_date, board_status, board_region, member_id,
         board_file_original_name, board_file_uuid, board_file_path, board_file_size
         from tbl_board b join tbl_board_file bf
-        where b.board_id = bf.board_id;
+        where b.board_id = bf.board_id
     </select>
 
     <!--BoardId로 사용자 정보 가져오기-->
@@ -39,7 +44,8 @@
 
     <!-- 게시판 전체 조회 -->
     <select id="selectAll" resultType="boardDTO">
-        select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
+        select board_id, board_title, board_register_date, board_update_date, board_status, board_price, board_content
+        member_nickname, member_profile_path, member_identification, member_email, member_region
         from tbl_member m join tbl_board b
         on m.member_id = b.member_id order by board_id desc
     </select>

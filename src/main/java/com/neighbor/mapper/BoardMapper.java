@@ -12,6 +12,9 @@ public interface BoardMapper {
 //   게시판 글 추가
     public void insert(BoardDTO boardDTO);
 
+//    게시글 전체 조회
+    public List<BoardVO> selectAllBoard();
+
 //    마지막에 추가된 boardId 가져오기
     public Long getLastBoardId();
     
