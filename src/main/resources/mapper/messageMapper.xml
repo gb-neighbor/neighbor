@@ -48,5 +48,13 @@
         values(#{messageContent}, #{boardId}, #{messageRoomId}, #{messageSenderId}, #{messageGetterId})
     </insert>
 
+    <!--  쪽지방 생성  -->
+    <insert id="insertMessageRoomVO">
+        insert into tbl_message_room (board_id, seller_id, customer_id)
+        select #{boardId}, #{messageGetterId}, #{messageSenderId}
+        from dual where not exists(select board_id, seller_id, customer_id from tbl_message_room where board_id=#{boardId} and seller_id=#{messageGetterId} and customer_id=#{messageSenderId});
+    </insert>
+
+
 
 </mapper>
