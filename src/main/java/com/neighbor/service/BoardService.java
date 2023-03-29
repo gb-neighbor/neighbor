@@ -3,6 +3,8 @@ package com.neighbor.service;
 import com.neighbor.domain.dao.BoardDAO;
 import com.neighbor.domain.dao.BoardFileDAO;
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.vo.BoardFileVO;
+import com.neighbor.domain.vo.BoardVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +14,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService implements FileService {
     private final BoardDAO boardDAO;
+    private final BoardFileDAO boardFileDAO;
 
     /*---------------------------------게시글 추가-----------------------------------*/
     public void write(BoardDTO boardDTO) {
         boardDAO.save(boardDTO);
     }
-    
+
     /* 목록페이지 게시글 가져오기 */
+    public List<BoardDTO> getAllMemberBoard(){
+        return boardDAO.findAllBoardMember();
+    }
 
     //  관리자 페이지 판매 목록 게시글 전체 조회
     public List<BoardDTO> getList() {

@@ -24,13 +24,13 @@ import java.util.UUID;
 public class BoardFileController {
 
 
-    
-//    파일 업로드 하면 Ajax로 들어옴
+
+    //    파일 업로드 하면 Ajax로 들어옴
     @PostMapping("uploadD")
     @ResponseBody
     public List<String> uploadD (@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException{
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
+        String path = "C:/upload/boards/" + getPath();
         log.info("path는 " + path);
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
@@ -50,25 +50,25 @@ public class BoardFileController {
     @ResponseBody
     public List<String> uploadP (@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException{
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
+        String path = "C:/upload/boards/" + getPath();
         log.info("path는 " + path);
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
         for(int i=0; i < multipartFiles.size(); i++){
             uuids.add(UUID.randomUUID().toString());
             multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-            FileOutputStream out = new FileOutputStream(new File(path, "m_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
+            FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
             Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 100, 100);
             out.close();
         }
         return uuids;
     }
 
-//  파일 불러오기
+    //  파일 불러오기
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("C:/upload/boards", fileName));
     }
 
 

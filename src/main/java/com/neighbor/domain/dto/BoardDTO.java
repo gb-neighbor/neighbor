@@ -31,6 +31,7 @@ public class BoardDTO {
     private String memberProfileOriginalName;
     private String memberProfileUuid;
     private String memberProfilePath;
+    private Boolean fileMainStatus;
     private Long boardFileId;
     private String fileMainName;
     private String fileMainUuid;
