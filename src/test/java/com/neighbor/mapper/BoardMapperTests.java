@@ -30,6 +30,7 @@ public class BoardMapperTests {
 
     @Test
     public void testAllBoardMemberFile(){
+        log.info(String.valueOf(boardMapper.selectAllBoardMember()));
     }
 
     @Test

@@ -253,6 +253,10 @@
                             <!-- //제목 -->
                             <!-- 리스트 전체 컨테이너 -->
                             <ul class="best-list type2">
+
+
+
+                                
                                 <!-- 항목1 -->
                                 <li>
                                     <!-- 상세페이지로 바로가기 -->
@@ -291,6 +295,11 @@
                                     <!-- //내용 -->
                                 </li>
                                 <!-- //항목1 -->
+
+
+
+
+
                                 <!-- 항목2 -->
                                 <li>
                                     <a href="#"></a>
@@ -430,53 +439,6 @@
                     <!-- 결과 리스트 묶음 전체 -->
                     <ul class="infinite result-list clearfix" id="list">
                         <!-- 리스트 한개 -->
-                        <li class="result-list-container">
-                            <div class="result-list-outer-box">
-                                <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="profile-area-inner">
-                                                <div class="thumbs" style="background-image:url('/css/list/image/dummy-thumbnail.jpg')"></div>
-                                                <p class="id">
-                                                    <span onclick="location.href='#'">그린조에</span>
-                                                </p>
-                                                <div class="location">
-                                                    <span class="map">종로구</span>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <img src="/css/list/image/arrow_r.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="title-area-box">
-                                        <div class="title-area">
-                                            <span class="list-title">도프커피</span>
-                                            <span class="stars">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                            </span>
-                                        </div>
-                                        <div class="sub-info-area-box">
-                                            <div class="price">
-                                                <span class="won">25,000</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="pic-box">
-                                        <div class="pics-thumbs thumbs1"></div>
-                                        <div class="pics-thumbs thumbs2"></div>
-                                        <div class="pics-thumbs thumbs3"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <!-- //리스트 한개 -->
                         <a th:each = "boardDTO : ${boardDTOList}">
                             <li class="result-list-container" >
                                 <div class="result-list-outer-box">
@@ -484,7 +446,8 @@
                                         <div class="profile-area-box">
                                             <div class="profile-area">
                                                 <div class="profile-area-inner">
-                                                    <div class="thumbs"></div>
+                                                    <div class="thumbs" th:data-member-profile-path="${boardDTO.memberProfilePath}" th:data-member-profile-uuid="${boardDTO.memberProfileUuid}"
+                                                         th:data-member-profile-original-name="${boardDTO.memberProfileOriginalName}"></div>
                                                     <p class="id">
                                                         <span onclick="location.href='#'"  th:text="${boardDTO.memberNickname}"></span>
                                                     </p>
@@ -513,7 +476,6 @@
                                                     <span class="won" th:text=" ${boardDTO.boardPrice}"></span>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="pic-box">
@@ -565,14 +527,18 @@
             $(this).css('background-image', 'url(' + boardUrl + ')');
         });
 
-        $(".thumbs").each(function () {
-            let profileFilePath = $(this).data('profile-file-path');
-            let profileFileUuid = $(this).data('profile-file-uuid');
-            let profileFileOriginalName = $(this).data('profile-file-original-name');
-            //프로필 사진 컨트롤러 보고 작성해야함
-            let profileUrl = 'members/display?fileName=' + profileFilePath + '/t_' + profileFileUuid + '_' + profileFileOriginalName;
-            $(this).css('background-image', 'url(' + profileUrl + ')');
+    });
+
+    $(document).ready(function() {
+
+        $('.thumbs').each(function () {
+            let memberProfilePath = $(this).data('member-profile-path');
+            let memberProfileFileUuid = $(this).data('member-profile-uuid');
+            let memberProfileOriginalName = $(this).data('member-profile-original-name');
+            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileFileUuid + '_' + memberProfileOriginalName;
+            $(this).css('background-image', 'url(' + membeUrl + ')');
         });
+
     });
 </script>
 <script src="/js/list/list-by-region.js"></script>

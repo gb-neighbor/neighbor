@@ -37,7 +37,7 @@ $("input[id='cover-file']").on("change", function() {
     console.log(globalThis.arrayFile2)
     formData.append("file", $files2)
     $.ajax({
-        url: "/board-files/uploadM",
+        url: "/board-files/upload",
         type: "post",
         data: formData,
         contentType: false,
@@ -97,7 +97,7 @@ $("input[id='detail-file']").on("change", function() {
         formData.append("file", file)
     });
     $.ajax({
-        url: "/board-files/uploadD",
+        url: "/board-files/upload",
         type: "post",
         data: formData,
         contentType: false,

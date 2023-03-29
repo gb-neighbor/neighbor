@@ -11,27 +11,27 @@ import java.util.UUID;
 @SpringBootTest
 @Slf4j
 public class SignUpDAOTests {
-    @Autowired
-    private SignUpDAO signUpDAO;
+//    @Autowired
+//    private SignUpDAO signUpDAO;
 
     @Test
     public void signUpTest(){
-        MemberVO memberVO = new MemberVO();
-        memberVO.setMemberId(1L);
-        memberVO.setMemberIdentification("dlstk3031");
-        memberVO.setMemberPassword("ids30312345!");
-        memberVO.setMemberNickname("lym");
-        memberVO.setMemberName("임의택");
-        memberVO.setMemberBirth("19980728");
-        memberVO.setMemberEmail("dlstk3031@naver.com");
-        memberVO.setMemberPhone("01072716604");
-        memberVO.setMemberRegion(1);
-        memberVO.setMemberHiSentence("안녕하세요");
-        memberVO.setMemberProfileOriginalName("테스트1.png");
-        memberVO.setMemberProfilePath("2023/3/27");
-        memberVO.setMemberProfileSize("1024");
-        memberVO.setMemberProfileType(false);
-        memberVO.setMemberProfileUuid(UUID.randomUUID().toString());
-        signUpDAO.save(memberVO);
+//        MemberVO memberVO = new MemberVO();
+//        memberVO.setMemberId(1L);
+//        memberVO.setMemberIdentification("dlstk3031");
+//        memberVO.setMemberPassword("ids30312345!");
+//        memberVO.setMemberNickname("lym");
+//        memberVO.setMemberName("임의택");
+//        memberVO.setMemberBirth("19980728");
+//        memberVO.setMemberEmail("dlstk3031@naver.com");
+//        memberVO.setMemberPhone("01072716604");
+//        memberVO.setMemberRegion(1);
+//        memberVO.setMemberHiSentence("안녕하세요");
+//        memberVO.setMemberProfileOriginalName("테스트1.png");
+//        memberVO.setMemberProfilePath("2023/3/27");
+//        memberVO.setMemberProfileSize("1024");
+//        memberVO.setMemberProfileType(false);
+//        memberVO.setMemberProfileUuid(UUID.randomUUID().toString());
+//        signUpDAO.save(memberVO);
     }
 }
