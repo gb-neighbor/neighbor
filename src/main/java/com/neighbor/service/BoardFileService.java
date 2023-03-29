@@ -28,4 +28,8 @@ public class BoardFileService {
         }
     }
 
+    public List<BoardFileVO> getAllFile(Long boardId){
+        return boardFileDAO.findAll(boardId);
+    }
+
 }

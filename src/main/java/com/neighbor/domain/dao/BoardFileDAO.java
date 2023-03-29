@@ -23,9 +23,9 @@ public class BoardFileDAO {
     public Long getCurrentSeq(){
         return boardFileMapper.getCurrentSequenceForFile();
     }
-    
+
     /* boardId로 파일 전체 가져오기*/
-    public List<BoardFileVO> findByBoardId(Long boardId){return boardFileMapper.selectAll(boardId);}
+    public List<BoardFileVO> findAll(Long boardId){return boardFileMapper.selectAll(boardId);}
 
     /* board로 모든 거 삭제하기 */
     public void delete(Long boardId){ boardFileMapper.delete(boardId);}
