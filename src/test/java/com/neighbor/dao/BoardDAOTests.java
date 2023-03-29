@@ -49,5 +49,13 @@ public class BoardDAOTests {
 //        boardDAO.save(boardVO);
 //        log.info(String.valueOf(boardDAO.getBoardId()));
     }
+    @Test
+    public void boardDTOTEST(){
+        List<BoardDTO> boardDTOList = boardDAO.findAllBoardMember();
+        for(BoardDTO boardDTO:boardDTOList){
+            boardDTO.change(boardDTO.getBoardRegion());
+            log.info(boardDTO.getBoardRegionKo());
+        }
+    }
 
 }
