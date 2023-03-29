@@ -4,6 +4,7 @@ import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
+import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.mapper.BoardFileMapper;
 import com.neighbor.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -57,4 +58,6 @@ public class BoardDAO {
     //    게시글 제목
     public String findBoardTitle(Long boardId){return boardMapper.selectBoardTitle(boardId);}
 
+    //    보드아이디로 맴버정보 가져오기
+    public MemberVO findMemberInfoByBoardId(Long boardId){return boardMapper.getMemberInfoByBoardId(boardId);}
 }

@@ -5,6 +5,7 @@ import com.neighbor.domain.dao.BoardFileDAO;
 import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
+import com.neighbor.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +62,6 @@ public class BoardService implements FileService {
         return boardDAO.findBoardTitle(boardId);
     }
 
-
+    //    보드아이디로 맴버정보 가져오기
+    public MemberVO showMemberInfoByBoardId(Long boardId){return boardDAO.findMemberInfoByBoardId(boardId);}
 }
