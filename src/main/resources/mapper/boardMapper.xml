@@ -18,7 +18,7 @@
 
     <!-- memberId로 모든 보드 정보 가져오기-->
     <select id="selectOne" resultType="boardVO">
-        select board_id, board_content, board_register_date, board_update_date, board_status, member_id, board_region, board_price
+        select board_id, board_title, board_content, board_register_date, board_update_date, board_status, member_id, board_region, board_price
         from tbl_board
         where member_id = #{memberId}
     </select>
