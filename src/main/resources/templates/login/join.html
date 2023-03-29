@@ -597,6 +597,11 @@
             success: function (uuid) {
                 globalThis.uuid = uuid;
                 console.log(globalThis.uuid)
+                $("span.cover-txt").hide();
+                $("div.cover-img").hide();
+                $(".img").html(`<img src="/members/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$files2.name}" class="mainPhoto">`);
+                $(".img img").css("width", "50%");
+                $(".img img").css("height", "100%");
 
                 $("input[id='profile']")[0].files = dataTransfer.files;
                 let text2 = "";
