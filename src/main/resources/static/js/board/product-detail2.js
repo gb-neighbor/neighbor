@@ -146,6 +146,7 @@ const $infoBox = $('.box_top');
 function getMessageRoom(){
 	messageService.targetInfo(showTargetInfo);
 	messageService.list(showMessage);
+	$messageBox[0].scrollTop = $messageBox[0].scrollHeight;
 }
 
 
@@ -164,7 +165,6 @@ const messageService=(function(){
 				if(callback){
 					callback(messages);
 				}
-
 			}
 		});
 	}
@@ -197,7 +197,7 @@ function showTargetInfo(Infos){
             <h3 class="detail_title">
                 ${Infos.boardTitle}
             </h3>
-            <div class="refresh_image_wrap">
+            <div class="refresh_image_wrap" onclick="messageService.list(showMessage)">
                 <img class="refresh_image" src="/css/board/images/refresh_btn.png">
             </div>
         </div>
@@ -242,6 +242,7 @@ function showMessage(messages){
 
 $('.send_form').submit(function(e) {
 	e.preventDefault();
+	$messageBox[0].scrollTop = $messageBox[0].scrollHeight;
 	console.log(boardId);
 	let messageVO = {
 		boardId: 1,
@@ -257,7 +258,10 @@ $('.send_form').submit(function(e) {
 		contentType: 'application/json; charset=utf-8',
 		dataType: 'json',
 		success: function(data) {
+			$("#write-section2").val('');
+			$("text_length2").attr("value", "0");
 			messageService.list(showMessage);
+			$messageBox[0].scrollTop = $messageBox[0].scrollHeight;
 		}
 	});
 

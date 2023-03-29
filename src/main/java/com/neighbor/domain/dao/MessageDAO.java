@@ -40,5 +40,7 @@ public class MessageDAO {
     //    <!--  쪽지 입력  -->
     public void saveMessageVO(MessageVO messageVO){messageMapper.insertMessageVO(messageVO);}
 
+    //    <!--  쪽지방 생성  -->
+    public void saveMessageRoomVO(Long boardId, Long sellerId, Long customerId){messageMapper.insertMessageRoomVO(boardId, sellerId, customerId);}
 
 }

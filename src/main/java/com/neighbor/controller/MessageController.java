@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -45,7 +46,9 @@ public class MessageController {
 
     @PostMapping("insert")
     @ResponseBody
+    @Transactional(rollbackFor = Exception.class)
     public MessageVO insertMessage(@RequestBody MessageVO messageVO){
+
         messageVO.setMessageRoomId(messageService.getMessageRoomId(messageVO.getMessageSenderId(), messageVO.getBoardId()));
         messageService.saveMessageVO(messageVO);
         return messageVO;

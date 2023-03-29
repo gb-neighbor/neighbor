@@ -35,4 +35,7 @@ public interface MessageMapper {
 //    <!--  쪽지 입력  -->
     public void insertMessageVO(MessageVO messageVO);
 
+//    <!--  쪽지방 생성  -->
+    public void insertMessageRoomVO(Long boardId, Long sellerId, Long customerId);
+
 }
