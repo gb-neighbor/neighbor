@@ -17,6 +17,11 @@ public class MemberDAO {
 //    대쉬보드 전체조회
     public List<MemberDTO> findAll(){return memberMapper.selectAll();}
 
+//    맴버아이디로 맴버 정보 전체 조회하기
+    public MemberVO getOneMember(Long memberId){
+        return memberMapper.selectOne(memberId);
+    }
+
 //    대쉬보드 일부조회
     public List<MemberDTO> findAllBy(){return memberMapper.selectAllBy();}
 

@@ -12,6 +12,8 @@ public interface MemberMapper {
     public List<MemberDTO> selectAll();
     //    일부 조회
     public List<MemberDTO> selectAllBy();
+//    맴버 아이디로 맴버 정보 조회
+    public MemberVO selectOne(Long memberId);
 //    멤버 삭제
     public void delete(Long userId);
 

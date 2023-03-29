@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.ReplyMapper">
+    
+    <!-- 보드아이디로 모든 reply정보 가져오기 -->
+    <select id="selectAllByBoardId" resultType="replyVO">
+        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, member_id, board_id
+        from tbl_reply where board_id = #{boardId};
+    </select>
 
     <!--후기관리 글 삭제-->
     <delete id="delete">
