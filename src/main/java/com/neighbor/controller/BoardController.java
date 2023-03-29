@@ -1,6 +1,7 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.ReplyVO;
@@ -75,22 +76,35 @@ public class BoardController {
     public String goMember(@PathVariable("memberId") Long memberId, Model model) {
         MemberVO memberVOList = memberService.getOneMemberInfo(memberId);
         List<BoardVO> boardVOList = boardService.getBoardInfo(memberId);
+        BoardFileVO boardFileVO = new BoardFileVO();
+        Map<Long, BoardFileVO> mainFile = new HashMap<>();
         Map<Long, List<ReplyVO>> replyVOListMap = new HashMap<>();
+
         for (BoardVO boardVO : boardVOList) {
             Long boardId = boardVO.getBoardId();
             List<ReplyVO> replyVOList = replyService.getListByBoardId(boardId);
+            boardFileVO = boardFileService.getMainFile(boardId);
+            mainFile.put(boardId, boardFileVO);
             replyVOListMap.put(boardId, replyVOList);
         }
+
+
         model.addAttribute("memberVO", memberVOList);
         model.addAttribute("boardVOList", boardVOList);
         model.addAttribute("replyVOListMap", replyVOListMap);
+        model.addAttribute("replySize", replyVOListMap.size());
+        model.addAttribute("boardSize", boardVOList.size());
+        model.addAttribute("mainFile", mainFile);
+        log.info(String.valueOf(memberVOList));
         log.info(String.valueOf(replyVOListMap));
+        log.info(String.valueOf(boardVOList));
+        log.info(String.valueOf(mainFile));
         return "list/list-by-member";
     }
 
     @GetMapping("detail")
     public String goDetail(){
-        return "kjp/product-detail2";
+        return "kjp/product-detail";
     }
 
     @GetMapping("detail/{boardId}")

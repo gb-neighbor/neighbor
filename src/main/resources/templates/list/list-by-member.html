@@ -27,7 +27,7 @@
                 <div class="info-box">
                     <!-- 한줄 소개 -->
                     <div class="hi-sentence-container">
-                        <p><strong th:text="">깨끗하고 건강한 집 밥! 함께해요~~ @>--</strong></p>
+                        <p><strong th:text="${memberVO.memberHiSentence}">깨끗하고 건강한 집 밥! 함께해요~~ @>--</strong></p>
                     </div>
                     <!-- //한줄 소개 -->
                     <!-- 기타 정보 -->
@@ -35,17 +35,17 @@
                         <ul class="info-list clearfix">
                             <li class="nickName r-side">
                                 <p class="list-title">닉네임 : </p>
-                                <span>뿌꾸빵</span>
+                                <span th:text="${memberVO.memberNickname}">뿌꾸빵</span>
                             </li>
                             <li class="region-location r-side">
                                 <p class="list-title">판매 위치 : </p>
                                 <p>
-                                    <span class="map-link">종로구</span>
+                                    <span class="map-link" th:text="${memberVO.memberRegion}">종로구</span>
                                 </p>
                             </li>
                             <li class="email r-side">
                                 <p class="list-title">이메일 : </p>
-                                <span>francine0624@gmail.com</span>
+                                <span th:text="${memberVO.memberEmail}">francine0624@gmail.com</span>
                             </li>
                             <li class="stars l-side">
                                 <p class="list-title">평균 별점 : </p>
@@ -59,7 +59,7 @@
                             </li>
                             <li class="total-review l-side">
                                 <p class="list-title">총 후기 : </p>
-                                <span>45</span>
+                                <span th:text="${replySize}">45</span>
                             </li>
                             <li class="total-sold l-side">
                                 <p class="list-title">판매 완료 : </p>
@@ -81,20 +81,32 @@
             <!-- 제목 -->
             <h3 class="sub-title">
                 게시글 내역
-                <span class="count-board">22</span>
+                <span class="count-board" th:text="${boardSize}">22</span>
             </h3>
             <!-- //제목 -->
             <!-- 내용 전체 감싸는  -->
             <div class="list-container">
                 <ul class="list-outer">
                     <!-- 게시글 한개 -->
-                    <li>
+<!--                    <li>-->
+<!--                        <a href="#" style="display: block;" id="parent-block" onclick="addLabel()">-->
+<!--                            <div class="board-thumb-wrapper">-->
+<!--                                <div class="board-thumb"></div>-->
+<!--                            </div>-->
+<!--                            <p class="board-title">정원여행자</p>-->
+<!--                            <p class="board-date">2023.03.24</p>-->
+<!--                            <span class="label-spot"></span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--해당 보드 아이디에 맞는 메인 넣어주기-->
+                    <li th:each = "boardVO : ${boardVOList}">
                         <a href="#" style="display: block;" id="parent-block" onclick="addLabel()">
                             <div class="board-thumb-wrapper">
-                                <div class="board-thumb"></div>
+                                <div class="board-thumb" th:data-board-file-path="${mainFile.boardFilePath}" th:data-board-file-uuid="${MainFile.boardFileUuid}"
+                                     th:data-board-file-original-name="${mainFile.boardFileOriginalName}"></div>
                             </div>
-                            <p class="board-title">정원여행자</p>
-                            <p class="board-date">2023.03.24</p>
+                            <p class="board-title" th:text="${boardVO.boardTitle}">정원여행자</p>
+                            <p class="board-date" th:text="${boardVO.boardUpdateDate}">2023.03.24</p>
                             <span class="label-spot"></span>
                         </a>
                     </li>
@@ -121,27 +133,16 @@
 <script>
     $(document).ready(function() {
 
-        $('.profile-thumbs').each(function () {
-            let memberProfilePath = $(this).data('member-profile-path');
-            let memberProfileFileUuid = $(this).data('member-profile-uuid');
-            let memberProfileOriginalName = $(this).data('member-profile-original-name');
-            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/' + memberProfileFileUuid + '_' + memberProfileOriginalName;
-            $(this).css('background-image', 'url(' + membeUrl + ')');
-        });
-
-    });
-
-    $(document).ready(function() {
-
         $('.board-thumb').each(function () {
-            let memberProfilePath = $(this).data('member-profile-path');
-            let memberProfileFileUuid = $(this).data('member-profile-uuid');
-            let memberProfileOriginalName = $(this).data('member-profile-original-name');
-            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/' + memberProfileFileUuid + '_' + memberProfileOriginalName;
-            $(this).css('background-image', 'url(' + membeUrl + ')');
+            let boardFilePath = $(this).data('board-file-path');
+            let boardFileUuid = $(this).data('board-file-uuid');
+            let boardFileOriginalName = $(this).data('board-file-original-name');
+            let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+            $(this).css('background-image', 'url(' + boardUrl + ')');
         });
 
     });
+
 </script>
 <script src="/js/list/list-by-member.js"></script>
 </html>

@@ -15,6 +15,8 @@ public interface BoardFileMapper {
 
 //    마지막에 추가된 보드 아이디 가져오기
     public Long getCurrentSequenceForFile();
+//
+    public BoardFileVO selectMainFile(Long boardId);
 
 //  파일 전체 조회
     public List<BoardFileVO> selectAll(Long boardId);
