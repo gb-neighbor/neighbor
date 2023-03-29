@@ -97,9 +97,9 @@
                     <div class="member-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
-                            <form class="reply-search-form" th:action="@{/admins/reply/list}">
+                            <form class="reply-search-form" name="search-form" >
                                 <input class="reply-search keyword" name="keyword" type="text" placeholder="후기 검색">
-                                <button type="submit" onclick="search()">검색</button>
+                                <button type="submit" >검색</button>
                             </form>
                         </div>
                     </div>
@@ -187,31 +187,88 @@
         e.preventDefault();
         let page = $(this).attr("href");
         let amount = 6;
-        let url = "/admins/reply/list?page=" + page+"&amount="+amount;
+        let url = "/admins/reply/list?page=" + page + "&amount=" + amount;
 
         location.href = url;
     });
 
 
-
-
-    /*검색어 계속 남아 있게 하는 js 시작*/
+    /*검색어 계속 남아 있게 하는 js 시작 되긴 되는데 에이잭스 이렇게 쓰는거 아니다.*/
     // 페이지가 로드될 때 실행되는 함수
-    window.onload = function() {
-        // 검색어가 저장되어 있으면 검색창에 표시
-        var savedKeyword = sessionStorage.getItem('savedKeyword');
-        if (savedKeyword !== null) {
-              $.ajax({
-                type: "get",
+    // window.onload = function() {
+    //     // 검색어가 저장되어 있으면 검색창에 표시
+    //     var savedKeyword = sessionStorage.getItem('savedKeyword');
+    //     if (savedKeyword !== null) {
+    //         $.ajax({
+    //             type: "get",
+    //             url: "/admins/reply/list",
+    //             data: { keyword: keyword },
+    //             success: function(result) {
+    //                 // 테이블 초기화
+    //                 $('.item-list-contents').empty();
+    //                 if (result.length >= 1) {
+    //                     result.forEach(function(reply) {
+    //                         var replyId = reply.replyId;
+    //                         var str = '<div class="checkbox-zip">\n' +
+    //                             '<input type="checkbox" id="check1" class="normal" value="">\n' +
+    //                             '</div>';
+    //                         str += '<div class="board-num">' + reply.boardId + '</div>';
+    //                         str += '<div class="region">' + reply.replyRegionKo + '</div>';
+    //                         str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
+    //                         str += '<div class="reply-content">';
+    //                         str += '<span>' + reply.replyContent + '</span>';
+    //                         str += '<div id="my_modal' + replyId + '" class="my_modal">';
+    //                         str += '<a class="modal_close_btn">' + '✖' + '</a>';
+    //                         str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
+    //                         str += '<div class="comment-detail">' + reply.replyContent + '</div>';
+    //                         str += '</div>';
+    //                         str += '</div>';
+    //                         str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
+    //                         $('.item-list-contents').append(str);
+    //                     });
+    //                 }
+    //                 // 검색 결과의 갯수 계산해서 출력
+    //                 $('.total-mentor-num').empty();
+    //                 $('.total-mentor-num').text(result.length); // total-mentor-num 업데이트
+    //             }
+    //         });
+    //     }
+    // }
+
+
+
+
+
+    // 검색 버튼 클릭 시 실행되는 함수
+    function search() {
+        // 검색어 저장
+        var keyword = document.querySelector('.keyword').value;
+        sessionStorage.setItem('savedKeyword', keyword);
+    }
+
+
+    /* 후기글 관리 검색시 ajax용*/
+    $(".reply-search-form").submit(function(e){
+        // console.log(123); 여기까지는 들어옴.
+        let keyword = document.querySelector('.keyword').value;
+        let page = [[${pagination.criteria.page}]];
+        console.log(keyword);
+        console.log(page);
+        if (keyword !== null) {
+            $.ajax({
+                type: "post",
                 url: "/admins/reply/list",
-                data: { keyword: keyword },
-                success: function(result){
+                data: {
+                    keyword: keyword,
+                    page : page
+                },
+                success: function(result) {
                     // 테이블 초기화
                     $('.item-list-contents').empty();
-                    if(result.length >= 1){
-                        result.forEach(function(reply){
-                            var replyId = reply.replyId;
-                            var str = '<div class="checkbox-zip">\n' +
+                    if (result.length >= 1) {
+                        result.forEach(function(reply) {
+                            let replyId = reply.replyId;
+                            let str = '<div class="checkbox-zip">\n' +
                                 '<input type="checkbox" id="check1" class="normal" value="">\n' +
                                 '</div>';
                             str += '<div class="board-num">' + reply.boardId + '</div>';
@@ -229,58 +286,40 @@
                             $('.item-list-contents').append(str);
                         });
                     }
+                    // 검색 결과의 갯수 계산해서 출력
+                    $('.total-mentor-num').empty();
+                    $('.total-mentor-num').text(result.length); // total-mentor-num 업데이트
                 }
             });
         }
-    }
 
-    // 검색 버튼 클릭 시 실행되는 함수
-    function search() {
-        // 검색어 저장
-        var keyword = document.querySelector('.keyword').value;
-        sessionStorage.setItem('savedKeyword', keyword);
-        /* 총 후기 갯수 ajax*/
-        $.ajax({
-            url: "/admins/reply/list",
-            type: "get",
-            data: {"keyword": keyword},
-            success: function(replyCount){
-                // 테이블 초기화
-                $('.total-mentor').empty();
-                var count = `<p>후기</p>`
-                count += '<p class="total-mentor-num">' + replyCount + '</p>';
-                $('.total-mentor').append(count);
-            }
-        });
-    }
-    /*검색어 계속 남아 있게 하는 js 끝*/
+    });
+
 
 
     /* delete 버튼 클릭 시 ajax실행*/
-    $('.reply-delete-button').on('click', function() {
-        var checkedIds = new Array();
-        // 체크 박스 체크된 값
-        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function(){
-            console.log(this.innerText);
-            checkedIds.push(this.innerText);
-        });
-
-        console.log(checkedIds);
-
-        $.ajax({
-            url: "/admins/reply/delete",
-            type: "delete",
-            data: {"checkedIds": checkedIds},
-            success: function(){
-                location.reload();
-            }
-
-        });
-    });
-
-    /*검색했을 때 ajax실행*/
-
-
+    // $('.reply-delete-button').on('click', function() {
+    //     var checkedIds = new Array();
+    //     // 체크 박스 체크된 값
+    //     $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function(){
+    //         console.log(this.innerText);
+    //         checkedIds.push(this.innerText);
+    //     });
+    //
+    //     $.ajax({
+    //         url: "/admins/reply/delete",
+    //         type: "delete",
+    //         data: {
+    //             "checkedIds": checkedIds,
+    //             "page" : page
+    //         },
+    //
+    //         success: function(){
+    //             // location.reload();
+    //         }
+    //
+    //     });
+    // });
 
 </script>
 </html>

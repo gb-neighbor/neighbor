@@ -8,6 +8,7 @@ import com.neighbor.service.MemberService;
 import com.neighbor.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -104,14 +105,14 @@ public class AdminController {
 
     /*reply 시작*/
 
+
     @GetMapping("reply/list")
-    public String replyShowList(Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
+    public String replyShowList(Criteria criteria, Model model) {
         if (criteria.getPage() == 0) {
             criteria = criteria.create(1, 6);
         }
-
-        List<ReplyDTO> replyDTOS;
-        replyDTOS = replyService.getList(criteria, keyword);
+        String keyword = "";
+        List<ReplyDTO> replyDTOS = replyService.getList(criteria, keyword);
 
         for (ReplyDTO dto : replyDTOS) {
             dto.change(dto.getBoardRegion());
@@ -124,8 +125,25 @@ public class AdminController {
         return "admin/manage-reply";
     }
 
+    /* 후기작성 ajax용 컨트롤러*/
+    @ResponseBody
+    @PostMapping("reply/list")
+    public List<ReplyDTO> replyShowList(@RequestBody String keyword, @RequestBody int page) {
+        log.info(String.valueOf(page));
+        Criteria criteria = new Criteria();
+        criteria = criteria.create(1, 6);
 
-    //  후기관리 삭제 (PostMan까지 확인함.)
+        List<ReplyDTO> replyDTOS;
+        replyDTOS = replyService.getList(criteria, keyword);
+
+        for (ReplyDTO dto : replyDTOS) {
+            dto.change(dto.getBoardRegion());
+        }
+        return replyDTOS;
+    }
+
+
+    //  후기관리 삭제
     @DeleteMapping("reply/delete")
     @ResponseBody
     public void replyDelete(@RequestParam("checkedIds[]") List<String> checkIds){
