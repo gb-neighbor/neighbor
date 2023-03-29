@@ -65,7 +65,7 @@
         <form class="faq_search">
             <div class="search_wrap">
                 <div class="search_container">
-                    <div class="selectOne" data-role="selectBox">
+                    <div class="selectOne" data-role="selectBox" style="display: none">
                         <span date-value="optValue" class="selected-option"><!-- 선택된 옵션 값이 출력되는 부분 --></span>
                         <!-- 옵션 영역 -->
                         <ul class="hide">
@@ -86,8 +86,8 @@
                             </li>
                         </ul>
                     </div>
-                    <input type="text" name="search_text" id="search_text" class="search_input" value="" placeholder="제목으로 검색">
-                    <button type="submit" class="search_btn">검색</button>
+                    <input type="text" name="keyword" id="search_text" class="search_input" value="" placeholder="제목으로 검색">
+                    <button type="submit" class="search_btn" th:href="@{inquiry-list/{askAdminId}(askAdminId=${askAdmin.askAdminId})}" th:each="askAdmin:${askAdmin}">검색</button>
                     <a th:href="@{write}" class="goingToAsk" >1:1문의 쓰기</a>
                 </div>
             </div>
@@ -110,16 +110,26 @@
                     </a>
                     </span>
                 </li>
-                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${askAdmin.askAdminStatus} == true">답변완료</span></li>
+                <li class="inquiry_status"><span class="inquiry_status_color"><span th:if="${askAdmin.askAdminStatus} == true">답변완료</span><span th:unless="${askAdmin.askAdminStatus} == true" style="color: #545353">답변대기</span></span></li>
+<!--                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${askAdmin.askAdminStatus} == true">답변완료</span></li>-->
                 <li class="inquiry_date" th:text="${askAdmin.askAdminRegisterDate}"></li>
             </ul>
         </div>
 
-        <div id="pagingDisplay" class="paging_navigation">
-            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>
-            <a href="" class="paging_num">1</a>
-            <a href="" class="paging_next_num">2</a>
-            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>
+        <div class="page-button-box">
+            <div th:object="${pagination}">
+                <div style="text-align: center; font-size: 16px;">
+                    <a class="page-button" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code th:unless="${pagination.criteria.page != page}" th:text="${page}" style="color: green"></code>
+                    </th:block>
+                    <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+                </div>
+                <form th:action="@{/ask-asAdmins/inquiry-list}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                </form>
+            </div>
         </div>
     </article>
 </section>
@@ -127,4 +137,17 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/mypage/inquiry_to_admin.js"></script>
+<script>
+
+    let $pages = $("a.page-button");
+
+    $pages.on("click", function(e){
+        e.preventDefault();
+        let page = $(this).attr("href");
+        let amount = 10;
+        let url = "/ask-admins/inquiry-list?page=" + page+"&amount="+amount;
+
+        location.href = url;
+    });
+</script>
 </html>

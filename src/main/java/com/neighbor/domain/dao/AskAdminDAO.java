@@ -1,6 +1,7 @@
 package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.AskAdminDTO;
+import com.neighbor.domain.dto.AskAdminDetailDTO;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.AskAdminVO;
 import com.neighbor.mapper.AskAdminMapper;
@@ -48,8 +49,12 @@ public class AskAdminDAO {
     }
 
     //     내가 작성한 문의 목록
-    public List<AskAdminVO> findById(Long memberId) {
-        return askAdminMapper.selectOne(memberId);
+    public List<AskAdminVO> selectListByMemberId(Long memberId, Criteria criteria,String keyword) {
+        return askAdminMapper.selectListByMemberId(memberId,criteria,keyword);
+    }
+
+    public int countByMemberId(Long memberId, String keyword) {
+        return askAdminMapper.countByMemberId(memberId, keyword);
     }
 
     //    문의 상세페이지

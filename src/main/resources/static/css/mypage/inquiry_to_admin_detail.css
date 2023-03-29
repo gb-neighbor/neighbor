@@ -217,13 +217,17 @@ p{
 .detail_delete_btn{
     background-color: #ffffff;
     margin-top: 0;
+    display: flex;
     width: 70px;
     height: 50px;
     font-size: 15px;
     border-radius: 4px;
     border: 1px solid #d9d9d9;
     color: #808080;
+    text-align: center;
+    align-items: center;
     cursor: pointer;
+    justify-content: center;
 }
 
 .go_to_inquiry_list{

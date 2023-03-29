@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/askAdmins/*")
+@RequestMapping("/ask-admins/*")
 public class AskAdminController {
 
     private final AskAdminService askAdminService;
@@ -41,13 +41,30 @@ public class AskAdminController {
         askAdminVO.setMemberId(2L);
         askAdminService.write(askAdminVO);
         redirectAttributes.addFlashAttribute(askAdminVO);
-        return new RedirectView("inquiryList");
+        return new RedirectView("inquiry-list");
     }
 
-    @GetMapping("inquiryList")
-    public String list(Model model, AskAdminVO askAdminVO){
+    @GetMapping("/inquiry-list")
+    public String list(AskAdminVO askAdminVO , Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
+        // 임시로 맴버 아이디 2L을 사용합니다.
         askAdminVO.setMemberId(2L);
-        model.addAttribute("askAdmin",askAdminService.listOne(askAdminVO.getMemberId()));
+
+        if (criteria.getPage() == 0) {
+            criteria = criteria.create(1, 10);
+        }
+
+        int totalCount = askAdminService.getCountByMemberId(askAdminVO.getMemberId(),keyword);
+
+        log.info("여기까지는 옴");
+        log.info(keyword);
+        log.info(String.valueOf(totalCount));
+        log.info(askAdminVO.getMemberId().toString());
+        List<AskAdminVO> askAdminList = askAdminService.listByMemberIdWithPaging(askAdminVO.getMemberId(),criteria,keyword);
+        log.info("여기까지는 오나요?");
+
+        model.addAttribute("askAdmin", askAdminList);
+        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, totalCount));
+
         return "mypage/inquiry_to_admin";
     }
 
@@ -59,11 +76,12 @@ public class AskAdminController {
     }
 
 
-    @GetMapping("detailDelete/{askAdminId}")
+    @GetMapping("detail-delete/{askAdminId}")
     public RedirectView deleteDetail(Model model,@PathVariable Long askAdminId){
         askAdminService.deleteDetail(askAdminId);
         log.info("삭제들어옴");
-        return new RedirectView("/askAdmins/inquiryList");
+        return new RedirectView("/ask-admins/inquiry-list");
     }
+
 
 }

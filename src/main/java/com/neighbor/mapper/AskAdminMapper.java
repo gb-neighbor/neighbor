@@ -1,6 +1,7 @@
 package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.AskAdminDTO;
+import com.neighbor.domain.dto.AskAdminDetailDTO;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.AskAdminVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -33,7 +34,9 @@ public interface AskAdminMapper {
     public void insert(AskAdminVO askAdminVO);
 
     //    내가 작성한 문의 조회
-    public List<AskAdminVO> selectOne(Long memberId);
+    public List<AskAdminVO> selectListByMemberId(Long memberId, Criteria criteria, String keyword);
+
+    public Integer countByMemberId(Long memberId, String keyword);
 
     //  문의 상세페이지
     public AskAdminVO selectDetail(Long askAdminId);

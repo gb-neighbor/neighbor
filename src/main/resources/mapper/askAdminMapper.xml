@@ -53,22 +53,38 @@
         VALUES(#{askAdminTitle}, #{askAdminContent}, CURRENT_TIMESTAMP, #{memberId});
     </insert>
 
-    <select id="selectOne" parameterType="long" resultType="askAdminVO">
+    <select id="selectListByMemberId" resultType="askAdminVO">
         SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
         FROM tbl_ask_admin
-        where member_id = #{member_id} order by ask_admin_id desc
+        WHERE member_id = #{memberId}
+        <if test="keyword != null">
+            and ask_admin_title like concat('%', #{keyword}, '%')
+        </if>
+        ORDER BY ask_admin_id DESC
+        limit #{criteria.offset}, #{criteria.amount}
+    </select>
+
+
+    <select id="countByMemberId"  resultType="Integer">
+        SELECT COUNT(ask_admin_title)
+        FROM tbl_ask_admin
+        WHERE member_id = #{memberId}
+        <if test="keyword != null">
+            and ask_admin_title like concat('%',#{keyword}, '%')
+        </if>
     </select>
 
     <select id="selectDetail" parameterType="long" resultType="askAdminVO">
         SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
         FROM tbl_ask_admin
-        where ask_admin_id = #{ask_admin_id}
+        where ask_admin_id = #{askAdminId}
     </select>
 
     <delete id="deleteDetail" parameterType="long">
         DELETE FROM tbl_ask_admin
         WHERE ask_admin_id= #{askAdminId}
     </delete>
+
 
 
 </mapper>
