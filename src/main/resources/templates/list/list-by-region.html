@@ -258,20 +258,21 @@
 
                                 
                                 <!-- 항목1 -->
-                                <li>
+                                <li th:each="boardDTO : ${boardDTOList}">
                                     <!-- 상세페이지로 바로가기 -->
-                                    <a href="#"></a>
+                                    <a th:href="@{/boards/detail/{boardId}(boardId=${boardDTO.boardId})}"></a>
                                     <!-- 내용 -->
                                     <div class="cont">
                                         <!-- 썸네일 -->
                                         <a href="#">
-                                            <div class="thumbs" style="background-image:url('/css/list/image/dummy-thumbnail.jpg')"></div>
+                                            <div class="thumbs" th:data-member-profile-path="${boardDTO.memberProfilePath}" th:data-member-profile-uuid="${boardDTO.memberProfileUuid}"
+                                                 th:data-member-profile-original-name="${boardDTO.memberProfileOriginalName}"></div>
                                         </a>
                                         <!-- //썸네일 -->
                                         <!-- 제목 -->
                                         <p class="name">
-                                            <a href="#">그린조에</a>
-                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">지도</a>
+                                            <a href="#" th:text="${boardDTO.boardTitle}">그린조에</a>
+                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link" th:text="${boardDTO.boardRegionKo}"></a>
                                         </p>
                                         <!-- //제목 -->
                                         <!-- 기타 정보 -->
@@ -283,24 +284,24 @@
                                                             <img src="/css/list/image/star.png">
                                                             <img src="/css/list/image/star.png">
                                                     </span>
-                                            <span class="tag">funfunCook</span>
+                                            <span class="tag" th:text="${boardDTO.memberEmail}"></span>
                                         </div>
                                         <!-- 기타 정보 -->
                                         <!-- 좋아요 및 즐겨찾기 -->
                                         <div class="state">
-                                            <span class="won">25,000</span>
+                                            <span class="won" th:text="${boardDTO.boardPrice}">25,000</span>
                                         </div>
                                         <!-- //좋아요 및 즐겨찾기 -->
                                     </div>
                                     <!-- //내용 -->
                                 </li>
                                 <!-- //항목1 -->
+                            </th:each>
 
 
 
 
-
-                                <!-- 항목2 -->
+                                <!--&lt;!&ndash; 항목2 &ndash;&gt;
                                 <li>
                                     <a href="#"></a>
                                     <div class="cont">
@@ -326,13 +327,13 @@
                                         </div>
                                     </div>
                                 </li>
-                                <!-- //항목2 -->
-                                <!-- 항목3 -->
+                                &lt;!&ndash; //항목2 &ndash;&gt;
+                                &lt;!&ndash; 항목3 &ndash;&gt;
                                 <li>
                                     <a href="#"></a>
                                     <div class="cont">
                                         <a href="#">
-                                            <div class="thumbs" style="background-image:url('/css/list/image/dummy-thumbnail.jpg')"></div>
+                                            <div class="thumbs"></div>
                                         </a>
                                         <p class="name">
                                             <a href="#">그린조에</a>
@@ -352,7 +353,7 @@
                                             <span class="won">100,000,000</span>
                                         </div>
                                     </div>
-                                </li>
+                                </li>-->
                                 <!-- //항목3 -->
                             </ul>
                             <!-- //리스트 전체 컨테이너 -->
@@ -416,9 +417,9 @@
                             </form>
                             <!-- //검색 폼 -->
                             <!-- 게시글 작성하러 가기 -->
-                            <a href="#" class="gotowrite region-select-container">
-                                <span class="cell">나의 싱그러운 라이프를 소개해주세요.</span>
-                                <strong>작성하기</strong>
+                            <a th:href="@{/boards/write}" class="gotowrite region-select-container">
+                                <span class="cell">이웃집 반찬 글 작성하러 가기~</span>
+                                <strong>글 작성하기</strong>
                             </a>
                             <!-- 게시글 작성하러 가기 -->
                         </div>
@@ -442,7 +443,7 @@
                         <a th:each = "boardDTO : ${boardDTOList}">
                             <li class="result-list-container" >
                                 <div class="result-list-outer-box">
-                                    <a href="#">
+                                    <a th:href="@{/boards/detail/{boardId}(boardId=${boardDTO.boardId})}">
                                         <div class="profile-area-box">
                                             <div class="profile-area">
                                                 <div class="profile-area-inner">
@@ -452,7 +453,7 @@
                                                         <span onclick="location.href='#'"  th:text="${boardDTO.memberNickname}"></span>
                                                     </p>
                                                     <div class="location">
-                                                        <span class="map"  th:text="${boardDTO.boardRegion}"></span>
+                                                        <span class="map"  th:text="${boardDTO.boardRegionKo}"></span>
                                                     </div>
                                                 </div>
                                                 <div>

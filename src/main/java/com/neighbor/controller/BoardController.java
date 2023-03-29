@@ -1,23 +1,16 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.vo.BoardFileVO;
-import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.service.BoardFileService;
 import com.neighbor.service.BoardService;
+import com.neighbor.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,6 +21,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final BoardFileService boardFileService;
+    private final ReplyService replyService;
 
     @GetMapping("write")
     public String goWrite(Model model){
@@ -50,14 +44,16 @@ public class BoardController {
         if(boardDTO.getFileMainName() != null){
             boardFileService.upload(boardDTO);
         }
-        return new RedirectView("list");
+        return new RedirectView("list/region");
     }
 
-    @GetMapping("list")
+    @GetMapping("list/region")
     public String goList(Model model){
+
 //      맴버와 보드를 합친 DTO를 가져옴
         List<BoardDTO> boardDTOList = boardService.getAllMemberBoard();
         for(BoardDTO boardDTO:boardDTOList){
+            boardDTO.change(boardDTO.getBoardRegion());
             boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
         }
 
@@ -65,6 +61,12 @@ public class BoardController {
         log.info(String.valueOf(boardDTOList));
 //      보드 파일의 모든 정보 조회
         return "list/list-by-region";
+    }
+
+    @GetMapping("list/member/{memberId}")
+    public String goMember(@PathVariable Long memberId, Model model){
+
+        return "list/list-by-member";
     }
 
     @GetMapping("detail")

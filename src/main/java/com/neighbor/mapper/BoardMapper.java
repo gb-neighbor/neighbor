@@ -20,10 +20,13 @@ public interface BoardMapper {
 
     //    보드아이디로 맴버정보 가져오기
     public MemberVO getMemberInfoByBoardId(Long boardId);
+    
+    // 맴버 아이디로 보드정보 가져오기
+    public List<BoardVO> selectOne(Long memberId);
 
     //     지역으로 게시글 조회
     public BoardDTO select(Integer boardRegion);
-
+    
     //  관리자 페이지 판매 게시글 관리 판매 대기중목록 불러오기
     public List<BoardDTO> selectWait();
 

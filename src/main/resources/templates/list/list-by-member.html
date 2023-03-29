@@ -27,7 +27,7 @@
                 <div class="info-box">
                     <!-- 한줄 소개 -->
                     <div class="hi-sentence-container">
-                        <p><strong>깨끗하고 건강한 집 밥! 함께해요~~ @>--</strong></p>
+                        <p><strong th:text="">깨끗하고 건강한 집 밥! 함께해요~~ @>--</strong></p>
                     </div>
                     <!-- //한줄 소개 -->
                     <!-- 기타 정보 -->
@@ -98,6 +98,9 @@
                             <span class="label-spot"></span>
                         </a>
                     </li>
+
+
+
                     <!-- //게시글 한개 -->
 
                 </ul>
@@ -115,5 +118,30 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $('.profile-thumbs').each(function () {
+            let memberProfilePath = $(this).data('member-profile-path');
+            let memberProfileFileUuid = $(this).data('member-profile-uuid');
+            let memberProfileOriginalName = $(this).data('member-profile-original-name');
+            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/' + memberProfileFileUuid + '_' + memberProfileOriginalName;
+            $(this).css('background-image', 'url(' + membeUrl + ')');
+        });
+
+    });
+
+    $(document).ready(function() {
+
+        $('.board-thumb').each(function () {
+            let memberProfilePath = $(this).data('member-profile-path');
+            let memberProfileFileUuid = $(this).data('member-profile-uuid');
+            let memberProfileOriginalName = $(this).data('member-profile-original-name');
+            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/' + memberProfileFileUuid + '_' + memberProfileOriginalName;
+            $(this).css('background-image', 'url(' + membeUrl + ')');
+        });
+
+    });
+</script>
 <script src="/js/list/list-by-member.js"></script>
 </html>
