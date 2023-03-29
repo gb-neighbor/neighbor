@@ -17,11 +17,11 @@
 
     <!--마지막에 추가된 boardId가져오기 -->
     <select id="getLastBoardId" resultType="long">
-        SELECT LAST_INSERT_ID() lastNum from tbl_member tm
+        select LAST_INSERT_ID() lastNum from tbl_member tm
         group by lastNum
     </select>
 
-    <!-- BoardDTO로 내가 등록한 디테일페이지의 모든 정보 가져오기 -->
+    <!-- BoardDTO로 내가 등록한 디테일페이지의 모든 파일 정보 가져오기 -->
     <select id="getBoardInfo" resultType="boardDTO">
         select b.board_id, board_title, board_content, board_register_date, board_update_date, board_status, board_region, member_id,
         board_file_original_name, board_file_uuid, board_file_path, board_file_size
@@ -30,8 +30,10 @@
     </select>
 
     <!--BoardId로 사용자 정보 가져오기-->
-    <select id="getMemberInfoByBoardId">
-        select member_name, member_nickname, member_region, member_email, member_hi_sentence from tbl_board b join tbl_member m
+    <select id="getMemberInfoByBoardId" resultType="memberVO">
+        select m.member_id, member_identification, member_password, member_name, member_nickname,
+        member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid,
+        member_profile_original_name, member_profile_path, member_profile_size from tbl_board b join tbl_member m
         on b.member_id = m.member_id
         where board_id = #{boardId}
     </select>
@@ -83,6 +85,8 @@
     <select id="selectBoardTitle" resultType="string">
         select board_title from tbl_board where board_id = #{boardId}
     </select>
+
+
 
 
 </mapper>
