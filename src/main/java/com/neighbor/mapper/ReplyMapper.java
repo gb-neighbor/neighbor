@@ -15,6 +15,9 @@ public interface ReplyMapper {
 //    후기 삭제
     public void delete(Long userId);
 
+//    보드아이디로 후기 가져오기
+    public List<ReplyVO> selectAllByBoardId(Long boardId);
+
 //    대시보드 부분 조회
     public List<ReplyDTO> selectAllBy();
 

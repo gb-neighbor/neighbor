@@ -29,6 +29,12 @@
         from tbl_member
     </select>
 
+<!--  회원정보 조회하기  -->
+    <select id="selectOne" resultType="memberVO">
+        select member_id, member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
+        from tbl_member where member_id = #{memberId}
+    </select>
+
     <!--회원가입-->
     <insert id="insert">
         insert into tbl_member(member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_path, member_profile_original_name, member_profile_size)

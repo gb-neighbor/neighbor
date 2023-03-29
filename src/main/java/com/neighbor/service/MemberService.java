@@ -48,6 +48,11 @@ public class MemberService {
         return memberDAO.countAll();
     }
 
+//
+    public MemberVO getOneMemberInfo(Long memberId){
+        return memberDAO.getOneMember(memberId);
+    }
+
     // 회원가입
     public void signUp(MemberVO memberVO){
         memberDAO.save(memberVO);

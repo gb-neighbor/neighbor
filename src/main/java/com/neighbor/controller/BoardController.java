@@ -1,8 +1,12 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.vo.BoardVO;
+import com.neighbor.domain.vo.MemberVO;
+import com.neighbor.domain.vo.ReplyVO;
 import com.neighbor.service.BoardFileService;
 import com.neighbor.service.BoardService;
+import com.neighbor.service.MemberService;
 import com.neighbor.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +29,7 @@ public class BoardController {
     private final BoardService boardService;
     private final BoardFileService boardFileService;
     private final ReplyService replyService;
+    private final MemberService memberService;
 
     @GetMapping("write")
     public String goWrite(Model model){
@@ -64,8 +72,19 @@ public class BoardController {
     }
 
     @GetMapping("list/member/{memberId}")
-    public String goMember(@PathVariable Long memberId, Model model){
-
+    public String goMember(@PathVariable("memberId") Long memberId, Model model) {
+        MemberVO memberVOList = memberService.getOneMemberInfo(memberId);
+        List<BoardVO> boardVOList = boardService.getBoardInfo(memberId);
+        Map<Long, List<ReplyVO>> replyVOListMap = new HashMap<>();
+        for (BoardVO boardVO : boardVOList) {
+            Long boardId = boardVO.getBoardId();
+            List<ReplyVO> replyVOList = replyService.getListByBoardId(boardId);
+            replyVOListMap.put(boardId, replyVOList);
+        }
+        model.addAttribute("memberVO", memberVOList);
+        model.addAttribute("boardVOList", boardVOList);
+        model.addAttribute("replyVOListMap", replyVOListMap);
+        log.info(String.valueOf(replyVOListMap));
         return "list/list-by-member";
     }
 

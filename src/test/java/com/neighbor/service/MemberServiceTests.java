@@ -50,5 +50,11 @@ public class MemberServiceTests {
         memberService.signUp(memberVO);
     }
 
+    @Test
+    public void memberOneTest(){
+
+        log.info(String.valueOf(memberService.getOneMemberInfo(1L)));
+    }
+
 
 }

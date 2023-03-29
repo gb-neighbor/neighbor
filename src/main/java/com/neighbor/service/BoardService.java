@@ -27,7 +27,7 @@ public class BoardService {
         return boardDAO.findAllBoardMember();
     }
 
-    public List<BoardVO> getMemberInfo(Long memberId) {
+    public List<BoardVO> getBoardInfo(Long memberId) {
 //      List로 board 정보 다 가져옴
         List<BoardVO> boardVOList = boardDAO.getBoardByMemberId(memberId);
         for (BoardVO boardVO : boardVOList) {

@@ -2,6 +2,7 @@ package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.ReplyDTO;
+import com.neighbor.domain.vo.ReplyVO;
 import com.neighbor.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,6 +17,11 @@ public class ReplyDAO {
 
 //  후기관리 삭제
     public void delete(Long memberId){replyMapper.delete(memberId);}
+
+//    후기 가져오기
+    public List<ReplyVO> getAllReplyByBoardId(Long boardId){
+        return replyMapper.selectAllByBoardId(boardId);
+    }
 
 //  대시보드 후기글 부분 조회
     public List<ReplyDTO> findAllBy() {
