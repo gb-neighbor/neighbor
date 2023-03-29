@@ -24,7 +24,6 @@ public class MypageController {
 
     //   세션 매개변수로 받기
     @GetMapping("/message_box")
-//    @RestController()
     public void goToMessageBox(Model model){
         Long memberId = 1L;
         List<MessageDTO> result = new ArrayList<>();

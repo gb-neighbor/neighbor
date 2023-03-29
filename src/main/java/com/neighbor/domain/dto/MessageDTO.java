@@ -12,4 +12,5 @@ public class MessageDTO {
     private String targetNickname;
     private String targetProfileUuid;
     private String targetProfilePath;
+    private String targetProfileOriginalName;
 }

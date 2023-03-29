@@ -42,8 +42,8 @@ public class MessageService {
     }
 
     //    <!-- 대화방 번호 가져오기 -->
-    public Long getMessageRoomId(Long memberId, Long boardId) {
-        return messageDAO.findMessageRoomId(memberId, boardId);
+    public Long getMessageRoomId(Long customerId, Long boardId) {
+        return messageDAO.findMessageRoomId(customerId, boardId);
     }
 
     //    <!-- 쪽지 상대방 정보 가져오기 -->

@@ -27,7 +27,7 @@ public interface MessageMapper {
     public String selectLatestDate(Long messageRoomId);
 
 //    <!-- 대화방 번호 가져오기 -->
-    public Long selectMessageRoomId(Long memberId, Long boardId);
+    public Long selectMessageRoomId(Long customerId, Long boardId);
 
 //    <!-- 쪽지 상대방 정보 가져오기 -->
     public MemberVO selectTargetInfo(Long memberId);
