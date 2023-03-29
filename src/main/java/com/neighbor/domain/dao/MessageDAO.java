@@ -32,7 +32,7 @@ public class MessageDAO {
     public String findLatestDate(Long messageRoomId){return messageMapper.selectLatestDate(messageRoomId);}
 
     //    <!-- 대화방 번호 가져오기 -->
-    public Long findMessageRoomId(Long memberId, Long boardId){return messageMapper.selectMessageRoomId(memberId, boardId);}
+    public Long findMessageRoomId(Long customerId, Long boardId){return messageMapper.selectMessageRoomId(customerId, boardId);}
 
     //    <!-- 쪽지 상대방 정보 가져오기 -->
     public MemberVO findTargetInfo(Long memberId){return messageMapper.selectTargetInfo(memberId);}
