@@ -5,7 +5,7 @@
 /*로그인 비밀번호 암호화*/
 function sendLogin(){
     location.replace(location.href);
-    $('.id').val(btoa($('.id').val()));
+    $('.password').val(btoa($('.password').val()));
     document.loginForm.submit();
 }
 
@@ -13,7 +13,7 @@ function sendLogin(){
 /* 회원가입시 비밀번호 암호화 */
 function sendJoin(){
     location.replace(location.href);
-    $(".password").val(btoa($(".password").val()));
+    $(".pw").val(btoa($(".pw").val()));
     document.loginForm.submit();
 }
 
