@@ -43,12 +43,13 @@
         <dl class="auth">
             <dt><span class="easy-login">간편로그인</span></dt>
             <dd>
-                <button class="kakao btn">
+                <a href="https://kauth.kakao.com/oauth/authorize?client_id=f14254e0493a2817e0651408ee4c2504&redirect_uri=
+                http://localhost:10000/kakao-login&response_type=code" class="kakao btn">
                         <span class="inner">
                             <span class="icon"></span>
                             카카오로 로그인
                         </span>
-                </button>
+                </a>
             </dd>
 
             <dd>
@@ -67,4 +68,15 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/login/member.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var naver_id_login = new naver_id_login("YOUR_CLIENT_ID", "YOUR_CALLBACK_URL");
+    var state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40);
+    naver_id_login.setDomain("YOUR_SERVICE_URL");
+    naver_id_login.setState(state);
+    naver_id_login.setPopup();
+    naver_id_login.init_naver_id_login();
+</script>
 </html>

@@ -56,6 +56,8 @@ public RedirectView sendFindIdentifcationMail(String memberEmail) {
     @PostMapping("send-password")
     public RedirectView sendFindPasswordMail(String memberEmail) {
         String memberIdentification = memberService.findIdentification(memberEmail);
+        String randomkey = memberService.randomKey();
+
 
         if(memberIdentification == null){
             return new RedirectView("/members/login");
@@ -63,7 +65,7 @@ public RedirectView sendFindIdentifcationMail(String memberEmail) {
 
         MailVO mailVO = new MailVO();
         mailVO.setAddress(memberEmail);
-        mailVO.setTitle("이웃집 반찬 비밀번호 찾기");
+        mailVO.setTitle("이웃집 반찬 비밀번호 변경");
         mailVO.setMessage("안녕하세요. 이웃집 반찬입니다.\n\n 비밀번호 변경을 위해선 아래 경로에 들어가주세요 \n\n 경로: http://localhost:10000/members/change-password?memberIdentification="+memberIdentification);
 
         memberService.sendMail(mailVO);
