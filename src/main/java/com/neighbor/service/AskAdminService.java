@@ -2,6 +2,7 @@ package com.neighbor.service;
 
 import com.neighbor.domain.dao.AskAdminDAO;
 import com.neighbor.domain.dto.AskAdminDTO;
+import com.neighbor.domain.dto.AskAdminDetailDTO;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.AskAdminVO;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class AskAdminService {
     public Integer getCount() {
         return askAdminDAO.count();
     }
+
 //    문의사항 전체 질문 수
 
     public Integer getCountAll() {
@@ -52,9 +54,11 @@ public class AskAdminService {
     }
 
     //    내가 작성한 글 리스트
-    public List<AskAdminVO> listOne(Long memberId){
-
-        return askAdminDAO.findById(memberId);
+    public List<AskAdminVO> listByMemberIdWithPaging(Long memberId, Criteria criteria, String keyword) {
+        return askAdminDAO.selectListByMemberId(memberId, criteria,keyword);
+    }
+    public int getCountByMemberId(Long memberId, String keyword) {
+        return askAdminDAO.countByMemberId(memberId, keyword);
     }
 
     //    문의 상세 페이지
