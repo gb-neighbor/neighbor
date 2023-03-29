@@ -20,9 +20,6 @@
     <select id="countAll" resultType="int">
         select count(distinct reply_id) as countTotalReplys
         from tbl_reply
-        <if test="keyword != null">
-            where r.reply_content like concat('%',#{keyword}, '%')
-        </if>
     </select>
 
     <!--후기 전체 조회 검색 포함-->
