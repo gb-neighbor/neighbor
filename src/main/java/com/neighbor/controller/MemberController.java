@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Controller
@@ -29,7 +30,6 @@ import java.util.UUID;
 public class MemberController {
 
     private final MemberService memberService;
-
 
     // 회원가입 페이지로 이동
     @GetMapping("register")
@@ -133,5 +133,27 @@ public class MemberController {
     public RedirectView updatePassword(String memberIdentification, String memberPassword ) {
         memberService.updatePassword(memberIdentification, memberPassword);
         return new RedirectView("/members/login");
+    }
+
+
+
+
+    //카카오 로그인
+
+
+    @ResponseBody
+    @GetMapping("/kakao-login")
+    public void  kakaoCallback(@RequestParam String code, HttpSession session) throws Exception {
+        log.info(code);
+        String token = memberService.getKaKaoAccessToken(code);
+        session.setAttribute("token", token);
+        memberService.getKakaoInfo(token);
+    }
+
+    @GetMapping("/kakao-logout")
+    public void kakaoLogout(HttpSession session){
+        log.info("logout");
+        memberService.logoutKakao((String)session.getAttribute("token"));
+        session.invalidate();
     }
 }
