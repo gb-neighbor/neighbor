@@ -107,7 +107,8 @@
                 </dl>
                 <dl>
                     <dt>이메일</dt>
-                    <input class="email" type="text" name="memberEmail" placeholder="이메일">
+                    <input class="email" type="text" name="memberEmail" placeholder="이메일" th:if="${session.memberVO == null}">
+                    <input class="email" type="text" name="memberEmail" th:if="${session.memberVO != null}" th:value="${session.memberVO.memberEmail}" readonly>
                     <p class="err-email" err></p>
                 </dl>
                 <dl>

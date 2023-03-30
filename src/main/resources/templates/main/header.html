@@ -14,19 +14,19 @@
         <div class="header-grey-line-inner">
             <ul class="header-logIn-signUp">
                 <li class="header-my">
-                    <a th:if="${session.memberId != null}" href="">마이페이지</a>
+                    <a th:if="${session.memberVO != null}" href="">마이페이지</a>
                 </li>
                 <li class="header-write">
-                    <a th:if="${session.memberId != null}" href="">글쓰기</a>
+                    <a th:if="${session.memberVO != null}" href="">글쓰기</a>
                 </li>
                 <li class="header-logIn">
-                    <a th:if="${session.memberId == null}" href="http://localhost:10000/members/login">로그인</a>
+                    <a th:if="${session.memberVO == null}" href="http://localhost:10000/members/login">로그인</a>
                 </li>
                 <li class="header-signUp">
-                    <a th:if="${session.memberId == null}" href="http://localhost:10000/members/register">회원가입</a>
+                    <a th:if="${session.memberVO == null}" href="http://localhost:10000/members/register">회원가입</a>
                 </li>
                 <li class="header-logOut">
-                    <a th:if="${session.memberId != null}" href="http://localhost:10000/members/logout">로그아웃</a>
+                    <a th:if="${session.memberVO != null}" href="http://localhost:10000/members/logout">로그아웃</a>
                 </li>
             </ul>
         </div>

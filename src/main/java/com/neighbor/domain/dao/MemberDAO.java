@@ -55,8 +55,14 @@ public class MemberDAO {
         return memberMapper.selectByEmail(memberEmail);
     }
 
+    // 휴대폰 중복
+    public Long selectByPhone(String memberPhone) { return memberMapper.selectByPhone(memberPhone);}
+
     // 로그인
     public Long selectById(String memberIdentification, String memberPassword){ return memberMapper.selectById(memberIdentification, memberPassword);}
+
+    // 네이버 로그인
+    public Long compareEmail(String memberEmail) {return memberMapper.compareEmail(memberEmail);}
 
     //아이디 찾기
     public String selectMyIdentification(String memberEmail){ return memberMapper.selectMyIdentification(memberEmail);}
@@ -64,4 +70,18 @@ public class MemberDAO {
     //비밀번호 수정
     public void updateMyPassword(String memberIdentification, String memberPassword ){ memberMapper.updateMyPassword(memberIdentification, memberPassword);}
 
+    //이메일로 회원정보 조회
+    public MemberVO selectInfoByEmail(String memberEmail) {return memberMapper.selectInfoByEmail(memberEmail);}
+
+    //아이디로 회원정보 조회
+    public MemberVO selectInfoByIdentification(String memberIdentification) {return memberMapper.selectInfoByIdentification(memberIdentification);}
+
+    //아이디로 랜덤키 찾기
+    public String selectRandomKeyByIdentification(String memberIdentification) {return memberMapper.selectRandomKeyByIdentification(memberIdentification);}
+
+    //아이디로 이메일 찾기
+    public String selectEmailByIdentification(String memberIdentification) {return memberMapper.selectEmailByIdentification(memberIdentification);}
+
+    // 랜덤키 수정
+    public void updateRandomKey(String memberRandomKey, String memberEmail){memberMapper.updateRandomKey(memberRandomKey, memberEmail);};
 }

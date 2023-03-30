@@ -56,11 +56,22 @@
 		select count(member_id)  from tbl_member where member_email = #{memberEmail}
 	</select>
 
+    <!-- 휴대폰번호 중복검사 -->
+    <select id="selectByPhone" resultType="long">
+		select count(member_id)  from tbl_member where member_phone = #{memberPhone}
+	</select>
+
     <!--로그인-->
     <select id="selectById" resultType="long">
 		select member_id from tbl_member
 		where member_identification = #{memberIdentification} and member_password = #{memberPassword}
 	</select>
+
+    <!--네이버 로그인-->
+    <select id="compareEmail" resultType="long">
+        select member_id from tbl_member
+		where member_email = #{memberEmail}
+    </select>
 
     <!--아이디 찾기-->
     <select id="selectMyIdentification" resultType="String">
@@ -75,4 +86,34 @@
         where member_identification = #{memberIdentification}
     </update>
 
+    <!--업데이트 랜덤키-->
+    <update id="updateRandomKey">
+        update tbl_member
+        set member_random_key = #{memberRandomKey}
+        where member_email = #{memberEmail}
+    </update>
+
+    <!--이메일로 계정정보 찾기-->
+    <select id="selectInfoByEmail" resultType="memberVO">
+        select member_id, member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
+        from tbl_member where member_email = #{memberEmail}
+    </select>
+
+    <!--아이디로 계정정보 찾기-->
+    <select id="selectInfoByIdentification" resultType="memberVO">
+        select member_id, member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
+        from tbl_member where member_identification = #{memberIdentification}
+    </select>
+
+    <!--아이디로 이메일 찾기-->
+    <select id="selectEmailByIdentification" resultType="String">
+        select member_email
+        from tbl_member where member_identification = #{memberIdentification}
+    </select>
+
+    <!--아이디로 랜덤키 찾기-->
+    <select id="selectRandomKeyByIdentification" resultType="String">
+        select member_random_key
+        from tbl_member where member_identification = #{memberIdentification}
+    </select>
 </mapper>

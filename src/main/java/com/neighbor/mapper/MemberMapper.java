@@ -32,14 +32,35 @@ public interface MemberMapper {
     // 이메일 중복
     public Long selectByEmail(String memberEmail);
 
+    // 휴대폰 중복
+    public Long selectByPhone(String memberPhone);
+
     // 로그인
     public Long selectById(String memberIdentification, String memberPassword);
+
+    // 네이버 로그인
+    public Long compareEmail(String memberEmail);
+
+    // 이메일로 회원정보 조회
+    public MemberVO selectInfoByEmail(String memberEmail);
+
+    // 아이디로 회원정보 조회
+    public MemberVO selectInfoByIdentification(String memberIdentification);
+
+    // 아이디로 랜덤키 찾기
+    public String selectRandomKeyByIdentification(String memberIdentification);
+
+    // 아이디로 랜덤키 찾기
+    public String selectEmailByIdentification(String memberIdentification);
 
     // 아이디 찾기
     public String selectMyIdentification(String memberEmail);
 
     // 비밀번호 수정
     public void updateMyPassword(String memberIdentification, String memberPassword );
+
+    // 랜덤키 수정
+    public void updateRandomKey(String memberRandomKey, String memberEmail);
 
 }
 
