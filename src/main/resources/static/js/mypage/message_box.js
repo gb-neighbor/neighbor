@@ -3,7 +3,6 @@
 function modal(name, id) {
     var zIndex = 998;
     var modal = $(name+id);
-    console.log(modal);
     // 모달 div 뒤에 희끄무레한 레이어
     var bg = $('.modal_background')
         .css({
@@ -40,8 +39,10 @@ function modal(name, id) {
         .on('click', function() {
             bg.hide();
             modal.hide();
-            $('#write-section'+id).val('');
-            document.getElementById("text_length"+id).value = 0;
+            $("#write-section" + targetNum).val('');
+            $("#text_length" + targetNum).val('0');
+            $messageBox.html("");
+            $infoBox.html("");
         });
 }
 
@@ -146,19 +147,22 @@ function changeToText(number){
 }
 
 /*********************************************************************************************/
-const $messageBox = $(".box_text");
-const $infoBox = $('.box_top');
-
-
-var targetId;
 var boardId;
+var targetId;
+var targetNum;
+
+var $messageBox;
+var $infoBox;
 
 
-function getMessageRoom(target, board){
+function getMessageRoom(target, board, messageRoomId) {
+    targetId = target;
+    boardId = board;
+    targetNum = messageRoomId;
+    $messageBox = $("#box_text" + targetNum);
+    $infoBox = $('#box_top' + targetNum);
     messageService.targetInfo(showTargetInfo);
     messageService.list(showMessage);
-    targetId =target;
-    boardId =board;
 }
 
 
@@ -170,16 +174,15 @@ function openModalBanner(num){ /* 괄호에 num으로 받기 */
 const messageService=(function(){
     function list(callback){
         $.ajax({
-            url: "/messages/detail/"+boardId+"/"+memberId,
+            url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId,
             dataType: "json",
             method: "post",
             success: function(messages){
-                console.log(targetId)
-                console.log(boardId)
                 if(callback){
                     callback(messages);
                 }
-                $messageBox.scrollTop($messageBox.scrollHeight);
+                console.log($messageBox.scrollHeight)
+				$messageBox.scrollTop($messageBox[0].scrollHeight);
             }
         });
     }
@@ -193,7 +196,7 @@ const messageService=(function(){
                 if(callback){
                     callback(Infos);
                 }
-                openModalBanner(targetId);
+                openModalBanner(targetNum);
             }
         });
     }
@@ -203,13 +206,13 @@ const messageService=(function(){
 
 $('.send_form').submit(function(e) {
     e.preventDefault();
+    if($("#write-section" + targetNum).val()){
         let messageVO = {
             boardId: boardId,
             messageSenderId: memberId,
             messageGetterId: targetId,
-            messageContent: $("#write-section" + targetId).val()
+            messageContent: $("#write-section" + targetNum).val()
         };
-        console.log("들어옴");   
         $.ajax({
             url: "/messages/insert",
             type: $(this).attr('method'),
@@ -217,15 +220,14 @@ $('.send_form').submit(function(e) {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function(data) {
-                console.log(data)
-                console.log( $("text_length"+targetId).val());
-                console.log("들어옴");
-                $("#write-section2").val('');
-                $("text_length"+targetId).val('0');
+                $("#write-section" + targetNum).val('');
+                $("#text_length"+targetNum).val('0');
                 messageService.list(showMessage);
+                $messageBox.scrollTop($messageBox[0].scrollHeight);
+
             }
         });
-
+    }
 });
 
 

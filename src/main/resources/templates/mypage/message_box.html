@@ -55,7 +55,7 @@
         <ul id="message_box_list" th:each="target: ${targetInfo}">
             <!-- 쪽지 목록 1개 -->
             <li class="message_list" th:object="${target}">
-                <button class="detail_btn" th:data-target-id="${target.targetId}" th:data-board-id="${target.boardId}" th:onclick="getMessageRoom(this.getAttribute('data-target-id'), this.getAttribute('data-board-id'))">
+                <button class="detail_btn" th:data-target-id="${target.targetId}" th:data-board-id="${target.boardId}" th:data-messageRoomId-id="${target.messageRoomId}" th:onclick="getMessageRoom(this.getAttribute('data-target-id'), this.getAttribute('data-board-id'), this.getAttribute('data-messageRoomId-id'))">
                 </button>
                 <div class="message_box_wrapper">
                     <div class="profile_wrap">
@@ -85,19 +85,17 @@
                 </form>
                 <!--  쪽지 모달 위치  -->
                 <!--modal-->
-                <div  th:id="'my_modal' + *{targetId}" class="my_modal2 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
+                <div  th:id="'my_modal' + *{messageRoomId}" class="my_modal2 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
                     <a class="modal_close_btn">✖</a>
-                    <div class="box_top">
-                    </div>
-                    <div class="box_text">
-                    </div>
-                    <!--    <form th:action="@{/messages/insert}" th:object="${boardVO}" class="send_form" name="form" method="post" >-->
+                    <div class="box_top" th:id="'box_top' + *{messageRoomId}"></div>
+                    <div class="box_text" th:id="'box_text' + *{messageRoomId}"></div>
+
                     <form class="send_form" name="form" method="post" >
                         <div class="text-container">
-                        <textarea class="write-section"  th:id="'write-section'+ *{targetId}" name="messageContent" cols="20" rows="5"
-                                  th:onKeydown="getLength(/*[[*{targetId}]]*/)"  th:onKeyUp="getLength(/*[[*{targetId}]]*/)" maxlength="1001"></textarea>
+                            <textarea class="write-section"  th:id="'write-section'+ *{messageRoomId}" name="messageContent" cols="20" rows="5"
+                                  th:onKeydown="getLength(/*[[*{messageRoomId}]]*/)"  th:onKeyUp="getLength(/*[[*{messageRoomId}]]*/)" maxlength="1001"></textarea>
                             <div class="text_send_wrap">
-                                <input  th:id="'text_length'+ *{targetId}" class="count_letter" type="text" size="3" name="txtlen" value="0"
+                                <input  th:id="'text_length'+ *{messageRoomId}" class="count_letter" type="text" size="3" name="txtlen" value="0"
                                        readonly>
                                 <input disabled class="count_letter_max" type="text" size="10" value="/1000" readonly>
                                 <button type="submit" id="send_btn_id" class="send_btn">전송</button>

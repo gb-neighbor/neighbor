@@ -265,14 +265,14 @@ function openModalBanner(num){ /* 괄호에 num으로 받기 */
 const messageService=(function(){
 	function list(callback){
 		$.ajax({
-			url: "/messages/detail/"+boardId+"/"+memberId,
+			url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId,
 			dataType: "json",
 			method: "post",
 			success: function(messages){
 				if(callback){
 					callback(messages);
 				}
-				$messageBox.scrollTop($messageBox.scrollHeight);
+				$messageBox.scrollTop($messageBox[0].scrollHeight);
 			}
 		});
 	}
@@ -296,7 +296,7 @@ const messageService=(function(){
 
 $('.send_form').submit(function(e) {
 	e.preventDefault();
-	if( !$("#write-section2").val()){
+	if($("#write-section2").val()){
 		let messageVO = {
 			boardId: boardId,
 			messageSenderId: memberId,
@@ -312,8 +312,9 @@ $('.send_form').submit(function(e) {
 			success: function(data) {
 				console.log("들어옴")
 				$("#write-section2").val('');
-				$("text_length2").val('0');
+				$("#text_length2").val('0');
 				messageService.list(showMessage);
+				$messageBox.scrollTop($messageBox[0].scrollHeight);
 			}
 		});
 	}else{
