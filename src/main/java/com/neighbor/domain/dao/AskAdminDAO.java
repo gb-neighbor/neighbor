@@ -3,6 +3,7 @@ package com.neighbor.domain.dao;
 import com.neighbor.domain.dto.AskAdminDTO;
 import com.neighbor.domain.dto.AskAdminDetailDTO;
 import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.vo.AskAdminAnswerVO;
 import com.neighbor.domain.vo.AskAdminVO;
 import com.neighbor.mapper.AskAdminMapper;
 import lombok.RequiredArgsConstructor;
@@ -66,5 +67,8 @@ public class AskAdminDAO {
     public void deleteDetail(Long askAdminId){
         askAdminMapper.deleteDetail(askAdminId);
     }
+
+    //  문의 답글
+    public AskAdminAnswerVO findByAskAdminAnswer(Long askAdminId) {return askAdminMapper.selectByAnswer(askAdminId);}
 
 }

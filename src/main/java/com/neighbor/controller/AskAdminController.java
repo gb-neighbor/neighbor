@@ -48,20 +48,16 @@ public class AskAdminController {
     public String list(AskAdminVO askAdminVO , Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
         // 임시로 맴버 아이디 2L을 사용합니다.
         askAdminVO.setMemberId(2L);
-
+        log.info("keyword : " + keyword);
         if (criteria.getPage() == 0) {
             criteria = criteria.create(1, 10);
         }
 
         int totalCount = askAdminService.getCountByMemberId(askAdminVO.getMemberId(),keyword);
 
-        log.info("여기까지는 옴");
-        log.info(keyword);
-        log.info(String.valueOf(totalCount));
-        log.info(askAdminVO.getMemberId().toString());
         List<AskAdminVO> askAdminList = askAdminService.listByMemberIdWithPaging(askAdminVO.getMemberId(),criteria,keyword);
-        log.info("여기까지는 오나요?");
 
+        model.addAttribute("keyword", keyword);
         model.addAttribute("askAdmin", askAdminList);
         model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, totalCount));
 
@@ -71,6 +67,7 @@ public class AskAdminController {
     @GetMapping("detail/{askAdminId}")
     public String detail(Model model, @PathVariable Long askAdminId){
         model.addAttribute("askAdmin",askAdminService.detail(askAdminId));
+        model.addAttribute("askAdminAnswer",askAdminService.answerDetail(askAdminId));
         log.info(askAdminId.toString());
         return "mypage/inquiry_to_admin_detail";
     }

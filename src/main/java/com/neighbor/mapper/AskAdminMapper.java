@@ -3,6 +3,7 @@ package com.neighbor.mapper;
 import com.neighbor.domain.dto.AskAdminDTO;
 import com.neighbor.domain.dto.AskAdminDetailDTO;
 import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.vo.AskAdminAnswerVO;
 import com.neighbor.domain.vo.AskAdminVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,6 +41,8 @@ public interface AskAdminMapper {
 
     //  문의 상세페이지
     public AskAdminVO selectDetail(Long askAdminId);
+
+    public AskAdminAnswerVO selectByAnswer(Long askAdminId);
 
     //   문의 삭제
     public void deleteDetail(Long askAdminId);
