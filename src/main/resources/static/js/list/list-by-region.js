@@ -1,6 +1,9 @@
 /* list-by-region.html */
 const $radios= $(".input-selection");
-
+// for (let i = 0; i < boardDTO.length; i++) {
+//     console.log("들어옴")
+// }
+console.log($(".info-container .stars").children().eq(1))
 // index 번호가 지역구 번호
 const $region_list = ["전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", 
                     "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", 
@@ -75,68 +78,12 @@ function changeInputState() {
   
   topBtn.addEventListener("click", topFunction);
 
-$("result-list-container").append(
-                    `
-                        <li class="result-list-container">
-                            <div class="result-list-outer-box">
-                                <a href="#">
-                                    <div class="profile-area-box">
-                                        <div class="profile-area">
-                                            <div class="profile-area-inner">
-                                                <div class="thumbs" th:style="'background-image:url('+@{boardDTO}'+)'"></div>
-                                                <p class="id">
-                                                    <span onclick="location.href='#'">그린조에</span>
-                                                </p>
-                                                <div class="location">
-                                                    <span class="map">종로구</span>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <img src="/css/list/image/arrow_r.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="title-area-box">
-                                        <div class="title-area">
-                                            <span class="list-title">도프커피</span>
-                                            <span class="stars">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                                <img src="/css/list/image/star.png">
-                                            </span>
-                                        </div>
-                                        <div class="sub-info-area-box">
-                                            <div class="price">
-                                                <span class="won">25,000</span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    
-                                    <div class="pic-box">
-                                        <div class="pics-thumbs thumbs1"></div>
-                                        <div class="pics-thumbs thumbs2"></div>
-                                        <div class="pics-thumbs thumbs3"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                    `
-)
-
-
-
-
-
-
-
-
-
-
-
-
+    for (let i = 0; i < boardDTO.length; i++) {
+        for (let j = 0; j < boardDTO[i].avgScore; j++) {
+            $(".info-container .stars").children().eq(j).attr("src", "/css/list/image/star.png");
+            console.log("들어옴")
+        }}
 
 
 

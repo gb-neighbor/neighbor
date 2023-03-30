@@ -21,7 +21,11 @@
             <!-- 프로필 영역 안쪽 패딩 -->
             <div class="info-inner">
                 <!-- 프로필사진 -->
-                <div class="profile-thumbs"></div>
+                <div class="profile-thumbs"
+                     th:data-member-profile-path="${memberVO.memberProfilePath}"
+                     th:data-member-profile-uuid="${memberVO.memberProfileUuid}"
+                     th:data-member-profile-original-name="${memberVO.memberProfileOriginalName}"
+                ></div>
                 <!-- //프로필사진 -->
                 <!-- 정보 영역 -->
                 <div class="info-box">
@@ -40,7 +44,7 @@
                             <li class="region-location r-side">
                                 <p class="list-title">판매 위치 : </p>
                                 <p>
-                                    <span class="map-link" th:text="${memberVO.memberRegion}">종로구</span>
+                                    <span class="map-link" th:text="${memberVO.memberRegionKo}">종로구</span>
                                 </p>
                             </li>
                             <li class="email r-side">
@@ -50,11 +54,11 @@
                             <li class="stars l-side">
                                 <p class="list-title">평균 별점 : </p>
                                 <span class="stars">
-                                        <img src="/css/list/image/star.png">
-                                        <img src="/css/list/image/star.png">
-                                        <img src="/css/list/image/star.png">
-                                        <img src="/css/list/image/star.png">
-                                        <img src="/css/list/image/star.png">
+                                        <img src="/css/main/images/grey-star.png">
+                                        <img src="/css/main/images/grey-star.png">
+                                        <img src="/css/main/images/grey-star.png">
+                                        <img src="/css/main/images/grey-star.png">
+                                        <img src="/css/main/images/grey-star.png">
                                     </span>
                             </li>
                             <li class="total-review l-side">
@@ -63,7 +67,7 @@
                             </li>
                             <li class="total-sold l-side">
                                 <p class="list-title">판매 완료 : </p>
-                                <span>22</span>
+                                <span></span>
                             </li>
                         </ul>
                     </div>
@@ -88,30 +92,22 @@
             <div class="list-container">
                 <ul class="list-outer">
                     <!-- 게시글 한개 -->
-<!--                    <li>-->
-<!--                        <a href="#" style="display: block;" id="parent-block" onclick="addLabel()">-->
-<!--                            <div class="board-thumb-wrapper">-->
-<!--                                <div class="board-thumb"></div>-->
-<!--                            </div>-->
-<!--                            <p class="board-title">정원여행자</p>-->
-<!--                            <p class="board-date">2023.03.24</p>-->
-<!--                            <span class="label-spot"></span>-->
-<!--                        </a>-->
-<!--                    </li>-->
 <!--해당 보드 아이디에 맞는 메인 넣어주기-->
-                    <li th:each = "boardVO : ${boardVOList}">
-                        <a href="#" style="display: block;" id="parent-block" onclick="addLabel()">
+                    <!--<li th:each = "boardVO : ${boardVOList}">
+                        <a href="#" style="display: block;" id="parent-block">
                             <div class="board-thumb-wrapper">
-                                <div class="board-thumb" th:data-board-file-path="${mainFile.boardFilePath}" th:data-board-file-uuid="${MainFile.boardFileUuid}"
-                                     th:data-board-file-original-name="${mainFile.boardFileOriginalName}"></div>
+                                <div class="board-thumb"  th:each="mainFile : ${mainFile}" th:data-board-file-path="${mainFile.value.boardFilePath}"
+                                     th:data-board-file-uuid="${mainFile.value.boardFileUuid}"
+                                     th:data-board-file-original-name="${mainFile.value.boardFileOriginalName}"
+                                     th:data-board-status="${boardVO.boardStatus}">
+                                </div>
                             </div>
                             <p class="board-title" th:text="${boardVO.boardTitle}">정원여행자</p>
                             <p class="board-date" th:text="${boardVO.boardUpdateDate}">2023.03.24</p>
                             <span class="label-spot"></span>
                         </a>
-                    </li>
-
-
+                    </li>-->
+<!--                    </th:each>-->
 
                     <!-- //게시글 한개 -->
 
@@ -130,17 +126,19 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-    $(document).ready(function() {
+<script th:inline="javascript">
+    let boardList = [[${boardVOList}]];
+    let mainFile = [[${mainFile}]];
+    let avgScore = [[${avgScore}]];
 
-        $('.board-thumb').each(function () {
-            let boardFilePath = $(this).data('board-file-path');
-            let boardFileUuid = $(this).data('board-file-uuid');
-            let boardFileOriginalName = $(this).data('board-file-original-name');
-            let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+    $(document).ready(function() {
+        $('.profile-thumbs').each(function() {
+            let memberProfilePath = $(this).data('member-profile-path');
+            let memberProfileUuid = $(this).data('member-profile-uuid');
+            let memberProfileOriginalName = $(this).data('member-profile-original-name');
+            let boardUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileUuid + '_' + memberProfileOriginalName;
             $(this).css('background-image', 'url(' + boardUrl + ')');
         });
-
     });
 
 </script>

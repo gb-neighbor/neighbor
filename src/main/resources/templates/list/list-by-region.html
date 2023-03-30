@@ -256,7 +256,7 @@
 
 
 
-                                
+
                                 <!-- 항목1 -->
                                 <li th:each="boardDTO : ${boardDTOList}">
                                     <!-- 상세페이지로 바로가기 -->
@@ -278,11 +278,11 @@
                                         <!-- 기타 정보 -->
                                         <div class="info-container">
                                                     <span class="stars">
-                                                            <img src="/css/list/image/star.png">
-                                                            <img src="/css/list/image/star.png">
-                                                            <img src="/css/list/image/star.png">
-                                                            <img src="/css/list/image/star.png">
-                                                            <img src="/css/list/image/star.png">
+                                                            <img src="/css/main/images/grey-star.png">
+                                                            <img src="/css/main/images/grey-star.png">
+                                                            <img src="/css/main/images/grey-star.png">
+                                                            <img src="/css/main/images/grey-star.png">
+                                                            <img src="/css/main/images/grey-star.png">
                                                     </span>
                                             <span class="tag" th:text="${boardDTO.memberEmail}"></span>
                                         </div>
@@ -517,9 +517,11 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-    $(document).ready(function() {
+<script th:inline="javascript">
+    let boardDTO = [[${boardDTOList}]];
+    console.log(boardDTO)
 
+    $(document).ready(function() {
         $('.thumbs1').each(function () {
             let boardFilePath = $(this).data('board-file-path');
             let boardFileUuid = $(this).data('board-file-uuid');
@@ -542,5 +544,6 @@
 
     });
 </script>
+
 <script src="/js/list/list-by-region.js"></script>
 </html>
