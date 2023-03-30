@@ -257,25 +257,25 @@
 
 
 
-                                <!-- 항목1 -->
+                                <!-- 항목1
                                 <li th:each="boardDTO : ${boardDTOList}">
-                                    <!-- 상세페이지로 바로가기 -->
+                                    &lt;!&ndash; 상세페이지로 바로가기 &ndash;&gt;
                                     <a th:href="@{/boards/detail/{boardId}(boardId=${boardDTO.boardId})}"></a>
-                                    <!-- 내용 -->
+                                    &lt;!&ndash; 내용 &ndash;&gt;
                                     <div class="cont">
-                                        <!-- 썸네일 -->
+                                        &lt;!&ndash; 썸네일 &ndash;&gt;
                                         <a href="#">
                                             <div class="thumbs" th:data-member-profile-path="${boardDTO.memberProfilePath}" th:data-member-profile-uuid="${boardDTO.memberProfileUuid}"
                                                  th:data-member-profile-original-name="${boardDTO.memberProfileOriginalName}"></div>
                                         </a>
-                                        <!-- //썸네일 -->
-                                        <!-- 제목 -->
+                                        &lt;!&ndash; //썸네일 &ndash;&gt;
+                                        &lt;!&ndash; 제목 &ndash;&gt;
                                         <p class="name">
                                             <a href="#" th:text="${boardDTO.boardTitle}">그린조에</a>
                                             <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link" th:text="${boardDTO.boardRegionKo}"></a>
                                         </p>
-                                        <!-- //제목 -->
-                                        <!-- 기타 정보 -->
+                                        &lt;!&ndash; //제목 &ndash;&gt;
+                                        &lt;!&ndash; 기타 정보 &ndash;&gt;
                                         <div class="info-container">
                                                     <span class="stars">
                                                             <img src="/css/main/images/grey-star.png">
@@ -286,17 +286,17 @@
                                                     </span>
                                             <span class="tag" th:text="${boardDTO.memberEmail}"></span>
                                         </div>
-                                        <!-- 기타 정보 -->
-                                        <!-- 좋아요 및 즐겨찾기 -->
+                                        &lt;!&ndash; 기타 정보 &ndash;&gt;
+                                        &lt;!&ndash; 좋아요 및 즐겨찾기 &ndash;&gt;
                                         <div class="state">
                                             <span class="won" th:text="${boardDTO.boardPrice}">25,000</span>
                                         </div>
-                                        <!-- //좋아요 및 즐겨찾기 -->
+                                        &lt;!&ndash; //좋아요 및 즐겨찾기 &ndash;&gt;
                                     </div>
-                                    <!-- //내용 -->
+                                    &lt;!&ndash; //내용 &ndash;&gt;
                                 </li>
-                                <!-- //항목1 -->
-                            </th:each>
+                                &lt;!&ndash; //항목1 &ndash;&gt;
+                            </th:each>-->
 
 
 
@@ -440,7 +440,7 @@
                     <!-- 결과 리스트 묶음 전체 -->
                     <ul class="infinite result-list clearfix" id="list">
                         <!-- 리스트 한개 -->
-                        <a th:each = "boardDTO : ${boardDTOList}">
+<!--                        <a th:each = "boardDTO : ${boardDTOList}">
                             <li class="result-list-container" >
                                 <div class="result-list-outer-box">
                                     <a th:href="@{/boards/detail/{boardId}(boardId=${boardDTO.boardId})}">
@@ -483,17 +483,17 @@
                                             <div class="pics-thumbs thumbs1" th:each="file : ${boardDTO.files}" th:data-board-file-path="${file.boardFilePath}" th:data-board-file-uuid="${file.boardFileUuid}"
                                                  th:data-board-file-original-name="${file.boardFileOriginalName}"></div>
                                         </div>
-                                        <!--                                        <div class="pic-box">-->
-                                        <!--                                            <div class="pics-thumbs thumbs1" th:each="file : ${boardDTO.files}"></div>-->
-                                        <!--                                            <div class="pics-thumbs thumbs2"></div>-->
-                                        <!--                                            <div class="pics-thumbs thumbs3"></div>-->
-                                        <!--                                        </div>-->
+                                        &lt;!&ndash;                                        <div class="pic-box">&ndash;&gt;
+                                        &lt;!&ndash;                                            <div class="pics-thumbs thumbs1" th:each="file : ${boardDTO.files}"></div>&ndash;&gt;
+                                        &lt;!&ndash;                                            <div class="pics-thumbs thumbs2"></div>&ndash;&gt;
+                                        &lt;!&ndash;                                            <div class="pics-thumbs thumbs3"></div>&ndash;&gt;
+                                        &lt;!&ndash;                                        </div>&ndash;&gt;
 
                                     </a>
                                 </div>
                             </li>
                             </th:each>
-                        </a>
+                        </a>-->
 
                     </ul>
                     <!-- //결과 리스트 묶음 전체 -->
