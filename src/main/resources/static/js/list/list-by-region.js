@@ -1,9 +1,9 @@
 /* list-by-region.html */
 const $radios= $(".input-selection");
-// for (let i = 0; i < boardDTO.length; i++) {
-//     console.log("들어옴")
-// }
-console.log($(".info-container .stars").children().eq(1))
+
+let arr = ["1234", '123', "543254"];
+console.log(arr.join(' '));
+
 // index 번호가 지역구 번호
 const $region_list = ["전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", 
                     "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", 
@@ -78,21 +78,136 @@ function changeInputState() {
   
   topBtn.addEventListener("click", topFunction);
 
+    let boardList = "";
+for (let i = 0; i < 3; i++) {
+    let stars = '';
 
-    for (let i = 0; i < boardDTO.length; i++) {
-        for (let j = 0; j < boardDTO[i].avgScore; j++) {
-            $(".info-container .stars").children().eq(j).attr("src", "/css/list/image/star.png");
-            console.log("들어옴")
-        }}
+    for (let j = 0; j < 5; j++) {
+        if (j < boardDTO[i].avgScore) {
+            if (j < 5) {
+                stars += "<img src='/css/main/images/star.png'>";
+                }
+            } else {
+            stars += "<img src='/css/main/images/grey-star.png'>";
+        }
+    }
+
+    boardList +=
+        `
+            <!-- 항목1 -->
+                                <li>
+                                    <!-- 상세페이지로 바로가기 -->
+                                     <a href="/boards/detail/${boardDTO[i].boardId}"></a>
+                                    <!-- 내용 -->
+                                    <div class="cont">
+                                        <!-- 썸네일 -->
+                                        <a href="#">
+                                            <div class="thumbs" data-member-profile-path="${boardDTO[i].memberProfilePath}" data-member-profile-uuid="${boardDTO[i].memberProfileUuid}"
+                                                 data-member-profile-original-name="${boardDTO[i].memberProfileOriginalName}"></div>
+                                        </a>
+                                        <!-- //썸네일 -->
+                                        <!-- 제목 -->
+                                        <p class="name">
+                                            <a href="#">${boardDTO[i].boardTitle}</a>
+                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">${boardDTO[i].boardRegionKo}</a>
+                                        </p>
+                                        <!-- //제목 -->
+                                        <!-- 기타 정보 -->
+                                        <div class="info-container">
+                                                    <span class="stars">
+                                                            ${stars}
+                                                    </span>
+                                            <span class="tag">${boardDTO[i].memberEmail}</span>
+                                        </div>
+                                        <!-- 기타 정보 -->
+                                        <!-- 좋아요 및 즐겨찾기 -->
+                                        <div class="state">
+                                            <span class="won" >${boardDTO[i].boardPrice}</span>
+                                        </div>
+                                        <!-- //좋아요 및 즐겨찾기 -->
+                                    </div>
+                                    <!-- //내용 -->
+                                </li>
+                                <!-- //항목1 -->
+        `
+}
+/*------------- for loop -------------------*/
+
+$("ul.best-list").append(boardList);
+/* 위에 리스트에 추가하기  */
+
+let boardList2 ='';
+let thumbs = [];
+for (let i = 0; i < boardDTO.length; i++) {
+    let thumbs = [];
+    let stars = '';
+
+    for (let j = 0; j < boardDTO[i].files.length; j++) {
+        thumbs.push(`
+            <div class="pics-thumbs thumbs1" 
+                data-board-file-path="${boardDTO[i].files[j].boardFilePath}" 
+                data-board-file-uuid="${boardDTO[i].files[j].boardFileUuid}"
+                data-board-file-original-name="${boardDTO[i].files[j].boardFileOriginalName}">
+            </div>
+        `);
+    }
 
 
+    for (let j = 0; j < 5; j++) {
+        if (j < boardDTO[i].avgScore) {
+            if (j < 5) {
+                stars += "<img src='/css/main/images/star.png'>";
+            }
+        } else {
+            stars += "<img src='/css/main/images/grey-star.png'>";
+        }
+    }
+    boardList2 +=
+                        `
+                        <a>
+                            <li class="result-list-container" >
+                                <div class="result-list-outer-box">
+                                     <a href="/boards/detail/${boardDTO[i].boardId}">
+                                        <div class="profile-area-box">
+                                            <div class="profile-area">
+                                                <div class="profile-area-inner">
+                                                    <div class="thumbs" data-member-profile-path="${boardDTO[i].memberProfilePath}" data-member-profile-uuid="${boardDTO[i].memberProfileUuid}"
+                                                         data-member-profile-original-name="${boardDTO[i].memberProfileOriginalName}"></div>
+                                                    <p class="id">
+                                                        <span>${boardDTO[i].memberNickname}</span>
+                                                    </p>
+                                                    <div class="location">
+                                                        <span class="map">${boardDTO[i].boardRegionKo}</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <img src="/css/list/image/arrow_r.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="title-area-box">
+                                            <div class="title-area">
+                                                <span class="list-title">${boardDTO[i].boardTitle}</span>
+                                                <span class="stars">
+                                                ${stars}
+                                            </span>
+                                            </div>
+                                            <div class="sub-info-area-box">
+                                                <div class="price">
+                                                    <span class="won">${boardDTO[i].boardPrice}</span>
+                                                </div>
+                                            </div>
+                                        </div>
 
-
-
-
-
-
-
+                                        <div class="pic-box">
+                                            ${thumbs.join(' ')}
+                                    </a>
+                                </div>
+                            </li>
+                        </a>
+                     `
+}
+$(".result-list").append(boardList2)
 
 
 
