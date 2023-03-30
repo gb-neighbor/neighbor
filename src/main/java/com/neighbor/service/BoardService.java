@@ -18,8 +18,10 @@ public class BoardService {
     private final BoardFileDAO boardFileDAO;
 
     /*---------------------------------게시글 추가-----------------------------------*/
-    public void write(BoardDTO boardDTO) {
+    public Long write(BoardDTO boardDTO) {
         boardDAO.save(boardDTO);
+        Long boardId = boardFileDAO.getCurrentSeq();
+        return boardId;
     }
 
     /* 목록페이지 게시글 가져오기 */

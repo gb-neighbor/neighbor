@@ -14,12 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -49,10 +48,9 @@ public class BoardController {
     public RedirectView writeBoard(BoardDTO boardDTO){
 //        나중에 session에서 Id값 가져오기
         boardDTO.setMemberId(1L);
-        boardService.write(boardDTO);
-        if(boardDTO.getFileMainName() != null){
-            boardFileService.upload(boardDTO);
-        }
+        boardDTO.setBoardId(boardService.write(boardDTO));
+        boardFileService.upload(boardDTO);
+
         return new RedirectView("list/region");
     }
 
@@ -61,44 +59,69 @@ public class BoardController {
 
 //      맴버와 보드를 합친 DTO를 가져옴
         List<BoardDTO> boardDTOList = boardService.getAllMemberBoard();
+        Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
+        int avgScore = 0;
+
         for(BoardDTO boardDTO:boardDTOList){
             boardDTO.change(boardDTO.getBoardRegion());
             boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
+
+            // 게시물에 대한 댓글 가져오기
+            List<ReplyVO> replyVOList = replyService.getListByBoardId(boardDTO.getBoardId());
+            replyVOMap.put(boardDTO.getBoardId(), replyVOList);
+
+            // 해당 게시물에 대한 댓글의 평균 점수 구하기
+            int sum = 0;
+            for (ReplyVO reply : replyVOList) {
+                sum += reply.getReplyScore();
+            }
+            int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
+
+            // 평균 점수 더하기
+            boardDTO.setAvgScore(avg);
         }
 
-        model.addAttribute("boardDTOList", boardDTOList);
+
         log.info(String.valueOf(boardDTOList));
-//      보드 파일의 모든 정보 조회
+        model.addAttribute("boardDTOList", boardDTOList);
         return "list/list-by-region";
     }
 
     @GetMapping("list/member/{memberId}")
     public String goMember(@PathVariable("memberId") Long memberId, Model model) {
-        MemberVO memberVOList = memberService.getOneMemberInfo(memberId);
+        MemberVO memberVO = memberService.getOneMemberInfo(memberId);
         List<BoardVO> boardVOList = boardService.getBoardInfo(memberId);
         BoardFileVO boardFileVO = new BoardFileVO();
-        Map<Long, BoardFileVO> mainFile = new HashMap<>();
-        Map<Long, List<ReplyVO>> replyVOListMap = new HashMap<>();
+        Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
+        List<BoardFileVO> mainFile = new ArrayList<>();
+        memberVO.change(memberVO.getMemberRegion());
+        int totalScore = 0;
+        int avgScore = 0;
+        int size = 0;
 
         for (BoardVO boardVO : boardVOList) {
             Long boardId = boardVO.getBoardId();
             List<ReplyVO> replyVOList = replyService.getListByBoardId(boardId);
             boardFileVO = boardFileService.getMainFile(boardId);
-            mainFile.put(boardId, boardFileVO);
-            replyVOListMap.put(boardId, replyVOList);
+            mainFile.add(boardFileVO);
+            replyVOMap.put(boardId, replyVOList);
+            List<ReplyVO> replies = replyVOMap.get(boardId); // boardId에 해당하는 댓글 리스트 가져오기
+            for (ReplyVO reply : replies) {
+                totalScore += reply.getReplyScore(); // 각 댓글의 replyScore를 더해주기
+            }
         }
 
+        size = replyVOMap.values().stream().mapToInt(Collection::size).sum();
+        avgScore = totalScore/size;
 
-        model.addAttribute("memberVO", memberVOList);
+        log.info(String.valueOf(String.valueOf(replyVOMap)));
+
+        model.addAttribute("memberVO", memberVO);
         model.addAttribute("boardVOList", boardVOList);
-        model.addAttribute("replyVOListMap", replyVOListMap);
-        model.addAttribute("replySize", replyVOListMap.size());
+        model.addAttribute("replySize", size);
+        model.addAttribute("avgScore", avgScore);
         model.addAttribute("boardSize", boardVOList.size());
         model.addAttribute("mainFile", mainFile);
-        log.info(String.valueOf(memberVOList));
-        log.info(String.valueOf(replyVOListMap));
-        log.info(String.valueOf(boardVOList));
-        log.info(String.valueOf(mainFile));
         return "list/list-by-member";
     }
 

@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BoardFileMapperTests {
     @Autowired
     BoardFileMapper boardFileMapper;
+    ReplyMapper replyMapper;
 
     @Test
     public void testInsert(){
@@ -22,7 +23,6 @@ public class BoardFileMapperTests {
 
     @Test
     public void testInsertMain(){
-
     }
 
     @Test

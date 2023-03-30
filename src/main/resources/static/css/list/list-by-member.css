@@ -287,7 +287,6 @@ ul{
 }
 
 .board-thumb{
-    background-image: url('image/dummy-thumbnail-2.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

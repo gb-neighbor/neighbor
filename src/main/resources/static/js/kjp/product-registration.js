@@ -47,15 +47,15 @@ $("input[id='cover-file']").on("change", function() {
             console.log(globalThis.uuid)
             $("span.cover-txt").hide();
             $("div.cover-img").hide();
-            $(".img").append(`<img src="/board-files/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$files2.name}" class="mainPhoto">`);
+            $(".img").html(`<img src="/board-files/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$files2.name}" class="mainPhoto">`);
             $(".img img").css("width", "50%");
             $(".img img").css("height", "100%");
 
-
-            $("input[id='cover-file']")[0].files = dataTransfer.files;
-            let text2 = "";
-            text2 =
-                `
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add($files2);
+            $("input[id='cover-file']").files = dataTransfer.files;
+            let text2 =
+                    `
                     <input type="hidden" name="fileMainName" value="${$files2.name}">
                     <input type="hidden" name="fileMainUuid" value="${globalThis.uuid}">
                     <input type="hidden" name="fileMainPath" value="${toStringByFormatting(new Date())}">
@@ -63,19 +63,6 @@ $("input[id='cover-file']").on("change", function() {
                     <input type="hidden" name="fileMainStatus" value=true>
                     `
             $("form[name='board']").append(text2);
-
-            let boardFileVO1 = new Object();
-            boardFileVO1.fileOriginalName = $files2.name;
-            boardFileVO1.filePath = toStringByFormatting(new Date());
-            boardFileVO1.fileSize = $files2.size;
-            boardFileVO1.fileUuid = globalThis.uuid;
-
-            files.push(boardFileVO1);
-
-            console.log(boardFileVO1.fileSize)
-            console.log(boardFileVO1.filePath)
-            console.log(boardFileVO1.fileUuid)
-            console.log(boardFileVO1.fileOriginalName)
         }
     });
 });
@@ -110,10 +97,8 @@ $("input[id='detail-file']").on("change", function() {
                 $("#thumbnail-container1").append(`<img src="/board-files/display?fileName=/${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}">`);
                 $(".add-button").css("margin-top", "172px");
             });
-
             const dataTransfer = new DataTransfer();
             $("input[id='detail-file']")[0].files = dataTransfer.files;
-            console.log(dataTransfer.files);
             let text = "";
             console.log("uuid는 " + globalThis.uuids)
 
