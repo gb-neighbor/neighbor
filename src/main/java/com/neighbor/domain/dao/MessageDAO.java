@@ -1,5 +1,6 @@
 package com.neighbor.domain.dao;
 
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
 import com.neighbor.domain.vo.MemberVO;
@@ -20,7 +21,7 @@ public class MessageDAO {
     public List<MessageRoomDTO> findAll(Long memberId){return messageMapper.selectAll(memberId);}
 
     //    <!-- 해당 게시글의 쪽지 내역-->
-    public List<MessageVO> findMessage(Long messageRoomId){return messageMapper.selectMessage(messageRoomId);}
+    public List<MessageVO> findMessage(Long messageRoomId, Criteria criteria){return messageMapper.selectMessage(messageRoomId, criteria);}
 
     //    <!-- 전체 쪽지 개수 -->
     public Integer findCountList(Long memberId){return messageMapper.selectCountList(memberId);}

@@ -1,5 +1,6 @@
 package com.neighbor.controller;
 
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.MessageRoomVO;
 import com.neighbor.domain.vo.MessageVO;
@@ -26,13 +27,26 @@ public class MessageController {
     private final MessageService messageService;
     private final BoardService boardService;
 
-    @PostMapping("detail/{boardId}/{memberId}/{targetId}")
+    @PostMapping("detail/{boardId}/{memberId}/{targetId}/{page}")
     @ResponseBody
-    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, @PathVariable("memberId") Long memberId, @PathVariable("targetId") Long targetId){
+    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, @PathVariable("memberId") Long memberId, @PathVariable("targetId") Long targetId, @PathVariable("page") int page){
+        Criteria criteria = new Criteria();
+
         Long sellerId = boardService.showMemberInfoByBoardId(boardId).getMemberId();
         Boolean isMeSeller = sellerId == memberId;
         Long customerId = ( isMeSeller ? targetId : memberId);
-        return messageService.showMessage(messageService.getMessageRoomId(customerId, boardId));
+        Long messageRoomId = messageService.getMessageRoomId(customerId, boardId);
+//        Integer amount = messageService.getCountMessage(messageRoomId);
+
+        criteria.setAmount(20);
+        criteria.setPage(page);
+        criteria.setOffset(criteria.getOffset());
+
+        if(messageService.showMessage(messageRoomId, criteria) !=null){
+            return messageService.showMessage(messageRoomId, criteria);
+        }
+
+        return null;
     }
 
     @PostMapping("targetInfo/{targetId}/{boardId}")
