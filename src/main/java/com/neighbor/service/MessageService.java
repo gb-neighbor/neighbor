@@ -1,6 +1,7 @@
 package com.neighbor.service;
 
 import com.neighbor.domain.dao.MessageDAO;
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
 import com.neighbor.domain.vo.MemberVO;
@@ -22,8 +23,8 @@ public class MessageService {
     }
 
     //    <!-- 해당 게시글의 쪽지 내역-->
-    public List<MessageVO> showMessage(Long messageRoomId) {
-        return messageDAO.findMessage(messageRoomId);
+    public List<MessageVO> showMessage(Long messageRoomId, Criteria criteria) {
+        return messageDAO.findMessage(messageRoomId, criteria);
     }
 
     //    <!-- 전체 쪽지 개수 -->
