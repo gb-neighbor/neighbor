@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -32,7 +33,7 @@ public class BoardController {
     private final MemberService memberService;
 
     @GetMapping("write")
-    public String goWrite(Model model){
+    public String goWrite(){
 
         return "kjp/product-registration";
     }
@@ -45,9 +46,9 @@ public class BoardController {
 
 
     @PostMapping("save")
-    public RedirectView writeBoard(BoardDTO boardDTO){
-//        나중에 session에서 Id값 가져오기
-        boardDTO.setMemberId(1L);
+    public RedirectView writeBoard(BoardDTO boardDTO, HttpSession httpSession){
+        Long memberId = (Long) httpSession.getAttribute("memberId");
+        boardDTO.setMemberId(memberId);
         boardDTO.setBoardId(boardService.write(boardDTO));
         boardFileService.upload(boardDTO);
 
