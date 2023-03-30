@@ -47,12 +47,14 @@
         where ask_admin_id=#{askAdminId}
     </delete>
 
+    <!--문의 작성-->
     <insert id="insert" parameterType="askAdminVO">
         INSERT INTO tbl_ask_admin
         (ask_admin_title, ask_admin_content, ask_admin_register_date,member_id)
         VALUES(#{askAdminTitle}, #{askAdminContent}, CURRENT_TIMESTAMP, #{memberId});
     </insert>
 
+    <!--내가 쓴 모든 글 조회-->
     <select id="selectListByMemberId" resultType="askAdminVO">
         SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
         FROM tbl_ask_admin
@@ -65,6 +67,7 @@
     </select>
 
 
+    <!--내가쓴글 and 검색한글 갯수-->
     <select id="countByMemberId"  resultType="Integer">
         SELECT COUNT(ask_admin_title)
         FROM tbl_ask_admin
@@ -74,17 +77,27 @@
         </if>
     </select>
 
+
+    <!--문의 상세-->
     <select id="selectDetail" parameterType="long" resultType="askAdminVO">
         SELECT ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, ask_admin_status, member_id
         FROM tbl_ask_admin
         where ask_admin_id = #{askAdminId}
     </select>
 
+
+    <!--문의상세 삭제-->
     <delete id="deleteDetail" parameterType="long">
         DELETE FROM tbl_ask_admin
         WHERE ask_admin_id= #{askAdminId}
     </delete>
 
 
+    <!--문의상세답글 -->
+    <select id="selectByAnswer" resultType="askAdminAnswerVO">
+        select ask_admin_answer_id, ask_admin_answer_content, ask_admin_answer_register_date, ask_admin_id, member_id
+        from tbl_ask_admin_answer
+        where ask_admin_id = #{askAdminId};
+    </select>
 
 </mapper>

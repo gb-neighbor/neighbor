@@ -4,6 +4,7 @@ import com.neighbor.domain.dao.AskAdminDAO;
 import com.neighbor.domain.dto.AskAdminDTO;
 import com.neighbor.domain.dto.AskAdminDetailDTO;
 import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.vo.AskAdminAnswerVO;
 import com.neighbor.domain.vo.AskAdminVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,8 @@ public class AskAdminService {
     public void deleteDetail(Long askAdminId){
         askAdminDAO.deleteDetail(askAdminId);
     }
+
+    //    문의 답글
+    public AskAdminAnswerVO answerDetail(Long askAdminId){return askAdminDAO.findByAskAdminAnswer(askAdminId);}
 
 }

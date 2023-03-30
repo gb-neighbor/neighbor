@@ -102,13 +102,12 @@
             </ul>
 
             <ul class="my_inquiry" th:each="askAdmin:${askAdmin}">
-                <li class="inquiry_num"></span>1</li>
+                <li class="inquiry_num" th:text="${askAdmin.askAdminId}"></li>
                 <li class="inquiry_my_title">
                     <strong> <span class="cat">[회원정보문의]</span></strong>
                     <a class="detail_link" th:href="@{detail/{askAdminId}(askAdminId=${askAdmin.askAdminId})}" th:text="${askAdmin.askAdminTitle}">
                         로그인이 안돼요!
                     </a>
-                    </span>
                 </li>
                 <li class="inquiry_status"><span class="inquiry_status_color"><span th:if="${askAdmin.askAdminStatus} == true">답변완료</span><span th:unless="${askAdmin.askAdminStatus} == true" style="color: #545353">답변대기</span></span></li>
 <!--                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${askAdmin.askAdminStatus} == true">답변완료</span></li>-->
@@ -118,19 +117,21 @@
 
         <div class="page-button-box">
             <div th:object="${pagination}">
-                <div style="text-align: center; font-size: 16px;">
-                    <a class="page-button" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                <div style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: bold;">
+                    <a class="page-button" th:href="*{startPage - 1}" <!--th:if="*{prev}"--><code><</code></a>
                     <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
                         <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
                         <code th:unless="${pagination.criteria.page != page}" th:text="${page}" style="color: green"></code>
                     </th:block>
-                    <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+                    <a class="page-button" th:href="*{endPage}" <!--th:if="*{next}"--><code> > </code></a>
                 </div>
-                <form th:action="@{/ask-asAdmins/inquiry-list}" th:object="${criteria}" name="pageForm">
+                <form th:action="@{/ask-asAdmins/inquiry-list}"  th:object="${criteria}" name="pageForm">
                     <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:value="${keyword}" id="keyword">
                 </form>
             </div>
         </div>
+
     </article>
 </section>
 <div th:insert="~{/main/footer:: footer}"></div>
@@ -138,6 +139,8 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/mypage/inquiry_to_admin.js"></script>
 <script>
+    let keyword = $("input[name=keyword]");
+    console.log(keyword);
 
     let $pages = $("a.page-button");
 
@@ -145,9 +148,92 @@
         e.preventDefault();
         let page = $(this).attr("href");
         let amount = 10;
-        let url = "/ask-admins/inquiry-list?page=" + page+"&amount="+amount;
+        let keyword = $("input[name=keyword]");
+        let url ="";
+
+        if($("#keyword").val() != null){
+             url = "/ask-admins/inquiry-list?page=" +page+"&amount="+amount + "&keyword=" + $("#keyword").val();
+        }else{
+             url = "/ask-admins/inquiry-list?page=" +page+"&amount="+amount;
+        }
 
         location.href = url;
     });
+
+
+
+
+//    -------------------------------------------------
+    /* 후기글 관리 검색시 ajax용*/
+    // function showList(){
+    //     let page = 1;
+    //     $.ajax({
+    //         type: "post",
+    //         url: "/admins/reply/list",
+    //         data: {
+    //             page : page
+    //         },
+    //         //replys는 replyDTO
+    //         success: function(replys) {
+    //             if (replys.length >= 1) {
+    //                 replys.forEach(function (reply) {
+    //                     $('.total-mentor-num').html(reply.replyTotal);
+    //                     let replyId = reply.replyId;
+    //                     let str = '<div class="checkbox-zip">\n' +
+    //                         '<input type="checkbox" id="check1" class="normal" value="">\n' +
+    //                         '</div>';
+    //                     str += '<div class="board-num">' + reply.boardId + '</div>';
+    //                     str += '<div class="region">' + reply.replyRegionKo + '</div>';
+    //                     str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
+    //                     str += '<div class="reply-content">';
+    //                     str += '<span>' + reply.replyContent + '</span>';
+    //                     str += '<div id="my_modal' + replyId + '" class="my_modal">';
+    //                     str += '<a class="modal_close_btn">' + '✖' + '</a>';
+    //                     str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
+    //                     str += '<div class="comment-detail">' + reply.replyContent + '</div>';
+    //                     str += '</div>';
+    //                     str += '</div>';
+    //                     str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
+    //                     $('.item-list-contents').append(str);
+    //                 });
+    //             }
+    //             let page =
+    //             if(result.pageDTO.globalThis.page > 1){
+    //                 text += `<a class="changePage" href="` + (result.globalThis.page - 1) + `"><code><</code></a>`
+    //             }
+    //             text += `<code>` + globalThis.page + `</code>`
+    //             if(globalThis.page < realEnd){
+    //                 text += `<a class="changePage" href="` + (globalThis.page + 1) + `"><code>></code></a>`
+    //             }
+    //         }else{
+    //             if(prev){
+    //                 text += `<a class="changePage" href="` + (startNumber - 1) + `"><code>PREV</code></a>`
+    //             }
+    //             for (let i=startNumber; i<=endNumber; i++){
+    //             if(globalThis.page == i){
+    //                 text += `<code>` + i + `</code>`
+    //                 continue;
+    //             }
+    //         text += `<a class="changePage" href="` + i + `"><code>` + i + `</code></a>`
+    //     }
+    //     if(next){
+    //         text += `<a class="changePage" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
+    //     }
+    // }
+    // }
+    // });
+    // });
+
+
+/*----------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
 </script>
 </html>
