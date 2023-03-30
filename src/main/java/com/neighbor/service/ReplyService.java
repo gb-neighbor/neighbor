@@ -40,7 +40,7 @@ public class ReplyService {
     }
 
     //    후기목록 전체 조회 검색포함
-    public List<ReplyDTO> getList(Criteria criteria, String keyword) {
-        return replyDAO.findAll(criteria, keyword);
+    public List<ReplyDTO> getList(Criteria criteria) {
+        return replyDAO.findAll(criteria);
     }
 }

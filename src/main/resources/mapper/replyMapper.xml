@@ -34,9 +34,9 @@
         from tbl_reply as r
         join tbl_board as b on r.board_id = b.board_id
         join tbl_member as m on r.member_id = m.member_id
-        <if test="keyword != null">
+<!--        <if test="keyword != null">
             where r.reply_content like concat('%',#{keyword}, '%')
-        </if>
+        </if>-->
         order by reply_id desc
         limit #{criteria.offset}, #{criteria.amount}
     </select>

@@ -25,5 +25,5 @@ public interface ReplyMapper {
     public Integer countAll();
 
 //    후기목록 전체조회 검색포함
-    public List<ReplyDTO> selectAll(Criteria criteria, @Param("keyword") String keyword);
+    public List<ReplyDTO> selectAll(Criteria criteria);
 }

@@ -27,6 +27,13 @@ public class AdminController {
     private final BoardService boardService;
     private final ReplyService replyService;
 
+
+    @GetMapping("form")
+    public void form(Model model, int number) {
+        model.addAttribute("number",number);
+    }
+
+
     /*AskAdmin 시작*/
 
     //   문의목록 문의사항 삭제
@@ -105,43 +112,46 @@ public class AdminController {
 
     /*reply 시작*/
 
-
+    /*처음 클릭했을때 화면으로 가는 일반 컨트롤러*/
     @GetMapping("reply/list")
     public String replyShowList(Criteria criteria, Model model) {
         if (criteria.getPage() == 0) {
             criteria = criteria.create(1, 6);
         }
-        String keyword = "";
-        List<ReplyDTO> replyDTOS = replyService.getList(criteria, keyword);
+
+        ReplyDTO replyDTO = new ReplyDTO();
+//        전체 수
+        replyDTO.setReplyTotal(replyService.getCountAll());
+        List<ReplyDTO> replyDTOS = replyService.getList(criteria);
 
         for (ReplyDTO dto : replyDTOS) {
             dto.change(dto.getBoardRegion());
         }
-
         model.addAttribute("replys", replyDTOS);
-        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, replyService.getCountAll()));
-        model.addAttribute("replyCount", replyService.getCountAll());
 
         return "admin/manage-reply";
     }
 
-    /* 후기작성 ajax용 컨트롤러*/
-    @ResponseBody
+    /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
+
+
     @PostMapping("reply/list")
-    public List<ReplyDTO> replyShowList(@RequestBody String keyword, @RequestBody int page) {
-        log.info(String.valueOf(page));
+    @ResponseBody
+    public ReplyDTO showList() {
         Criteria criteria = new Criteria();
         criteria = criteria.create(1, 6);
 
-        List<ReplyDTO> replyDTOS;
-        replyDTOS = replyService.getList(criteria, keyword);
+        ReplyDTO replyDTO = new ReplyDTO();
+        replyDTO.setReplyTotal(replyService.getCountAll());
+        replyDTO.setReplyDTOS(replyService.getList(criteria));
+        replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, replyService.getCountAll()));
 
-        for (ReplyDTO dto : replyDTOS) {
-            dto.change(dto.getBoardRegion());
-        }
-        return replyDTOS;
+//        for (ReplyDTO dto : replyDTOS) {
+//            dto.change(dto.getBoardRegion());
+//        }
+
+        return replyDTO;
     }
-
 
     //  후기관리 삭제
     @DeleteMapping("reply/delete")
@@ -151,5 +161,7 @@ public class AdminController {
     }
 
 //    /*reply 끝*/
+
+
 
 }
