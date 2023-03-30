@@ -265,7 +265,7 @@ function openModalBanner(num){ /* 괄호에 num으로 받기 */
 const messageService=(function(){
 	function list(callback){
 		$.ajax({
-			url: "/messages/detail/"+boardId,
+			url: "/messages/detail/"+boardId+"/"+memberId,
 			dataType: "json",
 			method: "post",
 			success: function(messages){
@@ -296,25 +296,29 @@ const messageService=(function(){
 
 $('.send_form').submit(function(e) {
 	e.preventDefault();
-	let messageVO = {
-		boardId: 1,
-		messageSenderId: 1,
-		messageGetterId: 2,
-		messageContent: $("#write-section2").val()
-	};
-	$.ajax({
-		url: "/messages/insert",
-		type: $(this).attr('method'),
-		data: JSON.stringify(messageVO),
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json',
-		success: function(data) {
-			$("#write-section2").val('');
-			$("text_length2").val('0');
-			messageService.list(showMessage);
-		}
-	});
-
+	if( !$("#write-section2").val()){
+		let messageVO = {
+			boardId: boardId,
+			messageSenderId: memberId,
+			messageGetterId: targetId,
+			messageContent: $("#write-section2").val()
+		};
+		$.ajax({
+			url: "/messages/insert",
+			type: $(this).attr('method'),
+			data: JSON.stringify(messageVO),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data) {
+				console.log("들어옴")
+				$("#write-section2").val('');
+				$("text_length2").val('0');
+				messageService.list(showMessage);
+			}
+		});
+	}else{
+		alert("message cannot be null")
+	}
 });
 
 

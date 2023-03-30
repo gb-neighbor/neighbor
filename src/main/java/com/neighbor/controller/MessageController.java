@@ -26,10 +26,10 @@ public class MessageController {
     private final MessageService messageService;
     private final BoardService boardService;
 
-    @PostMapping("detail/{boardId}")
+    @PostMapping("detail/{boardId}/{memberId}")
     @ResponseBody
-    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, HttpSession session){
-        return messageService.showMessage(messageService.getMessageRoomId(1L, boardId));
+    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, @PathVariable("memberId") Long memberId){
+        return messageService.showMessage(messageService.getMessageRoomId(memberId, boardId));
     }
 
     @PostMapping("targetInfo/{targetId}/{boardId}")
