@@ -26,10 +26,13 @@ public class MessageController {
     private final MessageService messageService;
     private final BoardService boardService;
 
-    @PostMapping("detail/{boardId}")
+    @PostMapping("detail/{boardId}/{memberId}/{targetId}")
     @ResponseBody
-    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, HttpSession session){
-        return messageService.showMessage(messageService.getMessageRoomId(1L, boardId));
+    public List<MessageVO> getMessageRoomId(@PathVariable("boardId") Long boardId, @PathVariable("memberId") Long memberId, @PathVariable("targetId") Long targetId){
+        Long sellerId = boardService.showMemberInfoByBoardId(boardId).getMemberId();
+        Boolean isMeSeller = sellerId == memberId;
+        Long customerId = ( isMeSeller ? targetId : memberId);
+        return messageService.showMessage(messageService.getMessageRoomId(customerId, boardId));
     }
 
     @PostMapping("targetInfo/{targetId}/{boardId}")

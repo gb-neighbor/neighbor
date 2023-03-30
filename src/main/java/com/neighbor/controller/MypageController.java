@@ -32,8 +32,15 @@ public class MypageController {
         for (MessageRoomDTO messageRoom : entireList) {
             MessageDTO messageDTO = new MessageDTO();
 
+            messageDTO.setBoardId(messageRoom.getBoardId());
             messageDTO.setBoardTitle(boardService.showBoardTitle(messageRoom.getBoardId()));
             messageDTO.setLatestRegisterDate(messageService.showLatestDate(messageRoom.getMessageRoomId()));
+            messageDTO.setMessageRoomId(messageRoom.getMessageRoomId());
+            messageDTO.setTargetId(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberId());
+            messageDTO.setTargetNickname(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberNickname());
+            messageDTO.setTargetProfilePath(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfilePath());
+            messageDTO.setTargetProfileUuid(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfileUuid());
+            messageDTO.setTargetProfileOriginalName(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfileOriginalName());
 
             result.add(messageDTO);
         }

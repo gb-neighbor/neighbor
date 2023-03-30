@@ -3,7 +3,6 @@
 function modal(name, id) {
     var zIndex = 998;
     var modal = $(name+id);
-    console.log(modal);
     // 모달 div 뒤에 희끄무레한 레이어
     var bg = $('.modal_background')
         .css({
@@ -40,15 +39,12 @@ function modal(name, id) {
         .on('click', function() {
             bg.hide();
             modal.hide();
-            $('#write-section'+id).val('');
-            document.getElementById("text_length"+id).value = 0;
+            $("#write-section" + targetNum).val('');
+            $("#text_length" + targetNum).val('0');
+            $messageBox.html("");
+            $infoBox.html("");
         });
 }
-
-function openModalBanner(num){ /* 괄호에 num으로 받기 */
-    modal('.my_modal', num);
-}
-
 
 $('.modalAdd').on('click', function() {
     // 모달창 띄우기
@@ -149,3 +145,143 @@ function changeToText(number){
     document.getElementById("purchase_done"+number).style.display ="none";
     document.getElementById("purchase_complete_message"+number).style.display ="block";
 }
+
+/*********************************************************************************************/
+var boardId;
+var targetId;
+var targetNum;
+
+var $messageBox;
+var $infoBox;
+
+
+function getMessageRoom(target, board, messageRoomId) {
+    targetId = target;
+    boardId = board;
+    targetNum = messageRoomId;
+    $messageBox = $("#box_text" + targetNum);
+    $infoBox = $('#box_top' + targetNum);
+    messageService.targetInfo(showTargetInfo);
+    messageService.list(showMessage);
+}
+
+
+
+function openModalBanner(num){ /* 괄호에 num으로 받기 */
+    modal('#my_modal', num);
+}
+
+const messageService=(function(){
+    function list(callback){
+        $.ajax({
+            url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId,
+            dataType: "json",
+            method: "post",
+            success: function(messages){
+                if(callback){
+                    callback(messages);
+                }
+                console.log($messageBox.scrollHeight)
+				$messageBox.scrollTop($messageBox[0].scrollHeight);
+            }
+        });
+    }
+
+    function targetInfo(callback){
+        $.ajax({
+            url: "/messages/targetInfo/"+targetId +"/"+boardId,
+            dataType: "json",
+            method: "post",
+            success: function(Infos){
+                if(callback){
+                    callback(Infos);
+                }
+                openModalBanner(targetNum);
+            }
+        });
+    }
+    return {list:list, targetInfo:targetInfo};
+})();
+
+
+$('.send_form').submit(function(e) {
+    e.preventDefault();
+    if($("#write-section" + targetNum).val()){
+        let messageVO = {
+            boardId: boardId,
+            messageSenderId: memberId,
+            messageGetterId: targetId,
+            messageContent: $("#write-section" + targetNum).val()
+        };
+        $.ajax({
+            url: "/messages/insert",
+            type: $(this).attr('method'),
+            data: JSON.stringify(messageVO),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function(data) {
+                $("#write-section" + targetNum).val('');
+                $("#text_length"+targetNum).val('0');
+                messageService.list(showMessage);
+                $messageBox.scrollTop($messageBox[0].scrollHeight);
+
+            }
+        });
+    }
+});
+
+
+
+function showTargetInfo(Infos){
+
+    let target = `
+		<div class="profile_image_section">
+            <img class="profile_image" src="">
+        </div>
+        <p class="detail_nick_name">${Infos.targetInfo.memberNickname}</p>
+        <div class="title_refresh_wrap">
+            <h3 class="detail_title">
+                ${Infos.boardTitle}
+            </h3>
+            <div class="refresh_image_wrap" onclick="messageService.list(showMessage)">
+                <img class="refresh_image" src="/css/board/images/refresh_btn.png">
+            </div>
+        </div>
+        <div class="div_for_margin"></div>
+        <a class="go_to_board" href="/board">
+            <p class="go_to_board_text">상세보기&nbsp</p>
+            <p class="go_to_board_text right_text">></p>
+        </a>
+	`;
+    $infoBox.html(target);
+}
+
+function showMessage(messages){
+    let messagesList = "";
+    messages.forEach(message => {
+        if(message.messageSenderId==memberId){
+            messagesList+=`
+        <div class="my_text_wrap">
+          <div class="my_text">
+            <p class="my_text_content">${message.messageContent}</p>
+          </div>
+          <div class="my_text_time">
+            <p class="message_box_time">${message.messageRegisterDate}</p>
+          </div>
+        </div>`;
+        }else{
+            messagesList+=`
+        <div class="opponent_text_wrap">
+          <div class="opponent_text">
+            <p class="opponent_text_content">${message.messageContent}</p>
+          </div>
+          <div class="opponent_text_time">
+            <p class="message_box_time">${message.messageRegisterDate}</p>
+          </div>
+        </div>`;
+        }
+    });
+    $messageBox.html(messagesList);
+}
+
+/*********************************************************************************************/
