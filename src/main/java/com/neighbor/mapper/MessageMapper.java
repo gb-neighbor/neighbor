@@ -1,5 +1,6 @@
 package com.neighbor.mapper;
 
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
 import com.neighbor.domain.vo.MemberVO;
@@ -15,7 +16,7 @@ public interface MessageMapper {
     public List<MessageRoomDTO> selectAll(Long memberId);
 
 //    <!-- 해당 게시글의 쪽지 내역-->
-    public List<MessageVO> selectMessage(Long messageRoomId);
+    public List<MessageVO> selectMessage(Long messageRoomId, Criteria criteria);
 
 //    <!-- 전체 쪽지 개수 -->
     public Integer selectCountList(Long memberId);

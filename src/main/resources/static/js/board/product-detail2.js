@@ -251,11 +251,30 @@ topBtn.addEventListener("click", topFunction);
 const $messageBox = $(".box_text");
 const $infoBox = $('.box_top');
 
+globalThis.page = 1;
+
+
 function getMessageRoom(){
 	messageService.targetInfo(showTargetInfo);
 	messageService.list(showMessage);
+	$messageBox.scrollTop($messageBox[0].scrollHeight);
 }
 
+
+$messageBox.scroll(function() {
+	if ($messageBox.scrollTop() == 0) {
+		// 스크롤이 맨 위에 도달하면 가상 요소를 생성하여 추가
+		globalThis.page++;
+		messageService.list(showMessage);
+		// $messageBox.scrollTop($messageBox[0].scrollHeight);
+	}
+});
+
+function refreshClicked(){
+	globalThis.page=1;
+	messageService.list(showMessage);
+	$messageBox.scrollTop($messageBox[0].scrollHeight);
+}
 
 
 function openModalBanner(num){ /* 괄호에 num으로 받기 */
@@ -265,14 +284,16 @@ function openModalBanner(num){ /* 괄호에 num으로 받기 */
 const messageService=(function(){
 	function list(callback){
 		$.ajax({
-			url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId,
+			url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId+"/"+globalThis.page,
 			dataType: "json",
 			method: "post",
 			success: function(messages){
-				if(callback){
-					callback(messages);
+				console.log(messages)
+				if(messages!=null){
+					if(callback){
+						callback(messages);
+					}
 				}
-				$messageBox.scrollTop($messageBox[0].scrollHeight);
 			}
 		});
 	}
@@ -293,7 +314,6 @@ const messageService=(function(){
 	return {list:list, targetInfo:targetInfo};
 })();
 
-
 $('.send_form').submit(function(e) {
 	e.preventDefault();
 	if($("#write-section2").val()){
@@ -313,6 +333,7 @@ $('.send_form').submit(function(e) {
 				console.log("들어옴")
 				$("#write-section2").val('');
 				$("#text_length2").val('0');
+				globalThis.page=1;
 				messageService.list(showMessage);
 				$messageBox.scrollTop($messageBox[0].scrollHeight);
 			}
@@ -335,7 +356,7 @@ function showTargetInfo(Infos){
             <h3 class="detail_title">
                 ${Infos.boardTitle}
             </h3>
-            <div class="refresh_image_wrap" onclick="messageService.list(showMessage)">
+            <div class="refresh_image_wrap" onclick="refreshClicked()">
                 <img class="refresh_image" src="/css/board/images/refresh_btn.png">
             </div>
         </div>
@@ -373,7 +394,9 @@ function showMessage(messages){
         </div>`;
 		}
 	});
-	$messageBox.html(messagesList);
+
+	globalThis.page == 1 ? $messageBox.html(messagesList) : $messageBox.prepend(messagesList);
+
 }
 
 /*********************************************************************************************/

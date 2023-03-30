@@ -11,6 +11,8 @@
     <select id="selectMessage" resultType="messageVO">
         select message_id, board_id, message_content, message_register_date, message_room_id, message_sender_id, message_getter_id
         from tbl_message where message_room_id =#{messageRoomId}
+        order by message_register_date asc
+        limit #{criteria.offset}, #{criteria.amount}
     </select>
 
     <!-- 전체 쪽지 개수 -->
