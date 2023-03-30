@@ -2,7 +2,7 @@
 const $radios= $(".input-selection");
 
 let arr = ["1234", '123', "543254"];
-console.log(arr.join(' '));
+console.log(boardDTO[0].avgScore);
 
 // index 번호가 지역구 번호
 const $region_list = ["전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", 
@@ -79,15 +79,16 @@ function changeInputState() {
   topBtn.addEventListener("click", topFunction);
 
     let boardList = "";
-for (let i = 0; i < 3; i++) {
+
+for (let i = 0; i < 3 && i < boardDTO.length; i++) {
     let stars = '';
 
     for (let j = 0; j < 5; j++) {
         if (j < boardDTO[i].avgScore) {
             if (j < 5) {
                 stars += "<img src='/css/main/images/star.png'>";
-                }
-            } else {
+            }
+        } else {
             stars += "<img src='/css/main/images/grey-star.png'>";
         }
     }
@@ -95,41 +96,41 @@ for (let i = 0; i < 3; i++) {
     boardList +=
         `
             <!-- 항목1 -->
-                                <li>
-                                    <!-- 상세페이지로 바로가기 -->
-                                     <a href="/boards/detail/${boardDTO[i].boardId}"></a>
-                                    <!-- 내용 -->
-                                    <div class="cont">
-                                        <!-- 썸네일 -->
-                                        <a href="#">
-                                            <div class="thumbs" data-member-profile-path="${boardDTO[i].memberProfilePath}" data-member-profile-uuid="${boardDTO[i].memberProfileUuid}"
-                                                 data-member-profile-original-name="${boardDTO[i].memberProfileOriginalName}"></div>
-                                        </a>
-                                        <!-- //썸네일 -->
-                                        <!-- 제목 -->
-                                        <p class="name">
-                                            <a href="#">${boardDTO[i].boardTitle}</a>
-                                            <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">${boardDTO[i].boardRegionKo}</a>
-                                        </p>
-                                        <!-- //제목 -->
-                                        <!-- 기타 정보 -->
-                                        <div class="info-container">
-                                                    <span class="stars">
-                                                            ${stars}
-                                                    </span>
-                                            <span class="tag">${boardDTO[i].memberEmail}</span>
-                                        </div>
-                                        <!-- 기타 정보 -->
-                                        <!-- 좋아요 및 즐겨찾기 -->
-                                        <div class="state">
-                                            <span class="won" >${boardDTO[i].boardPrice}</span>
-                                        </div>
-                                        <!-- //좋아요 및 즐겨찾기 -->
-                                    </div>
-                                    <!-- //내용 -->
-                                </li>
-                                <!-- //항목1 -->
-        `
+            <li>
+                <!-- 상세페이지로 바로가기 -->
+                <a href="/boards/detail/${boardDTO[i].boardId}"></a>
+                <!-- 내용 -->
+                <div class="cont">
+                    <!-- 썸네일 -->
+                    <a href="#">
+                        <div class="thumbs" data-member-profile-path="${boardDTO[i].memberProfilePath}" data-member-profile-uuid="${boardDTO[i].memberProfileUuid}"
+                                data-member-profile-original-name="${boardDTO[i].memberProfileOriginalName}"></div>
+                    </a>
+                    <!-- //썸네일 -->
+                    <!-- 제목 -->
+                    <p class="name">
+                        <a href="#">${boardDTO[i].boardTitle}</a>
+                        <a href="https://naver.me/x5cHxSpy" target="_blank" class="map_link">${boardDTO[i].boardRegionKo}</a>
+                    </p>
+                    <!-- //제목 -->
+                    <!-- 기타 정보 -->
+                    <div class="info-container">
+                        <span class="stars">
+                            ${stars}
+                        </span>
+                        <span class="tag">${boardDTO[i].memberEmail}</span>
+                    </div>
+                    <!-- 기타 정보 -->
+                    <!-- 좋아요 및 즐겨찾기 -->
+                    <div class="state">
+                        <span class="won" >${boardDTO[i].boardPrice}</span>
+                    </div>
+                    <!-- //좋아요 및 즐겨찾기 -->
+                </div>
+                <!-- //내용 -->
+            </li>
+            <!-- //항목1 -->
+        `;
 }
 /*------------- for loop -------------------*/
 
