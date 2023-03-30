@@ -133,6 +133,8 @@ function modal(name, id) {
 		.on('click', function() {
 			bg.hide();
 			modal.hide();
+			$messageBox.children().remove();
+			globalThis.page =1;
 			$('#write-section'+id).val('');
 			document.getElementById("text_length"+id).value = 0;
 		});
@@ -252,12 +254,13 @@ const $messageBox = $(".box_text");
 const $infoBox = $('.box_top');
 
 globalThis.page = 1;
-
+globalThis.isScrollDown = true;
+globalThis.scrollHeight = $messageBox[0].scrollHeight;
 
 function getMessageRoom(){
 	messageService.targetInfo(showTargetInfo);
 	messageService.list(showMessage);
-	$messageBox.scrollTop($messageBox[0].scrollHeight);
+	$messageBox.scrollTop(globalThis.scrollHeight);
 }
 
 
@@ -265,15 +268,17 @@ $messageBox.scroll(function() {
 	if ($messageBox.scrollTop() == 0) {
 		// 스크롤이 맨 위에 도달하면 가상 요소를 생성하여 추가
 		globalThis.page++;
+		globalThis.isScrollDown = false;
+		globalThis.scrollHeight;
 		messageService.list(showMessage);
-		// $messageBox.scrollTop($messageBox[0].scrollHeight);
 	}
 });
 
 function refreshClicked(){
 	globalThis.page=1;
 	messageService.list(showMessage);
-	$messageBox.scrollTop($messageBox[0].scrollHeight);
+	globalThis.scrollHeight = $messageBox[0].scrollHeight;
+	$messageBox.scrollTop(globalThis.scrollHeight);
 }
 
 
@@ -323,6 +328,7 @@ $('.send_form').submit(function(e) {
 			messageGetterId: targetId,
 			messageContent: $("#write-section2").val()
 		};
+		globalThis.page=1;
 		$.ajax({
 			url: "/messages/insert",
 			type: $(this).attr('method'),
@@ -330,12 +336,15 @@ $('.send_form').submit(function(e) {
 			contentType: 'application/json; charset=utf-8',
 			dataType: 'json',
 			success: function(data) {
-				console.log("들어옴")
 				$("#write-section2").val('');
 				$("#text_length2").val('0');
-				globalThis.page=1;
+
 				messageService.list(showMessage);
-				$messageBox.scrollTop($messageBox[0].scrollHeight);
+				if (globalThis.isScrollDown) {
+					$messageBox.scrollTop($messageBox[0].scrollHeight);
+				} else {
+					$messageBox.scrollTop(globalThis.scrollHeight);
+				}
 			}
 		});
 	}else{
@@ -373,7 +382,7 @@ function showMessage(messages){
 	let messagesList = "";
 	messages.forEach(message => {
 		if(message.messageSenderId==memberId){
-			messagesList+=`
+			messagesList=`
         <div class="my_text_wrap">
           <div class="my_text">
             <p class="my_text_content">${message.messageContent}</p>
@@ -381,9 +390,9 @@ function showMessage(messages){
           <div class="my_text_time">
             <p class="message_box_time">${message.messageRegisterDate}</p>
           </div>
-        </div>`;
+        </div>`+messagesList;
 		}else{
-			messagesList+=`
+			messagesList=`
         <div class="opponent_text_wrap">
           <div class="opponent_text">
             <p class="opponent_text_content">${message.messageContent}</p>
@@ -391,7 +400,7 @@ function showMessage(messages){
           <div class="opponent_text_time">
             <p class="message_box_time">${message.messageRegisterDate}</p>
           </div>
-        </div>`;
+        </div>`+messagesList;
 		}
 	});
 
