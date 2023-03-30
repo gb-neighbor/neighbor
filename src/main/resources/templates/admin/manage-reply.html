@@ -259,9 +259,7 @@ function showPage(pageDTO) {
     const $btns = $('.page-button-box');
     const criteria = pageDTO.criteria;
     let text = "";
-
-
-}if (pageDTO.prev) {
+    if (pageDTO.prev) {
         text +=
             '<a class="page-button" href="' +
             (pageDTO.startPage - 1) +
@@ -288,23 +286,8 @@ function showPage(pageDTO) {
 
     $btns.append(text);
     $("input[name='page']").val(criteria.page);
-
-        /*<div th:object="${pagination}">
-                <div style="text-align: center">
-                <a class="page-button" th:href="*{pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
-            <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
-                <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-            <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                </th:block>
-                <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
-            </div>
-            <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
-                <input type="hidden" th:field="*{page}">
-                </form>
-                </div>*/
-
-
-        /*    if(result.pageDTO.globalThis.page > 1){
+}
+    /*    if(result.pageDTO.globalThis.page > 1){
                  text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page - 1) + `"><code><</code></a>`
             }
             text += `<code>` + result.pageDTO.globalThis.page + `</code>`
@@ -329,14 +312,14 @@ function showPage(pageDTO) {
             $('.page-button-box').html(text);*/
 
 
-function load(){
+function load() {
     $.ajax({
         url: "/admins/reply/list",
-/*        data: {
-            criteria: criteria
+        /*        data: {
+        criteria: criteria
         },*/
         type: "post",
-        success: function(result){
+        success: function (result) {
             // replyDTO
             $('.total-mentor-num').html(result.replyTotal);
             showList(result.replyDTOS);
@@ -345,30 +328,29 @@ function load(){
     });
 }
 
+/* delete 버튼 클릭 시 ajax실행*/
 
-    /* delete 버튼 클릭 시 ajax실행*/
-    $('.reply-delete-button').on('click', function() {
-        var checkedIds = new Array();
-        // 체크 박스 체크된 값
-        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function(){
-            console.log(this.innerText);
-            checkedIds.push(this.innerText);
-        });
-
-        $.ajax({
-            url: "/admins/reply/delete",
-            type: "delete",
-            data: {
-                "checkedIds": checkedIds,
-/*                "page" : page*/
-            },
-
-            success: function(){
-                load();
-            }
-
-        });
+$('.reply-delete-button').on('click', function () {
+    var checkedIds = new Array();
+    // 체크 박스 체크된 값
+    $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function () {
+        console.log(this.innerText);
+        checkedIds.push(this.innerText);
     });
 
+    $.ajax({
+        url: "/admins/reply/delete",
+        type: "delete",
+        data: {
+            "checkedIds": checkedIds,
+            /*                "page" : page*/
+        },
+
+        success: function () {
+            load();
+        }
+
+    });
+});
 </script>
 </html>
