@@ -181,7 +181,7 @@ const messageService=(function(){
                 if(callback){
                     callback(messages);
                 }
-                console.log($messageBox.scrollHeight)
+                console.log($messageBox.scrollHeight);
 				$messageBox.scrollTop($messageBox[0].scrollHeight);
             }
         });
