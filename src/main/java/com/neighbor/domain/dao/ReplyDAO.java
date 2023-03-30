@@ -34,7 +34,7 @@ public class ReplyDAO {
     }
 
     //    후기목록 검색용 글 조회
-    public List<ReplyDTO> findAll(Criteria criteria, String keyword) {
-        return replyMapper.selectAll(criteria, keyword);
+    public List<ReplyDTO> findAll(Criteria criteria) {
+        return replyMapper.selectAll(criteria);
     }
 }
