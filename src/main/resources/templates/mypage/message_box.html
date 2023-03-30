@@ -55,7 +55,7 @@
         <ul id="message_box_list" th:each="target: ${targetInfo}">
             <!-- 쪽지 목록 1개 -->
             <li class="message_list" th:object="${target}">
-                <button class="detail_btn" onclick="openModalBanner(1)"> <!-- 괄호에 쪽지번호 ${message.messageId} -->
+                <button class="detail_btn" th:data-target-id="${target.targetId}" th:data-board-id="${target.boardId}" th:onclick="getMessageRoom(this.getAttribute('data-target-id'), this.getAttribute('data-board-id'))">
                 </button>
                 <div class="message_box_wrapper">
                     <div class="profile_wrap">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="message_box_detail">
                         <div class="detail_message">
-                            <a href="" class="nick_name"></a>
+                            <a href="" class="nick_name" th:text="*{targetNickname}"></a>
                         </div>
                         <div class="message_box_info">
                             <p class="board_title" th:text="*{boardTitle}"></p>
@@ -83,99 +83,31 @@
                         </button>
                     </div>
                 </form>
+                <!--  쪽지 모달 위치  -->
+                <!--modal-->
+                <div  th:id="'my_modal' + *{targetId}" class="my_modal2 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
+                    <a class="modal_close_btn">✖</a>
+                    <div class="box_top">
+                    </div>
+                    <div class="box_text">
+                    </div>
+                    <!--    <form th:action="@{/messages/insert}" th:object="${boardVO}" class="send_form" name="form" method="post" >-->
+                    <form class="send_form" name="form" method="post" >
+                        <div class="text-container">
+                        <textarea class="write-section"  th:id="'write-section'+ *{targetId}" name="messageContent" cols="20" rows="5"
+                                  th:onKeydown="getLength(/*[[*{targetId}]]*/)"  th:onKeyUp="getLength(/*[[*{targetId}]]*/)" maxlength="1001"></textarea>
+                            <div class="text_send_wrap">
+                                <input  th:id="'text_length'+ *{targetId}" class="count_letter" type="text" size="3" name="txtlen" value="0"
+                                       readonly>
+                                <input disabled class="count_letter_max" type="text" size="10" value="/1000" readonly>
+                                <button type="submit" id="send_btn_id" class="send_btn">전송</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--  // 쪽지 모달 위치  -->
             </li>
             <!-- // 쪽지 목록 1개 -->
-            <!-- 쪽지 상세 모달 -->
-            <div id="my_modal" class="my_modal1 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
-                <a class="modal_close_btn">✖</a>
-                <div class="box_top">
-                    <div class="profile_image_section">
-                        <img class="profile_image" src="/css/mypage/images/profile_sample1.png">
-                    </div>
-                    <p class="detail_nick_name">구센치</p>
-                    <div class="title_refresh_wrap">
-                        <h3 class="detail_title">
-                            맛있는 불고기
-                        </h3>
-                        <div class="refresh_image_wrap">
-                            <img class="refresh_image" src="/css/mypage/images/refresh_btn.png">
-                        </div>
-                    </div>
-                    <div class="div_for_margin"></div>
-                    <a class="go_to_board" href="">
-                        <p class="go_to_board_text">상세보기&nbsp</p>
-                        <p class="go_to_board_text right_text">></p>
-                    </a>
-                </div>
-                <div class="box_text">
-                    <div class="my_text_wrap">
-                        <div class="my_text">
-                            <p class="my_text_content">안녕하세요</p>
-                        </div>
-                        <div class="my_text_time">
-                            <p class="message_box_time">2023.03.13 13:53</p>
-                        </div>
-                    </div>
-
-                    <div class="my_text_wrap">
-                        <div class="my_text">
-                            <p class="my_text_content">혹시, 저번에 파시던 불고기 반찬 또 파실 수 있나요?</p>
-                        </div>
-                        <div class="my_text_time">
-                            <p class="message_box_time">2023.03.13 13:53</p>
-                        </div>
-                    </div>
-
-                    <div class="opponent_text_wrap">
-                        <div class="opponent_text">
-                            <p class="opponent_text_content">네 원하시면 만들어 드릴게요</p>
-                        </div>
-                        <div class="opponent_text_time">
-                            <p class="message_box_time">2023.03.13 13:53</p>
-                        </div>
-                    </div>
-
-                    <div class="my_text_wrap">
-                        <div class="my_text">
-                            <p class="my_text_content">혹시 어디서 거래하고 싶으세요?</p>
-                        </div>
-                        <div class="my_text_time">
-                            <p class="message_box_time">2023.03.13 13:53</p>
-                        </div>
-                    </div>
-
-                    <div class="opponent_text_wrap">
-                        <div class="opponent_text">
-                            <p class="opponent_text_content">내일 역삼역 앞으로 7시까지 와주실 수 있나요?<br>출근할때 드리면 좋을 것 같아요~^^</p>
-                        </div>
-                        <div class="opponent_text_time">
-                            <p class="message_box_time">2023.03.13 13:53</p>
-                        </div>
-                    </div>
-
-                    <div class="my_text_wrap">
-                        <div class="my_text">
-                            <p class="my_text_content">네~ 그럼 7시까지 그리로 갈게요~</p>
-                        </div>
-                        <div class="my_text_time">
-                            <p class="message_box_time">2023.03.13 13:53</p>
-                        </div>
-                    </div>
-                </div>
-                <form action="" class="send_form" name="form" method="post" enctype="multipart/form-data">
-                    <div class="container">
-                        <textarea class="write-section" id="write-section1" name="content" cols="20" rows="5"
-                                  onKeydown="getLength(1)" onKeyUp="getLength(1)" maxlength="1001"></textarea>
-                        <div class="text_send_wrap">
-                            <input id="text_length1" class="count_letter" type="text" size="3" NAME="txtlen" value="0"
-                                   readonly><input disabled class="count_letter_max" type="text" size="10"
-                                                   value="/1000">
-                            <button id="send_btn_id" class="send_btn">전송</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- // 쪽지 상세 모달 -->
         </ul>
     </article>
 </section>
@@ -191,5 +123,8 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    const memberId = 1;
+</script>
 <script src="/js/mypage/message_box.js"></script>
 </html>

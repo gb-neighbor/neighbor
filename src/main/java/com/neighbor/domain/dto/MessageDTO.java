@@ -9,6 +9,8 @@ public class MessageDTO {
     private Long messageRoomId;
     private String latestRegisterDate;
     private String boardTitle;
+    private Long boardId;
+    private Long targetId;
     private String targetNickname;
     private String targetProfileUuid;
     private String targetProfilePath;
