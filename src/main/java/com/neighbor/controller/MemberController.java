@@ -2,6 +2,7 @@ package com.neighbor.controller;
 
 import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.MemberVO;
+import com.neighbor.service.KakaoService;
 import com.neighbor.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,10 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/members/*")
@@ -30,6 +29,7 @@ import java.util.UUID;
 public class MemberController {
 
     private final MemberService memberService;
+    private final KakaoService kakaoService;
 
     // 회원가입 페이지로 이동
     @GetMapping("register")
@@ -53,7 +53,14 @@ public class MemberController {
 
     // 비밀번호 변경 페이지로 이동
     @GetMapping("change-password")
-    public String goChangePassword() { return"/login/update-password";}
+    public String goChangePassword(String memberIdentification, String memberRandomKey) {
+        String dbRandomkey = Base64.getEncoder().encodeToString(memberService.findRandomKeyByIdentification(memberIdentification).getBytes(StandardCharsets.UTF_8));
+        String dbEmail = memberService.findEmailByIdentification(memberIdentification);
+        if(dbRandomkey.equals(memberRandomKey)){
+            memberService.updateRandomKey(null, dbEmail);
+        }
+        return"/login/update-password";
+    }
 
     //회원가입
     @PostMapping("register")
@@ -62,6 +69,11 @@ public class MemberController {
         return "redirect:/main/main";
     }
 
+    // 계정정보가 없을시 알림 페이지 이동
+    @GetMapping("no-join")
+    public String noJoin(){
+        return "/login/no-join";
+    }
 
 
     //    파일 업로드
@@ -108,10 +120,10 @@ public class MemberController {
         if(memberService.login(memberIdentification, memberPassword) == null){
             path = "/members/login";
         }else{
-            httpSession.setAttribute("memberId", memberId);
+            MemberVO memberVO = memberService.findInfoByIdentification(memberIdentification);
+            httpSession.setAttribute("memberVO", memberVO);
             path = "/main/main";
         }
-        log.info(String.valueOf(httpSession.getAttribute("memberId")));
         return new RedirectView(path);
     }
 
@@ -136,24 +148,38 @@ public class MemberController {
     }
 
 
-
-
-    //카카오 로그인
-
-
-    @ResponseBody
+//    카카오 로그인
     @GetMapping("/kakao-login")
-    public void  kakaoCallback(@RequestParam String code, HttpSession session) throws Exception {
-        log.info(code);
-        String token = memberService.getKaKaoAccessToken(code);
-        session.setAttribute("token", token);
-        memberService.getKakaoInfo(token);
+    public String kakaoCallback(String code, HttpSession session) throws Exception {
+        log.info("code1234 : " + code);
+        String token = kakaoService.getKaKaoAccessToken(code);
+//        session.setAttribute("token", token);
+        MemberVO kakaoInfo = kakaoService.getKakaoInfo(token);
+        MemberVO memberVO = memberService.findInfoByEmail(kakaoInfo.getMemberEmail());
+        log.info("kakaoInfo : " + kakaoInfo);
+
+        if(memberService.checkEmail(kakaoInfo.getMemberEmail()) == 0){
+            return "redirect:no-join";
+        }
+
+        session.setAttribute("memberVO", memberVO);
+
+        log.info(String.valueOf(session.getAttribute("memberVO")));
+
+        return "redirect:/main/main";
     }
+
 
     @GetMapping("/kakao-logout")
     public void kakaoLogout(HttpSession session){
         log.info("logout");
         memberService.logoutKakao((String)session.getAttribute("token"));
         session.invalidate();
+    }
+
+    //네이버 로그인 비교 페이지로 이동
+    @GetMapping("callback")
+    public String naverLogin(){
+        return "/login/compare";
     }
 }

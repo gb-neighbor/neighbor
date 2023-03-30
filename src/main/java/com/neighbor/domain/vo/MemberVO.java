@@ -16,6 +16,7 @@ public class MemberVO {
     private Integer memberRegion;
     private String memberEmail;
     private String memberHiSentence;
+    private String memberRandomKey;
     private String memberProfileSize;
     private String memberProfileOriginalName;
     private String memberProfileUuid;

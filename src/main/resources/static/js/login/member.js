@@ -218,15 +218,16 @@ $(".birth").on("keyup", function() {
 
 /* 핸드폰 번호 */
 /* 글자수에 따라서 검사 */
-let regPhone= /^\d{2,3}-?\d{3,4}-?\d{4}$/;
+let regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 $(".phone").on("keyup", function(){
-    if($(this).val() != "" && $(this).val().length == 11 && regPhone.test($(this).val())){
+    if($(".phone").val() != "" && $(".phone").val().length == 11 && regPhone.test($(".phone").val())) {
         checkAll[5] = true;
         $(".err-phone").text("");
         changeButton();
     } else {
         checkAll[5] = false;
-        $(".err-phone").text("핸드폰 번호를 재대로 입력해주세요")
+        $(".err-phone").text("핸드폰 번호를 제대로 입력해주세요")
+        $(".err-phone").css('color', 'red')
     }
 })
 
@@ -391,6 +392,39 @@ $inputEmail.on("blur", function(){$.ajax({
 });
 });
 
+// //로그인 시 계정이 존재하지 않을 시
+// const $submitLogin = $(".login-button");
+// const $errLogin = $(".err-message");
+// $('.password').on("blur", function(){$.ajax({
+//     url:"/members/login" ,
+//     type:"post",
+//     data: {"memberIdentification": $(".id").val(), "memberPassword":  $('.password').val(btoa($('.password').val()))},
+//     success: function(result){
+//         let message;
+//         if(result == null) {
+//             message = "존재하지 않는 계정입니다.";
+//             $errLogin.css('color', 'red')
+//             $errLogin.css('display', 'block');
+//         }else{
+//             message = "";
+//         }
+//         $errLogin.text(message);
+//         console.log(result);
+//     }
+// });
+// });
+
+// /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
+//
+// const $joinInputs = $("input[type=email]");
+// function send() {
+//     $joinInputs.trigger("blur");
+//     if (joinCheckAll.filter(check => check).length != $joinInputs.length) {
+//         return;
+//     }
+//     $(document.joinForm).submit();
+// }
+
 /*닉네임 중복*/
 const $joinInputNickname = $(".nick-name");
 const $errorNickname = $(".err-nickname");
@@ -423,6 +457,48 @@ $joinInputNickname.on("blur",function(){$.ajax({
         console.log("checkNickname 들어옴");
         console.log($joinInputNickname);
         console.log(checkAll[11]);
+
+    }
+});
+});
+
+/*휴대폰번호 중복*/
+const $joinInputPhoneNum = $(".phone");
+const $errorPhoneNum = $(".err-phone");
+
+$joinInputPhoneNum.on("blur",function(){$.ajax({
+    url:"/members/checkPhone" ,
+    data: {"memberPhone": $(".phone").val()},
+    success: function(result){
+        let message;
+
+        if(result == 1){
+            message = "중복된 번호입니다.";
+            $errorPhoneNum.css('color', 'red')
+            $errorPhoneNum.css('display', 'block');
+            checkAll[5] = false;
+
+        }else if($joinInputPhoneNum.val().length < 1){
+            $errorPhoneNum.css('display', 'block');
+            $errorPhoneNum.css('color', 'red');
+            message = "필수 입력 사항입니다";
+            checkAll[5] = false;
+
+        }else if (!regPhone.test($(".phone").val())) {
+            $(".err-phone").text("번호 형식이 유효하지 않습니다.")
+            $(".err-phone").css('color', 'red')
+            checkAll[5] = false;
+        }else {
+            message = "사용 가능한 번호입니다.";
+            $errorPhoneNum.css('display', 'block');
+            $errorPhoneNum.css('color', '#2bb673');
+            checkAll[5] = true;
+            changeButton();
+        }
+        $errorPhoneNum.text(message);
+        console.log("checkPhone 들어옴");
+        console.log(checkAll[5]);
+        console.log(result);
 
     }
 });

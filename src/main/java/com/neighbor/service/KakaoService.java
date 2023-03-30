@@ -1,135 +1,20 @@
 package com.neighbor.service;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.neighbor.domain.dao.MemberDAO;
-import com.neighbor.domain.dto.MemberDTO;
-import com.neighbor.domain.vo.MailVO;
 import com.neighbor.domain.vo.MemberVO;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-import java.util.Random;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
-public class MemberService {
-    private  final MemberDAO memberDAO;
+public class KakaoService {
 
-    @Autowired
-    private JavaMailSender mailSender;
-
-    //    대쉬보드 전체조회
-    public List<MemberDTO> getList(){
-        return memberDAO.findAll();
-    }
-
-    //    대쉬보드 일부조회
-    public List<MemberDTO> getListBy(){
-        return memberDAO.findAllBy();
-    }
-
-    //   회원관리 멤버삭제
-    public void delete(Long memberId) {
-        memberDAO.delete(memberId);
-    }
-
-//    회원관리 멤버 총 수
-    public Integer getCountAll() {
-        return memberDAO.countAll();
-    }
-
-//
-    public MemberVO getOneMemberInfo(Long memberId){
-        return memberDAO.getOneMember(memberId);
-    }
-
-    // 회원가입
-    public void signUp(MemberVO memberVO){
-        memberDAO.save(memberVO);
-    }
-
-    // 아이디 중복
-    public Long checkId(String memberIdentification){
-        return memberDAO.selectByIdentification(memberIdentification);
-    }
-
-    // 닉네임 중복
-    public Long checkNickname(String memberNickName){
-        return memberDAO.selectByNickname(memberNickName);
-    }
-
-    // 이메일 중복
-    public Long checkEmail(String memberEmail){
-        return memberDAO.selectByEmail(memberEmail);
-    }
-
-    //휴대폰 번호 중복
-    public Long checkPhone(String memberPhone) { return memberDAO.selectByPhone(memberPhone);}
-
-    // 로그인
-    public Long login(String memberIdentification, String memberPassword){ return memberDAO.selectById(memberIdentification, memberPassword);}
-
-    // 네이버 로그인
-    public Long loginOauth(String memberEmail) {return memberDAO.compareEmail(memberEmail);}
-
-    // 아이디 찾기
-    public String findIdentification(String memberEmail){ return memberDAO.selectMyIdentification(memberEmail);}
-
-    // 비밀번호 변경
-    public void updatePassword(String memberIdentification, String memberPassword ) { memberDAO.updateMyPassword(memberIdentification, memberPassword);}
-
-    // 랜덤키 수정
-    public void updateRandomKey(String memberRandomKey, String memberEmail){memberDAO.updateRandomKey(memberRandomKey, memberEmail);};
-
-
-    // 이메일로 회원정보 조회
-    public MemberVO findInfoByEmail(String memberEmail) {return memberDAO.selectInfoByEmail(memberEmail);}
-
-    //아이디로 회원정보 조회
-    public MemberVO findInfoByIdentification(String memberIdentification) {return memberDAO.selectInfoByIdentification(memberIdentification);}
-
-    //아이디로 랜덤키 조회
-    public String findRandomKeyByIdentification(String memberIdentification) {return memberDAO.selectRandomKeyByIdentification(memberIdentification);}
-
-    //아이디로 랜덤키 조회
-    public String findEmailByIdentification(String memberIdentification) {return memberDAO.selectEmailByIdentification(memberIdentification);}
-
-    // 메일 보내기
-    public void sendMail(MailVO mail) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mail.getAddress());
-//        message.setFrom(""); from 값을 설정하지 않으면 application.yml의 username값이 설정됩니다.
-        message.setSubject(mail.getTitle());
-        message.setText(mail.getMessage());
-
-        mailSender.send(message);
-    }
-
-//    랜덤키 발행
-    public String randomKey() {
-        Random random = new Random();
-        String randomNum = "";
-
-        for(int i = 0; i < 6; i++) {
-            String number = Integer.toString(random.nextInt(10));
-            randomNum += number;
-        }
-
-        return randomNum;
-    }
-
-
-//    카카오 로그인
     public String getKaKaoAccessToken(String code){
         String access_Token="";
         String refresh_Token ="";
@@ -148,7 +33,7 @@ public class MemberService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=f14254e0493a2817e0651408ee4c2504"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:10000/member/kakao-login"); // TODO 인가코드 받은 redirect_uri 입력
+            sb.append("&redirect_uri=http://localhost:10000/members/kakao-login"); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
@@ -185,8 +70,9 @@ public class MemberService {
         return access_Token;
     }
 
-    public void getKakaoInfo(String token) throws Exception {
+    public MemberVO getKakaoInfo(String token) throws Exception {
 
+        MemberVO kakaoInfo = new MemberVO();
         String reqURL = "https://kapi.kakao.com/v2/user/me";
 
         //access_token을 이용하여 사용자 정보 조회
@@ -216,21 +102,27 @@ public class MemberService {
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
+//            JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+            JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+
+//            String memberNickname = properties.getAsJsonObject().get("nickname").getAsString();
             int id = element.getAsJsonObject().get("id").getAsInt();
             boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
-            String email = "";
+            String memberEmail = "";
             if(hasEmail){
-                email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+                memberEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
             }
 
-            log.info("id : " + id);
-            log.info("email : " + email);
-
+//            log.info("id : " + id);
+//            log.info("email : " + email);
+            kakaoInfo.setMemberEmail(memberEmail);
+            log.info(memberEmail);
             br.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return kakaoInfo;
     }
 
     public void logoutKakao(String token){
@@ -260,5 +152,4 @@ public class MemberService {
             e.printStackTrace();
         }
     }
-
 }

@@ -14,7 +14,7 @@
 <div class="wrapper">
     <div class="login-content">
         <div class="logo">
-            <a href="#">
+            <a href="http://localhost:10000/main/main">
                 <span class="logo-name">이웃집 반찬</span>
             </a>
         </div>
@@ -22,6 +22,7 @@
             <form action="/members/login" name="loginForm" method="post">
                 <input type="text" placeholder="아이디" id="id" class="id" name="memberIdentification">
                 <input type="password" placeholder="비밀번호 8자 이상" class="password" name="memberPassword">
+                <p class="err-message err"></p>
                 <button type="button" class="login-button btn" onclick="sendLogin()">로그인</button>
 
                 <div class="bottom-wrap">
@@ -36,6 +37,7 @@
                             <a href="http://localhost:10000/members/register">회원가입</a>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
 
@@ -43,22 +45,21 @@
         <dl class="auth">
             <dt><span class="easy-login">간편로그인</span></dt>
             <dd>
-                <a href="https://kauth.kakao.com/oauth/authorize?client_id=f14254e0493a2817e0651408ee4c2504&redirect_uri=
-                http://localhost:10000/kakao-login&response_type=code" class="kakao btn">
-                        <span class="inner">
-                            <span class="icon"></span>
-                            카카오로 로그인
-                        </span>
+                <a href="https://kauth.kakao.com/oauth/authorize?client_id=f14254e0493a2817e0651408ee4c2504&redirect_uri=http://localhost:10000/members/kakao-login&response_type=code" class="kakao btn">
+                    <span class="inner">
+                        <span class="icon"></span>
+                        카카오로 로그인
+                    </span>
                 </a>
             </dd>
 
             <dd>
-                <button class="naver btn">
-                        <span class="inner">
-                            <span class="icon"></span>
-                            네이버로 로그인
-                        </span>
-                </button>
+                <a href="https://nid.naver.com/oauth2.0/authorize?response_type=token&amp;client_id=1plfNfvQLGhK6BrK6qJb&amp;redirect_uri=http%3A%2F%2Flocalhost%3A10000%2Fmembers%2Fcallback&amp;state=f7ebf8d0-3104-4cb3-a664-1e6f32900283" id="naver_id_login" class="naver btn">
+                    <span class="inner">
+                        <span class="icon"></span>
+                        네이버로 로그인
+                    </span>
+                </a>
             </dd>
         </dl>
     </div>
@@ -71,12 +72,9 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-    var naver_id_login = new naver_id_login("YOUR_CLIENT_ID", "YOUR_CALLBACK_URL");
+    var naver_id_login = new naver_id_login("1plfNfvQLGhK6BrK6qJb", "http://localhost:10000/members/callback");
     var state = naver_id_login.getUniqState();
-    naver_id_login.setButton("white", 2,40);
-    naver_id_login.setDomain("YOUR_SERVICE_URL");
+    naver_id_login.setDomain("http://localhost:10000");
     naver_id_login.setState(state);
-    naver_id_login.setPopup();
-    naver_id_login.init_naver_id_login();
 </script>
 </html>
