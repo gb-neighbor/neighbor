@@ -14,7 +14,7 @@ public class Criteria {
     public com.neighbor.domain.dto.Criteria create(int page, int amount) {
         this.page = page;
         this.amount = amount;
-        /*this.offset = (page - 1) * amount;*/
+        this.offset = (page - 1) * amount;
         return this;
     }
 

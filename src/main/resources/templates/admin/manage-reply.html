@@ -137,28 +137,28 @@
                     </div>
 
                     <!-- 여기부터 내용 -->
-                    <!--<div class="item-list-contents" th:each="reply:${replys}">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="reply-num" th:text="*{reply.replyId}"></div>
-                        <div class="board-num" th:text="*{reply.boardId}"></div>
-                        <div class="region" th:text="*{reply.replyRegionKo}"></div>
-                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>
-                        <div class="reply-content">
-                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>
-                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">
-                                <a class="modal_close_btn">✖</a>
-                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>
-                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>
-                            </div>
-                        </div>
-                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>
-                    </div>-->
+<!--                    <div class="item-list-contents" th:each="reply:${replys}">-->
+<!--                        <div class="checkbox-zip">-->
+<!--                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">-->
+<!--                        </div>-->
+<!--                        <div class="reply-num" th:text="*{reply.replyId}"></div>-->
+<!--                        <div class="board-num" th:text="*{reply.boardId}"></div>-->
+<!--                        <div class="region" th:text="*{reply.replyRegionKo}"></div>-->
+<!--                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>-->
+<!--                        <div class="reply-content">-->
+<!--                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>-->
+<!--                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">-->
+<!--                                <a class="modal_close_btn">✖</a>-->
+<!--                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>-->
+<!--                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>-->
+<!--                    </div>-->
                 </div>
 
-                <!--<div class="page-button-box">
-                    <div th:object="${pagination}">
+                <div class="page-button-box">
+                    <!--<div th:object="${pagination}">
                         <div style="text-align: center">
                             <a class="page-button" th:href="*{result.pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
                             <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
@@ -170,8 +170,8 @@
                         <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
                             <input type="hidden" th:field="*{page}">
                         </form>
-                    </div>
-                </div>-->
+                    </div>-->
+                </div>
             </div>
         </div>
     </div>
@@ -181,148 +181,194 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-    // showList();
-    // let $pages = $("a.page-button");
-    //
-    // $pages.on("click", function(e){
-    //     e.preventDefault();
-    //     let page = $(this).attr("href");
-    //     let amount = 6;
-    //     let url = "/admins/reply/list?page=" + page + "&amount=" + amount;
-    //
-    //     location.href = url;
-    // });
-    function search() {
+    window.onload = load();
 
-    }
-
-    /*검색어 계속 남아 있게 하는 js 시작 되긴 되는데 에이잭스 이렇게 쓰는거 아니다.*/
-    // 페이지가 로드될 때 실행되는 함수
-    // window.onload = function() {
-    //     // 검색어가 저장되어 있으면 검색창에 표시
-    //     var savedKeyword = sessionStorage.getItem('savedKeyword');
-    //     if (savedKeyword !== null) {
-    //         $.ajax({
-    //             type: "get",
-    //             url: "/admins/reply/list",
-    //             data: { keyword: keyword },
-    //             success: function(result) {
-    //                 // 테이블 초기화
-    //                 $('.item-list-contents').empty();
-    //                 if (result.length >= 1) {
-    //                     result.forEach(function(reply) {
-    //                         var replyId = reply.replyId;
-    //                         var str = '<div class="checkbox-zip">\n' +
-    //                             '<input type="checkbox" id="check1" class="normal" value="">\n' +
-    //                             '</div>';
-    //                         str += '<div class="board-num">' + reply.boardId + '</div>';
-    //                         str += '<div class="region">' + reply.replyRegionKo + '</div>';
-    //                         str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
-    //                         str += '<div class="reply-content">';
-    //                         str += '<span>' + reply.replyContent + '</span>';
-    //                         str += '<div id="my_modal' + replyId + '" class="my_modal">';
-    //                         str += '<a class="modal_close_btn">' + '✖' + '</a>';
-    //                         str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
-    //                         str += '<div class="comment-detail">' + reply.replyContent + '</div>';
-    //                         str += '</div>';
-    //                         str += '</div>';
-    //                         str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
-    //                         $('.item-list-contents').append(str);
-    //                     });
-    //                 }
-    //                 // 검색 결과의 갯수 계산해서 출력
-    //                 $('.total-mentor-num').empty();
-    //                 $('.total-mentor-num').text(result.length); // total-mentor-num 업데이트
-    //             }
-    //         });
-    //     }
+    // function search() {
+    //
     // }
 
-    /* 후기글 관리 검색시 ajax용*/
-    function showList(){
-        let page = 1;
-        $.ajax({
-            type: "post",
-            url: "/admins/reply/list",
-            data: {
-                page : page
-            },
-            //replys는 replyDTO
-            success: function(replys) {
-                if (replys.length >= 1) {
-                    replys.forEach(function (reply) {
-                        $('.total-mentor-num').html(reply.replyTotal);
-                        let replyId = reply.replyId;
-                        let str = '<div class="checkbox-zip">\n' +
-                            '<input type="checkbox" id="check1" class="normal" value="">\n' +
-                            '</div>';
-                        str += '<div class="board-num">' + reply.boardId + '</div>';
-                        str += '<div class="region">' + reply.replyRegionKo + '</div>';
-                        str += '<div class="writer-nick">' + reply.memberNickname + '</div>';
-                        str += '<div class="reply-content">';
-                        str += '<span>' + reply.replyContent + '</span>';
-                        str += '<div id="my_modal' + replyId + '" class="my_modal">';
-                        str += '<a class="modal_close_btn">' + '✖' + '</a>';
-                        str += '<div class="comment-writer">' + '작성자: ' + '<span>' + reply.memberNickname + '</span>' + '</div>';
-                        str += '<div class="comment-detail">' + reply.replyContent + '</div>';
-                        str += '</div>';
-                        str += '</div>';
-                        str += '<div class="reply-day">' + reply.replyRegisterDate + '</div>';
-                        $('.item-list-contents').append(str);
-                    });
+
+function showList(replyDTOS) {
+    let page = 1;
+    const $results = $('.checkbox-group');
+    var text = "";
+    var content = "";
+    replyDTOS.forEach(reply => {
+        content += `
+        <div class="item-list-contents">
+            <div class="checkbox-zip">
+                <input type="checkbox" name="checkbox" id="check1" class="normal" value="">
+            </div>
+            <div class="reply-num">${reply.replyId}</div>
+            <div class="board-num">${reply.boardId}</div>
+            <div class="region">${reply.replyRegionKo}</div>
+            <div class="writer-nick">${reply.memberNickname}</div>
+            <div class="reply-content">
+                <span id="${reply.replyId}" onclick="openModal(${reply.replyId})">${reply.replyContent}</span>
+                <div id="my_modal${reply.replyId}" class="my_modal">
+                    <a class="modal_close_btn">✖</a>
+                    <div class="comment-writer">작성자: <span>${reply.memberNickname}</span></div>
+                    <div class="comment-detail">${reply.replyContent}</div>
+                </div>
+            </div>
+            <div class="reply-day">${reply.replyRegisterDate}</div>
+         </div>
+        `
+    });
+    $('.item-list-contents').remove();
+    $results.append(content);
+/*<div th:object="${pagination}">
+        <div style="text-align: center">
+        <a class="page-button" th:href="*{pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
+    <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
+        <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+    <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+        </th:block>
+        <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+    </div>
+    <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
+        <input type="hidden" th:field="*{page}">
+        </form>
+        </div>*/
+/*    if(result.pageDTO.globalThis.page > 1){
+         text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page - 1) + `"><code><</code></a>`
+    }
+    text += `<code>` + result.pageDTO.globalThis.page + `</code>`
+    if(result.pageDTO.globalThis.page < realEnd){
+        text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page + 1) + `"><code>></code></a>`
+    }
+    else {
+        if (result.pageDTO.globalThis.prev()) {
+            text += `<a class="page-button" href="` + (result.pageDTO.globalThis.startPa - 1) + `"><code>PREV</code></a>`
+        }
+        for (let i = startNumber; i <= endNumber; i++) {
+            if (result.pageDTO.globalThis.page == i) {
+                text += `<code>` + i + `</code>`
+                continue;
+            }
+            text += `<a class="page-button" href="` + i + `"><code>` + i + `</code></a>`
+        }
+        if (next) {
+            text += `<a class="page-button" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
+        }
+    }
+    $('.page-button-box').html(text);*/
+}
+
+function showPage(pageDTO) {
+    const $btns = $('.page-button-box');
+    const criteria = pageDTO.criteria;
+    let text = "";
+
+
+}if (pageDTO.prev) {
+        text +=
+            '<a class="page-button" href="' +
+            (pageDTO.startPage - 1) +
+            '"><code><</code></a>';
+    }
+    for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+        if (criteria.page === i) {
+            text += '<code>' + i + '</code>';
+        } else {
+            text +=
+                '<a class="page-button" href="' +
+                i +
+                '"><code>' +
+                i +
+                '</code></a>';
+        }
+    }
+    if (pageDTO.next) {
+        text +=
+            '<a class="page-button" href="' +
+            (pageDTO.endPage + 1) +
+            '"><code>></code></a>';
+    }
+
+    $btns.append(text);
+    $("input[name='page']").val(criteria.page);
+
+        /*<div th:object="${pagination}">
+                <div style="text-align: center">
+                <a class="page-button" th:href="*{pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
+            <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
+                <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+            <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                </th:block>
+                <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+            </div>
+            <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
+                <input type="hidden" th:field="*{page}">
+                </form>
+                </div>*/
+
+
+        /*    if(result.pageDTO.globalThis.page > 1){
+                 text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page - 1) + `"><code><</code></a>`
+            }
+            text += `<code>` + result.pageDTO.globalThis.page + `</code>`
+            if(result.pageDTO.globalThis.page < realEnd){
+                text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page + 1) + `"><code>></code></a>`
+            }
+            else {
+                if (result.pageDTO.globalThis.prev()) {
+                    text += `<a class="page-button" href="` + (result.pageDTO.globalThis.startPa - 1) + `"><code>PREV</code></a>`
                 }
-                let page =
-                    if(result.pageDTO.globalThis.page > 1){
-                        text += `<a class="changePage" href="` + (result.globalThis.page - 1) + `"><code><</code></a>`
+                for (let i = startNumber; i <= endNumber; i++) {
+                    if (result.pageDTO.globalThis.page == i) {
+                        text += `<code>` + i + `</code>`
+                        continue;
                     }
-                    text += `<code>` + globalThis.page + `</code>`
-                    if(globalThis.page < realEnd){
-                        text += `<a class="changePage" href="` + (globalThis.page + 1) + `"><code>></code></a>`
-                    }
-                }else{
-                    if(prev){
-                        text += `<a class="changePage" href="` + (startNumber - 1) + `"><code>PREV</code></a>`
-                    }
-                    for (let i=startNumber; i<=endNumber; i++){
-                        if(globalThis.page == i){
-                            text += `<code>` + i + `</code>`
-                            continue;
-                        }
-                        text += `<a class="changePage" href="` + i + `"><code>` + i + `</code></a>`
-                    }
-                    if(next){
-                        text += `<a class="changePage" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
-                    }
+                    text += `<a class="page-button" href="` + i + `"><code>` + i + `</code></a>`
+                }
+                if (next) {
+                    text += `<a class="page-button" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
                 }
             }
-        });
-    });
+            $('.page-button-box').html(text);*/
 
+
+function load(){
+    $.ajax({
+        url: "/admins/reply/list",
+/*        data: {
+            criteria: criteria
+        },*/
+        type: "post",
+        success: function(result){
+            // replyDTO
+            $('.total-mentor-num').html(result.replyTotal);
+            showList(result.replyDTOS);
+            showPage(result.pageDTO);
+        }
+    });
+}
 
 
     /* delete 버튼 클릭 시 ajax실행*/
-    // $('.reply-delete-button').on('click', function() {
-    //     var checkedIds = new Array();
-    //     // 체크 박스 체크된 값
-    //     $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function(){
-    //         console.log(this.innerText);
-    //         checkedIds.push(this.innerText);
-    //     });
-    //
-    //     $.ajax({
-    //         url: "/admins/reply/delete",
-    //         type: "delete",
-    //         data: {
-    //             "checkedIds": checkedIds,
-    //             "page" : page
-    //         },
-    //
-    //         success: function(){
-    //             // location.reload();
-    //         }
-    //
-    //     });
-    // });
+    $('.reply-delete-button').on('click', function() {
+        var checkedIds = new Array();
+        // 체크 박스 체크된 값
+        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function(){
+            console.log(this.innerText);
+            checkedIds.push(this.innerText);
+        });
+
+        $.ajax({
+            url: "/admins/reply/delete",
+            type: "delete",
+            data: {
+                "checkedIds": checkedIds,
+/*                "page" : page*/
+            },
+
+            success: function(){
+                load();
+            }
+
+        });
+    });
 
 </script>
 </html>

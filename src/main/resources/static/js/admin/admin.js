@@ -115,6 +115,7 @@ check.click(function(){
 function modal(id) {
     var zIndex = 9998;
     var modal = $('#my_modal' + id);
+    console.log(modal.html());
 
     // 모달 div 뒤에 희끄무레한 레이어
     var bg = $('<div>')

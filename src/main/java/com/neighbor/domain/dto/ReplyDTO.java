@@ -38,7 +38,7 @@ public class ReplyDTO {
     private Boolean boardStatus;
     private Integer boardRegion;
     private Integer replyTotal;
-    private String keyword;
+//    private String keyword;
 
     private String replyRegionKo;
     private String[] replyRegionArr = {"전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
