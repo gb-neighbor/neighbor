@@ -134,21 +134,19 @@ public class AdminController {
 
     /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
 
-
     @PostMapping("reply/list")
     @ResponseBody
     public ReplyDTO showList() {
         Criteria criteria = new Criteria();
-        criteria = criteria.create(1, 6);
-
+        criteria = criteria.create(3, 6);
         ReplyDTO replyDTO = new ReplyDTO();
         replyDTO.setReplyTotal(replyService.getCountAll());
         replyDTO.setReplyDTOS(replyService.getList(criteria));
         replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, replyService.getCountAll()));
 
-//        for (ReplyDTO dto : replyDTOS) {
-//            dto.change(dto.getBoardRegion());
-//        }
+        for (ReplyDTO dto : replyDTO.getReplyDTOS()) {
+            dto.change(dto.getBoardRegion());
+        }
 
         return replyDTO;
     }
