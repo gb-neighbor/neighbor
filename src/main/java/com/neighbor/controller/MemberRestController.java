@@ -92,9 +92,6 @@ public RedirectView sendFindIdentifcationMail(String memberEmail) {
         Long memberId = memberService.loginOauth(memberEmail);
         log.info(String.valueOf(memberId));
         if(memberId == null){
-            MemberVO memberVO = new MemberVO();
-            memberVO.setMemberEmail(memberEmail);
-            httpSession.setAttribute("memberVO", memberVO);
             return  0;
         }else{
             MemberVO memberVO = memberService.findInfoByEmail(memberEmail);
