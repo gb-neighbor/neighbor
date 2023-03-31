@@ -38,7 +38,6 @@
         select message_room_id from tbl_message_room where board_id = #{boardId} and customer_id = #{customerId}
     </select>
 
-
     <!--  쪽지 상대방 정보  -->
     <select id="selectTargetInfo" resultType="memberVO">
         select member_id, member_nickname, member_profile_uuid, member_profile_path, member_profile_original_name from tbl_member where member_id = #{member_id}
@@ -56,7 +55,5 @@
         insert into tbl_message_room (board_id, seller_id, customer_id)
         values(#{boardId}, #{sellerId}, #{customerId})
     </insert>
-
-
 
 </mapper>

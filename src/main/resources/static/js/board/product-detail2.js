@@ -315,6 +315,8 @@ const messageService=(function(){
 			}
 		});
 	}
+
+
 	return {list:list, targetInfo:targetInfo};
 })();
 
@@ -350,8 +352,6 @@ $('.send_form').submit(function(e) {
 		alert("message cannot be null")
 	}
 });
-
-
 
 function showTargetInfo(Infos){
 

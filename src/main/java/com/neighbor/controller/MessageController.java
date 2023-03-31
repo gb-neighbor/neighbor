@@ -1,6 +1,8 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.dto.MessageDTO;
+import com.neighbor.domain.dto.MessageRoomDTO;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.MessageRoomVO;
 import com.neighbor.domain.vo.MessageVO;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,6 +104,33 @@ public class MessageController {
             return messageVO;
         }
     }
+
+
+    @PostMapping("list/{memberId}")
+    @ResponseBody
+    public List<MessageDTO> getMyMessageList(@PathVariable("memberId") Long memberId){
+        List<MessageDTO> result = new ArrayList<>();
+        List<MessageRoomDTO> entireList = messageService.showList(memberId);
+
+        for (MessageRoomDTO messageRoom : entireList) {
+            MessageDTO messageDTO = new MessageDTO();
+
+            messageDTO.setBoardId(messageRoom.getBoardId());
+            messageDTO.setBoardTitle(boardService.showBoardTitle(messageRoom.getBoardId()));
+            messageDTO.setLatestRegisterDate(messageService.showLatestDate(messageRoom.getMessageRoomId()));
+            messageDTO.setMessageRoomId(messageRoom.getMessageRoomId());
+            messageDTO.setTargetId(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberId());
+            messageDTO.setTargetNickname(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberNickname());
+            messageDTO.setTargetProfilePath(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfilePath());
+            messageDTO.setTargetProfileUuid(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfileUuid());
+            messageDTO.setTargetProfileOriginalName(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfileOriginalName());
+
+            result.add(messageDTO);
+        }
+
+        return result;
+    }
+
 
 
 }
