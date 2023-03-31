@@ -43,6 +43,13 @@ public class MemberController {
         return "/login/login";
     }
 
+    //회원가입에서 로고 클릭시 세션비우고 메인으로 이동
+    @GetMapping("join-to-main")
+    public String joinToMain(HttpSession session){
+        session.invalidate();
+        return "redirect:/main/main";
+    }
+
     // 아이디찾기 페이지로 이동
     @GetMapping("find-id")
     public String goFindId() { return"/login/find-my-id";}
@@ -64,7 +71,8 @@ public class MemberController {
 
     //회원가입
     @PostMapping("register")
-    public String signUp(MemberVO memberVO) {
+    public String signUp(MemberVO memberVO, HttpSession httpSession) {
+        httpSession.invalidate();
         memberService.signUp(memberVO);
         return "redirect:/main/main";
     }

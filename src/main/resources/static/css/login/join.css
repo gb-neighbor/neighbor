@@ -89,10 +89,10 @@ select{
     margin: 0 auto;
     max-width: 400px;
     box-sizing: border-box;
-    padding-top: 60px;
     padding-bottom: 110px;
 }
 .logo{
+    padding-top: 60px;
     text-align: center;
 }
 
