@@ -10,13 +10,15 @@
 </head>
 <body>
 <div class="wrapper">
+    <div class="logo">
+        <form action="/members/join-to-main" method="get">
+            <button>
+                <span class="logo-name">이웃집 반찬</span>
+            </button>
+        </form>
+    </div>
     <form action="/members/register" method="post" name="write-form">
         <div class="join-wrapper">
-            <div class="logo">
-                <a class="session_clear" onclick="sessionClear()" href="http://localhost:10000/main/main">
-                    <span class="logo-name">이웃집 반찬</span>
-                </a>
-            </div>
             <div class="join-content">
                 <dl style="text-align: center;">
                     <label for="profile" id="profile_label">
