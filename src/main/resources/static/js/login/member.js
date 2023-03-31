@@ -571,5 +571,10 @@ function toStringByFormatting(source, delimiter = '/') {
     return [year, month, day].join(delimiter);
 }
 
+// 회원가입 로고 클릭시 세션 비워주기
+function sessionClear() {
+    sessionStorage.clear();
+    console.log(sessionStorage.getItem("memberVO"));
+};
 
 
