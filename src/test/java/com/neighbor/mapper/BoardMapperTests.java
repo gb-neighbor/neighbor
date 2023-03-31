@@ -29,6 +29,11 @@ public class BoardMapperTests {
     }
 
     @Test
+    public void testgetBoardMember(){
+//         log.info(String.valueOf(boardMapper.getMemberBoardInfoByBoardId(1L)));
+    }
+
+    @Test
     public void testAllBoardMemberFile(){
         log.info(String.valueOf(boardMapper.selectAllBoardMember()));
     }
@@ -53,4 +58,6 @@ public class BoardMapperTests {
         boardVO.setBoardId(4L);
         boardMapper.delete(boardVO.getBoardId());
     }
+
+
 }
