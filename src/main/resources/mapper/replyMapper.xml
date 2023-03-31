@@ -34,11 +34,11 @@
         from tbl_reply as r
         join tbl_board as b on r.board_id = b.board_id
         join tbl_member as m on r.member_id = m.member_id
-
         order by reply_id desc
         limit #{offset}, #{amount}
     </select>
 </mapper>
 
-<!--        &#45;&#45;-->
-<!--        &#45;&#45;             where r.reply_content like concat('%',#{keyword}, '%')-->
+        <!--        <if test="keyword!=null">
+                    where r.reply_content like concat('%',#{keyword}, '%')
+                </if>-->
