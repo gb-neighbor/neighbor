@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/admins/*")
+@RequestMapping("/admin/*")
 public class AdminController {
 
     private final MemberService memberService;
@@ -127,21 +127,21 @@ public class AdminController {
         for (ReplyDTO dto : replyDTOS) {
             dto.change(dto.getBoardRegion());
         }
-        model.addAttribute("replys", replyDTOS);
-
+//        model.addAttribute("replys", replyDTOS);
+        log.info(criteria.toString());
         return "admin/manage-reply";
     }
 
     /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
 
-    @PostMapping("reply/list")
+    @GetMapping("reply/page")
     @ResponseBody
-    public ReplyDTO showList() {
-        Criteria criteria = new Criteria();
-        criteria = criteria.create(3, 6);
+    public ReplyDTO showList(@RequestParam int page, Criteria criteria) {
+        criteria = criteria.create(page, 6);
         ReplyDTO replyDTO = new ReplyDTO();
         replyDTO.setReplyTotal(replyService.getCountAll());
         replyDTO.setReplyDTOS(replyService.getList(criteria));
+//        replyDTO.getPageDTO().getCriteria().setPage(page);
         replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, replyService.getCountAll()));
 
         for (ReplyDTO dto : replyDTO.getReplyDTOS()) {

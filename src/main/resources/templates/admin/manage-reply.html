@@ -137,24 +137,24 @@
                     </div>
 
                     <!-- 여기부터 내용 -->
-<!--                    <div class="item-list-contents" th:each="reply:${replys}">-->
-<!--                        <div class="checkbox-zip">-->
-<!--                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">-->
-<!--                        </div>-->
-<!--                        <div class="reply-num" th:text="*{reply.replyId}"></div>-->
-<!--                        <div class="board-num" th:text="*{reply.boardId}"></div>-->
-<!--                        <div class="region" th:text="*{reply.replyRegionKo}"></div>-->
-<!--                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>-->
-<!--                        <div class="reply-content">-->
-<!--                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>-->
-<!--                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">-->
-<!--                                <a class="modal_close_btn">✖</a>-->
-<!--                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>-->
-<!--                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>-->
-<!--                    </div>-->
+                    <!--                    <div class="item-list-contents" th:each="reply:${replys}">-->
+                    <!--                        <div class="checkbox-zip">-->
+                    <!--                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">-->
+                    <!--                        </div>-->
+                    <!--                        <div class="reply-num" th:text="*{reply.replyId}"></div>-->
+                    <!--                        <div class="board-num" th:text="*{reply.boardId}"></div>-->
+                    <!--                        <div class="region" th:text="*{reply.replyRegionKo}"></div>-->
+                    <!--                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>-->
+                    <!--                        <div class="reply-content">-->
+                    <!--                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>-->
+                    <!--                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">-->
+                    <!--                                <a class="modal_close_btn">✖</a>-->
+                    <!--                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>-->
+                    <!--                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>-->
+                    <!--                    </div>-->
                 </div>
 
                 <div class="page-button-box">
@@ -181,112 +181,229 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-    window.onload = load();
+    const $changePageTags = $(".page-button");
+    let page = 1;
+    load(page);
 
-    // function search() {
+    // $changePageTags.each(function(i, changePageTag){
+    //     $(changePageTag).on("click", e => {
+    //         e.preventDefault();
+    //         page = $(changePageTag).text();
+    //         console.log(page);
+    //         load(page);
+    //     });
+    // });
+    // 페이지 버튼에 클릭 이벤트 추가
+    $('.page-button').on('click', function() {
+        const clickedPage = $(this).text(); // 클릭한 페이지 버튼의 텍스트 가져오기
+        console.log(clickedPage);
+        // 여기서부터 클릭한 페이지에 대한 처리를 진행할 수 있습니다.
+        // 예를 들어, 클릭한 페이지에 해당하는 데이터를 서버에서 가져와서 화면에 보여줄 수 있습니다.
+    });
+
+
+
+    function showList(replyDTOS) {
+        console.log("showlist" + page);
+        const $results = $('.checkbox-group');
+        var text = "";
+        var content = "";
+        replyDTOS.forEach(reply => {
+            content += `
+            <div class="item-list-contents">
+                <div class="checkbox-zip">
+                    <input type="checkbox" name="checkbox" id="check1" class="normal" value="">
+                </div>
+                <div class="reply-num">${reply.replyId}</div>
+                <div class="board-num">${reply.boardId}</div>
+                <div class="region">${reply.replyRegionKo}</div>
+                <div class="writer-nick">${reply.memberNickname}</div>
+                <div class="reply-content">
+                    <span id="${reply.replyId}" onclick="openModal(${reply.replyId})">${reply.replyContent}</span>
+                    <div id="my_modal${reply.replyId}" class="my_modal">
+                        <a class="modal_close_btn">✖</a>
+                        <div class="comment-writer">작성자: <span>${reply.memberNickname}</span></div>
+                        <div class="comment-detail">${reply.replyContent}</div>
+                    </div>
+                </div>
+                <div class="reply-day">${reply.replyRegisterDate}</div>
+            </div>`
+        });
+        $('.item-list-contents').remove();
+        if ($("#check-all").prop("checked")) {
+            $("#check-all").prop("checked", false);
+        }
+        $results.append(content);
+
+    } // showlist 끝
+
+
+    // 1번이 클릭되어있는 것처럼 보임!
+    // function showPage(pageDTO) {
+    //     console.log("showpage" + page);
+    //     const criteria = pageDTO.criteria;
+    //     let text = "";
+    //     $btns.empty(); // 이전에 생성한 페이지 버튼 제거
+    //     if (pageDTO.prev) {
+    //         text += `<a class="page-button" href="list/${pageDTO.startPage - 1}"><code><</code></a>`;
+    //     }
+    //     for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+    //         // if (criteria.page === i) {
+    //         //     text += `${i}`;
+    //         // } else {
+    //         //     text += `<a class="page-button" data-page="${i}">${i}</a>`;
+    //         // }
+    //         if (criteria.page === i) {
+    //             text += `${i}`;
+    //         } else {
+    //             text += `<a class="page-button" data-page="${i}" href="">${i}</a>`;
+    //         }
+    //     }
+    //     if (pageDTO.next) {
+    //         text += `<a class="page-button" href="list/${pageDTO.endPage + 1}"><code>></code></a>`;
+    //     }
+    //     $btns.append(text);
+    //     const $btns = $('.page-button-box');
+    //     $btns.on('click', '.page-button', function(event) {
+    //         event.preventDefault();
+    //         const $target = $(this);
+    //         const page = $target.data('page');
+    //         if (page) {
+    //             pageDTO.criteria.page = page;
+    //             showPage(pageDTO);
+    //         }
+    //     });
     //
+    //     $("input[name='page']").val(criteria.page);
     // }
 
 
-function showList(replyDTOS) {
-    let page = 1;
-    const $results = $('.checkbox-group');
-    var text = "";
-    var content = "";
-    replyDTOS.forEach(reply => {
-        content += `
-        <div class="item-list-contents">
-            <div class="checkbox-zip">
-                <input type="checkbox" name="checkbox" id="check1" class="normal" value="">
-            </div>
-            <div class="reply-num">${reply.replyId}</div>
-            <div class="board-num">${reply.boardId}</div>
-            <div class="region">${reply.replyRegionKo}</div>
-            <div class="writer-nick">${reply.memberNickname}</div>
-            <div class="reply-content">
-                <span id="${reply.replyId}" onclick="openModal(${reply.replyId})">${reply.replyContent}</span>
-                <div id="my_modal${reply.replyId}" class="my_modal">
-                    <a class="modal_close_btn">✖</a>
-                    <div class="comment-writer">작성자: <span>${reply.memberNickname}</span></div>
-                    <div class="comment-detail">${reply.replyContent}</div>
-                </div>
-            </div>
-            <div class="reply-day">${reply.replyRegisterDate}</div>
-         </div>
-        `
-    });
-    $('.item-list-contents').remove();
-    $results.append(content);
-/*<div th:object="${pagination}">
-        <div style="text-align: center">
-        <a class="page-button" th:href="*{pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
-    <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
-        <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-    <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-        </th:block>
-        <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
-    </div>
-    <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
-        <input type="hidden" th:field="*{page}">
-        </form>
-        </div>*/
-/*    if(result.pageDTO.globalThis.page > 1){
-         text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page - 1) + `"><code><</code></a>`
-    }
-    text += `<code>` + result.pageDTO.globalThis.page + `</code>`
-    if(result.pageDTO.globalThis.page < realEnd){
-        text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page + 1) + `"><code>></code></a>`
-    }
-    else {
-        if (result.pageDTO.globalThis.prev()) {
-            text += `<a class="page-button" href="` + (result.pageDTO.globalThis.startPa - 1) + `"><code>PREV</code></a>`
+
+    // 페이지를 텍스트로 가져오기 성공!
+    function showPage(pageDTO) {
+        console.log("showpage" + page);
+        const $btns = $('.page-button-box');
+        const criteria = pageDTO.criteria;
+        let text = "";
+        $btns.empty(); // 이전에 생성한 페이지 버튼 제거
+        if (pageDTO.prev) {
+            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
         }
-        for (let i = startNumber; i <= endNumber; i++) {
-            if (result.pageDTO.globalThis.page == i) {
-                text += `<code>` + i + `</code>`
-                continue;
+        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+            if (criteria.page === i) {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            } else {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
             }
-            text += `<a class="page-button" href="` + i + `"><code>` + i + `</code></a>`
         }
-        if (next) {
-            text += `<a class="page-button" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
+        if (pageDTO.next) {
+            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
         }
-    }
-    $('.page-button-box').html(text);*/
-}
+        $btns.append(text);
+        $("input[name='page']").val(criteria.page);
 
-function showPage(pageDTO) {
-    const $btns = $('.page-button-box');
-    const criteria = pageDTO.criteria;
-    let text = "";
-    if (pageDTO.prev) {
-        text +=
-            '<a class="page-button" href="' +
-            (pageDTO.startPage - 1) +
-            '"><code><</code></a>';
-    }
-    for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
-        if (criteria.page === i) {
-            text += '<code>' + i + '</code>';
-        } else {
-            text +=
-                '<a class="page-button" href="' +
-                i +
-                '"><code>' +
-                i +
-                '</code></a>';
-        }
-    }
-    if (pageDTO.next) {
-        text +=
-            '<a class="page-button" href="' +
-            (pageDTO.endPage + 1) +
-            '"><code>></code></a>';
+
+        $('.page-button').on('click', function(e) {
+            e.preventDefault();
+            const page = $(this).data('page');
+            console.log(page);
+            load(page);
+            $('.page-button.active').removeClass('active');
+            $(this).addClass('active');
+        }).on('mouseenter', function() {
+            $(this).css('cursor', 'pointer');
+        }).on('mouseleave', function() {
+            $(this).css('cursor', 'auto');
+        });
     }
 
-    $btns.append(text);
-    $("input[name='page']").val(criteria.page);
-}
+
+    function load(page) {
+        $.ajax({
+            url: `/admin/reply/page`,
+            type: "get",
+            data: {page: page},
+            success: function (result) {
+                console.log("load" + page);
+                // replyDTO
+                $('.total-mentor-num').html(result.replyTotal);
+                showList(result.replyDTOS);
+                showPage(result.pageDTO);
+            }
+        });
+    }
+
+    /* delete 버튼 클릭 시 ajax실행*/
+
+    $('.reply-delete-button').on('click', function () {
+        var checkedIds = new Array();
+        // 체크 박스 체크된 값
+        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function () {
+            console.log(this.innerText);
+            checkedIds.push(this.innerText);
+        });
+        $.ajax({
+            url: "/admin/reply/delete",
+            type: "delete",
+            data: {
+                "checkedIds": checkedIds,
+            },
+            success: function () {
+                load(page);
+            }
+        });
+    });
+
+
+
+    /*<div th:object="${pagination}">
+               <div style="text-align: center">
+               <a class="page-button" th:href="*{pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
+               page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)} 이 부분은 처음 페이지부터 끝 페이지까지 아래에 순서대로 나타나게 할거라는 것이다.
+               1~5 페이지면 12345 이렇게 나올 것이니까 앞에 태그를 줘서 css를 입히면 된다.
+           <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
+               <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+               unless는 when의 역할이다.
+           <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+               </th:block>
+               <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+           </div>
+           <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
+               <input type="hidden" th:field="*{page}">
+               </form>
+               </div>*/
+    /*    if(result.pageDTO.globalThis.page > 1){
+             text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page - 1) + `"><code><</code></a>`
+        }
+        text += `<code>` + result.pageDTO.globalThis.page + `</code>`
+        if(result.pageDTO.globalThis.page < realEnd){
+            text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page + 1) + `"><code>></code></a>`
+        }
+        else {
+            if (result.pageDTO.globalThis.prev()) {
+                text += `<a class="page-button" href="` + (result.pageDTO.globalThis.startPa - 1) + `"><code>PREV</code></a>`
+            }
+            for (let i = startNumber; i <= endNumber; i++) {
+                if (result.pageDTO.globalThis.page == i) {
+                    text += `<code>` + i + `</code>`
+                    continue;
+                }
+                text += `<a class="page-button" href="` + i + `"><code>` + i + `</code></a>`
+            }
+            if (next) {
+                text += `<a class="page-button" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
+            }
+        }
+        $('.page-button-box').html(text);*/
+
+
+
+
+
+
+
+
+
     /*    if(result.pageDTO.globalThis.page > 1){
                  text += `<a class="page-button" href="` + (result.pageDTO.globalThis.page - 1) + `"><code><</code></a>`
             }
@@ -311,46 +428,5 @@ function showPage(pageDTO) {
             }
             $('.page-button-box').html(text);*/
 
-
-function load() {
-    $.ajax({
-        url: "/admins/reply/list",
-        /*        data: {
-        criteria: criteria
-        },*/
-        type: "post",
-        success: function (result) {
-            // replyDTO
-            $('.total-mentor-num').html(result.replyTotal);
-            showList(result.replyDTOS);
-            showPage(result.pageDTO);
-        }
-    });
-}
-
-/* delete 버튼 클릭 시 ajax실행*/
-
-$('.reply-delete-button').on('click', function () {
-    var checkedIds = new Array();
-    // 체크 박스 체크된 값
-    $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function () {
-        console.log(this.innerText);
-        checkedIds.push(this.innerText);
-    });
-
-    $.ajax({
-        url: "/admins/reply/delete",
-        type: "delete",
-        data: {
-            "checkedIds": checkedIds,
-            /*                "page" : page*/
-        },
-
-        success: function () {
-            load();
-        }
-
-    });
-});
 </script>
 </html>
