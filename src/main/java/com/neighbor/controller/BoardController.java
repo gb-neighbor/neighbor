@@ -47,11 +47,13 @@ public class BoardController {
 
     @PostMapping("save")
     public RedirectView writeBoard(BoardDTO boardDTO, HttpSession httpSession){
-        Long memberId = (Long) httpSession.getAttribute("memberId");
+//        Long memberId = (Long) httpSession.getAttribute("memberId");]
+        Long memberId = 2L;
         boardDTO.setMemberId(memberId);
+
         boardDTO.setBoardId(boardService.write(boardDTO));
         boardFileService.upload(boardDTO);
-
+        log.info(String.valueOf(boardDTO));
         return new RedirectView("list/region");
     }
 
@@ -133,7 +135,8 @@ public class BoardController {
 
     @GetMapping("detail/{boardId}")
     public String goList(@PathVariable("boardId") Long boardId){
-        return "";
+
+        return "board/product-detail2";
     }
 
 

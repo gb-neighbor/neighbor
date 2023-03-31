@@ -13,12 +13,15 @@ public interface BoardFileMapper {
 //     디테일 파일 추가
     public void insertDetail(BoardDTO boardDTO);
 
+//      boardId로 모든 파일 가져오기
+    public List<BoardFileVO> selectAllFiles(Long boardId);
+
 //    마지막에 추가된 보드 아이디 가져오기
     public Long getCurrentSequenceForFile();
 //
     public BoardFileVO selectMainFile(Long boardId);
 
-//  파일 전체 조회
+//  파일 전체 조회 3개만
     public List<BoardFileVO> selectAll(Long boardId);
 //    파일 삭제
     public void delete(Long boardId);

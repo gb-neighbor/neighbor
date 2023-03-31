@@ -25,6 +25,11 @@
         from tbl_board_file
         where board_id = #{boardId} and board_file_status = true;
     </select>
+<!-- boardId로 모든 파일 가져오기 -->
+    <select id="selectAllFiles" resultType="boardFileVO">
+        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_file_status, board_id
+        from tbl_board_file where board_id= #{boardId};
+    </select>
 
     <select id="selectAll" resultType="boardFileVO">
         select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id
