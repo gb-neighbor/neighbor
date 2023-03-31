@@ -21,10 +21,10 @@
             <li class="list_profile">
                 <a href="" class="first_letter">프로필</a>
                 <div class="list_profile_items disply_bundle">
-                    <a href="" class="second_letter">홈</a>
-                    <a href="" class="second_letter except_home_letter">쪽지함</a>
-                    <a href="" class="second_letter except_home_letter">내가 올린 반찬</a>
-                    <a href="" class="second_letter except_home_letter">후기</a>
+                    <a th:href=@{/main} class="second_letter">홈</a>
+                    <a th:href=@{/mypage/message_box} class="second_letter except_home_letter">쪽지함</a>
+                    <a th:href class="second_letter except_home_letter">내가 올린 반찬</a>
+                    <a th:href class="second_letter except_home_letter">후기</a>
                 </div>
             </li>
 
@@ -141,14 +141,9 @@
                     </div>
                 </div>
 
-                <form action="" name="leave" method="">
-                    <div class="leave_reason">
-                        <dt class="reason_message">탈퇴 하시려는 사유를 작성해주세요. 싱그러운 집 서비스 운영에 많은 도움이 됩니다.</dt>
-                        <label><textarea class="reason_write" name="reason" placeholder="탈퇴 사유를 작성해주세요."></textarea></label>
-                    </div>
-
+                <form th:action="@{/mypage/leave(memberId=45)}" name="leave" method="post">
                     <div class="leave_site_btns">
-                        <a href="" class="go_on_btn">서비스 계속 이용하기</a>
+                        <a href="/main" class="go_on_btn">서비스 계속 이용하기</a>
                         <button type="submit" class="leave_btn">탈퇴하기</button>
                     </div>
                 </form>
