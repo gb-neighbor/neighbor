@@ -293,7 +293,6 @@ const messageService=(function(){
 			dataType: "json",
 			method: "post",
 			success: function(messages){
-				console.log(messages)
 				if(messages!=null){
 					if(callback){
 						callback(messages);

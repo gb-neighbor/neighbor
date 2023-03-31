@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/ask-admins/*")
+@RequestMapping("/ask-admin/*")
 public class AskAdminController {
 
     private final AskAdminService askAdminService;
@@ -77,7 +77,7 @@ public class AskAdminController {
     public RedirectView deleteDetail(Model model,@PathVariable Long askAdminId){
         askAdminService.deleteDetail(askAdminId);
         log.info("삭제들어옴");
-        return new RedirectView("/ask-admins/inquiry-list");
+        return new RedirectView("/ask-admin/inquiry-list");
     }
 
 

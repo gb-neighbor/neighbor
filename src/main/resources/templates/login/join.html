@@ -13,7 +13,7 @@
     <form action="/members/register" method="post" name="write-form">
         <div class="join-wrapper">
             <div class="logo">
-                <a href="#">
+                <a class="session_clear" onclick="sessionClear()" href="http://localhost:10000/main/main">
                     <span class="logo-name">이웃집 반찬</span>
                 </a>
             </div>
@@ -108,7 +108,7 @@
                 <dl>
                     <dt>이메일</dt>
                     <input class="email" type="text" name="memberEmail" placeholder="이메일" th:if="${session.memberVO == null}">
-                    <input class="email" type="text" name="memberEmail" th:if="${session.memberVO != null}" th:value="${session.memberVO.memberEmail}" readonly>
+                    <input class="email" type="text" name="memberEmail" th:if="${session.memberVO != null}" th:value="${session.memberVO.getMemberEmail()}" readonly>
                     <p class="err-email" err></p>
                 </dl>
                 <dl>

@@ -81,8 +81,8 @@
         </div>
 
         <div class="inquiry_detail_btn" >
-                <a type="button" name="askAdminId" class="detail_delete_btn" id="delete-button" th:href="@{/ask-admins/detail-delete/{askAdminId}(askAdminId=${askAdmin.askAdminId})}">삭제</a>
-            <a href="" class="go_to_inquiry_list">목록</a>
+                <a type="button" name="askAdminId" class="detail_delete_btn" id="delete-button" th:href="@{/ask-admin/detail-delete/{askAdminId}(askAdminId=${askAdmin.askAdminId})}">삭제</a>
+            <a class="go_to_inquiry_list" onclick="location.href='/ask-admin/inquiry-list'" style="cursor: pointer">목록</a>
         </div>
     </article>
 </section>

@@ -155,16 +155,14 @@ public class MemberController {
         String token = kakaoService.getKaKaoAccessToken(code);
 //        session.setAttribute("token", token);
         MemberVO kakaoInfo = kakaoService.getKakaoInfo(token);
-        MemberVO memberVO = memberService.findInfoByEmail(kakaoInfo.getMemberEmail());
         log.info("kakaoInfo : " + kakaoInfo);
+        log.info(kakaoInfo.getMemberEmail());
 
+
+        session.setAttribute("memberVO", kakaoInfo);
         if(memberService.checkEmail(kakaoInfo.getMemberEmail()) == 0){
             return "redirect:no-join";
         }
-
-        session.setAttribute("memberVO", memberVO);
-
-        log.info(String.valueOf(session.getAttribute("memberVO")));
 
         return "redirect:/main/main";
     }
