@@ -86,7 +86,7 @@
                 <!--  쪽지 모달 위치  -->
                 <!--modal-->
                 <div  th:id="'my_modal' + *{messageRoomId}" class="my_modal2 this_modal"> <!-- my_modal옆에 쪽지번호로 가져오기 -->
-                    <a class="modal_close_btn">✖</a>
+                    <a class="modal_close_btn" th:id="'modal_close_btn' + *{messageRoomId}">✖</a>
                     <div class="box_top" th:id="'box_top' + *{messageRoomId}"></div>
                     <div class="box_text" th:id="'box_text' + *{messageRoomId}"></div>
 

@@ -35,14 +35,14 @@ function modal(name, id) {
         })
         .show()
         // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-        .find('.modal_close_btn')
+        .find('#modal_close_btn'+ globalThis.targetNum)
         .on('click', function() {
             bg.hide();
             modal.hide();
-            $("#write-section" + targetNum).val('');
-            $("#text_length" + targetNum).val('0');
-            $messageBox.html("");
-            $infoBox.html("");
+            $("#write-section" + globalThis.targetNum).val('');
+            $("#text_length" + globalThis.targetNum).val('0');
+            $("#box_text" + globalThis.targetNum).children().remove();
+            globalThis.page =1;
         });
 }
 
@@ -142,30 +142,57 @@ $("div.modal").on("click", function(){
 /* 버튼 텍스트로 변경 */
 
 function changeToText(number){
-    document.getElementById("purchase_done"+number).style.display ="none";
-    document.getElementById("purchase_complete_message"+number).style.display ="block";
+    document.getElementById("#purchase_done"+number).style.display ="none";
+    document.getElementById("#purchase_complete_message"+number).style.display ="block";
 }
 
 /*********************************************************************************************/
 var boardId;
 var targetId;
-var targetNum;
+globalThis.targetNum;
 
 var $messageBox;
 var $infoBox;
 
+globalThis.page;
 
 function getMessageRoom(target, board, messageRoomId) {
+    globalThis.page = 1;
     targetId = target;
     boardId = board;
-    targetNum = messageRoomId;
-    $messageBox = $("#box_text" + targetNum);
-    $infoBox = $('#box_top' + targetNum);
+    globalThis.targetNum = messageRoomId;
+    $messageBox = $("#box_text" + globalThis.targetNum);
+
+    globalThis.scrollHeight = $messageBox[0].scrollHeight;
+    $infoBox = $('#box_top' + globalThis.targetNum);
+
+
     messageService.targetInfo(showTargetInfo);
+    console.log(globalThis.page + "init");
     messageService.list(showMessage);
+
+
+    $messageBox.scroll(function() {
+        console.log(globalThis.page + "-1");
+        if ($messageBox.scrollTop() == 0) {
+            globalThis.page++;
+            messageService.list(showMessage);
+
+            console.log(globalThis.page + "-2");
+        }
+    });
+
+
 }
 
 
+function refreshClicked(){
+    $("#box_text" + globalThis.targetNum).children().remove();
+    globalThis.page =1;
+    // messageService.list(showMessage);
+
+    $messageBox.scrollTop(globalThis.scrollHeight);
+}
 
 function openModalBanner(num){ /* 괄호에 num으로 받기 */
     modal('#my_modal', num);
@@ -174,15 +201,15 @@ function openModalBanner(num){ /* 괄호에 num으로 받기 */
 const messageService=(function(){
     function list(callback){
         $.ajax({
-            url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId,
+            url: "/messages/detail/"+boardId+"/"+memberId+"/"+targetId+"/"+globalThis.page,
             dataType: "json",
             method: "post",
             success: function(messages){
-                if(callback){
-                    callback(messages);
+                if(messages!=null){
+                    if(callback){
+                        callback(messages);
+                    }
                 }
-                console.log($messageBox.scrollHeight);
-				$messageBox.scrollTop($messageBox[0].scrollHeight);
             }
         });
     }
@@ -196,7 +223,7 @@ const messageService=(function(){
                 if(callback){
                     callback(Infos);
                 }
-                openModalBanner(targetNum);
+                openModalBanner(globalThis.targetNum);
             }
         });
     }
@@ -206,13 +233,14 @@ const messageService=(function(){
 
 $('.send_form').submit(function(e) {
     e.preventDefault();
-    if($("#write-section" + targetNum).val()){
+    if($("#write-section" + globalThis.targetNum).val()){
         let messageVO = {
             boardId: boardId,
             messageSenderId: memberId,
             messageGetterId: targetId,
-            messageContent: $("#write-section" + targetNum).val()
+            messageContent: $("#write-section" + globalThis.targetNum).val()
         };
+        globalThis.page=1;
         $.ajax({
             url: "/messages/insert",
             type: $(this).attr('method'),
@@ -220,13 +248,14 @@ $('.send_form').submit(function(e) {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function(data) {
-                $("#write-section" + targetNum).val('');
-                $("#text_length"+targetNum).val('0');
+                $("#write-section" + globalThis.targetNum).val('');
+                $("#text_length"+globalThis.targetNum).val('0');
                 messageService.list(showMessage);
-                $messageBox.scrollTop($messageBox[0].scrollHeight);
-
+                $messageBox.scrollTop(globalThis.scrollHeight);
             }
         });
+    }else{
+        alert("message cannot be null")
     }
 });
 
@@ -243,7 +272,7 @@ function showTargetInfo(Infos){
             <h3 class="detail_title">
                 ${Infos.boardTitle}
             </h3>
-            <div class="refresh_image_wrap" onclick="messageService.list(showMessage)">
+            <div class="refresh_image_wrap" onclick="refreshClicked()">
                 <img class="refresh_image" src="/css/board/images/refresh_btn.png">
             </div>
         </div>
@@ -260,7 +289,7 @@ function showMessage(messages){
     let messagesList = "";
     messages.forEach(message => {
         if(message.messageSenderId==memberId){
-            messagesList+=`
+            messagesList=`
         <div class="my_text_wrap">
           <div class="my_text">
             <p class="my_text_content">${message.messageContent}</p>
@@ -268,9 +297,9 @@ function showMessage(messages){
           <div class="my_text_time">
             <p class="message_box_time">${message.messageRegisterDate}</p>
           </div>
-        </div>`;
+        </div>`+messagesList;
         }else{
-            messagesList+=`
+            messagesList=`
         <div class="opponent_text_wrap">
           <div class="opponent_text">
             <p class="opponent_text_content">${message.messageContent}</p>
@@ -278,10 +307,10 @@ function showMessage(messages){
           <div class="opponent_text_time">
             <p class="message_box_time">${message.messageRegisterDate}</p>
           </div>
-        </div>`;
+        </div>`+messagesList;
         }
     });
-    $messageBox.html(messagesList);
+    globalThis.page == 1 ? $messageBox.html(messagesList) : $messageBox.prepend(messagesList);
 }
 
 /*********************************************************************************************/
