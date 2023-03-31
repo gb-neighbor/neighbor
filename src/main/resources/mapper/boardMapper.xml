@@ -8,6 +8,7 @@
         VALUES(#{boardTitle}, #{boardContent}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{memberId}, #{boardRegion}, #{boardPrice});
     </insert>
     <!-- board에 있는 모든 정보 가져오기-->
+
     <select id="selectAllBoardMember" resultType="boardDTO">
         select m.member_id, board_id, board_title,board_region, board_register_date, board_update_date, board_status, board_price, board_content
         member_nickname, member_profile_path, member_profile_uuid, member_profile_original_name, member_identification, member_email, member_region,
