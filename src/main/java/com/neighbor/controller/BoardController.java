@@ -1,6 +1,7 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.dto.Critera2;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
@@ -48,7 +49,7 @@ public class BoardController {
     @PostMapping("save")
     public RedirectView writeBoard(BoardDTO boardDTO, HttpSession httpSession){
 //        Long memberId = (Long) httpSession.getAttribute("memberId");]
-        Long memberId = 2L;
+        Long memberId = 1L;
         boardDTO.setMemberId(memberId);
 
         boardDTO.setBoardId(boardService.write(boardDTO));
@@ -58,10 +59,45 @@ public class BoardController {
     }
 
     @GetMapping("list/region")
-    public String goList(Model model){
-
+    public String goList(Model model, Critera2 critera2){
+        critera2.setPage(1);
 //      맴버와 보드를 합친 DTO를 가져옴
-        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard();
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null);
+        Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
+        int avgScore = 0;
+        int sum = 0;
+
+        for(BoardDTO boardDTO:boardDTOList){
+            boardDTO.change(boardDTO.getBoardRegion());
+            boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
+
+            // 게시물에 대한 댓글 가져오기
+            List<ReplyVO> replyVOList = replyService.getListByBoardId(boardDTO.getBoardId());
+            replyVOMap.put(boardDTO.getBoardId(), replyVOList);
+
+            // 해당 게시물에 대한 댓글의 평균 점수 구하기
+
+            for (ReplyVO reply : replyVOList) {
+                    sum += reply.getReplyScore();
+
+            }
+            int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
+
+            // 평균 점수 더하기
+            boardDTO.setAvgScore(avg);
+        }
+
+        log.info(String.valueOf(boardDTOList));
+        model.addAttribute("boardDTOList", boardDTOList);
+        return "list/list-by-region";
+    }
+
+/* 무한스크롤 이벤트로 가져오기 */
+    @PostMapping("lists/regions")
+    @ResponseBody
+    public List<BoardDTO> getNextPage(Critera2 critera2){
+        //      맴버와 보드를 합친 DTO를 가져옴
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null);
         Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
         int avgScore = 0;
 
@@ -84,14 +120,15 @@ public class BoardController {
             boardDTO.setAvgScore(avg);
         }
 
-
         log.info(String.valueOf(boardDTOList));
-        model.addAttribute("boardDTOList", boardDTOList);
-        return "list/list-by-region";
+        log.info(String.valueOf(critera2));
+        return boardDTOList;
     }
 
+
     @GetMapping("list/member/{memberId}")
-    public String goMember(@PathVariable("memberId") Long memberId, Model model) {
+    public String goMember(@PathVariable("memberId") Long memberId, Model model, Critera2 critera2) {
+        critera2.setPage(1);
         MemberVO memberVO = memberService.getOneMemberInfo(memberId);
         List<BoardVO> boardVOList = boardService.getBoardInfo(memberId);
         BoardFileVO boardFileVO = new BoardFileVO();
@@ -115,10 +152,9 @@ public class BoardController {
         }
 
         size = replyVOMap.values().stream().mapToInt(Collection::size).sum();
-        avgScore = totalScore/size;
-
-        log.info(String.valueOf(String.valueOf(replyVOMap)));
-
+        if(size != 0){
+            avgScore = totalScore/size;
+        }
         model.addAttribute("memberVO", memberVO);
         model.addAttribute("boardVOList", boardVOList);
         model.addAttribute("replySize", size);
@@ -126,6 +162,37 @@ public class BoardController {
         model.addAttribute("boardSize", boardVOList.size());
         model.addAttribute("mainFile", mainFile);
         return "list/list-by-member";
+    }
+
+    @PostMapping("lists/members/{memberId}")
+    @ResponseBody
+    public List<BoardDTO> getNextMember(Critera2 critera2, @PathVariable("memberId") Long memberId){
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, memberId);
+        Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
+        int avgScore = 0;
+
+        for(BoardDTO boardDTO:boardDTOList){
+            boardDTO.change(boardDTO.getBoardRegion());
+            boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
+
+            // 게시물에 대한 댓글 가져오기
+            List<ReplyVO> replyVOList = replyService.getListByBoardId(boardDTO.getBoardId());
+            replyVOMap.put(boardDTO.getBoardId(), replyVOList);
+
+            // 해당 게시물에 대한 댓글의 평균 점수 구하기
+            int sum = 0;
+            for (ReplyVO reply : replyVOList) {
+                sum += reply.getReplyScore();
+            }
+            int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
+
+            // 평균 점수 더하기
+            boardDTO.setAvgScore(avg);
+        }
+
+        log.info(String.valueOf(boardDTOList));
+        log.info(String.valueOf(critera2));
+        return boardDTOList;
     }
 
     @GetMapping("detail")

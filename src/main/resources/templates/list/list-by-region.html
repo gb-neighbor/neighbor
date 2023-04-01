@@ -519,30 +519,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let boardDTO = [[${boardDTOList}]];
-    console.log(boardDTO)
-
-    $(document).ready(function() {
-        $('.thumbs1').each(function () {
-            let boardFilePath = $(this).data('board-file-path');
-            let boardFileUuid = $(this).data('board-file-uuid');
-            let boardFileOriginalName = $(this).data('board-file-original-name');
-            let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
-            $(this).css('background-image', 'url(' + boardUrl + ')');
-        });
-
-    });
-
-    $(document).ready(function() {
-
-        $('.thumbs').each(function () {
-            let memberProfilePath = $(this).data('member-profile-path');
-            let memberProfileFileUuid = $(this).data('member-profile-uuid');
-            let memberProfileOriginalName = $(this).data('member-profile-original-name');
-            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileFileUuid + '_' + memberProfileOriginalName;
-            $(this).css('background-image', 'url(' + membeUrl + ')');
-        });
-
-    });
 </script>
 
 <script src="/js/list/list-by-region.js"></script>

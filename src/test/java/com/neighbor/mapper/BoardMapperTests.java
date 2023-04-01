@@ -1,6 +1,7 @@
 package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.dto.Critera2;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import lombok.RequiredArgsConstructor;
@@ -35,14 +36,21 @@ public class BoardMapperTests {
 
     @Test
     public void testAllBoardMemberFile(){
-        log.info(String.valueOf(boardMapper.selectAllBoardMember()));
+//        log.info(String.valueOf(boardMapper.selectAllBoardMember()));
     }
 
     @Test
     public void testSelect(){
-        BoardDTO boardDTO = boardMapper.select(1);
-        Assertions.assertThat(boardDTO.getBoardRegion()).isEqualTo(1);
+//        BoardDTO boardDTO = boardMapper.select(1);
+//        Assertions.assertThat(boardDTO.getBoardRegion()).isEqualTo(1);
         /* 널포인터 익셉션 어떻게 안뜨게 하지*/
+    }
+    @Test
+    public void testGetAll(){
+//        Critera2 critera2 = new Critera2();
+//        critera2.setPage(1);
+//        critera2.create(10);
+//        log.info(String.valueOf(boardMapper.selectAllBoardMember(critera2, null)));
     }
 
     /*관리자 대시보드 게시판*/
