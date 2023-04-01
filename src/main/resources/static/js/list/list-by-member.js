@@ -34,7 +34,7 @@ function addLabel(){
 
 
 /* 내가 쓴 게시물 다 넣기 */
-let boards = "";
+/*let boards = "";
 
 for (let i = 0; i < boardList.length; i++) {
     boards +=
@@ -56,7 +56,7 @@ for (let i = 0; i < boardList.length; i++) {
        </li>
        `;
 }
-$("ul.list-outer").append(boards);
+$("ul.list-outer").append(boards);*/
 
 applyCSS()
 function applyCSS() {
@@ -86,6 +86,125 @@ for (let i = 0; i < boardList.length; i++) {
 $(".total-sold span").text(doneSale);
 /* 판매종료 끝 */
 
+/* ---------------------------무한 스크롤 ----------------------------*/
+let page = 1;
+let pathArray = window.location.pathname.split('/');
+let memberId = pathArray.pop();
+const $ul = $("ul.list-outer");
+let boards = '';
+
+const boardService = (() => {
+  function getList(callback){
+    $.ajax({
+      url: `boards/lists/members/${memberId}?page=${page}`,
+      type: 'post',
+      success: function(boardDTOList){
+        if(callback){
+          callback(boardDTOList);
+        }
+      }
+    });
+  }
+  return {getList: getList};
+})();
+
+function appendList() {
+  boardService.getList(boardDTOList => {
+    console.log(boardDTOList)
+    boardDTOList.forEach(board => {
+      const stars = generateStarHtml(board.avgScore);
+      const thumbs = generateThumbsHtml(board.files);
+      boards +=
+          `
+        <li>
+        <a href="#" style="display: block;" id="parent-block">
+            <div class="board-thumb-wrapper">
+                <div class="board-thumb"  
+                    data-board-file-path="${board.boardFilePath}"
+                    data-board-file-uuid="${board.boardFileUuid}"
+                    data-board-file-original-name="${board.boardFileOriginalName}"
+                    data-board-status="${board.boardStatus}">
+                </div>
+            </div>
+            <p class="board-title">${board.boardTitle}</p>
+            <p class="board-date">${board.boardUpdateDate}</p>
+            <span class="label-spot"></span>
+        </a>
+       </li>
+       `;
+    });
+    if (boardDTOList.length === 0) { // 불러올 데이터가 없으면
+      $(window).off('scroll'); // 스크롤 이벤트를 막음
+      return;
+    }
+    $ul.append(boards);
+    getProfileImage();
+  });
+
+
+}
+
+
+
+$(window).scroll(function() {
+  let zoomLevel = $('body').css('zoom');
+  if (zoomLevel === '0.8') {
+    if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 10 > $(document).height()) {
+      page++;
+      appendList();
+      console.log(page)
+      getProfileImage();
+    }
+  }
+});
+appendList();
+/* 썸네일 사진 생성 코드 */
+function generateThumbsHtml(files) {
+  let thumbs = '';
+  files.forEach(file => {
+    thumbs += `
+            <div class="pics-thumbs thumbs1" 
+                data-board-file-path="${file.boardFilePath}" 
+                data-board-file-uuid="${file.boardFileUuid}"
+                data-board-file-original-name="${file.boardFileOriginalName}">
+            </div>
+        `;
+  });
+  return thumbs;
+}
+/* 별점 생성 코드 */
+function generateStarHtml(avgScore) {
+  let stars = '';
+  for (let j = 0; j < 5; j++) {
+    if (j < avgScore) {
+      if (j < 5) {
+        stars += "<img src='/css/main/images/star.png'>";
+      }
+    } else {
+      stars += "<img src='/css/main/images/grey-star.png'>";
+    }
+  }
+  return stars;
+}
+
+function getProfileImage(){
+  $(document).ready(function() {
+    $('.profile-thumbs').each(function() {
+      let memberProfilePath = $(this).data('member-profile-path');
+      let memberProfileUuid = $(this).data('member-profile-uuid');
+      let memberProfileOriginalName = $(this).data('member-profile-original-name');
+      let boardUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileUuid + '_' + memberProfileOriginalName;
+      $(this).css('background-image', 'url(' + boardUrl + ')');
+    });
+  });
+}
+
+
+/* ---------------------------무한스크롤 끝------------------------------------- */
+
+
+
+
 
 /*  판매종료 띄우기*/
 window.onload = function (){
@@ -98,3 +217,5 @@ window.onload = function (){
     }
   }
 }
+
+

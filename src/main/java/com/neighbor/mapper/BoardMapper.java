@@ -1,9 +1,11 @@
 package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.dto.Critera2;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +15,10 @@ public interface BoardMapper {
     public void insert(BoardDTO boardDTO);
 
     //    게시글 전체 조회
-    public List<BoardDTO> selectAllBoardMember();
+    public List<BoardDTO> selectAllBoardMember(@Param("cri2") Critera2 critera2, @Param("memberId") Long memberId);
+
+    // 페이징 처리를 위해서 모든 정보 가져오기
+    public int getTotal ();
 
     //    마지막에 추가된 boardId 가져오기
     public Long getLastBoardId();

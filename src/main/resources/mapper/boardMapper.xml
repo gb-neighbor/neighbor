@@ -14,7 +14,18 @@
         member_nickname, member_profile_path, member_profile_uuid, member_profile_original_name, member_identification, member_email, member_region,
         member_hi_sentence
         from tbl_member m join tbl_board b
+        <where>
+            <if test="memberId != null">
+                AND m.member_id = #{memberId}
+            </if>
+        </where>
         on m.member_id = b.member_id order by board_id desc
+        limit #{cri2.offset}, #{cri2.rowCount}
+    </select>
+
+    <!--페이징 처리를 위한 전체 갯수 가져오기-->
+    <select id="getTotal" resultType="_int">
+        select count(board_id) from tbl_board b
     </select>
 
     <!-- memberId로 모든 보드 정보 가져오기-->

@@ -51,11 +51,11 @@ public class BoardDAOTests {
     }
     @Test
     public void boardDTOTEST(){
-        List<BoardDTO> boardDTOList = boardDAO.findAllBoardMember();
-        for(BoardDTO boardDTO:boardDTOList){
-            boardDTO.change(boardDTO.getBoardRegion());
-            log.info(boardDTO.getBoardRegionKo());
-        }
+//        List<BoardDTO> boardDTOList = boardDAO.findAllBoardMember();
+//        for(BoardDTO boardDTO:boardDTOList){
+//            boardDTO.change(boardDTO.getBoardRegion());
+//            log.info(boardDTO.getBoardRegionKo());
+//        }
     }
 
 }
