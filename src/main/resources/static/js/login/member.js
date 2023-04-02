@@ -415,15 +415,15 @@ $inputEmail.on("blur", function(){$.ajax({
 // });
 
 // /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
-//
-// const $joinInputs = $("input[type=email]");
-// function send() {
-//     $joinInputs.trigger("blur");
-//     if (joinCheckAll.filter(check => check).length != $joinInputs.length) {
-//         return;
-//     }
-//     $(document.joinForm).submit();
-// }
+
+const $joinInputs = $("input[type=email]");
+function send() {
+    $joinInputs.trigger("blur");
+    if (checkAll.filter(check => check).length != $joinInputs.length) {
+        return;
+    }
+    $(document.write-form).submit();
+}
 
 /*닉네임 중복*/
 const $joinInputNickname = $(".nick-name");

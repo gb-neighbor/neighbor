@@ -14,7 +14,7 @@
 <div class="wrapper">
     <div class="login-content">
         <div class="logo">
-            <a href="http://localhost:10000/main/main">
+            <a href="http://localhost:10000/main">
                 <span class="logo-name">이웃집 반찬</span>
             </a>
         </div>
@@ -76,5 +76,7 @@
     var state = naver_id_login.getUniqState();
     naver_id_login.setDomain("http://localhost:10000");
     naver_id_login.setState(state);
+    naver_id_login.setButton("white", 2,40);
+    naver_id_login.init_naver_id_login();
 </script>
 </html>

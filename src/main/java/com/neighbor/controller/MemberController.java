@@ -47,7 +47,7 @@ public class MemberController {
     @GetMapping("join-to-main")
     public String joinToMain(HttpSession session){
         session.invalidate();
-        return "redirect:/main/main";
+        return "redirect:/main";
     }
 
     // 아이디찾기 페이지로 이동
@@ -74,7 +74,7 @@ public class MemberController {
     public String signUp(MemberVO memberVO, HttpSession httpSession) {
         httpSession.invalidate();
         memberService.signUp(memberVO);
-        return "redirect:/main/main";
+        return "redirect:/main";
     }
 
     // 계정정보가 없을시 알림 페이지 이동
@@ -129,8 +129,8 @@ public class MemberController {
             path = "/members/login";
         }else{
             MemberVO memberVO = memberService.findInfoByIdentification(memberIdentification);
-            httpSession.setAttribute("memberVO", memberVO);
-            path = "/main/main";
+            httpSession.setAttribute("memberVO", memberVO.getMemberId());
+            path = "/main";
         }
         return new RedirectView(path);
     }
@@ -139,7 +139,7 @@ public class MemberController {
     @GetMapping("logout")
     public RedirectView logout(HttpSession httpSession){
         httpSession.invalidate();
-        return new RedirectView("/main/main");
+        return new RedirectView("/main");
     }
 
     //아이디 찾기
@@ -172,7 +172,7 @@ public class MemberController {
             return "redirect:no-join";
         }
 
-        return "redirect:/main/main";
+        return "redirect:/main";
     }
 
 
