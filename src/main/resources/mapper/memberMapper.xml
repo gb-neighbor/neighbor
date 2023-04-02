@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.MemberMapper">
+
+    <sql id="search">
+        <if test="keyword!=null">
+            where member_name like concat('%',#{keyword}, '%')
+        </if>
+    </sql>
+
     <!-- 회원관리 전체 조회 회원관리-->
     <select id="selectAll" resultType="MemberDTO">
         select member_id, member_identification, member_password, member_name, member_nickname, member_birth, member_phone, member_region, member_email, member_hi_sentence, member_profile_uuid, member_profile_original_name, member_profile_path, member_profile_size
-        from tbl_member order by member_id desc
+        from tbl_member
+        <include refid="search" />
+        order by member_id desc
+        limit #{cri.offset}, #{cri.amount}
     </select>
 
     <!-- 대시보드 회원관리 목록-->
@@ -24,9 +34,10 @@
     </delete>
 
     <!--회원 총 수-->
-    <select id="countAll" resultType="Integer">
+    <select id="countAll" resultType="_int">
         select count(distinct member_id) countTotalMembers
         from tbl_member
+        <include refid="search" />
     </select>
 
 <!--  회원정보 조회하기  -->

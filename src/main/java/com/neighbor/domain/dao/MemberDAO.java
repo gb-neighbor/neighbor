@@ -1,9 +1,11 @@
 package com.neighbor.domain.dao;
 
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,8 +16,8 @@ import java.util.List;
 public class MemberDAO {
     private final MemberMapper memberMapper;
 
-//    대쉬보드 전체조회
-    public List<MemberDTO> findAll(){return memberMapper.selectAll();}
+//  관리자 페이지 회원관리 전체조회
+    public List<MemberDTO> findAll(Criteria criteria, String keyword){return memberMapper.selectAll(criteria, keyword);}
 
 //    맴버아이디로 맴버 정보 전체 조회하기
     public MemberVO getOneMember(Long memberId){
@@ -31,8 +33,8 @@ public class MemberDAO {
     }
     
 //    회원관리 멤버 총 수
-    public Integer countAll() {
-        return memberMapper.countAll();
+    public Integer countAll(String keyword) {
+        return memberMapper.countAll(keyword);
     }
 
     //회원가입
