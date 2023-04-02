@@ -35,12 +35,12 @@ public class ReplyService {
     }
 
 //    후기글 전체글 수
-    public Integer getCountAll() {
-        return replyDAO.countAll();
+    public Integer getCountAll(String keyword) {
+        return replyDAO.countAll(keyword);
     }
 
     //    후기목록 전체 조회 검색포함
-    public List<ReplyDTO> getList(Criteria criteria) {
-        return replyDAO.findAll(criteria);
+    public List<ReplyDTO> getList(Criteria criteria, String keyword) {
+        return replyDAO.findAll(criteria, keyword);
     }
 }

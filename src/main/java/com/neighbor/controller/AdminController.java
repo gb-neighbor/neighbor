@@ -114,35 +114,20 @@ public class AdminController {
 
     /*처음 클릭했을때 화면으로 가는 일반 컨트롤러*/
     @GetMapping("reply/list")
-    public String replyShowList(Criteria criteria, Model model) {
-        if (criteria.getPage() == 0) {
-            criteria = criteria.create(1, 6);
-        }
-
-        ReplyDTO replyDTO = new ReplyDTO();
-//        전체 수
-        replyDTO.setReplyTotal(replyService.getCountAll());
-        List<ReplyDTO> replyDTOS = replyService.getList(criteria);
-
-        for (ReplyDTO dto : replyDTOS) {
-            dto.change(dto.getBoardRegion());
-        }
-//        model.addAttribute("replys", replyDTOS);
-        log.info(criteria.toString());
+    public String replyShowList() {
         return "admin/manage-reply";
     }
 
     /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
 
-    @GetMapping("reply/page")
+    @GetMapping("reply/page/keyword")
     @ResponseBody
-    public ReplyDTO showList(@RequestParam int page, Criteria criteria) {
+    public ReplyDTO showList(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
         criteria = criteria.create(page, 6);
         ReplyDTO replyDTO = new ReplyDTO();
-        replyDTO.setReplyTotal(replyService.getCountAll());
-        replyDTO.setReplyDTOS(replyService.getList(criteria));
-//        replyDTO.getPageDTO().getCriteria().setPage(page);
-        replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, replyService.getCountAll()));
+        replyDTO.setReplyTotal(replyService.getCountAll(keyword));
+        replyDTO.setReplyDTOS(replyService.getList(criteria,keyword));
+        replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, replyService.getCountAll(keyword)));
 
         for (ReplyDTO dto : replyDTO.getReplyDTOS()) {
             dto.change(dto.getBoardRegion());
