@@ -247,7 +247,7 @@ input[type='checkbox']{
     cursor: pointer;
 }
 
-.join{
+.join-btn{
     color: #fff;
     background-color: #009a3e;
     height: 50px;
