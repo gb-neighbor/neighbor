@@ -100,7 +100,7 @@ for (let i = 0; i < 3 && i < boardDTO.length; i++) {
             <!-- 항목1 -->
             <li>
                 <!-- 상세페이지로 바로가기 -->
-                <a href="/boards/detail/${boardDTO[i].boardId}"></a>
+                <a href="/board/detail/${boardDTO[i].boardId}"></a>
                 <!-- 내용 -->
                 <div class="cont">
                     <!-- 썸네일 -->
@@ -221,14 +221,17 @@ $(".result-list").append(boardList2)
 let page = 1;
 let isLastPage = false;
 const $ul = $("#list");
-let boardText3 = '';
 
 const boardService = (() => {
     function getList(callback){
         $.ajax({
-            url: `/boards/lists/regions?page=${page}`,
+            url: `/board/lists/regions?page=${page}`,
             type: 'post',
             success: function(boardDTOList){
+                if (boardDTOList.length === 0) { // 불러올 데이터가 없으면
+                    $(window).off('scroll'); // 스크롤 이벤트를 막음
+                    return;
+                }
                 if(callback){
                     callback(boardDTOList);
                 }
@@ -242,6 +245,7 @@ const boardService = (() => {
 function appendList() {
     boardService.getList(boardDTOList => {
         console.log(boardDTOList)
+        let boardText3 = '';
         boardDTOList.forEach(board => {
             const stars = generateStarHtml(board.avgScore);
             const thumbs = generateThumbsHtml(board.files);
@@ -249,7 +253,7 @@ function appendList() {
                 <a>
                     <li class="result-list-container" >
                         <div class="result-list-outer-box">
-                            <a href="/boards/detail/${board.boardId}">
+                            <a href="/board/detail/${board.boardId}">
                                 <div class="profile-area-box">
                                     <div class="profile-area">
                                         <div class="profile-area-inner">
@@ -299,13 +303,12 @@ function appendList() {
 
 
 }
-
-
+appendList();
 
 $(window).scroll(function() {
     let zoomLevel = $('body').css('zoom');
     if (zoomLevel === '0.8') {
-        if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 10 > $(document).height()) {
+        if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height()) {
             page++;
             appendList();
             console.log(page)
@@ -313,7 +316,6 @@ $(window).scroll(function() {
         }
     }
 });
-appendList();
 /* 썸네일 사진 생성 코드 */
 function generateThumbsHtml(files) {
     let thumbs = '';
@@ -348,7 +350,7 @@ function getProfileImage(){
         let boardFilePath = $(this).data('board-file-path');
         let boardFileUuid = $(this).data('board-file-uuid');
         let boardFileOriginalName = $(this).data('board-file-original-name');
-        let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+        let boardUrl = '/board-files/display?fileName=' + 'boards/' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
         $(this).css('background-image', 'url(' + boardUrl + ')');
     });
 

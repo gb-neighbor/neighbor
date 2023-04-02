@@ -25,7 +25,7 @@ import java.util.*;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/boards/*")
+@RequestMapping("/board/*")
 public class BoardController {
 
     private final BoardService boardService;
@@ -92,7 +92,7 @@ public class BoardController {
         return "list/list-by-region";
     }
 
-/* 무한스크롤 이벤트로 가져오기 */
+/* 리스트 무한스크롤 이벤트로 가져오기 */
     @PostMapping("lists/regions")
     @ResponseBody
     public List<BoardDTO> getNextPage(Critera2 critera2){
@@ -164,15 +164,20 @@ public class BoardController {
         return "list/list-by-member";
     }
 
-    @PostMapping("lists/members/{memberId}")
+    @GetMapping("lists/members/{memberId}")
     @ResponseBody
-    public List<BoardDTO> getNextMember(Critera2 critera2, @PathVariable("memberId") Long memberId){
+    public List<BoardDTO> getALlBoard(Critera2 critera2, @PathVariable("memberId") Long memberId){
         List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, memberId);
         Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
         int avgScore = 0;
 
         for(BoardDTO boardDTO:boardDTOList){
             boardDTO.change(boardDTO.getBoardRegion());
+            BoardFileVO boardFileVO = boardFileService.getMainFile(boardDTO.getBoardId());
+//            boardDTO.setFileMainName(boardFileVO.getBoardFileOriginalName());
+//            boardDTO.setFileMainUuid(boardFileVO.getBoardFileUuid());
+//            boardDTO.setFileMainPath(boardFileVO.getBoardFilePath());
+
             boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
 
             // 게시물에 대한 댓글 가져오기
@@ -195,14 +200,13 @@ public class BoardController {
         return boardDTOList;
     }
 
-    @GetMapping("detail")
-    public String goDetail(){
-        return "kjp/product-detail";
-    }
-
     @GetMapping("detail/{boardId}")
-    public String goList(@PathVariable("boardId") Long boardId){
-
+    public String goList(@PathVariable("boardId") Long boardId, Critera2 critera2, Model model){
+        critera2.setPage(1);
+        List<BoardDTO> boardDTOList = boardService.getInfoForDetail(critera2, boardId);
+        model.addAttribute("boardDTOList", boardDTOList);
+        log.info(String.valueOf(boardDTOList));
+        log.info(String.valueOf(critera2));
         return "board/product-detail2";
     }
 

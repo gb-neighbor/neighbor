@@ -30,6 +30,11 @@ public class BoardDAO {
     //    맴버, 보드, 보드파일의 정보 가져오기
     public List<BoardDTO> findAllBoardMember(Critera2 critera2, Long memberId){return boardMapper.selectAllBoardMember(critera2, memberId);}
 
+    // 보드아이디로 모든 정보 가져오기
+    public List<BoardDTO> findAllBoardMemberByBoard(Critera2 critera2, Long boardId){
+        return boardMapper.selectAllBoardMemberByBoard(critera2, boardId);
+    }
+
     //페이징 처리를 위해 모든 보드 갯수 가져오기
     public int getTotal(){return boardMapper.getTotal();}
     
