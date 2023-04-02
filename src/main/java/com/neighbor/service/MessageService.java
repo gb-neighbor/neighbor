@@ -62,4 +62,11 @@ public class MessageService {
         messageDAO.saveMessageRoomVO(boardId, sellerId, customerId);
     }
 
+    //    <!--  작성 게시물 수  -->
+    public Integer getCountBoard(Long memberId){return messageDAO.findCountBoard(memberId);}
+
+    //    <!--  작성 후기 수  -->
+    public Integer getCountReply(Long memberId){return messageDAO.findCountReply(memberId);}
+
+
 }
