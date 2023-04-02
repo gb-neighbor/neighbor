@@ -43,4 +43,8 @@ public class ReplyService {
     public List<ReplyDTO> getList(Criteria criteria, String keyword) {
         return replyDAO.findAll(criteria, keyword);
     }
+
+    public void saveReply(ReplyVO replyVO){
+        replyDAO.save(replyVO);
+    }
 }

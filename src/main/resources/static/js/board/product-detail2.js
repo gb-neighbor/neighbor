@@ -23,7 +23,7 @@ function myFunction(imgs) {
 /* 글자수 */
 function getLength(str) {
 	var max_byte = str.length;
-	var str_len = document.form.content.value.length;
+	var str_len = document.form.reply.value.length;
 
 	if (max_byte == 1001) {
 		modalMessage = '1000자를 넘길 수 없습니다.';
@@ -472,7 +472,68 @@ function showMessage(messages){
 }
 
 /*********************************************************************************************/
+//사진 올리기
+FileList.prototype.forEach = Array.prototype.forEach;
+globalThis.arrayFile = new Array();
+globalThis.i = 0;
+let text= "";
+$("input[id='files']").on("change", function() {
+	const $files = $("input[id=files]")[0].files;
+	// console.log($files[0])
+//    파일 객체에 접근함
+	let formData = new FormData();
+	Array.from($files).forEach(file => globalThis.arrayFile.push(file));
+	// 파일 Array의 file들을 하나씩 담아줌
+	console.log(globalThis.arrayFile)
+	$files.forEach(file => {
+		formData.append("file", file)
+	});
+	$.ajax({
+		url: "/reply-files/upload",
+		type: "post",
+		data: formData,
+		contentType: false,
+		processData: false,
+		success: function (uuids) {
+			globalThis.uuids = uuids;
+			console.log(globalThis.uuids)
+			const dataTransfer = new DataTransfer();
+			$("input[id='files']")[0].files = dataTransfer.files;
+			let text = "";
+			console.log("uuid는 " + globalThis.uuids)
+			/* 한번올리면 이 인풋테그들이 다 사라져야함 */
+			$files.forEach(file => {
+				text +=
+					`
+                    <input type="hidden" name="files[${i}].boardFileOriginalName" value="${file.name}">
+                    <input type="hidden" name="files[${i}].boardFileUuid" value="${globalThis.uuids[i]}">
+                    <input type="hidden" name="files[${i}].boardFilePath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name="files[${i}].boardFileSize" value="${file.size}">
+                    `
+				i++;
+			});
+			$(".review-my-form").append(text);
+		}
+	});
+});
 
+function leftPad(value) {
+	if (value >= 10) {
+		return value;
+	}
+
+	return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+	const year = source.getFullYear();
+	const month = leftPad(source.getMonth() + 1);
+	const day = leftPad(source.getDate());
+
+	return [year, month, day].join(delimiter);
+}
+
+/********************************************************************************************/
 /* 보드에서 디테일 페이지 작업 */
 let files = boardDTO.files;
 let mainFile = files.filter(file => file.boardFileStatus);
@@ -516,3 +577,58 @@ function generateStarHtml(avgScore) {
 	}
 	return stars;
 }
+
+
+/* -------------------------------------디테일 끝 */
+
+
+
+
+
+/* 댓글 시작 */
+let pathArray = window.location.pathname.split('/');
+let boardId2 = pathArray.pop();
+let replyScore = 0;
+const stars2 = document.querySelectorAll('.review-my-star');
+const replyInput = $(".review-my-textarea")
+
+/* 별점 가져오기 */
+stars2.forEach((star)=>
+	star.addEventListener(("click"), function () {
+		replyScore = star.getAttribute('data-index')
+	})
+)
+
+
+$('.review-my-score-submit').on('click', function() {
+	// serialize() 함수를 이용하여 폼 데이터를 문자열로 변환합니다.
+	// let formData = new FormData();
+	//
+	// formData.append("replyScore", replyScore);
+	// formData.append("replyContent", replyInput.val());
+	let formData = $('.review-write-form').serialize();
+
+	formData += '&replyScore=' + replyScore;
+	console.log(formData);
+	console.log(replyScore);
+
+	// ajax를 이용하여 서버로 폼 데이터를 전송합니다.
+	$.ajax({
+		type: 'POST',
+		url: `/replies/upload/${boardId2}`,
+		data: formData,
+		success: function(data) {
+			replyInput.val('')
+			$('.review-my').hide()
+			$(".review-my-form input[type=hidden]").remove();
+		}
+	});
+});
+
+/* --------------------------------- 업로드 -----------------------*/
+
+
+
+
+
+

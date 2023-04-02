@@ -19,7 +19,6 @@ $("form").on("submit", function (e) {
 
 
 /* --------------------------------------------------------------------------------------------------- js썸네일*/
-/* 메인 사진 추가 썸네일*/
 FileList.prototype.forEach = Array.prototype.forEach;
 //사진 객체를 담을 array
 let files = new Array();
