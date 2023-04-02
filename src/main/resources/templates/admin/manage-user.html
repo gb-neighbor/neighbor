@@ -132,7 +132,7 @@
                     </div>
 
                     <!--여기부터 내용-->
-                    <<!--div class="item-list-contents">
+                    <!--div class="item-list-contents">
                         <div class="checkbox-zip">
                             <input type="checkbox" id="check1" class="normal" value="">
                         </div>
@@ -164,7 +164,7 @@
 
     const $changePageTags = $(".page-button");
     const $searchButton = $("#search-button");
-    const $replySearch = $(".member-search");
+    const $memberSearch = $(".member-search");
     let page = 1;
     let keyword = null;
 
@@ -175,10 +175,9 @@
         var text = "";
         var content = "";
         memberDTOS.forEach(member => {
-            content +=             `
-            <div class="item-list-contents">
+            content +=  `<div class="item-list-contents">
                         <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
+                            <input type="checkbox" id="check1" class="normal" value="${member.memberId}">
                         </div>
                         <div class="user-num">${member.memberId}</div>
                         <div class="user-name">${member.memberName}</div>
@@ -199,7 +198,6 @@
 
     // 페이지를 텍스트로 가져오기 성공!
     function showPage(pageDTO) {
-        console.log("showpage" + page);
         const $btns = $('.page-button-box');
         const criteria = pageDTO.criteria;
         let text = "";
@@ -236,14 +234,12 @@
     }
 
     $searchButton.on("click", function() {
-        keyword = $replySearch.val();
-        console.log(keyword);
+        keyword = $memberSearch.val();
         load(page,keyword);
     });
 
-    $replySearch.on("keyup", function() {
-        keyword = $replySearch.val();
-        console.log(keyword);
+    $memberSearch.on("keyup", function() {
+        keyword = $memberSearch.val();
         load(page,keyword);
     });
 
@@ -256,7 +252,6 @@
                 keyword: keyword
             },
             success: function (result) {
-                console.log("load" + page);
                 // replyDTO
                 $('.total-mentor-num').html(result.memberTotal);
                 showList(result.memberDTOS);
@@ -268,22 +263,32 @@
     /* delete 버튼 클릭 시 ajax실행*/
 
     $('.member-delete-button').on('click', function () {
-        var checkedIds = new Array();
-        // 체크 박스 체크된 값
-        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.user-num').each(function () {
-            console.log(this.innerText);
-            checkedIds.push(this.innerText);
-        });
-        $.ajax({
-            url: "/admin/member/delete",
-            type: "delete",
-            data: {
-                "checkedIds": checkedIds,
-            },
-            success: function () {
-                load(page, keyword);
+        var checkedItems = [];
+
+// 체크박스 요소들을 가져옵니다.
+        var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
+
+// 체크박스들을 순회하며 체크된 항목들을 배열에 담습니다.
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
             }
         });
+        console.log(checkedItems);
+
+        for(let i = 0; i<checkedItems.length; i++){
+            console.log(checkedItems[i]);
+            $.ajax({
+                type : "DELETE",
+                url : "/admin/member/delete",
+                data : {
+                    "checkedMemberId" : checkedItems[i]
+                },
+                success : function() {
+                    load(page, keyword);
+                }
+            });
+        }
     });
 
 </script>

@@ -24,7 +24,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 @Slf4j
 public class MemberService {
-    private  final MemberDAO memberDAO;
+    private final MemberDAO memberDAO;
 
     @Autowired
     private JavaMailSender mailSender;

@@ -17,7 +17,7 @@ public interface MemberMapper {
 //    맴버 아이디로 맴버 정보 조회
     public MemberVO selectOne(Long memberId);
 //    멤버 삭제
-    public void delete(Long userId);
+    public void delete(Long memberId);
 
 //    멤버 총 수
     public int countAll(@Param("keyword") String keyword);
