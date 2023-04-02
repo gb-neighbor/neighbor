@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Data
 public class ReplyVO {
     private Long replyId;
-    private String replyTitle;
     private String replyContent;
     private Integer replyScore;
     private String replyRegisterDate;

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.ReplyFileMapper">
-
+    <insert id="insert">
+        insert into tbl_reply_file
+        (reply_file_uuid, reply_file_original_name, reply_file_path, reply_file_size)
+        VALUES(#replyFileUuid}, #{replyFileOriginalName}, #{replyFilePath}, #{replyFileSize});
+    </insert>
 </mapper>

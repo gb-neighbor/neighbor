@@ -37,4 +37,9 @@ public class ReplyDAO {
     public List<ReplyDTO> findAll(Criteria criteria, String keyword) {
         return replyMapper.selectAll(criteria, keyword);
     }
+
+//    후기 작성
+    public void save(ReplyVO replyVO){
+        replyMapper.insert(replyVO);
+    }
 }
