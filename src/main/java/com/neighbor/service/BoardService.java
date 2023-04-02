@@ -23,6 +23,7 @@ public class BoardService {
     private final BoardFileDAO boardFileDAO;
     private final ReplyDAO replyDAO;
 
+
     /*---------------------------------게시글 추가-----------------------------------*/
     public Long write(BoardDTO boardDTO) {
         boardDAO.save(boardDTO);
@@ -37,31 +38,24 @@ public class BoardService {
     }
     
     /* 디테일 페이지 위해 보드아이디로 모든 정보 가져오기 */
-    public List<BoardDTO> getInfoForDetail(Critera2 critera2, Long boardId){
+    public BoardDTO getInfoForDetail(Critera2 critera2, Long boardId){
         critera2.create(getTotal());
-        List<BoardDTO> boardDTOList = boardDAO.findAllBoardMemberByBoard(critera2, boardId);
-        Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
+        BoardDTO boardDTO = boardDAO.findAllBoardMemberByBoard(critera2, boardId);
+        boardDTO.setFiles(boardFileDAO.getFilesByBoardId(boardId));
+        List<ReplyVO> replyVOList = replyDAO.getAllReplyByBoardId(boardId);
+        boardDTO.change(boardDTO.getBoardRegion());
         int avgScore = 0;
-
-        for(BoardDTO boardDTO:boardDTOList){
-            boardDTO.change(boardDTO.getBoardRegion());
-            boardDTO.setFiles(boardFileDAO.findAll(boardId));
-
-            // 게시물에 대한 댓글 가져오기
-            List<ReplyVO> replyVOList = replyDAO.getAllReplyByBoardId(boardId);
-            replyVOMap.put(boardDTO.getBoardId(), replyVOList);
-
-            // 해당 게시물에 대한 댓글의 평균 점수 구하기
-            int sum = 0;
-            for (ReplyVO reply : replyVOList) {
-                sum += reply.getReplyScore();
-            }
-            int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
-
-            // 평균 점수 더하기
-            boardDTO.setAvgScore(avg);
+        int sum = 0;
+        for (ReplyVO reply : replyVOList) {
+            sum += reply.getReplyScore();
         }
-        return boardDTOList;
+        int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
+
+        // 평균 점수 더하기
+        boardDTO.setAvgScore(avg);
+        boardDTO.setTotalReply(replyVOList.size());
+
+        return boardDTO;
     }
 
 //    페이징 처리를 위해서 모든 보드갯수 가져오기

@@ -31,7 +31,7 @@ public class BoardFileDAO {
     public BoardFileVO getMainFile(Long boardId){
         return boardFileMapper.selectMainFile( boardId);
     }
-    /* boardId로 파일 전체 가져오기 3개만*/
+    /* boardId로 파일 전체 가져오기*/
     public List<BoardFileVO> findAll(Long boardId){return boardFileMapper.selectAll(boardId);}
 
     /* board로 모든 거 삭제하기 */

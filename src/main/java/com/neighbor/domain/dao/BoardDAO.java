@@ -31,7 +31,7 @@ public class BoardDAO {
     public List<BoardDTO> findAllBoardMember(Critera2 critera2, Long memberId){return boardMapper.selectAllBoardMember(critera2, memberId);}
 
     // 보드아이디로 모든 정보 가져오기
-    public List<BoardDTO> findAllBoardMemberByBoard(Critera2 critera2, Long boardId){
+    public BoardDTO findAllBoardMemberByBoard(Critera2 critera2, Long boardId){
         return boardMapper.selectAllBoardMemberByBoard(critera2, boardId);
     }
 
