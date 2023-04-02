@@ -35,7 +35,7 @@ public class ReplyService {
     }
 
 //    후기글 전체글 수
-    public Integer getCountAll(String keyword) {
+    public int getCountAll(String keyword) {
         return replyDAO.countAll(keyword);
     }
 

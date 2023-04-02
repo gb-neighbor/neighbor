@@ -3,6 +3,7 @@ package com.neighbor.service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.neighbor.domain.dao.MemberDAO;
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.MailVO;
 import com.neighbor.domain.vo.MemberVO;
@@ -28,9 +29,9 @@ public class MemberService {
     @Autowired
     private JavaMailSender mailSender;
 
-    //    대쉬보드 전체조회
-    public List<MemberDTO> getList(){
-        return memberDAO.findAll();
+    //   관리자페이지 회원관리 전체조회
+    public List<MemberDTO> getList(Criteria criteria, String keyword){
+        return memberDAO.findAll(criteria, keyword);
     }
 
     //    대쉬보드 일부조회
@@ -38,14 +39,19 @@ public class MemberService {
         return memberDAO.findAllBy();
     }
 
-    //   회원관리 멤버삭제
+    //  멤버삭제
     public void delete(Long memberId) {
         memberDAO.delete(memberId);
     }
 
+    //  관리자 페이지 회원관리 멤버삭제
+    public void remove(List<String> memberIds) {
+        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::delete);
+    }
+
 //    회원관리 멤버 총 수
-    public Integer getCountAll() {
-        return memberDAO.countAll();
+    public int getCountAll(String keyword) {
+        return memberDAO.countAll(keyword);
     }
 
 //

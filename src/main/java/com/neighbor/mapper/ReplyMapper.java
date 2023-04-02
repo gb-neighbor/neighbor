@@ -13,7 +13,7 @@ public interface ReplyMapper {
 
 
 //    후기 삭제
-    public void delete(Long userId);
+    public void delete(Long memberId);
 
 //    보드아이디로 후기 가져오기
     public List<ReplyVO> selectAllByBoardId(Long boardId);
@@ -22,7 +22,7 @@ public interface ReplyMapper {
     public List<ReplyDTO> selectAllBy();
 
 //    후기목록 전체 글 수
-    public Integer countAll(@Param("keyword") String keyword);
+    public int countAll(@Param("keyword") String keyword);
 
 //    후기목록 전체조회 검색포함
     public List<ReplyDTO> selectAll(@Param("cri") Criteria criteria, @Param("keyword") String keyword);

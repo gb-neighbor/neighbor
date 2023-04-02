@@ -1,15 +1,17 @@
 package com.neighbor.mapper;
 
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-//    전체 조회
-    public List<MemberDTO> selectAll();
+//    관리자 페이지 회원 관리 전체 조회
+    public List<MemberDTO> selectAll(@Param("cri") Criteria criteria, @Param("keyword") String keyword);
     //    일부 조회
     public List<MemberDTO> selectAllBy();
 //    맴버 아이디로 맴버 정보 조회
@@ -18,7 +20,7 @@ public interface MemberMapper {
     public void delete(Long userId);
 
 //    멤버 총 수
-    public Integer countAll();
+    public int countAll(@Param("keyword") String keyword);
 
     // 회원가입
     public void insert(MemberVO memberVO);

@@ -96,17 +96,37 @@ public class AdminController {
 
     /*member 시작*/
 
-    //    대쉬보드 전체조회 (PostMan까지 끝냄.)
-    @GetMapping("dashboard-list")
-    public List<MemberDTO> memberShowList(){
-        return memberService.getList();
+    /*처음 클릭했을때 화면으로 가는 일반 컨트롤러*/
+    @GetMapping("member/list")
+    public String memberShowList() {
+        return "admin/manage-user";
     }
 
-    //   회원관리 멤버삭제 (PostMan까지 끝냄.)
-    @DeleteMapping("member-delete")
-    public void memberDelete(@PathVariable Long memberId) {
-        memberService.delete(memberId);
+    /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
+
+    @GetMapping("member/page/keyword")
+    @ResponseBody
+    public MemberDTO memberShowList(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+        criteria = criteria.create(page, 6);
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setMemberTotal(memberService.getCountAll(keyword));
+        memberDTO.setMemberDTOS(memberService.getList(criteria,keyword));
+        memberDTO.setPageDTO(new PageDTO().createPageDTO(criteria, memberService.getCountAll(keyword)));
+
+        for (MemberDTO dto : memberDTO.getMemberDTOS()) {
+            dto.change(dto.getMemberRegion());
+        }
+
+        return memberDTO;
     }
+
+    //  회원관리 삭제
+    @DeleteMapping("member/delete")
+    @ResponseBody
+    public void memberDelete(@RequestParam("checkedIds[]") List<String> checkIds){
+        replyService.remove(checkIds);
+    }
+
 
     /*member 끝*/
 
@@ -122,7 +142,7 @@ public class AdminController {
 
     @GetMapping("reply/page/keyword")
     @ResponseBody
-    public ReplyDTO showList(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+    public ReplyDTO replyShowList(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
         criteria = criteria.create(page, 6);
         ReplyDTO replyDTO = new ReplyDTO();
         replyDTO.setReplyTotal(replyService.getCountAll(keyword));
