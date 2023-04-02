@@ -14,7 +14,7 @@ public class BoardDTO {
     private String boardContent;
     private String boardRegisterDate;
     private String boardUpdateDate;
-    private Boolean boardStatus;
+    private Integer boardStatus;
     private Integer boardPrice;
     private Long memberId;
     private Integer boardRegion;
@@ -39,20 +39,22 @@ public class BoardDTO {
     private String fileMainPath;
     private List<BoardFileVO> files;
     private Integer avgScore;
-    private Integer totalReply;
+    private Integer boardTotal;
 
     private String boardRegionKo;
     private String[] boardRegionArr = {"전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
             "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구",
             "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구",
             "중구", "중랑구"};
+    // ajax를 위한 리스트 생성
+    private List<BoardDTO> boardDTOS;
+    private PageDTO pageDTO;
+
     public void change(Integer index){
         this.boardRegionKo = this.boardRegionArr[index];
     }
 
     private String boardSaleStatus;
     private String[] boardSaleStatusArr = {"판매대기중", "판매완료"};
-    public void saleChange(Boolean index) {this.boardSaleStatus = index ? this.boardSaleStatusArr[1] : this.boardSaleStatusArr[0];}
-
-
+    public void saleChange(Integer boardStatus) {this.boardSaleStatus = this.boardSaleStatusArr[boardStatus];}
 }

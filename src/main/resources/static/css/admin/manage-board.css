@@ -397,8 +397,7 @@ body {
 
 }
 
-.status{
-    cursor: pointer;
+.status {
     text-align: center;
     width: 10%;
 }
@@ -511,4 +510,23 @@ bottom: 3%;
     font-size: 1rem;
     font-weight: 300;
     resize: none;
+}
+
+/*페이지 버튼 ajax용으로 추가함.*/
+.page-button {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #81839C;
+    color: #fff;
+    margin-right: 5px;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.page-button:hover {
+    background-color: gray;
+    color: white;
+    cursor: pointer;
 }

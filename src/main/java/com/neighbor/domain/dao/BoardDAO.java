@@ -2,6 +2,7 @@ package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MemberDTO;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
@@ -42,16 +43,16 @@ public class BoardDAO {
     public List<BoardVO> getBoardByMemberId(Long memberId){return boardMapper.selectOne(memberId);}
 
     //    관리자 페이지 판매목록 게시글 전체 조회
-    public List<BoardDTO> findAll(){return boardMapper.selectAll();}
+    public List<BoardDTO> findAll(Criteria criteria, String keyword){return boardMapper.selectAll(criteria, keyword);}
 
     //    관리자 페이지 판매 목록 게시글
-    public List<BoardDTO> findWait() {
-        return boardMapper.selectWait();
+    public List<BoardDTO> findWait(Criteria criteria, String keyword) {
+        return boardMapper.selectWait(criteria, keyword);
     }
 
     //    관리자 페이지 판매 목록 전체 글 수
-    public Integer countAll() {
-        return boardMapper.countAll();
+    public int countAll(String keyword) {
+        return boardMapper.countAll(keyword);
     }
 
     //    관리자 페이지 판매 목록 판매 대기중인 글 수

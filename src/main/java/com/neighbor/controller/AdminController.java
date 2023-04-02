@@ -152,6 +152,7 @@ public class AdminController {
 
         for (ReplyDTO dto : replyDTO.getReplyDTOS()) {
             dto.change(dto.getBoardRegion());
+
         }
 
         return replyDTO;
@@ -166,6 +167,60 @@ public class AdminController {
 
 //    /*reply 끝*/
 
+    /*board 시작*/
+
+    /*처음 클릭했을때 화면으로 가는 일반 컨트롤러*/
+    @GetMapping("board/list")
+    public String boardShowList() {
+        return "admin/manage-board";
+    }
+
+    /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
+
+    @GetMapping("board/page/keyword")
+    @ResponseBody
+    public BoardDTO boardShowList(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+        criteria = criteria.create(page, 6);
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setBoardTotal(boardService.getCountAll(keyword));
+        boardDTO.setBoardDTOS(boardService.getList(criteria,keyword));
+//        boardDTO.setBoardDTOS(boardService.getWaitList(criteria,keyword));
+        boardDTO.setPageDTO(new PageDTO().createPageDTO(criteria, boardService.getCountAll(keyword)));
+// 여기서 지금 값이 안들어가는 중
+        for (BoardDTO dto : boardDTO.getBoardDTOS()) {
+            dto.change(dto.getBoardRegion());
+            dto.saleChange(dto.getBoardStatus());
+        }
+
+        return boardDTO;
+    }
+
+    @GetMapping("board/page/keyword/status")
+    @ResponseBody
+    public BoardDTO boardShowListStatus(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+        criteria = criteria.create(page, 6);
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setBoardTotal(boardService.getCountAll(keyword));
+        boardDTO.setBoardDTOS(boardService.getWaitList(criteria,keyword));
+        boardDTO.setPageDTO(new PageDTO().createPageDTO(criteria, boardService.getCountAll(keyword)));
+        for (BoardDTO dto : boardDTO.getBoardDTOS()) {
+            dto.change(dto.getBoardRegion());
+            dto.saleChange(dto.getBoardStatus());
+        }
+
+        return boardDTO;
+    }
+
+    //  회원관리 삭제
+    @DeleteMapping("board/delete")
+    @ResponseBody
+    public void boardDelete(@RequestParam("checkedId") String boardId){
+        Long result = Long.parseLong(boardId);
+        boardService.delete(result);
+    }
+
+
+    /*board 끝*/
 
 
 }

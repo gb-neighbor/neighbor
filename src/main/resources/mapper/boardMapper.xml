@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.BoardMapper">
+
+    <sql id="search">
+        <if test="keyword!=null">
+            where board_content like concat('%',#{keyword}, '%')
+        </if>
+    </sql>
+
+
 <!-- 맴버아이디로 모든 보드정보 가져오기 -->
     <select id="selectAllBoardMember" resultType="boardDTO">
         select m.member_id, board_id, board_title, board_region, board_register_date, board_update_date, board_status, board_price, board_content,
@@ -78,22 +86,27 @@
     <select id="selectWait" resultType="boardDTO">
         select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
         from tbl_member m join tbl_board b
+        <include refid="search" />
         where board_status = 0
         on m.member_id = b.member_id order by board_id desc
     </select>
 
-    <!-- 게시판 전체 조회 -->
+    <!-- 관리자 게시판 관리 게시판 전체 조회 -->
     <select id="selectAll" resultType="boardDTO">
-        select board_id, board_title, board_register_date, board_update_date, board_status, board_price, board_content
-        member_nickname, member_profile_path, member_identification, member_email, member_region
+        select board_id, board_title, board_register_date, board_update_date, board_status, board_price, board_content,
+        member_nickname, member_profile_path, member_identification, member_email, member_region, board_region
         from tbl_member m join tbl_board b
-        on m.member_id = b.member_id order by board_id desc
+        on m.member_id = b.member_id
+        <include refid="search" />
+        order by board_id desc
+        limit #{cri.offset}, #{cri.amount}
     </select>
 
-    <!-- 게시판 총 글 수-->
-    <select id="countAll" resultType="integer">
+    <!-- 관리자 게시판 관리 게시판 총 글 수-->
+    <select id="countAll" resultType="_int">
         select count(distinct board_id) countTotalBoards
         from tbl_board
+        <include refid="search" />
     </select>
 
     <!-- 게시판 판매대기중 글 수-->

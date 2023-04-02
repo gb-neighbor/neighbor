@@ -2,6 +2,7 @@ package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -36,16 +37,16 @@ public interface BoardMapper {
     public BoardDTO select(Integer boardRegion);
     
     //  관리자 페이지 판매 게시글 관리 판매 대기중목록 불러오기
-    public List<BoardDTO> selectWait();
+    public List<BoardDTO> selectWait(@Param("cri") Criteria criteria, @Param("keyword") String keyword);
 
     //    관리자 페이지 판매 게시글 관리 전체 글 수
-    public Integer countAll();
+    public int countAll(@Param("keyword") String keyword);
 
     //    관리자 페이지 판매 게시글 판매 대기중 글 수
     public Integer count();
 
     //    관리자 페이지 게시글 전체 조회
-    public List<BoardDTO> selectAll();
+    public List<BoardDTO> selectAll(@Param("cri") Criteria criteria, @Param("keyword") String keyword);
 
     //  대시보드  게시글 부분 조회
     public List<BoardDTO> selectAllBy();
