@@ -58,16 +58,16 @@ for (let i = 0; i < boardList.length; i++) {
 }
 $("ul.list-outer").append(boards);*/
 
-applyCSS()
+/*applyCSS()
 function applyCSS() {
   $('.board-thumb').each(function (i) {
     let boardFilePath = $(this).data('board-file-path');
     let boardFileUuid = $(this).data('board-file-uuid');
     let boardFileOriginalName = $(this).data('board-file-original-name');
-    let boardUrl = '/board-files/display?fileName=' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+    let boardUrl = '/board-files/display?fileName=' + 'boards/' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
     $(this).css('background-image', 'url(' + boardUrl + ')');
   });
-}
+}*/
 /* 내가 쓴 게시물 다 넣기 끝 */
 
 /* 별점 넣기 */
@@ -91,13 +91,11 @@ let page = 1;
 let pathArray = window.location.pathname.split('/');
 let memberId = pathArray.pop();
 const $ul = $("ul.list-outer");
-let boards = '';
 
 const boardService = (() => {
   function getList(callback){
     $.ajax({
-      url: `boards/lists/members/${memberId}?page=${page}`,
-      type: 'post',
+      url: `/board/lists/members/${memberId}?page=${page}`,
       success: function(boardDTOList){
         if(callback){
           callback(boardDTOList);
@@ -110,6 +108,7 @@ const boardService = (() => {
 
 function appendList() {
   boardService.getList(boardDTOList => {
+    let boards = '';
     console.log(boardDTOList)
     boardDTOList.forEach(board => {
       const stars = generateStarHtml(board.avgScore);
@@ -117,7 +116,7 @@ function appendList() {
       boards +=
           `
         <li>
-        <a href="#" style="display: block;" id="parent-block">
+        <a href="/board/detail/${board.boardId}" style="display: block;" id="parent-block">
             <div class="board-thumb-wrapper">
                 <div class="board-thumb"  
                     data-board-file-path="${board.boardFilePath}"
@@ -144,7 +143,7 @@ function appendList() {
 
 }
 
-
+appendList();
 
 $(window).scroll(function() {
   let zoomLevel = $('body').css('zoom');
@@ -157,11 +156,17 @@ $(window).scroll(function() {
     }
   }
 });
-appendList();
 /* 썸네일 사진 생성 코드 */
 function generateThumbsHtml(files) {
   let thumbs = '';
   files.forEach(file => {
+    console.log(file.boardFileOriginalName)
+    if(file.boardFileOriginalName == null || file.boardFilePath == null || file.boardFileUuid == null){
+      file.boardFileUuid = '';
+      file.boardFileOriginalName = 'defuault-image'
+      file.boardFilePath = 'default-images/boards';
+
+    }
     thumbs += `
             <div class="pics-thumbs thumbs1" 
                 data-board-file-path="${file.boardFilePath}" 
@@ -172,6 +177,8 @@ function generateThumbsHtml(files) {
   });
   return thumbs;
 }
+
+
 /* 별점 생성 코드 */
 function generateStarHtml(avgScore) {
   let stars = '';
@@ -194,6 +201,18 @@ function getProfileImage(){
       let memberProfileUuid = $(this).data('member-profile-uuid');
       let memberProfileOriginalName = $(this).data('member-profile-original-name');
       let boardUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileUuid + '_' + memberProfileOriginalName;
+      $(this).css('background-image', 'url(' + boardUrl + ')');
+    });
+  });
+
+  $(document).ready(function() {
+    $('.board-thumb').each(function (i) {
+      let boardFilePath = $(this).data('board-file-path');
+      let boardFileUuid = $(this).data('board-file-uuid');
+      let boardFileOriginalName = $(this).data('board-file-original-name');
+      if(boardFileOriginalName == undefined){
+      }
+      let boardUrl = '/board-files/display?fileName=' + 'boards/' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
       $(this).css('background-image', 'url(' + boardUrl + ')');
     });
   });

@@ -47,7 +47,7 @@ $("input[id='cover-file']").on("change", function() {
             console.log(globalThis.uuid)
             $("span.cover-txt").hide();
             $("div.cover-img").hide();
-            $(".img").html(`<img src="/board-files/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$files2.name}" class="mainPhoto">`);
+            $(".img").html(`<img src="/board-files/display?fileName=boards/${toStringByFormatting(new Date())}/t_${uuid}_${$files2.name}" class="mainPhoto">`);
             $(".img img").css("width", "50%");
             $(".img img").css("height", "100%");
 
@@ -94,7 +94,7 @@ $("input[id='detail-file']").on("change", function() {
             console.log(globalThis.uuids)
 
             $files.forEach((file, i) => {
-                $("#thumbnail-container1").append(`<img src="/board-files/display?fileName=/${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}">`);
+                $("#thumbnail-container1").append(`<img src="/board-files/display?fileName=boards/${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}">`);
                 $(".add-button").css("margin-top", "172px");
             });
             const dataTransfer = new DataTransfer();

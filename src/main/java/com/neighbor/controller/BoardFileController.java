@@ -48,9 +48,8 @@ public class BoardFileController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload/boards", fileName));
+        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
-
 
 
 
