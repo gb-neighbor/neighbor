@@ -180,15 +180,16 @@ var randomImageCount = 0;
 let checkArrow2 = false;
 randomPrev.style.display = "none";
 
+
 // translate 만지기
-function pushPrev() {
+/*function pushPrev() {
     if(randomImageCount != 0) {
         if (checkArrow2) {
             return;
         }
         checkArrow2 = true;
         randomBanner.style.transition = 'transform 0.3s';
-        /* randomBanner.style.transform = `translate(${148.4925 * ++count2}px)`; */
+        /!* randomBanner.style.transform = `translate(${148.4925 * ++count2}px)`; *!/
         randomBanner.style.transform = `translate(${149.1 * ++count2}px)`;
         randomImageCount--;
         setTimeout(() => {
@@ -201,15 +202,19 @@ function pushPrev() {
     if(globalThis.displayNext==1) {
         randomNext.style.display = "block";
     }
+	console.log(globalThis.displayNext)
+	console.log(count2)
+	console.log(randomImageCount)
+	console.log(checkArrow2)
 };
 
 function pushNext() {
-    if(randomImageCount==3) {
+    if(randomImageCount== boardDTO.length) {
         randomNext.style.display = "none";
         displayNext = 1;
     }
 
-    if(randomImageCount != 4) {
+    if(randomImageCount != boardDTO.length) {
         randomImageCount++;
         if (checkArrow2) {
             return;
@@ -219,12 +224,71 @@ function pushNext() {
         }
         checkArrow2 = true;
         randomBanner.style.transition = 'transform 0.3s';
-        /* randomBanner.style.transform = `translate(${148.4925 * --count2}px)`; */
+        /!* randomBanner.style.transform = `translate(${148.4925 * --count2}px)`; *!/
         randomBanner.style.transform = `translate(${149.1 * --count2}px)`;
         setTimeout(() => {
             checkArrow2 = false;
         }, 30);
     }
+};*/
+
+function pushPrev() {
+	if (randomImageCount !== 0) {
+		if (checkArrow2) {
+			return;
+		}
+		checkArrow2 = true;
+		randomBanner.style.transition = 'transform 0.3s';
+		randomBanner.style.transform = `translate(${149.1 * ++count2}px)`;
+		randomImageCount--;
+		setTimeout(() => {
+			checkArrow2 = false;
+		}, 30);
+	}
+	if (randomImageCount === 0) {
+		randomPrev.style.display = "none";
+	}
+	if (boardDTO.length > 3) {
+		if (displayNext === 1) {
+			randomNext.style.display = "block";
+		}
+	} else {
+		randomNext.style.display = "none";
+	}
+};
+
+function pushNext() {
+	if (randomImageCount === boardDTO.length) {
+		randomNext.style.display = "none";
+		displayNext = 1;
+	}
+
+	if (randomImageCount !== boardDTO.length) {
+		randomImageCount++;
+		if (checkArrow2) {
+			return;
+		}
+		if (randomImageCount !== 3) {
+			randomPrev.style.display = "block";
+		}
+		checkArrow2 = true;
+		randomBanner.style.transition = 'transform 0.3s';
+		randomBanner.style.transform = `translate(${149.1 * --count2}px)`;
+		setTimeout(() => {
+			checkArrow2 = false;
+		}, 30);
+	}
+	if (boardDTO.length > 3) {
+		if (randomImageCount === boardDTO.length - 1) {
+			randomNext.style.display = "none";
+			displayNext = 1;
+		} else {
+			randomNext.style.display = "block";
+			displayNext = 0;
+		}
+	} else {
+		randomNext.style.display = "none";
+	}
 };
 
 /* ***************************tothetop 버튼******************************* */
@@ -408,3 +472,47 @@ function showMessage(messages){
 }
 
 /*********************************************************************************************/
+
+/* 보드에서 디테일 페이지 작업 */
+let files = boardDTO.files;
+let mainFile = files.filter(file => file.boardFileStatus);
+let restFile = files.filter(file=> !file.boardFileStatus);
+console.log(mainFile)
+console.log(mainFile[0].boardFilePath)
+function insertPhoto(files){
+}
+console.log()
+let thumbNails = '';
+/* 메인파일 넣는 코드 */
+$(".product-img-container img").attr("src", `/board-files/display?fileName=boards/${mainFile[0].boardFilePath}/${mainFile[0].boardFileUuid}_${mainFile[0].boardFileOriginalName}`);
+/* 나머지 파일 넣는 코드 */
+$("#expandedImg").attr("src",`/board-files/display?fileName=boards/${restFile[0].boardFilePath}/${restFile[0].boardFileUuid}_${restFile[0].boardFileOriginalName}` )
+
+for (let i = 0; i < restFile.length; i++) {
+	thumbNails +=
+		`
+		<li class="column">
+           <img src= "/board-files/display?fileName=boards/${restFile[i].boardFilePath}/${restFile[i].boardFileUuid}_${restFile[i].boardFileOriginalName}" onclick="myFunction(this);">
+        </li>
+	`;
+}
+$(".paging-container .row").append(thumbNails)
+
+$(".total-review-score").append(generateStarHtml(boardDTO.avgScore))
+$(".review-average-star-wrap").append(generateStarHtml(boardDTO.avgScore))
+
+
+/* 별점 생성코드 */
+function generateStarHtml(avgScore) {
+	let stars = '';
+	for (let j = 0; j < 5; j++) {
+		if (j < avgScore) {
+			if (j < 5) {
+				stars += "<img src='/css/main/images/star.png'>";
+			}
+		} else {
+			stars += "<img src='/css/main/images/grey-star.png'>";
+		}
+	}
+	return stars;
+}

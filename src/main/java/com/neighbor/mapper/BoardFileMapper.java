@@ -23,6 +23,7 @@ public interface BoardFileMapper {
 
 //  파일 전체 조회 3개만
     public List<BoardFileVO> selectAll(Long boardId);
+
 //    파일 삭제
     public void delete(Long boardId);
 //    전일 등록된 파일 조회

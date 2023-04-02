@@ -18,7 +18,7 @@ public interface BoardMapper {
     public List<BoardDTO> selectAllBoardMember(@Param("cri2") Critera2 critera2, @Param("memberId") Long memberId);
 
     // 보드아이디로 게시글과 맴버 정보 전체 조회
-    public List<BoardDTO> selectAllBoardMemberByBoard(@Param("cri2") Critera2 critera2, @Param("boardId") Long boardId);
+    public BoardDTO selectAllBoardMemberByBoard(@Param("cri2") Critera2 critera2, @Param("boardId") Long boardId);
 
     // 페이징 처리를 위해서 모든 정보 가져오기
     public int getTotal ();

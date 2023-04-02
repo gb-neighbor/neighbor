@@ -174,9 +174,6 @@ public class BoardController {
         for(BoardDTO boardDTO:boardDTOList){
             boardDTO.change(boardDTO.getBoardRegion());
             BoardFileVO boardFileVO = boardFileService.getMainFile(boardDTO.getBoardId());
-//            boardDTO.setFileMainName(boardFileVO.getBoardFileOriginalName());
-//            boardDTO.setFileMainUuid(boardFileVO.getBoardFileUuid());
-//            boardDTO.setFileMainPath(boardFileVO.getBoardFilePath());
 
             boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
 
@@ -203,9 +200,9 @@ public class BoardController {
     @GetMapping("detail/{boardId}")
     public String goList(@PathVariable("boardId") Long boardId, Critera2 critera2, Model model){
         critera2.setPage(1);
-        List<BoardDTO> boardDTOList = boardService.getInfoForDetail(critera2, boardId);
-        model.addAttribute("boardDTOList", boardDTOList);
-        log.info(String.valueOf(boardDTOList));
+        BoardDTO boardDTO = boardService.getInfoForDetail(critera2, boardId);
+        model.addAttribute(boardDTO);
+        log.info(String.valueOf(boardDTO));
         log.info(String.valueOf(critera2));
         return "board/product-detail2";
     }
