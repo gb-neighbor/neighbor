@@ -91,6 +91,7 @@ profile.addEventListener('change', function (e) {
         }
     };
 });
+
 /* -------------------------------아이디----------------------------------------------- */
 $(".identification").on("blur", function () {
     if(!$(this).val()){

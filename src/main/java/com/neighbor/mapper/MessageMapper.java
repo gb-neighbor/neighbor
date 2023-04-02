@@ -39,4 +39,12 @@ public interface MessageMapper {
 //    <!--  쪽지방 생성  -->
     public void insertMessageRoomVO(Long boardId, Long sellerId, Long customerId);
 
+//    <!--  작성 게시물 수  -->
+    public Integer selectCountBoard(Long memberId);
+
+//    <!--  작성 후기 수  -->
+    public Integer selectCountReply(Long memberId);
+
+
+
 }

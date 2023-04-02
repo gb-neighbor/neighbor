@@ -19,28 +19,28 @@
     <div class="subnav_wrapper">
         <ul class="subnav_list">
             <li class="list_profile">
-                <a href="" class="first_letter">프로필</a>
+                <a th:href="@{/mypage/profile_home}" class="first_letter">프로필</a>
                 <div class="list_profile_items disply_bundle">
                     <a th:href=@{/main} class="second_letter">홈</a>
                     <a th:href=@{/mypage/message_box} class="second_letter except_home_letter">쪽지함</a>
-                    <a th:href class="second_letter except_home_letter">내가 올린 반찬</a>
-                    <a th:href class="second_letter except_home_letter">후기</a>
+                    <a th:href="@{/mypage/upload_food}" class="second_letter except_home_letter">내가 올린 반찬</a>
+                    <a th:href="@{/mypage/review}" class="second_letter except_home_letter">후기</a>
                 </div>
             </li>
 
             <li class="list_my_shopping">
-                <a href="" class="first_letter">문의</a>
+                <a href="" class="first_letter" th:href="@{/ask-admin/inquiry-list}">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
-                    <a href="" class="second_letter except_home_letter">FAQ</a>
-                    <a href="" class="second_letter except_home_letter">1:1 문의</a>
+                    <a class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
+                    <a class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
                 </div>
             </li>
 
             <li class="list_setting">
-                <a href="" class="first_letter select">설정</a>
+                <a class="first_letter select" th:href="@{/mypage/profile_home}">설정</a>
                 <div class="list_my_setting_items disply_bundle">
-                    <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
-                    <a href="" class="second_letter except_home_letter select">회원탈퇴</a>
+                    <a class="second_letter except_home_letter" th:href="@{/mypage/password_update}" >비밀번호 변경</a>
+                    <a class="second_letter except_home_letter select" th:href="@{/mypage/user_leave}">회원탈퇴</a>
                 </div>
             </li>
         </ul>
@@ -61,23 +61,23 @@
                                 <img class="profile_image  image-box" src="/css/mypage/images/profile_sample1.png">
                             </div>
 
-                            <div class="info_desk" >
+                            <div class="info_desk">
                                 <div class="nick_name">
-                                    <p class="nick_name_letter">싱그러운반찬</p>
+                                    <p class="nick_name_letter" th:text="${memberInfo.memberNickname}"></p>
                                 </div>
 
                                 <div class="my_state">
                                     <div class="scrap">
-                                        <a class="scrap_link" href="">
+                                        <a class="scrap_link" th:href="@{/mypage/upload_food}">
                                             <p class="scrap_message">게시물&nbsp</p>
-                                            <p class="scrap_count">0</p>
+                                            <p class="scrap_count" th:text="${boardCount}"></p>
                                         </a>
                                     </div>
 
                                     <div class="alarm">
-                                        <a class="alarm_link" href="">
+                                        <a class="alarm_link" th:href="@{/mypage/review}">
                                             <p class="alarm_message">후기&nbsp</p>
-                                            <p class="alarm_count">0</p>
+                                            <p class="alarm_count" th:text="${replyCount}"></p>
                                         </a>
                                     </div>
                                 </div>
@@ -92,10 +92,10 @@
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">홈</a>
-                        <a href="" class="content_items">쪽지함</a>
-                        <a href="" class="content_items">내가 올린 반찬</a>
-                        <a href="" class="content_items">후기</a>
+                        <a class="content_items" th:href="@{/mypage/profile_home}">홈</a>
+                        <a class="content_items" th:href="@{/mypage/message_box}">쪽지함</a>
+                        <a class="content_items" th:href="@{/mypage/upload_food}">내가 올린 반찬</a>
+                        <a class="content_items" th:href="@{/mypage/review}">후기</a>
                         <p class="content_items_padding"></p>
                     </div>
 
@@ -105,8 +105,8 @@
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">FAQ</a>
-                        <a href="" class="content_items">1:1 문의</a>
+                        <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
+                        <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
                         <p class="content_items_padding"></p>
                     </div>
 
@@ -115,8 +115,8 @@
                     </button>
                     <div class="content">
                         <p class="content_items_padding"></p>
-                        <a href="" class="content_items">비밀번호 변경</a>
-                        <a href="" class="content_items">회원탈퇴</a>
+                        <a href="" class="content_items" th:href="@{/mypage/password_update}">비밀번호 변경</a>
+                        <a href="" class="content_items" th:href="@{/mypage/user_leave}">회원탈퇴</a>
                         <p class="content_items_padding"></p>
                     </div>
 
@@ -136,14 +136,13 @@
                         <dd class="explain_content">
                             이웃집 반찬에서 이용하신 모든 회원정보(게시물, 댓글)가 삭제되며, 더 이상 서비스를 이용할 수 없게 됩니다.<br>
                             또한 삭제된 정보는 복구할 수 없으며, 탈퇴에 대한 다른 궁금한 사항이 있으시면 1:1문의를 통해 안내 받으실 수 있습니다.<br>
-                            * 회원 탈퇴 시 동일 이메일로 재가입이 불가합니다.
                         </dd>
                     </div>
                 </div>
 
-                <form th:action="@{/mypage/leave(memberId=45)}" name="leave" method="post">
+                <form th:action="@{/mypage/leave(memberId=${memberInfo.memberId})}" name="leave" method="post">
                     <div class="leave_site_btns">
-                        <a href="/main" class="go_on_btn">서비스 계속 이용하기</a>
+                        <a th:href="@{/main}" class="go_on_btn">서비스 계속 이용하기</a>
                         <button type="submit" class="leave_btn">탈퇴하기</button>
                     </div>
                 </form>
