@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neighbor.mapper.MainMapper">
+
+    <!--별점 인기순별 섹션에 필요 정보 조회-->
+<!--    <select id="selectAllForMain" resultType="mainDTO">-->
+<!--        select m.member_id, m.member_nickname, m.member_profile_uuid, m.member_profile_original_name,-->
+<!--               m.member_profile_path, m.member_profile_size, b.board_id, b.board_title, b.board_price,-->
+<!--               bf.board_file_id, bf.board_file_original_name, bf.board_file_uuid, bf.board_file_path,-->
+<!--               bf.board_file_size,  r.reply_id, AVG(r.reply_score) AS reply_score_avg-->
+<!--        from tbl_member m-->
+<!--        inner join tbl_board b on m.member_id = b.member_id-->
+<!--        left join tbl_reply r on b.board_id = r.board_id-->
+<!--        group by r.reply_id-->
+<!--        order by reply_score_avg desc-->
+<!--    </select>-->
+
+    <!--별점 인기순별 섹션에 필요 정보 조회-->
+    <select id="selectDataForReplyHighAvgList" resultType="mainReplyAvgHighDTO">
+        select ANY_VALUE(m.member_id), ANY_VALUE(m.member_nickname), ANY_VALUE(m.member_profile_uuid), ANY_VALUE(m.member_profile_original_name), ANY_VALUE(m.member_profile_path), ANY_VALUE(m.member_profile_size),
+               b.board_id, ANY_VALUE(b.board_title), ANY_VALUE(b.board_price), AVG(r.reply_score) as avg_reply_score, ANY_VALUE(r.reply_id)
+        from tbl_member m
+        join tbl_board b on m.member_id = b.member_id
+        left join tbl_reply r on b.board_id = r.board_id
+        group by b.board_id
+        order by avg_reply_score desc
+    </select>
+
+    <!--최근 게시물 섹션에 지역이 전체일 경우 필요 정보 8개 조회-->
+    <select id="selectAllByRegionAll" resultType="mainRecentDTO">
+        select m.member_id, m.member_nickname, m.member_profile_uuid, m.member_profile_original_name, m.member_profile_path, m.member_profile_size,
+               b.board_id, b.board_title, bf.board_file_id, bf.board_file_original_name, bf.board_file_uuid, bf.board_file_path, bf.board_file_size
+        from tbl_member m
+        inner join tbl_board b on m.member_id = b.member_id
+        left join tbl_board_file bf on b.board_id = bf.board_id
+        order by b.board_register_date desc
+        LIMIT 8
+    </select>
+
+    <!--최근 게시물 섹션에 지역별 필요 정보 8개 조회-->
+    <select id="selectAllByRegion" resultType="mainRecentDTO">
+        select m.member_id, m.member_nickname, m.member_profile_uuid, m.member_profile_original_name, m.member_profile_path, m.member_profile_size,
+               b.board_id, b.board_title, bf.board_file_id, bf.board_file_original_name, bf.board_file_uuid, bf.board_file_path, bf.board_file_size
+        from tbl_member m
+        inner join tbl_board b on m.member_id = b.member_id
+        left join tbl_board_file bf on b.board_id = bf.board_id
+        where m.member_region = #{memberRegion}
+        order by b.board_register_date desc
+        LIMIT 8
+    </select>
+</mapper>
