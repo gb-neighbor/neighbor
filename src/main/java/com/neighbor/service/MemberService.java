@@ -45,9 +45,9 @@ public class MemberService {
     }
 
     //  관리자 페이지 회원관리 멤버삭제
-    public void remove(List<String> memberIds) {
-        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::delete);
-    }
+//    public void remove(List<String> memberIds) {
+//        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::delete);
+//    }
 
 //    회원관리 멤버 총 수
     public int getCountAll(String keyword) {

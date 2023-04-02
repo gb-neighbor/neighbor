@@ -5,6 +5,7 @@ import com.neighbor.domain.dao.BoardFileDAO;
 import com.neighbor.domain.dao.ReplyDAO;
 import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
@@ -53,7 +54,7 @@ public class BoardService {
 
         // 평균 점수 더하기
         boardDTO.setAvgScore(avg);
-        boardDTO.setTotalReply(replyVOList.size());
+        boardDTO.setBoardTotal(replyVOList.size());
 
         return boardDTO;
     }
@@ -70,8 +71,8 @@ public class BoardService {
     }
 
     //  관리자 페이지 판매 목록 게시글 전체 조회
-    public List<BoardDTO> getList() {
-        return boardDAO.findAll();
+    public List<BoardDTO> getList(Criteria criteria, String keyword) {
+        return boardDAO.findAll(criteria, keyword);
     }
 
     //  게시판 목록 삭제
@@ -85,13 +86,13 @@ public class BoardService {
     }
 
     //  관리자 페이지 판매목록 게시글 판매 대기중인 목록만 보기
-    public List<BoardDTO> getWaitList() {
-        return boardDAO.findWait();
+    public List<BoardDTO> getWaitList(Criteria criteria, String keyword) {
+        return boardDAO.findWait(criteria, keyword);
     }
 
     //    관리자 페이지 판매 목록 게시글 전체 글 수
-    public Integer getCountAll() {
-        return boardDAO.countAll();
+    public int getCountAll(String keyword) {
+        return boardDAO.countAll(keyword);
     }
 
     //    관리자 페이지 판매 목록 게시글 판매대기중인 글 수
