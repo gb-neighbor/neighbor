@@ -249,7 +249,7 @@ const messageService=(function(){
 
 messageService.getMessageListByMemberId(showMessageRooms);
 
-$('.send_form').submit(function(e) {
+$('.send_form' + globalThis.targetNum).submit(function(e) {
     e.preventDefault();
     if($("#write-section" + globalThis.targetNum).val()){
         let messageVO = {
@@ -261,7 +261,7 @@ $('.send_form').submit(function(e) {
         globalThis.page=1;
         $.ajax({
             url: "/messages/insert",
-            type: $(this).attr('method'),
+            type: 'POST',
             data: JSON.stringify(messageVO),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -317,7 +317,7 @@ function showMessageRooms(messageRooms){
                         <div class="box_top" id="box_top${room.messageRoomId}"></div>
                         <div class="box_text" id="box_text${room.messageRoomId}"></div>
     
-                        <form class="send_form" name="form" method="post" >
+                        <form class="send_form${room.messageRoomId}" name="form" method="post" >
                             <div class="text-container">
                                 <textarea class="write-section"  id="write-section${room.messageRoomId}" name="messageContent" cols="20" rows="5"
                                      onKeydown="getLength(${room.messageRoomId})"  onKeyUp="getLength(${room.messageRoomId})" maxlength="1001"></textarea>

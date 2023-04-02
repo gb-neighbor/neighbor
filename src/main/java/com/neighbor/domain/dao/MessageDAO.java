@@ -44,4 +44,9 @@ public class MessageDAO {
     //    <!--  쪽지방 생성  -->
     public void saveMessageRoomVO(Long boardId, Long sellerId, Long customerId){messageMapper.insertMessageRoomVO(boardId, sellerId, customerId);}
 
+    //    <!--  작성 게시물 수  -->
+    public Integer findCountBoard(Long memberId){return messageMapper.selectCountBoard(memberId);}
+
+    //    <!--  작성 후기 수  -->
+    public Integer findCountReply(Long memberId){return messageMapper.selectCountReply(memberId);}
 }

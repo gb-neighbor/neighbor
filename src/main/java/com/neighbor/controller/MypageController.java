@@ -20,27 +20,62 @@ public class MypageController {
     private final MessageService messageService;
     private final BoardService boardService;
 
-    //   세션 매개변수로 받기
+//  프로필에 올라갈 정보를 가져오는 메소드
+    private Model getMemberInfo(Model model){
+        Long memberId = 47L;
+        MemberVO memberVO = memberService.getOneMemberInfo(memberId);
+        Integer boardCount = messageService.getCountBoard(memberId);
+        Integer replyCount = messageService.getCountReply(memberId);
+
+        model.addAttribute("memberInfo", memberVO);
+        model.addAttribute("boardCount", boardCount);
+        model.addAttribute("replyCount", replyCount);
+
+        return model;
+    }
+
+
+//   쪽지함, 세션 매개변수로 받기 (쪽지함 이동)
     @GetMapping("message_box")
     public void goToMessageBox(Model model){
+    }
+
+//   비밀번호 변경 세션 매개변수로 받기
+    @GetMapping("password_update")
+    public void goToUpdatePassword(Model model){
+        getMemberInfo(model);
 
     }
 
 //   회원탈퇴, 매개변수로 회원 아이디 받기
     @GetMapping("user_leave")
-    public void goToUserLeave(Model model){
-        MemberVO memberVO = memberService.getOneMemberInfo(1L);
-
-
-
-        model.addAttribute("memberInfo", memberVO);
-        model.addAttribute("memberId", 1L);
+    public void goToUserLeave(Model model) {
+        getMemberInfo(model);
     }
 
+//    회원탈퇴 완료
     @PostMapping("leave")
     public String deleteMember(Long memberId){
             memberService.delete(memberId);
         return "redirect:/main";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

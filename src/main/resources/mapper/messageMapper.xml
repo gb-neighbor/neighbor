@@ -56,4 +56,14 @@
         values(#{boardId}, #{sellerId}, #{customerId})
     </insert>
 
+    <!--  작성 게시물 수  -->
+    <select id="selectCountBoard" resultType="integer">
+        select count(board_id) as count_board from tbl_board where member_id=#{memberId}
+    </select>
+
+    <!--  작성 후기 수  -->
+    <select id="selectCountReply" resultType="integer">
+        select count(reply_id) as count_reply from tbl_reply where member_id=#{memberId}
+    </select>
+
 </mapper>
