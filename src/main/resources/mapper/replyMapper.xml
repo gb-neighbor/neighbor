@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.ReplyMapper">
-    
+
+    <sql id="search">
+        <if test="keyword!=null">
+            where reply_content like concat('%',#{keyword}, '%')
+        </if>
+    </sql>
+
     <!-- 보드아이디로 모든 reply정보 가져오기 -->
     <select id="selectAllByBoardId" resultType="replyVO">
         select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, member_id, board_id
@@ -26,6 +32,7 @@
     <select id="countAll" resultType="int">
         select count(distinct reply_id) as countTotalReplys
         from tbl_reply
+        <include refid="search" />
     </select>
 
     <!--후기 전체 조회 검색 포함-->
@@ -34,11 +41,8 @@
         from tbl_reply as r
         join tbl_board as b on r.board_id = b.board_id
         join tbl_member as m on r.member_id = m.member_id
+        <include refid="search" />
         order by reply_id desc
-        limit #{offset}, #{amount}
+        limit #{cri.offset}, #{cri.amount}
     </select>
 </mapper>
-
-        <!--        <if test="keyword!=null">
-                    where r.reply_content like concat('%',#{keyword}, '%')
-                </if>-->
