@@ -53,7 +53,7 @@ function autoSlide() {
     banner.style.transition = 'transform 0.3s';
     banner.style.transform = `translate(${-1200 * ++count}px)`;
     console.log(count);
-    if (count == 6) {
+    if (count == 5) {
         count = 1;
         setTimeout(function () {
             banner.style.transition = 'transform 0s';
@@ -72,7 +72,7 @@ prev.addEventListener('click', function () {
     banner.style.transition = 'transform 0.3s';
     banner.style.transform = `translate(${-1200 * --count}px)`;
     if (count == 0) {
-        count = 5;
+        count = 4;
         setTimeout(function () {
             banner.style.transition = 'transform 0s';
             banner.style.transform = `translate(${-1200 * imageDiv.length}px)`;
@@ -93,7 +93,7 @@ next.addEventListener('click', function () {
     clearInterval(auto);
     banner.style.transition = 'transform 0.3s';
     banner.style.transform = `translate(${-1200 * ++count}px)`;
-    if (count == 6) {
+    if (count == 5) {
         count = 1;
         setTimeout(function () {
             banner.style.transition = 'transform 0s';
