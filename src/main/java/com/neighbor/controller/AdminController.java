@@ -123,8 +123,9 @@ public class AdminController {
     //  회원관리 삭제
     @DeleteMapping("member/delete")
     @ResponseBody
-    public void memberDelete(@RequestParam("checkedIds[]") List<String> checkIds){
-        replyService.remove(checkIds);
+    public void memberDelete(@RequestParam("checkedMemberId") String memberId){
+        Long result = Long.parseLong(memberId);
+        memberService.delete(result);
     }
 
 
