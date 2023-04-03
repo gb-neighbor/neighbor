@@ -19,7 +19,7 @@
     <div class="subnav_wrapper">
         <ul class="subnav_list">
             <li class="list_profile">
-                <a th:href="@{/mypage/profile_home}" class="first_letter">프로필</a>
+                <a th:href="@{/mypage/profile_home}" class="first_letter select">프로필</a>
                 <div class="list_profile_items disply_bundle">
                     <a th:href="@{/mypage/profile_home}" class="second_letter select">홈</a>
                     <a th:href="@{/mypage/message_box}" class="second_letter except_home_letter">쪽지함</a>
@@ -37,7 +37,7 @@
             </li>
 
             <li class="list_setting">
-                <a href="" class="first_letter select" th:href="@{/mypage/profile_home}">설정</a>
+                <a href="" class="first_letter" th:href="@{/mypage/profile_home}">설정</a>
                 <div class="list_my_setting_items disply_bundle">
                     <a class="second_letter except_home_letter" th:href="@{/mypage/password_update}" >비밀번호 변경</a>
                     <a class="second_letter except_home_letter" th:href="@{/mypage/user_leave}">회원탈퇴</a>
@@ -57,78 +57,38 @@
                         <div class="oneline_wrapper">
                             <div class="profile_image_section">
                                 <img class="profile_image  image-box" src="/css/mypage/images/profile_sample1.png">
-                                <div class="profile_camera_image_section">
-                                    <img class="profile_camera_image" src="/css/mypage/images/camera.png">
-                                    <input id="file" name="chooseFile" type="file" accept="image/*" />
-                                    <label class="upload_profile" for="file"></label>
-                                </div>
                             </div>
 
-                            <div class="info_desk" >
+                            <div class="info_desk">
                                 <div class="nick_name">
-                                    <p class="nick_name_letter">싱그러운반찬</p>
+                                    <p class="nick_name_letter" th:text="${memberInfo.memberNickname}"></p>
                                 </div>
 
                                 <div class="my_state">
                                     <div class="scrap">
-                                        <a class="scrap_link" href="">
+                                        <a class="scrap_link" th:href="@{/mypage/upload_food}">
                                             <p class="scrap_message">게시물&nbsp</p>
-                                            <p class="scrap_count">0</p>
+                                            <p class="scrap_count" th:text="${boardCount}"></p>
                                         </a>
                                     </div>
 
                                     <div class="alarm">
-                                        <a class="alarm_link" href="">
+                                        <a class="alarm_link" th:href="@{/mypage/review}">
                                             <p class="alarm_message">후기&nbsp</p>
-                                            <p class="alarm_count">0</p>
+                                            <p class="alarm_count" th:text="${replyCount}"></p>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        프로필
-                    </button>
-                    <div class="content">
-                        <p class="content_items_padding"></p>
-                        <a href="" class="content_items">홈</a>
-                        <a href="" class="content_items">쪽지함</a>
-                        <a href="" class="content_items">내가 올린 반찬</a>
-                        <a href="" class="content_items">후기</a>
-                        <p class="content_items_padding"></p>
-                    </div>
-
-
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        문의
-                    </button>
-                    <div class="content">
-                        <p class="content_items_padding"></p>
-                        <a href="" class="content_items">FAQ</a>
-                        <a href="" class="content_items">1:1 문의</a>
-                        <p class="content_items_padding"></p>
-                    </div>
-
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        설정
-                    </button>
-                    <div class="content">
-                        <p class="content_items_padding"></p>
-                        <a href="" class="content_items">비밀번호 변경</a>
-                        <a href="" class="content_items">회원탈퇴</a>
-                        <p class="content_items_padding"></p>
-                    </div>
-
-
                 </div>
             </div>
         </div>
 
-        <div class="contents_container">
+
+<!-- //콘텐츠부분 시작 -->
+        <div class="contents_container" th:object="${memberInfo}">
 
             <div class="third_content">
                 <h3 class="third_content_title">내 정보</h3>
@@ -138,7 +98,7 @@
                             <div>
                                 <label class="update-user-text">닉네임</label>
                                 <div class="update-user-nickname">
-                                    <input name="memberNickname" class="update-user-value change-value" value="" placeholder="싱그러운반찬" />
+                                    <input name="memberNickname" class="update-user-value change-value" value="" th:placeholder=*{memberNickname} />
                                 </div>
                             </div>
 
@@ -147,7 +107,7 @@
                             <div>
                                 <label class="update-user-text">휴대폰 번호</label>
                                 <div class="update-user">
-                                    <input name="memberPhone" class="update-user-value" value="" placeholder="01072716604" />
+                                    <input name="memberPhone" class="update-user-value" value="" th:placeholder=*{memberPhone} />
                                 </div>
                             </div>
                         </div>
@@ -155,7 +115,7 @@
                             <div>
                                 <label class="update-user-text">이메일</label>
                                 <div class="update-user">
-                                    <input name="memberEmail" class="update-user-value" value="" placeholder="lym3031@naver.com" />
+                                    <input name="memberEmail" class="update-user-value" value="" th:placeholder=*{memberEmail} />
                                 </div>
                             </div>
                         </div>
@@ -164,7 +124,7 @@
                             <div>
                                 <label class="update-user-text">생년월일</label>
                                 <div class="update-user">
-                                    <input name="memberBirth" class="update-user-value change-value" value="" placeholder="2000.01.01" />
+                                    <input name="memberBirth" class="update-user-value change-value" value="" th:placeholder=*{memberBirth} />
                                 </div>
                             </div>
 
@@ -208,7 +168,7 @@
                             <div>
                                 <label class="update-user-text">한 줄 소개</label>
                                 <div class="update-user">
-                                    <input name="memberHiSentence" class="update-user-value" placeholder="유기농 재료로 만든 반찬 판매합니다." />
+                                    <input name="memberHiSentence" class="update-user-value" th:placeholder=*{memberHiSentence} />
                                 </div>
                             </div>
                         </div>
@@ -244,5 +204,7 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
 <script src="/js/mypage/profile_home.js"></script>
+
 </html>

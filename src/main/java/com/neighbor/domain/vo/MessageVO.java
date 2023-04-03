@@ -13,4 +13,5 @@ public class MessageVO {
     private Long messageSenderId;
     private Long messageGetterId;
     private Long messageRoomId;
+    private Integer countMessage;
 }
