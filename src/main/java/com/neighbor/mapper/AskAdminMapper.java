@@ -6,6 +6,7 @@ import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.vo.AskAdminAnswerVO;
 import com.neighbor.domain.vo.AskAdminVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,19 +14,19 @@ import java.util.List;
 public interface AskAdminMapper {
 
 //    전체 조회
-    public List<AskAdminDTO> selectAll(Criteria criteria);
+    public List<AskAdminDTO> selectAll(@Param("cri") Criteria criteria, @Param("keyword") String keyword);
 
 //    답변 대기 중 리스트
-    public List<AskAdminDTO> selectWaitAnswer();
+    public List<AskAdminDTO> selectWaitAnswer(@Param("cri") Criteria criteria, @Param("keyword") String keyword);
 
 //    삭제
     public void delete(Long askAdminId);
 
 // 전체 질문 수
-    public Integer countAll();
+    public Integer countAll(@Param("keyword") String keyword);
 
 //    답변 대기 중인 질문 수
-    public Integer count();
+    public Integer count(@Param("keyword") String keyword);
 
 //    대시보드 문의사항 부분조회
     public List<AskAdminDTO> selectAllBy();

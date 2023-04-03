@@ -7,6 +7,7 @@ import com.neighbor.domain.vo.AskAdminAnswerVO;
 import com.neighbor.domain.vo.AskAdminVO;
 import com.neighbor.mapper.AskAdminMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,21 +19,21 @@ public class AskAdminDAO {
     private final AskAdminMapper askAdminMapper;
 
 //   전체 조회
-    public List<AskAdminDTO> findAll(Criteria criteria){return askAdminMapper.selectAll(criteria);}
+    public List<AskAdminDTO> findAll(Criteria criteria, String keyword){return askAdminMapper.selectAll(criteria, keyword);}
 
 //    문의사항 답변 대기중 조회
-    public List<AskAdminDTO> findAskAnswer() {
-        return askAdminMapper.selectWaitAnswer();
+    public List<AskAdminDTO> findAskAnswer(Criteria criteria, String keyword) {
+        return askAdminMapper.selectWaitAnswer(criteria, keyword);
     }
 
 //    문의사항 전체 질문 수
-    public Integer countAll() {
-        return askAdminMapper.countAll();
+    public int countAll(String keyword) {
+        return askAdminMapper.countAll(keyword);
     }
 
 //    문의사항 답변 대기 중 질문 수
-    public Integer count() {
-        return askAdminMapper.count();
+    public int count(String keyword) {
+        return askAdminMapper.count(keyword);
     }
 
 //    관리자페이지 문의 목록 삭제

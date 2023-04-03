@@ -240,7 +240,7 @@ html{
     box-shadow: 5px 5px 10px 0 gray;
 }
 
-.member-input-wrap{
+.reply-input-wrap{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -253,12 +253,12 @@ html{
     position: relative;
 }
 
-.member-search-wrap {
+.reply-search-wrap {
     padding-right: 3%;
 }
 
 .reply-search{
-    width: 40vh;
+    width: 30vh;
     height: 5vh;
     border: none;
     outline: none;

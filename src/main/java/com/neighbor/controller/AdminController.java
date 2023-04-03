@@ -67,30 +67,30 @@ public class AdminController {
     }
 
     // 문의목록 문의사항 답변대기중 조회
-    @GetMapping("ask-admin-wait-list")
-    public String askAdminShowList(Criteria criteria, Model model) {
-        if(criteria.getPage() == 0){
-            criteria.create(1,6);
-        }
-
-        model.addAttribute("Asks", askAdminService.getListAll(criteria.create(criteria.getPage(), criteria.getAmount()))); // 업데이트된 Criteria 객체 전달
-        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, askAdminService.getCountAll()));
-
-        return "admin/manage-qna";
-    }
-
-
-    //    문의목록 총 질문 수
-    @GetMapping("ask-admin-countAll")
-    public Integer getAskAdminTotal() {
-        return askAdminService.getCountAll();
-    }
-
-    //    문의목록 답변 대기 중인 질문 수
-    @GetMapping("ask-admin-count")
-    public Integer getWaitAnswerTotal() {
-        return askAdminService.getCount();
-    }
+//    @GetMapping("ask-admin-wait-list")
+//    public String askAdminShowList(Criteria criteria, Model model) {
+//        if(criteria.getPage() == 0){
+//            criteria.create(1,6);
+//        }
+//
+//        model.addAttribute("Asks", askAdminService.getListAll(criteria.create(criteria.getPage(), criteria.getAmount()))); // 업데이트된 Criteria 객체 전달
+//        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, askAdminService.getCountAll()));
+//
+//        return "admin/manage-qna";
+//    }
+//
+//
+//    //    문의목록 총 질문 수
+//    @GetMapping("ask-admin-countAll")
+//    public Integer getAskAdminTotal() {
+//        return askAdminService.getCountAll();
+//    }
+//
+//    //    문의목록 답변 대기 중인 질문 수
+//    @GetMapping("ask-admin-count")
+//    public Integer getWaitAnswerTotal() {
+//        return askAdminService.getCount();
+//    }
 
     /*AskAdmin 끝*/
 
@@ -221,5 +221,56 @@ public class AdminController {
 
     /*board 끝*/
 
+    /*ask-admin 시작*/
+    
+    
+    @GetMapping("ask/list")
+    public String askShowList() {
+        return "admin/manage-qna";
+    }
+
+    /* 문의사항 ajax로 리스트를 불러오는 컨트롤러 */
+
+    @GetMapping("ask/page/keyword")
+    @ResponseBody
+    public AskAdminDTO askShowList(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+        criteria = criteria.create(page, 6);
+        AskAdminDTO askAdminDTO = new AskAdminDTO();
+        askAdminDTO.setAskTotal(askAdminService.getCountAll(keyword));
+        askAdminDTO.setAskAdminDTOS(askAdminService.getListAll(criteria,keyword));
+        log.info(askAdminDTO.getAskAdminDTOS().toString());
+        askAdminDTO.setPageDTO(new PageDTO().createPageDTO(criteria, askAdminService.getCountAll(keyword)));
+        for (AskAdminDTO dto : askAdminDTO.getAskAdminDTOS()) {
+            dto.statusChange(dto.getAskAdminStatus());
+        }
+
+        return askAdminDTO;
+    }
+
+    //  답변대기중 보여주기
+    @GetMapping("ask/page/keyword/status")
+    @ResponseBody
+    public AskAdminDTO askShowListStatus(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+        criteria = criteria.create(page, 6);
+        AskAdminDTO askAdminDTO = new AskAdminDTO();
+        askAdminDTO.setAskTotal(askAdminService.getCount(keyword));
+        askAdminDTO.setAskAdminDTOS(askAdminService.getList(criteria,keyword));
+        askAdminDTO.setPageDTO(new PageDTO().createPageDTO(criteria, askAdminService.getCount(keyword)));
+        for (AskAdminDTO dto : askAdminDTO.getAskAdminDTOS()) {
+            dto.statusChange(dto.getAskAdminStatus());
+        }
+
+        return askAdminDTO;
+    }
+
+    //  게시판관리 삭제
+    @DeleteMapping("ask/delete")
+    @ResponseBody
+    public void askDelete(@RequestParam("checkedId") String askAdminId){
+        Long result = Long.parseLong(askAdminId);
+        askAdminService.delete(result);
+    }
+    
+    /*ask-admin 끝*/
 
 }
