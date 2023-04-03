@@ -1,6 +1,7 @@
 package com.neighbor.service;
 
 import com.neighbor.domain.dao.MessageDAO;
+import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
@@ -68,5 +69,13 @@ public class MessageService {
     //    <!--  작성 후기 수  -->
     public Integer getCountReply(Long memberId){return messageDAO.findCountReply(memberId);}
 
+    //    <!--  게시글당 총 후기 수  -->
+    public Integer getTotalReply(Long boardId){return messageDAO.findTotalReply(boardId);}
+
+    //    <!--  게시글 평점  -->
+    public Integer getAvgScore(Long boardId){return messageDAO.findCountBoard(boardId);}
+
+    //    <!--  내가 쓴 게시글 전체 조회  -->
+    public List<BoardDTO> getBoardByMemberId(Long memberId){return messageDAO.findBoardByMemberId(memberId);}
 
 }

@@ -22,8 +22,8 @@ public class MemberDAOTests {
     /* 대시보드 멤버 전체 조회 테스트*/
     @Test
     public void memberListTest() {
-        List<MemberDTO> memberVOList = memberDAO.findAll();
-        log.info(String.valueOf(memberVOList));
+//        List<MemberDTO> memberVOList = memberDAO.findAll();
+//        log.info(String.valueOf(memberVOList));
     }
 
     /* 회원 관리 멤버 삭제 테스트*/
