@@ -197,11 +197,12 @@ public class AdminController {
     @GetMapping("board/page/keyword/status")
     @ResponseBody
     public BoardDTO boardShowListStatus(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
+        log.info("페이지번호" + page);
         criteria = criteria.create(page, 6);
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setBoardTotal(boardService.getCount(keyword));
         boardDTO.setBoardDTOS(boardService.getWaitList(criteria,keyword));
-        boardDTO.setPageDTO(new PageDTO().createPageDTO(criteria, boardService.getCountAll(keyword)));
+        boardDTO.setPageDTO(new PageDTO().createPageDTO(criteria, boardService.getCount(keyword)));
         for (BoardDTO dto : boardDTO.getBoardDTOS()) {
             dto.change(dto.getBoardRegion());
             dto.saleChange(dto.getBoardStatus());

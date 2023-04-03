@@ -45,7 +45,7 @@ public class BoardDAO {
     //    관리자 페이지 판매목록 게시글 전체 조회
     public List<BoardDTO> findAll(Criteria criteria, String keyword){return boardMapper.selectAll(criteria, keyword);}
 
-    //    관리자 페이지 판매 목록 게시글
+    //    관리자 페이지 판매 대기중 게시글
     public List<BoardDTO> findWait(Criteria criteria, String keyword) {
         return boardMapper.selectWait(criteria, keyword);
     }
