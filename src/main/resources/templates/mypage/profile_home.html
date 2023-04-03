@@ -104,7 +104,8 @@
                             <div>
                                 <label class="update-user-text">닉네임</label>
                                 <div class="update-user-nickname">
-                                    <input name="memberNickname" class="update-user-value change-value" value="" th:placeholder=*{memberNickname} />
+                                    <input name="memberNickname" class="update-user-value change-value nick-name" value="" th:placeholder=*{memberNickname} />
+                                    <p class="err-nickname err"></p>
                                 </div>
                             </div>
 
@@ -113,7 +114,8 @@
                             <div>
                                 <label class="update-user-text">휴대폰 번호</label>
                                 <div class="update-user">
-                                    <input name="memberPhone" class="update-user-value" value="" th:placeholder=*{memberPhone} />
+                                    <input name="memberPhone" class="update-user-value phone" value="" th:placeholder=*{memberPhone} />
+                                    <p class="err-phone err"></p>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +123,8 @@
                             <div>
                                 <label class="update-user-text">이메일</label>
                                 <div class="update-user">
-                                    <input name="memberEmail" class="update-user-value" value="" th:placeholder=*{memberEmail} />
+                                    <input name="memberEmail" class="update-user-value email" value="" th:placeholder=*{memberEmail} />
+                                    <p class="err-email err"></p>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +133,8 @@
                             <div>
                                 <label class="update-user-text">생년월일</label>
                                 <div class="update-user">
-                                    <input name="memberBirth" class="update-user-value change-value" value="" th:placeholder=*{memberBirth} />
+                                    <input name="memberBirth" class="update-user-value change-value birth" value="" th:placeholder=*{memberBirth} />
+                                    <p class="err-birth err"></p>
                                 </div>
                             </div>
 
@@ -180,22 +184,24 @@
                         </div>
 
                         <div class="update-user-wrap">
-                            <input type="hidden" name="realPassword" th:value=*{memberPassword}>
+                            <input type="hidden" name="realPassword" >
                             <div>
                                 <label class="update-user-text">비밀번호 확인</label>
                                 <div class="update-user">
                                     <input
                                             type="password"
                                             name="memberPassword"
-                                            class="update-user-value"
+                                            class="update-user-value password-check"
                                             value=""
+                                            disabled
                                     />
+                                    <p class="err-password-check err"></p>
                                 </div>
                             </div>
                         </div>
                     </article>
                 </div>
-                <button type="button" class="change-button">변경 사항 저장하기</button>
+                <button type="button" class="change-button" disabled>변경 사항 저장하기</button>
             </div>
 
         </div>
