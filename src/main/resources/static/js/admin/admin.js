@@ -98,7 +98,7 @@ function modal(id) {
         })
         .end()
         .css({
-            position: 'fixed',
+            position: 'absolute',
             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 
             // 시꺼먼 레이어 보다 한칸 위에 보이기

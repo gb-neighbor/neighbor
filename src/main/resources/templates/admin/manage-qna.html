@@ -89,40 +89,34 @@
             </div>
 
             <div class="user-list-contents">
-                <div class="member-input-wrap">
-                    <!-- <div class="watch-all-ask">
-                        <input class="watch-all-ask-button" type="submit" value="전체보기">
-                    </div>
-                    <div class="watch-waiting-ask">
-                        <input class="watch-waiting-ask-button" type="submit" value="대기 문의 보기">
-                    </div>
-                    <div class="member-delete-button-wrap">
-                        <input class="member-delete-button" type="submit" value="선택 삭제">
-                    </div> -->
+                <div class="qna-input-wrap">
                     <!-- 버튼만 묶어놓기 -->
                     <div class="wrap-button">
                         <div class="watch-all-ask">
-                            <input class="watch-all-ask-button" type="submit" value="전체보기">
+                            <input class="watch-all-ask-button" type="button" value="전체보기">
                         </div>
                         <div class="watch-waiting-ask">
-                            <input class="watch-waiting-button" type="submit" value="대기 문의 보기">
+                            <input class="watch-waiting-button" type="button" value="대기 문의 보기">
                         </div>
                         <div class="ask-delete-button-wrap">
-                            <input class="ask-delete-button" type="submit" value="게시글 삭제">
+                            <input class="ask-delete-button" type="button" value="게시글 삭제">
                         </div>
                     </div>
 
-                    <div class="member-search-wrap">
+                    <div class="ask-admin-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
-                            <input class="ask-search" type="text" placeholder="문의 검색" th:field="*{keyword}">
+                            <form class="ask-admin-search-form" name="search-form" >
+                                <input class="ask-admin-search keyword" name="keyword" type="text" placeholder="제목 검색">
+                                <button id="search-button" type="button">검색</button>
+                            </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="total-mentor">
                     <p>전체 문의</p>
-                    <p class="total-mentor-num">15</p>
+                    <p class="total-mentor-num"></p>
                 </div>
 
                 <div class="checkbox-group">
@@ -152,111 +146,318 @@
                             답변하기
                         </div>
                     </div>
-
-                    <div th:each="Ask:${Asks}">
-                        <div class="item-list-contents" th:object="${Ask}">
-                            <div class="checkbox-zip">
-                                <input type="checkbox" id="check1" class="normal" value="">
-                            </div>
-                            <div class="qna-num" th:text="*{askAdminId}">
-
-                            </div>
-                            <div class="qna-title" th:text="*{askAdminTitle}">
-
-                            </div>
-                            <div class="user-nick-name" th:text="*{memberId}">
-
-                            </div>
-                            <div class="qna-ask-day" th:text="*{askAdminRegisterDate}">
-
-                            </div>
-                            <div class="qna-answer-day">
-                                -
-                            </div>
-                            <div class="qna-status qna-status-false" th:text="*{askAdminStatus}">
-                                답변 대기중
-                            </div>
-                            <div class="detail">
-                                <button class="detail-button modal7" type="submit">
-                                    <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                                </button>
-                            </div>
-                            <div id="my_modal7" class="my_modal">
-                                <a class="modal_close_btn">✖</a>
-                                <div class="comment-writer">작성자: 벅벅코딩</div>
-                                <div class="comment-title">제목: 메일이 안와요</div>
-                                <div class="comment-detail">
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                    메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                </div>
-                                <div class="qna-manage">
-                                    <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                    <input class="qna-submit-btn" type="submit" value="전송하기">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="page-button-box">
-                        <div th:object="${pagination}">
-                            <div style="text-align: center">
-                                <a class="page-button" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
-                                <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                                    <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                                    <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                                </th:block>
-                                <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
-                            </div>
-                            <form th:action="@{/askAdmins/list}" th:object="${criteria}" name="pageForm">
-                                <input type="hidden" th:field="*{page}">
-                            </form>
-                        </div>
-                    </div>
-
+                     <!--<div class="item-list-contents">
+                         <div class="checkbox-zip">
+                             <input type="checkbox" id="check1" class="normal" value="">
+                         </div>
+                         <div class="qna-num"></div>
+                         <div class="qna-title"></div>
+                         <div class="user-nick-name"></div>
+                         <div class="qna-ask-day"></div>
+                         <div class="qna-answer-day"></div>
+                         <div class="qna-status qna-status-false"></div>
+                         <div class="detail">
+                             <button class="detail-button modal7" type="submit">
+                                 <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                             </button>
+                         </div>
+                         <div id="my_modal7" class="my_modal">
+                             <a class="modal_close_btn">✖</a>
+                             <div class="comment-writer">작성자: 벅벅코딩</div>
+                             <div class="comment-title">제목: 메일이 안와요</div>
+                             <div class="comment-detail">
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                             </div>
+                             <div class="qna-manage">
+                                 <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                 <input class="qna-submit-btn" type="submit" value="전송하기">
+                             </div>
+                         </div>
+                    </div>-->
                 </div>
+                <div class="page-button-box"></div>
+            </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-
-    let $pages = $("a.page-button");
-    // let queryString = "${pagination.criteria.queryString}";
-
-    $pages.on("click", function(e){
-        e.preventDefault();
-        let page = $(this).attr("href");
-        let amount = 6;
-        let url = "/askAdmins/list?page=" + page+"&amount="+amount;
-
-        location.href = url;
+    $(document).ready(function() {
+        // 검색창에서 키보드를 눌렀을 때
+        $('.board-search-form').on('keydown', function(e) {
+            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+                e.preventDefault(); // 기본 이벤트 막기
+            }
+        });
     });
-    // input 태그 선택
-    const $input = $("a.member-search");
 
-    // 입력이 시작되면 자동완성 결과를 보여주는 이벤트 리스너
-    $input.addEventListener('input', function() {
-        // 입력된 검색어를 가져옴
-        const keyword = $input.value;
+    const $changePageTags = $(".page-button");
+    const $searchButton = $("#search-button");
+    const $askAdminSearch = $(".ask-admin-search");
+    let page = 1;
+    let keyword = null;
 
-        // 검색어를 기반으로 검색 결과를 가져옴
-        fetch('/search?keyword=' + encodeURIComponent(keyword))
-            .then(response => response.json())
-            .then(data => {
-                // 검색 결과를 화면에 보여줌
-                innerHTML = data.html;
+    load(page, keyword);
+
+    function showList(askAdminDTOS) {
+        const $results = $('.checkbox-group');
+        var text = "";
+        var content = "";
+        askAdminDTOS.forEach(ask => {
+            content +=  `
+                        <div class="item-list-contents">
+                         <div class="checkbox-zip">
+                             <input type="checkbox" id="check1" class="normal" value="${ask.askAdminId}">
+                         </div>
+                         <div class="qna-num">${ask.askAdminId}</div>
+                         <div class="ask-admin-contents">
+                                <span id="${ask.askAdminId}" onclick="openModal(${ask.askAdminId})">${ask.askAdminTitle}</span>
+                                <div id="my_modal${ask.askAdminId}" class="my_modal">
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: <span>${ask.memberNickname}</span></div>
+                                    <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
+                                    <div class="comment-detail">${ask.askAdminContent}</div>
+                                </div>
+                            </div>
+                         <div class="user-nick-name">${ask.memberNickname}</div>
+                         <div class="qna-ask-day">${ask.askAdminRegisterDate}</div>
+                         <div class="qna-answer-day">${ask.askAdminAnswerRegisterDate}</div>
+                         <div class="qna-status qna-status-false">${ask.askStatus}</div>
+                         <div class="detail">
+                             <button class="detail-button modal${ask.askAdminAnswerId}" onclick="openModal(${ask.askAdminAnswerId})" type="submit">
+                                 <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                             </button>
+                         </div>
+                         <div id="my_modal${ask.askAdminAnswerId}" class="my_modal">
+                             <a class="modal_close_btn">✖</a>
+                             <div class="comment-writer">작성자: <span>${ask.memberNickname}</span></div>
+                              <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
+                             <div class="comment-detail">${ask.askAdminContent}</div>
+                             <div class="qna-manage">
+                                 <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                 <input class="qna-submit-btn" type="submit" value="전송하기">
+                             </div>
+                         </div>
+                    </div>`
+        });
+        $('.item-list-contents').remove();
+        if ($("#check-all").prop("checked")) {
+            $("#check-all").prop("checked", false);
+        }
+        $results.append(content);
+
+    } // showlist 끝
+
+    // 페이지를 텍스트로 가져오기 성공!
+    function showPage(pageDTO) {
+        const $btns = $('.page-button-box');
+        const criteria = pageDTO.criteria;
+        let text = "";
+        $btns.empty(); // 이전에 생성한 페이지 버튼 제거
+        if (pageDTO.prev) {
+            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
+        }
+        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+            if (criteria.page === i) {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            } else {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            }
+        }
+        if (pageDTO.next) {
+            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
+        }
+        $btns.append(text);
+        $("input[name='page']").val(criteria.page);
+
+        /*페이지 이동을 위함*/
+        $('.page-button').on('click', function(e) {
+            e.preventDefault();
+            const page = $(this).data('page');
+            console.log(page);
+            load(page);
+            $('.page-button.active').removeClass('active');
+            $(this).addClass('active');
+        }).on('mouseenter', function() {
+            $(this).css('cursor', 'pointer');
+        }).on('mouseleave', function() {
+            $(this).css('cursor', 'auto');
+        });
+    }
+
+
+    $searchButton.on("click", function() {
+        keyword = $askAdminSearch.val();
+        load(page,keyword);
+    });
+
+    $askAdminSearch.on("keyup", function() {
+        keyword = $askAdminSearch.val();
+        load(page,keyword);
+    });
+
+    // 처음 페이지 목록을 불러옴.
+    function load(page, keyword) {
+        $.ajax({
+            url: `/admin/ask/page/keyword`,
+            type: "get",
+            data: {
+                page: page,
+                keyword: keyword
+            },
+            success: function (result) {
+                // replyDTO
+                $('.total-mentor-num').html(result.askTotal);
+                showList(result.askAdminDTOS);
+                showPage(result.pageDTO);
+            }
+        });
+    }
+
+    /* delete 버튼 클릭 시 ajax실행*/
+
+    $('.ask-delete-button').on('click', function () {
+        var checkedItems = [];
+
+// 체크박스 요소들을 가져온다.
+        var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
+
+// 체크박스들을 순회하며 체크된 항목들을 배열에 담는다.
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
+            }
+        });
+        console.log(checkedItems);
+
+        for(let i = 0; i<checkedItems.length; i++){
+            console.log(checkedItems[i]);
+            $.ajax({
+                type : "DELETE",
+                url : "/admin/ask/delete",
+                data : {
+                    "checkedId" : checkedItems[i]
+                },
+                success : function() {
+                    load(page, keyword);
+                }
             });
+        }
     });
 
+
+    function showListWait(askAdminDTOS) {
+        const $results = $('.checkbox-group');
+        var text = "";
+        var content = "";
+        askAdminDTOS.forEach(ask => {
+            content +=  `<div class="item-list-contents">
+                         <div class="checkbox-zip">
+                             <input type="checkbox" id="check1" class="normal" value="${ask.askAdminId}">
+                         </div>
+                         <div class="qna-num">${ask.askAdminId}</div>
+                         <div class="qna-title">${ask.askAdminTitle}</div>
+                         <div class="user-nick-name">${ask.memberNickname}</div>
+                         <div class="qna-ask-day">${ask.askAdminRegisterDate}</div>
+                         <div class="qna-answer-day">${ask.askAdminAnswerRegisterDate}</div>
+                         <div class="qna-status qna-status-false">${ask.askStatus}</div>
+                         <div class="detail">
+                             <button class="detail-button modal${ask.askAdminId}" type="submit">
+                                 <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                             </button>
+
+                         </div>
+                         <div id="my_modal${ask.askAdminId}" class="my_modal">
+                             <a class="modal_close_btn">✖</a>
+                             <div class="comment-writer">작성자: <span>${ask.memberNickname}</span></div>
+                              <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
+                             <div class="comment-detail">${ask.askAdminContent}</div>
+                             <div class="qna-manage">
+                                 <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                 <input class="qna-submit-btn" type="submit" value="전송하기">
+                             </div>
+                         </div>
+                    </div>`
+
+
+
+        });
+        $('.item-list-contents').remove();
+        if ($("#check-all").prop("checked")) {
+            $("#check-all").prop("checked", false);
+        }
+        $results.append(content);
+
+    }
+
+
+    function showPageWait(pageDTO) {
+        const $btns = $('.page-button-box');
+        const criteria = pageDTO.criteria;
+        let text = "";
+        $btns.empty(); // 이전에 생성한 페이지 버튼 제거
+        if (pageDTO.prev) {
+            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
+        }
+        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+            if (criteria.page === i) {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            } else {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            }
+        }
+        if (pageDTO.next) {
+            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
+        }
+        $btns.append(text);
+        $("input[name='page']").val(criteria.page);
+        /*페이지 이동을 위함*/
+// 페이지 이동 버튼 클릭 이벤트 핸들러 추가
+        $('.page-button').on('click', function(e) {
+            e.preventDefault();
+            const page = $(this).data('page');
+            console.log(page);
+            load2(page, keyword);
+            $('.page-button.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    }
+
+    function load2(page, keyword) {
+        $('.total-mentor-num').empty();
+        $('.list-container').empty();
+        $('.page-button-box').empty();
+        $.ajax({
+            url: `/admin/ask/page/keyword/status`,
+            type: "get",
+            data: {
+                page: page,
+                keyword: keyword
+            },
+            success: function (resultWait) {
+                $('.total-mentor-num').html(resultWait.askTotal);
+                showListWait(resultWait.askAdminDTOS);
+                showPageWait(resultWait.pageDTO);
+            }
+        });
+    }
+    /*판매 대기중인 목록을 불러오는 ajax*/
+    $('.watch-waiting-ask').on('click',function() {
+        load2(page,keyword);
+    });
+
+    $('.watch-all-ask').on('click',function() {
+        load(page,keyword);
+    });
 
 </script>
 </html>
