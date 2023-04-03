@@ -19,25 +19,25 @@ public class AskAdminService {
 
 
     //   전체 조회
-    public List<AskAdminDTO> getListAll(Criteria criteria){return askAdminDAO.findAll(criteria);}
+    public List<AskAdminDTO> getListAll(Criteria criteria, String keyword){return askAdminDAO.findAll(criteria, keyword);}
 
 
 //    문의사항 답변 대기 중인 질문 조회
 
-    public List<AskAdminDTO> getList(Criteria criteria){
-        return askAdminDAO.findAskAnswer();
+    public List<AskAdminDTO> getList(Criteria criteria, String keyword){
+        return askAdminDAO.findAskAnswer(criteria, keyword);
     }
 //  문의사항 답변 대기 중인 질문 수
 
-    public Integer getCount() {
-        return askAdminDAO.count();
+    public int getCount(String keyword) {
+        return askAdminDAO.count(keyword);
     }
 
 //    문의사항 전체 질문 수
 
-    public Integer getCountAll() {
+    public int getCountAll(String keyword) {
 
-        return askAdminDAO.countAll();
+        return askAdminDAO.countAll(keyword);
     }
 
     //    관리자페이지 문의 목록 삭제

@@ -243,7 +243,7 @@ html{
     box-shadow: 5px 5px 10px 0 gray;
 }
 
-.member-input-wrap{
+.qna-input-wrap{
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -257,12 +257,12 @@ html{
     position: relative;
 }
 
-.member-search-wrap {
+.qna-search-wrap {
     padding-right: 3%;
 }
 
-.ask-search{
-    width: 40vh;
+.qna-search{
+    width: 30vh;
     height: 5vh;
     border: none;
     outline: none;
@@ -569,4 +569,30 @@ bottom: 3%;
     font-size: 1rem;
     font-weight: 300;
     resize: none;
+}
+
+/*페이지 버튼 ajax용으로 추가함.*/
+.page-button {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #81839C;
+    color: #fff;
+    margin-right: 5px;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.page-button:hover {
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+.ask-admin-contents{
+    text-align: center;
+    width: 25%;
+    cursor: pointer;
+
 }

@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neighbor.mapper.AskAdminMapper">
-    <!--대쉬보드 문의사항 답변 대기중 리스트-->
+
+    <sql id="search">
+        <if test="keyword!=null">
+            where ask_admin_title like concat('%',#{keyword}, '%')
+        </if>
+    </sql>
+
+
+    <!-- 관리자 페이지 답변 대기중 문의사항 리스트-->
     <select id="selectWaitAnswer" resultType="askAdminDTO">
         select ask_admin_id, ask_admin_title, ask_admin_content, ask_admin_register_date, aa.member_id, member_nickname, ask_admin_status
         from tbl_ask_admin aa
         join tbl_member m on aa.member_id = m.member_id
         where aa.ask_admin_status = 0
+        <if test="keyword!=null">
+            and ask_admin_title like concat('%',#{keyword}, '%')
+        </if>
         order by aa.ask_admin_id desc
+        limit #{cri.offset}, #{cri.amount}
     </select>
 
-    <!--문의사항 전체 조회-->
+    <!-- 관리자 페이지 문의사항 전체 조회-->
     <select id="selectAll" resultType="askAdminDTO">
-        select aa.ask_admin_id, aa.ask_admin_title, aa.ask_admin_content, aa.ask_admin_register_date, aa.member_id, m.member_nickname, aa.ask_admin_status
+        select aa.ask_admin_id, aa.ask_admin_title, aa.ask_admin_content, aa.ask_admin_register_date, aa.member_id, m.member_nickname, aa.ask_admin_status, aaa.ask_admin_answer_register_date
         from tbl_ask_admin aa
         join tbl_member m on aa.member_id = m.member_id
+        left join tbl_ask_admin_answer aaa on aa.ask_admin_id = aaa.ask_admin_id
+        <include refid="search" />
         order by aa.ask_admin_id desc
-        limit #{amount} offset #{offset}
+        limit #{cri.offset}, #{cri.amount}
     </select>
 
-    <!--대시보드 문의사항 -->
+    <!-- 관리자 페이지 대시보드 문의사항 -->
     <select id="selectAllBy" resultType="askAdminDTO">
         select aa.ask_admin_id, aa.ask_admin_title, aa.ask_admin_content, aa.ask_admin_register_date, aa.member_id, m.member_nickname, aa.ask_admin_status
         from tbl_ask_admin aa
@@ -29,17 +43,18 @@
     </select>
 
 
-    <!--문의사항 전체 질문 수-->
-    <select id="countAll" resultType="Integer">
-    select count(distinct ask_admin_id) countTotalAsks
-    from tbl_ask_admin
+    <!-- 관리자 페이지 문의사항 전체 질문 수-->
+    <select id="countAll" resultType="_int">
+        select count(distinct ask_admin_id) countTotalAsks
+        from tbl_ask_admin
+        <include refid="search" />
     </select>
 
-    <!--문의사항 답변대기 질문 수-->
-    <select id="count" resultType="Integer">
-    select count(distinct ask_admin_id) countAnswerWaitAsks
-    from tbl_ask_admin
-    where ask_admin_status = 0
+    <!--관리자페이지 문의사항 답변대기 질문 수-->
+    <select id="count" resultType="_int">
+        select count(distinct ask_admin_id) countAnswerWaitAsks
+        from tbl_ask_admin
+        where ask_admin_status = 0
     </select>
 
     <delete id="delete">
