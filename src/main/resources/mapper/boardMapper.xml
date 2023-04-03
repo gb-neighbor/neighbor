@@ -84,7 +84,7 @@
 
     <!-- 게시판 판매대기중 조회 -->
     <select id="selectWait" resultType="boardDTO">
-        select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
+        select board_id, b.board_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status, board_content
         from tbl_member m join tbl_board b
         on m.member_id = b.member_id
         where board_status = 0
@@ -92,6 +92,7 @@
             and board_content like concat('%',#{keyword}, '%')
         </if>
         order by board_id desc
+        limit #{cri.offset}, #{cri.amount}
     </select>
 
     <!-- 관리자 게시판 관리 게시판 전체 조회 -->

@@ -262,7 +262,7 @@
         $btns.append(text);
         $("input[name='page']").val(criteria.page);
 
-        // 클릭 시 css가 변하는 이벤트 추가, css가 제대로 작동하는지 확인 필요. 최종 전에 확인하기
+        /*페이지 이동을 위함*/
         $('.page-button').on('click', function(e) {
             e.preventDefault();
             const page = $(this).data('page');
@@ -277,6 +277,7 @@
         });
     }
 
+
     $searchButton.on("click", function() {
         keyword = $boardSearch.val();
         load(page,keyword);
@@ -287,6 +288,7 @@
         load(page,keyword);
     });
 
+    // 처음 페이지 목록을 불러옴.
     function load(page, keyword) {
         $.ajax({
             url: `/admin/board/page/keyword`,
@@ -335,28 +337,97 @@
         }
     });
 
-    $('.watch-waiting-button').on('click',function() {
-        console.log("판매대기중 들어옴"); // 들어옴
-        // 판매 대기중인 것들만 불러오는 리스트
-        function load2(page, keyword) {
-            $('.total-mentor-num').empty();
-            $('.list-container').empty();
-            $('.page-button-box').empty();
-            $.ajax({
-                url: `/admin/board/page/keyword/status`,
-                type: "get",
-                data: {
-                    page: page,
-                    keyword: keyword
-                },
-                success: function (result) {
-                    console.log("success까지 옴");
-                    $('.total-mentor-num').html(result.boardTotal);
-                    showList(result.boardDTOS);
-                    showPage(result.pageDTO);
-                }
-            });
+
+    function showListWait(boardDTOS) {
+        const $results = $('.checkbox-group');
+        var text = "";
+        var content = "";
+        boardDTOS.forEach(board => {
+            content +=  `
+                        <div class="item-list-contents">
+                            <div class="checkbox-zip">
+                                <input type="checkbox" id="check1" class="normal" value="${board.boardId}">
+                            </div>
+                            <div class="board-num">${board.boardId}</div>
+                            <div class="user-region">${board.boardRegionKo}</div>
+                            <div class="user-name">${board.memberNickname}</div>
+                            <div class="board-contents">
+                                <span id="${board.boardId}" onclick="openModal(${board.boardId})">${board.boardContent}</span>
+                                <div id="my_modal${board.boardId}" class="my_modal">
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: <span>${board.memberNickname}</span></div>
+                                    <div class="comment-title">제목: <span>${board.boardTitle}</span></div>
+                                    <div class="comment-detail">${board.boardContent}</div>
+                                </div>
+                            </div>
+                            <div class="board-register-date">${board.boardRegisterDate}</div>
+                            <div class="status status-false">${board.boardSaleStatus}</div>
+                        </div>`
+
+
+
+        });
+        $('.item-list-contents').remove();
+        if ($("#check-all").prop("checked")) {
+            $("#check-all").prop("checked", false);
         }
+        $results.append(content);
+
+    }
+
+
+    function showPageWait(pageDTO) {
+        const $btns = $('.page-button-box');
+        const criteria = pageDTO.criteria;
+        let text = "";
+        $btns.empty(); // 이전에 생성한 페이지 버튼 제거
+        if (pageDTO.prev) {
+            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
+        }
+        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+            if (criteria.page === i) {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            } else {
+                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            }
+        }
+        if (pageDTO.next) {
+            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
+        }
+        $btns.append(text);
+        $("input[name='page']").val(criteria.page);
+        /*페이지 이동을 위함*/
+// 페이지 이동 버튼 클릭 이벤트 핸들러 추가
+        $('.page-button').on('click', function(e) {
+            e.preventDefault();
+            const page = $(this).data('page');
+            console.log(page);
+            load2(page, keyword);
+            $('.page-button.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    }
+
+    function load2(page, keyword) {
+        $('.total-mentor-num').empty();
+        $('.list-container').empty();
+        $('.page-button-box').empty();
+        $.ajax({
+            url: `/admin/board/page/keyword/status`,
+            type: "get",
+            data: {
+                page: page,
+                keyword: keyword
+            },
+            success: function (resultWait) {
+                $('.total-mentor-num').html(resultWait.boardTotal);
+                showListWait(resultWait.boardDTOS);
+                showPageWait(resultWait.pageDTO);
+            }
+        });
+    }
+    /*판매 대기중인 목록을 불러오는 ajax*/
+    $('.watch-waiting-button').on('click',function() {
         load2(page,keyword);
     });
 
