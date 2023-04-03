@@ -1,6 +1,7 @@
 package com.neighbor.domain.dto;
 
 
+import com.neighbor.domain.vo.ReplyFileVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,7 @@ public class ReplyDTO {
     private Boolean boardStatus;
     private Integer boardRegion;
     private Integer replyTotal;
+    private List<ReplyFileVO> files;
 
     private String replyRegionKo;
     private String[] replyRegionArr = {"전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",

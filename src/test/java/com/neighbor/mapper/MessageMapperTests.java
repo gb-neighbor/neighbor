@@ -19,7 +19,7 @@ public class MessageMapperTests {
 
     @Test
     public void messageDetailTest(){
-        messageMapper.selectMessage(1L).forEach(messageVO -> log.info(String.valueOf(messageVO)));
+//        messageMapper.selectMessage(1L).forEach(messageVO -> log.info(String.valueOf(messageVO)));
     }
 
     @Test

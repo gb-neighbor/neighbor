@@ -24,9 +24,14 @@ public interface ReplyMapper {
 //    후기목록 전체 글 수
     public int countAll(@Param("keyword") String keyword);
 
+
 //    후기목록 전체조회 검색포함
     public List<ReplyDTO> selectAll(@Param("cri") Criteria criteria, @Param("keyword") String keyword);
 
 //    후기 작성
-    public void insert(ReplyVO replyVO);
+    public void insert(ReplyDTO replyDTO);
+
+//    방금 작성한 replyId가져오기
+    public Long getCurrentSeq();
+
 }

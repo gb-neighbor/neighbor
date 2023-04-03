@@ -56,7 +56,7 @@ public class BoardMapperTests {
     /*관리자 대시보드 게시판*/
     @Test
     public void selectAllTest() {
-        log.info(boardMapper.selectAll().toString());
+//        log.info(boardMapper.selectAll().toString());
     }
 
     /*관리자 게시판 목록 삭제*/

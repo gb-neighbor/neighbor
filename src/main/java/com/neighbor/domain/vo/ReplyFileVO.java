@@ -10,5 +10,6 @@ public class ReplyFileVO {
     private String replyFileUuid;
     private String replyFileOriginalName;
     private String replyFilePath;
+    private String replyFileSize;
     private Long replyId;
 }

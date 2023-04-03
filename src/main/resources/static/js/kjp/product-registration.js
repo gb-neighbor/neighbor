@@ -111,6 +111,7 @@ $("input[id='detail-file']").on("change", function() {
                     `
                 i++;
             });
+            i=0;
             $("form[name='board']").append(text);
         }
     });
