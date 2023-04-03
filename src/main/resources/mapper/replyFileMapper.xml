@@ -6,4 +6,10 @@
         (reply_file_uuid, reply_file_original_name, reply_file_path, reply_file_size, reply_id)
         VALUES(#{replyFileUuid}, #{replyFileOriginalName}, #{replyFilePath}, #{replyFileSize}, #{replyId});
     </insert>
+    
+    <select id="selectAllByReplyId" resultType="replyFileVO">
+        select reply_file_id, reply_file_uuid, reply_file_original_name, reply_file_path, reply_file_size, reply_id
+        from tbl_reply_file
+        where reply_id = #{replyId}
+    </select>
 </mapper>

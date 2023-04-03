@@ -472,48 +472,6 @@ function showMessage(messages){
 }
 
 /*********************************************************************************************/
-//사진 올리기
-/*FileList.prototype.forEach = Array.prototype.forEach;
-globalThis.arrayFile = new Array();
-globalThis.i = 0;
-let text= "";
-$("input[id='files']").on("change", function() {
-	const $files = $("input[id=files]")[0].files;
-//    파일 객체에 접근함
-	let formData = new FormData();
-	Array.from($files).forEach(file => globalThis.arrayFile.push(file));
-	// 파일 Array의 file들을 하나씩 담아줌
-	$files.forEach(file => {
-		formData.append("file", file)
-	});
-	$.ajax({
-		url: "/reply-files/upload",
-		type: "post",
-		data: formData,
-		contentType: false,
-		processData: false,
-		success: function (uuids) {
-			globalThis.uuids = uuids;
-			console.log(globalThis.uuids)
-			const dataTransfer = new DataTransfer();
-			$("input[id='files']")[0].files = dataTransfer.files;
-			$files.forEach(file => {
-				text +=
-					`
-                    <input type="hidden" name="files[${i}].replyFileOriginalName" value="${file.name}">
-                    <input type="hidden" name="files[${i}].replyFileUuid" value="${globalThis.uuids[i]}">
-                    <input type="hidden" name="files[${i}].replyFilePath" value="${toStringByFormatting(new Date())}">
-                    <input type="hidden" name="files[${i}].replyFileSize" value="${file.size}">
-                    `
-				i++;
-			});
-			globalThis.i=0;
-			$(".review-my-form").append(text);
-		}
-
-
-	});
-});*/
 
 FileList.prototype.forEach = Array.prototype.forEach;
 globalThis.arrayFile = new Array();
@@ -669,7 +627,6 @@ $('.review-my-score-submit').on('click', function() {
 		replyFileVO.replyFileSize = replyFileSize[i];
 		replyFileArray.push(replyFileVO);
 	}
-	console.log(replyFileArray)
 	let $value = $(".review-my-textarea").val()
 	let jsonObject = {
 		replyScore: parseInt(replyScore),
@@ -696,5 +653,119 @@ $('.review-my-score-submit').on('click', function() {
 
 
 
+/* 무한스크롤 */
+let page = 1;
+let pathArrayForReply = window.location.pathname.split('/');
+let boardIdForReply = pathArrayForReply.pop();
+const $ul = $("ul.review-list");
+
+const replyService = (() => {
+	function getList(callback){
+		$.ajax({
+			url: `/replies/lists/${boardIdForReply}?page=${page}`,
+			method : 'post',
+			success: function(replyDTOList){
+				console.log(replyDTOList)
+				if(callback){
+					callback(replyDTOList);
+				}
+			}
+		});
+	}
+	return {getList: getList};
+})();
+
+function appendList() {
+	replyService.getList(replyDTOList => {
+		let replies = '';
+		console.log(replyDTOList)
+		replyDTOList.forEach(reply => {
+			// const starsForReply = generateStarHtml(reply.avgScore);
+			// const thumbsForReply = generateThumbsHtml(reply.files);
+			replies +=
+				`
+        		<li>
+                        <div class="review-user-info">
+                            <p class="review-user-nickname">${reply.memberNickname}</p>
+                            <p class="review-score-wrap">
+                                    <span class="stars">
+                                    </span></p>
+                            <p class="review-date">${reply.replyUpdateDate}</p>
+                        </div>
+                        <div class="review-photo">
+                            <div class="review-photo-flex-wrap">
+                                <!-- 리뷰 게시물 하나의 사진 1개 -->
+                            </div>
+                        </div>
+                        <!-- 사진 끝 -->
+                        <div class="review-letters">
+                            ${reply.replyContent}
+                        </div>
+                    </li>
+                    <!-- 게시물 하나 끝 -->
+       `;
+		});
+/*		if (replyDTOList.length === 0) { // 불러올 데이터가 없으면
+			$(window).off('scroll'); // 스크롤 이벤트를 막음
+			return;
+		}*/
+		$ul.append(replies);
+		getProfileImage();
+	});
 
 
+}
+
+appendList();
+
+$(window).scroll(function() {
+	let zoomLevel = $('body').css('zoom');
+	if (zoomLevel === '0.8') {
+		if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 10 > $(document).height()) {
+			page++;
+			appendList();
+			console.log(page)
+			getProfileImage();
+		}
+	}
+});
+/* 썸네일 사진 생성 코드 */
+function generateThumbsHtml(files) {
+	let thumbs = '';
+	files.forEach(file => {
+		console.log(file.boardFileOriginalName)
+		if(file.replyFileOriginalName == null || file.replyFilePath == null || file.replyFileUuid == null){
+			file.replyFileUuid = '';
+			file.replyFileOriginalName = 'defuault-image'
+			file.replyFilePath = 'default-images/boards';
+
+		}
+		thumbs +=
+			`
+             <div class="review-photo-flex-inner">
+                 <a href="" class="review-img-hover">
+                     <div class="review-img-wrap">
+                         <div class="review-img-inner" 
+                data-reply-file-path="${file.replyFilePath}" 
+                data-reply-file-uuid="${file.replyFileUuid}"
+                data-reply-file-original-name="${file.replyFileOriginalName}">
+            </div>
+                     </div>
+                 </a>
+             </div>
+        `;
+	});
+	return thumbs;
+}
+/* 무한스크롤 */
+function getProfileImage(){
+	$(document).ready(function() {
+		$('.review-img-inner').each(function (i) {
+			let replyFilePath = $(this).data('reply-file-path');
+			let replyFileUuid = $(this).data('reply-file-uuid');
+			let replyFileOriginalName = $(this).data('reply-file-original-name');
+			let replyUrl = '/board-files/display?fileName=' + 'replies/' + replyFilePath + '/t_' + replyFileUuid + '_' + replyFileOriginalName;
+			$(this).css('background-image', 'url(' + replyUrl + ')');
+		});
+	});
+}

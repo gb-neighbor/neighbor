@@ -15,4 +15,8 @@ public class ReplyFileDAO {
     public void save(ReplyFileVO replyFileVO){
         replyFileMapper.insert(replyFileVO);
     }
+
+    public List<ReplyFileVO> getListByReplyId(Long replyId){
+        return replyFileMapper.selectAllByReplyId(replyId);
+    }
 }

@@ -3,6 +3,7 @@ package com.neighbor.service;
 import com.neighbor.domain.dao.BoardDAO;
 import com.neighbor.domain.dao.ReplyDAO;
 import com.neighbor.domain.dao.ReplyFileDAO;
+import com.neighbor.domain.dto.Critera2;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.ReplyDTO;
 import com.neighbor.domain.vo.BoardVO;
@@ -66,4 +67,19 @@ public class ReplyService {
         }
 
     }
+
+    public List<ReplyDTO> getAllReplyMemberByBoardId(Long boardId, Critera2 critera2){
+        List<ReplyDTO> replyDTOS =  replyDAO.selectAllReplyMemberByBoardId(boardId, critera2);
+        critera2.setTotal(getReplyTotal());
+        for (ReplyDTO replyDTO : replyDTOS) {
+            critera2.create(replyDAO.getCountAll());
+            replyDTO.setFiles(replyFileDAO.getListByReplyId(replyDTO.getReplyId()));
+        }
+        return replyDTOS;
+    }
+
+    public Integer getReplyTotal(){
+        return replyDAO.getCountAll();
+    }
+
 }
