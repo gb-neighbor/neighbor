@@ -335,5 +335,34 @@
         }
     });
 
+    $('.watch-waiting-button').on('click',function() {
+        console.log("판매대기중 들어옴"); // 들어옴
+        // 판매 대기중인 것들만 불러오는 리스트
+        function load2(page, keyword) {
+            $('.total-mentor-num').empty();
+            $('.list-container').empty();
+            $('.page-button-box').empty();
+            $.ajax({
+                url: `/admin/board/page/keyword/status`,
+                type: "get",
+                data: {
+                    page: page,
+                    keyword: keyword
+                },
+                success: function (result) {
+                    console.log("success까지 옴");
+                    $('.total-mentor-num').html(result.boardTotal);
+                    showList(result.boardDTOS);
+                    showPage(result.pageDTO);
+                }
+            });
+        }
+        load2(page,keyword);
+    });
+
+    $('.watch-all-ask-button').on('click',function() {
+       load(page,keyword);
+    });
+
 </script>
 </html>

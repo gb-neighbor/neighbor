@@ -43,7 +43,7 @@ public interface BoardMapper {
     public int countAll(@Param("keyword") String keyword);
 
     //    관리자 페이지 판매 게시글 판매 대기중 글 수
-    public Integer count();
+    public int count(@Param("keyword") String keyword);
 
     //    관리자 페이지 게시글 전체 조회
     public List<BoardDTO> selectAll(@Param("cri") Criteria criteria, @Param("keyword") String keyword);

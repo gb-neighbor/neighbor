@@ -86,9 +86,12 @@
     <select id="selectWait" resultType="boardDTO">
         select board_id, m.member_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status
         from tbl_member m join tbl_board b
-        <include refid="search" />
+        on m.member_id = b.member_id
         where board_status = 0
-        on m.member_id = b.member_id order by board_id desc
+        <if test="keyword!=null">
+            and board_content like concat('%',#{keyword}, '%')
+        </if>
+        order by board_id desc
     </select>
 
     <!-- 관리자 게시판 관리 게시판 전체 조회 -->
@@ -110,7 +113,7 @@
     </select>
 
     <!-- 게시판 판매대기중 글 수-->
-    <select id="count" resultType="integer">
+    <select id="count" resultType="_int">
         select count(distinct board_id) countTotalBoards
         from tbl_board
         where board_status=0
