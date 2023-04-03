@@ -1,5 +1,6 @@
 /* 모달창 js */
 
+var isScrolling = false;
 function modal(name, id) {
     var zIndex = 998;
     var modal = $(name+id);
@@ -54,18 +55,6 @@ $('.modalAdd').on('click', function() {
 
 /* 위로가기 버튼 */
 var topBtn = document.getElementById("topBtn");
-
-window.onscroll = function() {
-    scrollFunction()
-};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        topBtn.style.display = "block";
-    } else {
-        topBtn.style.display = "none";
-    }
-}
 
 function topFunction() {
     document.body.scrollTop = 0;
@@ -175,7 +164,8 @@ function getMessageRoom(target, board, messageRoomId) {
     $messageBox.scroll(function() {
         console.log(globalThis.page + "-1");
         if ($messageBox.scrollTop() == 0) {
-            globalThis.page++;
+            globalThis.page ++;
+
             messageService.list(showMessage);
 
             console.log(globalThis.page + "-2");

@@ -66,4 +66,22 @@
         select count(reply_id) as count_reply from tbl_reply where member_id=#{memberId}
     </select>
 
+    <!--  게시물 평점  -->
+    <select id="selectAvgScore" resultType="integer">
+        select avg(reply_score) avg_score from tbl_reply where board_id =#{boardId}
+    </select>
+
+    <!--  게시물당 총 후기 수  -->
+    <select id="selectTotalReply" resultType="integer">
+        select count(reply_id) total_reply from tbl_reply where board_id =#{boardId}
+    </select>
+
+    <!-- 총 후기 수  -->
+    <select id="selectBoardByMemberId" resultType="BoardDTO">
+        select b.board_id, board_title, board_content, board_register_date, board_update_date, board_status, board_region, member_id,
+        board_file_original_name, board_file_uuid, board_file_path, board_file_size
+        from tbl_board b left join tbl_board_file bf
+        on b.board_id = bf.board_id where b.member_id =#{memberId}
+    </select>
+
 </mapper>
