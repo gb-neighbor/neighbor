@@ -36,7 +36,7 @@ public class BoardController {
     @GetMapping("write")
     public String goWrite(){
 
-        return "kjp/product-registration";
+        return "board/product-registration";
     }
 
 

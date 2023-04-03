@@ -18,5 +18,8 @@ public class ReplyFileService implements FileService{
             replyFileDAO.save(replyFileVO);
         }
     }
+    public List<ReplyFileVO> getListByReplyId(Long replyId){
+        return replyFileDAO.getListByReplyId(replyId);
+    }
 
 }

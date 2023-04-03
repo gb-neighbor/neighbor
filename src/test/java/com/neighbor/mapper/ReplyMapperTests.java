@@ -43,4 +43,9 @@ public class ReplyMapperTests {
         replyMapper.insert(replyDTO);
     }
 
+    @Test
+    public void getAllTestReply(){
+//        log.info(String.valueOf(replyMapper.selectAllByBoardId(1L)));
+    }
+
 }

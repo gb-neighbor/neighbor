@@ -1,22 +1,23 @@
-//package com.neighbor.dao;
+package com.neighbor.dao;
+
+
+import com.neighbor.domain.dao.ReplyDAO;
+import com.neighbor.domain.dao.ReplyFileDAO;
+import com.neighbor.domain.dto.ReplyDTO;
+import com.neighbor.domain.vo.MemberVO;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 //
+import java.util.List;
 //
-//import com.neighbor.domain.dao.ReplyDAO;
-//import com.neighbor.domain.dto.ReplyDTO;
-//import com.neighbor.domain.vo.MemberVO;
-//import lombok.extern.slf4j.Slf4j;
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
+@SpringBootTest
+@Slf4j
+public class ReplyDAOTests {
 //
-//import java.util.List;
-//
-//@SpringBootTest
-//@Slf4j
-//public class ReplyDAOTests {
-//
-//    @Autowired
-//    private ReplyDAO replyDAO;
+    @Autowired
+    private ReplyFileDAO replyFileDAO;
 //
 //    /*대시보드 후기글 목록 조회 테스트*/
 //    @Test
@@ -31,5 +32,10 @@
 //        memberVO.setMemberId(4L);
 //        replyDAO.delete(4L);
 //    }
+
+    @Test
+    public void replyFileAllTest(){
+        log.info(String.valueOf(replyFileDAO.getListByReplyId(19L)));
+    }
 //
-//}
+}
