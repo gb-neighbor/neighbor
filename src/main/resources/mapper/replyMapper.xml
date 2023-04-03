@@ -10,10 +10,16 @@
 
     <!--후기 넣기-->
     <insert id="insert">
-        insert into neighbor.tbl_reply
-        (reply_content, reply_score, , member_id, board_id)
+        insert into tbl_reply
+        (reply_content, reply_score, member_id, board_id)
         values(#{replyContent}, #{replyScore}, #{memberId}, #{boardId});
     </insert>
+
+    <!-- 방금 넣은 후기 아이디 가져오기 -->
+    <select id="getCurrentSeq" resultType="long">
+        select LAST_INSERT_ID() lastNum from tbl_reply
+        group by lastNum
+    </select>
 
     <!-- 보드아이디로 모든 reply정보 가져오기 -->
     <select id="selectAllByBoardId" resultType="replyVO">

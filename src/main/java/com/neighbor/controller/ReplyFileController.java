@@ -24,7 +24,6 @@ public class ReplyFileController {
     public List<String> uploadP (@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
         String path = "C:/upload/replies/" + getPath();
-        log.info("path는 " + path);
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
         for(int i=0; i < multipartFiles.size(); i++){

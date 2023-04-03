@@ -231,7 +231,7 @@
                                     <input class="review-my-score-submit" type="button" value="등록">
                                 </span>
                             </span>
-                        <input type="file" id="files" multiple/>
+                        <input type="file" name="files" id="files" multiple/>
                 </form>
                 </h4>
                 <form name='form' class="review-write-form">
@@ -252,7 +252,8 @@
             <div class="review-wrap">
                 <h4 class="review-title">
                     리뷰
-                    <span class="review-count" th:text="${boardDTO.totalReply}">9</span>
+                    <!--th:text="${boardDTO.boardTotal}-->
+                    <span class="review-count">9</span>
                     <span class="review-average-star-wrap">
                         </span>
                 </h4>

@@ -3,7 +3,7 @@
 <mapper namespace="com.neighbor.mapper.ReplyFileMapper">
     <insert id="insert">
         insert into tbl_reply_file
-        (reply_file_uuid, reply_file_original_name, reply_file_path, reply_file_size)
-        VALUES(#replyFileUuid}, #{replyFileOriginalName}, #{replyFilePath}, #{replyFileSize});
+        (reply_file_uuid, reply_file_original_name, reply_file_path, reply_file_size, reply_id)
+        VALUES(#{replyFileUuid}, #{replyFileOriginalName}, #{replyFilePath}, #{replyFileSize}, #{replyId});
     </insert>
 </mapper>

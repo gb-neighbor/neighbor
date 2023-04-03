@@ -1,5 +1,6 @@
 package com.neighbor.mapper;
 
+import com.neighbor.domain.dto.ReplyDTO;
 import com.neighbor.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,15 @@ public class ReplyMapperTests {
     public void getAllTest(){
         Long memberId = 1L;
         replyMapper.selectAllByBoardId(memberId);
+    }
+    @Test
+    public void saveTest(){
+        ReplyDTO replyDTO = new ReplyDTO();
+        replyDTO.setReplyScore(1);
+        replyDTO.setReplyContent("1213");
+        replyDTO.setBoardId(1L);
+        replyDTO.setMemberId(1L);
+        replyMapper.insert(replyDTO);
     }
 
 }

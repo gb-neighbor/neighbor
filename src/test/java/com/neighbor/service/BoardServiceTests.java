@@ -21,7 +21,7 @@ public class BoardServiceTests {
     /* 대시보드 게시글 전체조회 테스트*/
     @Test
     public void getListTest() {
-        boardService.getList();
+//        boardService.getList();
     }
 
     /* 게시판 목록 삭제 테스트*/

@@ -1,6 +1,7 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.*;
+import com.neighbor.domain.vo.ReplyFileVO;
 import com.neighbor.domain.vo.ReplyVO;
 import com.neighbor.service.MemberService;
 import com.neighbor.service.ReplyService;
@@ -15,17 +16,23 @@ import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/replies/*")
 @RequiredArgsConstructor
 @Slf4j
 public class ReplyController {
+    private final ReplyService replyService;
 
     @PostMapping("upload/{boardId}")
-    public void uploadReply(@PathVariable Long boardId, ReplyVO replyVO, Session session, Critera2 critera2){
+    @ResponseBody
+    public void uploadReply(@PathVariable Long boardId,@RequestBody ReplyDTO replyDTO, Session session, Critera2 critera2){
 //        나중에 맴버아이디 바꾸기
-        replyVO.setMemberId(1L);
-        log.info(replyVO.getReplyContent());
-        log.info(String.valueOf(replyVO.getReplyScore()));
+        replyDTO.setMemberId(1L);
+        replyDTO.setBoardId(boardId);
+        replyService.saveReply(replyDTO);
+
+        log.info(String.valueOf(replyDTO.getFiles()));
+        log.info(replyDTO.getReplyContent());
+        log.info(String.valueOf(replyDTO.getReplyScore()));
     }
 }

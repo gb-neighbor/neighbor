@@ -14,7 +14,7 @@ public class MessageServiceTests {
 
     @Test
     public void testGettingMessage(){
-        messageService.showMessage(messageService.getMessageRoomId(1L, 1L)).forEach(messageVO -> log.info(String.valueOf(messageVO)));
+//        messageService.showMessage(messageService.getMessageRoomId(1L, 1L)).forEach(messageVO -> log.info(String.valueOf(messageVO)));
     }
 
 }

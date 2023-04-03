@@ -39,7 +39,12 @@ public class ReplyDAO {
     }
 
 //    후기 작성
-    public void save(ReplyVO replyVO){
-        replyMapper.insert(replyVO);
+    public void save(ReplyDTO replyDTO){
+        replyMapper.insert(replyDTO);
+    }
+
+//    방금 쓴 replyid가져오기
+    public Long getCurrentSeq(){
+        return replyMapper.getCurrentSeq();
     }
 }
