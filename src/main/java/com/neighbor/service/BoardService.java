@@ -96,8 +96,8 @@ public class BoardService {
     }
 
     //    관리자 페이지 판매 목록 게시글 판매대기중인 글 수
-    public Integer getCount() {
-        return boardDAO.count();
+    public Integer getCount(String keyword) {
+        return boardDAO.count(keyword);
     }
 
     //    게시글 제목

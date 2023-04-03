@@ -40,7 +40,7 @@ public class BoardDTO {
     private List<BoardFileVO> files;
     private Integer avgScore;
     private Integer boardTotal;
-
+    private Integer totalReply;
     private String boardRegionKo;
     private String[] boardRegionArr = {"전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
             "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구",

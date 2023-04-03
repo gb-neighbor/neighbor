@@ -184,9 +184,7 @@ public class AdminController {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setBoardTotal(boardService.getCountAll(keyword));
         boardDTO.setBoardDTOS(boardService.getList(criteria,keyword));
-//        boardDTO.setBoardDTOS(boardService.getWaitList(criteria,keyword));
         boardDTO.setPageDTO(new PageDTO().createPageDTO(criteria, boardService.getCountAll(keyword)));
-// 여기서 지금 값이 안들어가는 중
         for (BoardDTO dto : boardDTO.getBoardDTOS()) {
             dto.change(dto.getBoardRegion());
             dto.saleChange(dto.getBoardStatus());
@@ -195,23 +193,23 @@ public class AdminController {
         return boardDTO;
     }
 
+//    판매대기중 보여주기
     @GetMapping("board/page/keyword/status")
     @ResponseBody
     public BoardDTO boardShowListStatus(@RequestParam(value = "page") int page, Criteria criteria, @RequestParam(value="keyword",required = false) String keyword) {
         criteria = criteria.create(page, 6);
         BoardDTO boardDTO = new BoardDTO();
-        boardDTO.setBoardTotal(boardService.getCountAll(keyword));
+        boardDTO.setBoardTotal(boardService.getCount(keyword));
         boardDTO.setBoardDTOS(boardService.getWaitList(criteria,keyword));
         boardDTO.setPageDTO(new PageDTO().createPageDTO(criteria, boardService.getCountAll(keyword)));
         for (BoardDTO dto : boardDTO.getBoardDTOS()) {
             dto.change(dto.getBoardRegion());
             dto.saleChange(dto.getBoardStatus());
         }
-
         return boardDTO;
     }
 
-    //  회원관리 삭제
+    //  게시판관리 삭제
     @DeleteMapping("board/delete")
     @ResponseBody
     public void boardDelete(@RequestParam("checkedId") String boardId){
