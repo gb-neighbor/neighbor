@@ -1,5 +1,6 @@
 package com.neighbor.mapper;
 
+import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
@@ -44,6 +45,15 @@ public interface MessageMapper {
 
 //    <!--  작성 후기 수  -->
     public Integer selectCountReply(Long memberId);
+
+//    <!--  게시글 평점  -->
+    public Integer selectAvgScore(Long boardId);
+
+//    <!--  게시글당 총 후기 수  -->
+    public Integer selectTotalReply(Long boardId);
+
+//    <!--  내가 쓴 게시글 전체 조회  -->
+    public List<BoardDTO> selectBoardByMemberId(Long memberId);
 
 
 

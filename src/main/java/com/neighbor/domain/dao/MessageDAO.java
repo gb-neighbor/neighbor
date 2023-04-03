@@ -1,5 +1,6 @@
 package com.neighbor.domain.dao;
 
+import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
@@ -49,4 +50,15 @@ public class MessageDAO {
 
     //    <!--  작성 후기 수  -->
     public Integer findCountReply(Long memberId){return messageMapper.selectCountReply(memberId);}
+
+    //    <!--  게시글 평점  -->
+    public Integer findAvgScore(Long boardId){return messageMapper.selectCountBoard(boardId);}
+
+    //    <!--  게시글당 총 후기 수  -->
+    public Integer findTotalReply(Long boardId){return messageMapper.selectTotalReply(boardId);}
+
+    //    <!--  내가 쓴 게시글 전체 조회  -->
+    public List<BoardDTO> findBoardByMemberId(Long memberId){return messageMapper.selectBoardByMemberId(memberId);}
+
+
 }

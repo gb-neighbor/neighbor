@@ -1,5 +1,6 @@
 package com.neighbor.controller;
 
+import com.neighbor.domain.dto.BoardDTO;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.service.BoardService;
 import com.neighbor.service.MemberService;
@@ -7,9 +8,9 @@ import com.neighbor.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -60,11 +61,29 @@ public class MypageController {
         return "redirect:/main";
     }
 
+//     내가 올린 음식
+    @GetMapping("upload_food")
+    public void goToMyFood(Model model){
 
+    }
 
+// 내가 올린 음식 리스트 조회
+    @PostMapping("myFoodList/{memberId}/{page}")
+    @ResponseBody
+    public List<BoardDTO> getListOfMyFood(@PathVariable("memberId")Long memberId, @PathVariable("page") int page){
+        List<BoardDTO> result = messageService.getBoardByMemberId(memberId);
+        for(BoardDTO board : result){
+            board.setAvgScore(messageService.getAvgScore(board.getBoardId()));
+            board.setTotalReply(messageService.getTotalReply(board.getBoardId()));
+        }
+        return result;
+    }
 
-
-
+//      프로필 홈
+    @GetMapping("profile_home")
+    public void getProfileInfo(Model model){
+        getMemberInfo(model);
+    }
 
 
 

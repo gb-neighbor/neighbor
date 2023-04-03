@@ -45,8 +45,10 @@ public class MessageController {
         criteria.setPage(page);
         criteria.setOffset(criteria.getOffset());
 
-        if(messageService.showMessage(messageRoomId, criteria) !=null){
-            return messageService.showMessage(messageRoomId, criteria);
+        List<MessageVO> messageVOs = messageService.showMessage(messageRoomId, criteria);
+
+        if(messageVOs !=null){
+            return messageVOs;
         }
 
         return null;

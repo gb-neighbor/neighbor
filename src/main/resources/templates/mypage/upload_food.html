@@ -17,28 +17,28 @@
     <div class="subnav_wrapper">
         <ul class="subnav_list">
             <li class="list_profile">
-                <a th:href="@{/mypage/profile_home}" class="first_letter">프로필</a>
+                <a th:href="@{/mypage/profile_home}" class="first_letter select">프로필</a>
                 <div class="list_profile_items disply_bundle">
-                    <a th:href=@{/main} class="second_letter">홈</a>
-                    <a th:href=@{/mypage/message_box} class="second_letter except_home_letter">쪽지함</a>
+                    <a th:href="@{/mypage/profile_home}" class="second_letter">홈</a>
+                    <a th:href="@{/mypage/message_box}" class="second_letter except_home_letter">쪽지함</a>
                     <a th:href="@{/mypage/upload_food}" class="second_letter except_home_letter select">내가 올린 반찬</a>
                     <a th:href="@{/mypage/review}" class="second_letter except_home_letter">후기</a>
                 </div>
             </li>
 
             <li class="list_my_shopping">
-                <a href="" class="first_letter">문의</a>
+                <a th:href="@{/ask-admin/inquiry-list}" class="first_letter">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
-                    <a href="" class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
-                    <a href="" class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
+                    <a class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
+                    <a class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
                 </div>
             </li>
 
             <li class="list_setting">
-                <a href="" class="first_letter select">설정</a>
+                <a th:href="@{/mypage/profile_home}" class="first_letter">설정</a>
                 <div class="list_my_setting_items disply_bundle">
-                    <a href="" class="second_letter except_home_letter" th:href="@{/mypage/password_update}" >비밀번호 변경</a>
-                    <a href="" class="second_letter except_home_letter " th:href="@{/mypage/user_leave}">회원탈퇴</a>
+                    <a class="second_letter except_home_letter" th:href="@{/mypage/password_update}" >비밀번호 변경</a>
+                    <a class="second_letter except_home_letter " th:href="@{/mypage/user_leave}">회원탈퇴</a>
                 </div>
             </li>
         </ul>
@@ -48,152 +48,17 @@
 <!-- 메뉴 -->
 <section class="wrap">
     <article class="my_food_content">
-        <div class="content_wrap">
-            <div class="product_thumnail">
-                <a href="" class="product_detail_link">
-                    <img class="product_thumbnail_image" src="/css/mypage/images/product_sample.png">
-                </a>
-            </div>
-
-            <div class="product_info">
-                    <span class="areA">
-                        <a class="product_title" href="">분갈이흙 원예용상토 배양토 바크 제올라이트 질석 코코피트 펄라이트 피트모스 훈탄</a>
-                    </span>
-
-                <span class="price">
-                        4,500
-                    </span>
-
-                <div class="score">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <span class="score_num">5</span>
-                    <span>(4)</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content_wrap">
-            <div class="product_thumnail">
-                <a href="" class="product_detail_link">
-                    <img class="product_thumbnail_image" src="/css/mypage/images/product_sample.png">
-                </a>
-            </div>
-
-            <div class="product_info">
-                    <span class="areA">
-                        <a class="product_title" href="">분갈이흙 원예용상토 배양토 바크 제올라이트 질석 코코피트 펄라이트 피트모스 훈탄</a>
-                    </span>
-
-                <span class="price">
-                        4,500
-                    </span>
-
-                <div class="score">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <span class="score_num">5</span>
-                    <span>(4)</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content_wrap">
-            <div class="product_thumnail">
-                <a href="" class="product_detail_link">
-                    <img class="product_thumbnail_image" src="/css/mypage/images/product_sample.png">
-                </a>
-            </div>
-
-            <div class="product_info">
-                    <span class="areA">
-                        <a class="product_title" href="">분갈이흙 원예용상토 배양토 바크 제올라이트 질석 코코피트 펄라이트 피트모스 훈탄</a>
-                    </span>
-
-                <span class="price">
-                        4,500
-                    </span>
-
-                <div class="score">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <span class="score_num">5</span>
-                    <span>(4)</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content_wrap">
-            <div class="product_thumnail">
-                <a href="" class="product_detail_link">
-                    <img class="product_thumbnail_image" src="/css/mypage/images/product_sample.png">
-                </a>
-            </div>
-
-            <div class="product_info">
-                    <span class="areA">
-                        <a class="product_title" href="">분갈이흙 원예용상토 배양토 바크 제올라이트 질석 코코피트 펄라이트 피트모스 훈탄</a>
-                    </span>
-
-                <span class="price">
-                        4,500
-                    </span>
-
-                <div class="score">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <span class="score_num">5</span>
-                    <span>(4)</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content_wrap">
-            <div class="product_thumnail">
-                <a href="" class="product_detail_link">
-                    <img class="product_thumbnail_image" src="/css/mypage/images/product_sample.png">
-                </a>
-            </div>
-
-            <div class="product_info">
-                    <span class="areA">
-                        <a class="product_title" href="">분갈이흙 원예용상토 배양토 바크 제올라이트 질석 코코피트 펄라이트 피트모스 훈탄</a>
-                    </span>
-
-                <span class="price">
-                        4,500
-                    </span>
-
-                <div class="score">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <img src="/css/mypage/images/star.png">
-                    <span class="score_num">5</span>
-                    <span>(4)</span>
-                </div>
-            </div>
-        </div>
-
 
     </article>
 </section>
+<!-- //메뉴 -->
+
 <div th:insert="~{/main/footer:: footer}"></div>
 <button id="topBtn">Top</button>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    const memberId = 1;
+</script>
 <script src="/js/mypage/upload_food.js"></script>
 </html>

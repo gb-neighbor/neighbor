@@ -20,8 +20,8 @@ public class MemberMapperTests {
     /*전체조회*/
     @Test
     public void selectAllTest() {
-        List<MemberDTO> listMember = memberMapper.selectAll();
-        log.info(String.valueOf(listMember));
+//        List<MemberDTO> listMember = memberMapper.selectAll();
+//        log.info(String.valueOf(listMember));
     }
 
     /*회원관리 멤버 삭제*/
