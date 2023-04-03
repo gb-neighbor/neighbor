@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -16,11 +18,11 @@ public class MainService {
     private  final MainDAO mainDAO;
 
     // 지역에 따른 최근 게시물 정보 조회
-    public MainRecentDTO findAllByRegion(Integer memberRegion){return mainDAO.selectAllByRegion(memberRegion);}
+    public List<MainRecentDTO> findAllByRegion(Integer memberRegion){return mainDAO.selectAllByRegion(memberRegion);}
 
     // 메인 최근 부분 지역이 전체일 경우
-    public MainRecentDTO findAllByRegionAll() {return mainDAO.selectAllByRegionAll();}
+    public List<MainRecentDTO> findAllByRegionAll() {return mainDAO.selectAllByRegionAll();}
 
     // 메인 별점인기순 부분
-    public MainReplyAvgHighDTO findDataForReplyHighAvgList() {return mainDAO.selectDataForReplyHighAvgList();}
+    public List<MainReplyAvgHighDTO> findDataForReplyHighAvgList() {return mainDAO.selectDataForReplyHighAvgList();}
 }

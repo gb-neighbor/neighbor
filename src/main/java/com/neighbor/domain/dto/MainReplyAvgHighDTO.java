@@ -10,6 +10,7 @@ public class MainReplyAvgHighDTO {
 
     private Long memberId;
     private String memberNickname;
+    private Integer memberRegion;
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
     private String memberProfileUuid;

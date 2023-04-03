@@ -261,4 +261,31 @@ function topFunction() {
 
 topBtn.addEventListener("click", topFunction);
 
+// /* 내가 쓴 게시물 다 넣기 */
+// let rescentLists = "";
+// let mainFile = (mainRecentDTO.boardFileStatus
+// for (let i = 0; i < mainRecentDTO.length; i++) {
+//     rescentLists +=
+//         `
+//         <li >
+//             <!--th:href="@{/board/detail(boardId=${regionAllRecentList.boardId})}"-->
+//             <a  class="recent-food">
+//                 <div class="recent-food-picture-wrapper">
+//                     <div class="recent-food-picture">
+//                         <img class="recent-food-image" src="/board-files/${}${}" />
+//                         <div class="recent-food-info-wrap">
+//                             <p class="recent-food-picture-title">${mainRecentDTO[i].boardTitle}</p>
+//                             <a href="글쓴이 링크">
+//                                 <div class="recent-food-user-picture" style="background-image: url('/css/main/images/004.jpg');"></div>
+//                                 <p class="recent-food-user-nickname">${mainRecentDTO[i].memberNickname}</p>
+//                             </a>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </a>
+//         </li>
+//        `;
+// }
+// $("ul.list-outer").append(boards);
+
 
