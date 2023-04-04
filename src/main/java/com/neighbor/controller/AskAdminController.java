@@ -4,6 +4,7 @@ package com.neighbor.controller;
 import com.neighbor.domain.dao.AskAdminDAO;
 import com.neighbor.domain.dto.*;
 import com.neighbor.domain.vo.AskAdminVO;
+import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.service.AskAdminService;
 import com.neighbor.service.BoardService;
 import com.neighbor.service.MemberService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,17 +40,21 @@ public class AskAdminController {
     }
 
     @PostMapping("write")
-    public RedirectView goWrite(AskAdminVO askAdminVO, RedirectAttributes redirectAttributes){
-        askAdminVO.setMemberId(2L);
+    public RedirectView goWrite(MemberVO memberVO, HttpSession httpSession, AskAdminVO askAdminVO, RedirectAttributes redirectAttributes){
+        Long memberId = (Long)httpSession.getAttribute("memberVO");
+        log.info(memberId.toString());
+        askAdminVO.setMemberId(memberId);
         askAdminService.write(askAdminVO);
         redirectAttributes.addFlashAttribute(askAdminVO);
         return new RedirectView("inquiry-list");
     }
 
     @GetMapping("/inquiry-list")
-    public String list(AskAdminVO askAdminVO , Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
+    public String list(HttpSession httpSession, AskAdminVO askAdminVO , Criteria criteria, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
         // 임시로 맴버 아이디 2L을 사용합니다.
-        askAdminVO.setMemberId(2L);
+        Long memberId = (Long)httpSession.getAttribute("memberVO");
+        log.info(memberId.toString());
+        askAdminVO.setMemberId(memberId);
         log.info("keyword : " + keyword);
         if (criteria.getPage() == 0) {
             criteria = criteria.create(1, 10);

@@ -29,7 +29,7 @@
             </li>
 
             <li class="list_my_shopping">
-                <a href="" class="first_letter select">문의</a>
+                <a onclick="location.href='/ask-admin/inquiry-list'"class="first_letter select">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
                     <a href="" class="second_letter except_home_letter">FAQ</a>
                     <a href="" class="second_letter except_home_letter select">1:1 문의</a>
@@ -52,6 +52,7 @@
 <section class="wrap">
 
     <article class="faq_content">
+
         <form class="faq_search" name="inquiryForm" th:action="@{write}" th:object="${askAdminVO}" method="post">
             <div class="inquiry_title_wrap">
                 <dt class="inquiry_title">제목</dt>
@@ -73,6 +74,7 @@
 
     </article>
 </section>
+
 <div class="modal">
     <div class="warn-modal">
         <div id="content-wrap"></div>

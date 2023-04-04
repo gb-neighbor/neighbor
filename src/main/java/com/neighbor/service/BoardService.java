@@ -33,9 +33,9 @@ public class BoardService {
     }
 
     /* 목록페이지 게시글 가져오기 */
-    public List<BoardDTO> getAllMemberBoard(Critera2 critera2, Long memberId) {
+    public List<BoardDTO> getAllMemberBoard(Critera2 critera2, Long memberId,String keyword,String gugun) {
         critera2.create(getTotal());
-        return boardDAO.findAllBoardMember(critera2, memberId);
+        return boardDAO.findAllBoardMember(critera2, memberId,keyword,gugun);
     }
     
     /* 디테일 페이지 위해 보드아이디로 모든 정보 가져오기 */

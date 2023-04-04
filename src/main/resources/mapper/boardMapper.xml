@@ -18,11 +18,17 @@
         join tbl_board b on m.member_id = b.member_id
         <where>
             <if test="memberId != null">
-                AND m.member_id = #{memberId}
+                and m.member_id = #{memberId}
+            </if>
+            <if test="keyword !=null">
+                and board_title like concat('%',#{keyword},'%')
+            </if>
+            <if test="gugun != null and gugun != '' and gugun != 0">
+                AND board_region LIKE CONCAT('%', #{gugun}, '%')
             </if>
         </where>
         order by board_id desc
-            limit #{cri2.offset}, #{cri2.rowCount}
+        limit #{cri2.offset}, #{cri2.rowCount}
     </select>
 
     <select id="selectAllBoardMemberByBoard" resultType="boardDTO">
@@ -49,7 +55,11 @@
 
     <!--페이징 처리를 위한 전체 갯수 가져오기-->
     <select id="getTotal" resultType="_int">
-        select count(board_id) from tbl_board b
+        select count(board_id)
+        from tbl_board
+        <if test="keyword != null">
+            where board_title like concat('%',#{keyword}, '%')
+        </if>
     </select>
 
     <!-- memberId로 모든 보드 정보 가져오기-->
