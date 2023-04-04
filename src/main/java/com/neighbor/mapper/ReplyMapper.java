@@ -1,6 +1,6 @@
 package com.neighbor.mapper;
 
-import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.CriteraForBoard;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.ReplyDTO;
 import com.neighbor.domain.vo.ReplyVO;
@@ -38,7 +38,7 @@ public interface ReplyMapper {
     public Long getCurrentSeq();
     
 //    보드아이디로 맴버정보와 reply가져오기
-    public List<ReplyDTO> selectAllReplyMemberByBoardId(Long boardId, @Param("cri2") Critera2 critera2);
+    public List<ReplyDTO> selectAllReplyMemberByBoardId(Long boardId, @Param("cri2") CriteraForBoard criteraForBoard);
 
 
 }

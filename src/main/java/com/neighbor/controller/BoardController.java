@@ -1,7 +1,7 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.CriteraForBoard;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
@@ -15,11 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Controller
@@ -48,21 +46,22 @@ public class BoardController {
 
     @PostMapping("save")
     public RedirectView writeBoard(BoardDTO boardDTO, HttpSession httpSession){
-//        Long memberId = (Long) httpSession.getAttribute("memberId");]
-        Long memberId = 1L;
+        Long memberId = (Long) httpSession.getAttribute("memberVO");
         boardDTO.setMemberId(memberId);
 
         boardDTO.setBoardId(boardService.write(boardDTO));
-        boardFileService.upload(boardDTO);
+        if(boardDTO.getFileMainName() != null){
+            boardFileService.upload(boardDTO);
+        }
         log.info(String.valueOf(boardDTO));
         return new RedirectView("list/region");
     }
 
     @GetMapping("list/region")
-    public String goList(Model model, Critera2 critera2,@RequestParam(value = "keyword", required = false) String keyword,@RequestParam(value = "gugun",required = false)String gugun){
-        critera2.setPage(1);
+    public String goList(Model model, CriteraForBoard criteraForBoard, @RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "gugun",required = false)String gugun){
+        criteraForBoard.setPage(1);
 //      맴버와 보드를 합친 DTO를 가져옴
-        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null,keyword,gugun);
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(criteraForBoard, null,keyword,gugun);
         Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
         int avgScore = 0;
         int sum = 0;
@@ -95,10 +94,10 @@ public class BoardController {
 /* 리스트 무한스크롤 이벤트로 가져오기 */
 @PostMapping("lists/regions")
 @ResponseBody
-public List<BoardDTO> getNextPage(@RequestBody Critera2 critera2, @RequestParam(value = "keyword", required = false) String keyword,@RequestParam(value = "gugun",required = false)String gugun){
+public List<BoardDTO> getNextPage(@RequestBody CriteraForBoard criteraForBoard, @RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "gugun",required = false)String gugun){
     log.info("==============================================================="+keyword);
     //      맴버와 보드를 합친 DTO를 가져옴
-    List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null, keyword, gugun);
+    List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(criteraForBoard, null, keyword, gugun);
     Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
     int avgScore = 0;
 
@@ -122,15 +121,15 @@ public List<BoardDTO> getNextPage(@RequestBody Critera2 critera2, @RequestParam(
     }
 
     log.info(String.valueOf(boardDTOList));
-    log.info(String.valueOf(critera2));
+    log.info(String.valueOf(criteraForBoard));
     return boardDTOList;
 }
 
 
 
     @GetMapping("list/member/{memberId}")
-    public String goMember(@PathVariable("memberId") Long memberId, Model model, Critera2 critera2) {
-        critera2.setPage(1);
+    public String goMember(@PathVariable("memberId") Long memberId, Model model, CriteraForBoard criteraForBoard) {
+        criteraForBoard.setPage(1);
         MemberVO memberVO = memberService.getOneMemberInfo(memberId);
         List<BoardVO> boardVOList = boardService.getBoardInfo(memberId);
         BoardFileVO boardFileVO = new BoardFileVO();
@@ -168,8 +167,8 @@ public List<BoardDTO> getNextPage(@RequestBody Critera2 critera2, @RequestParam(
 
     @GetMapping("lists/members/{memberId}")
     @ResponseBody
-    public List<BoardDTO> getALlBoard(Critera2 critera2, @PathVariable("memberId") Long memberId,@RequestParam(value = "keyword", required = false) String keyword,@RequestParam(value = "gugun",required = false)String gugun){
-        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, memberId,keyword,gugun);
+    public List<BoardDTO> getALlBoard(CriteraForBoard criteraForBoard, @PathVariable("memberId") Long memberId, @RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "gugun",required = false)String gugun){
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(criteraForBoard, memberId,keyword,gugun);
         Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
         int avgScore = 0;
 
@@ -195,17 +194,17 @@ public List<BoardDTO> getNextPage(@RequestBody Critera2 critera2, @RequestParam(
         }
 
         log.info(String.valueOf(boardDTOList));
-        log.info(String.valueOf(critera2));
+        log.info(String.valueOf(criteraForBoard));
         return boardDTOList;
     }
 
     @GetMapping("detail/{boardId}")
-    public String goList(@PathVariable("boardId") Long boardId, Critera2 critera2, Model model){
-        critera2.setPage(1);
-        BoardDTO boardDTO = boardService.getInfoForDetail(critera2, boardId);
+    public String goList(@PathVariable("boardId") Long boardId, CriteraForBoard criteraForBoard, Model model){
+        criteraForBoard.setPage(1);
+        BoardDTO boardDTO = boardService.getInfoForDetail(criteraForBoard, boardId);
         model.addAttribute(boardDTO);
         log.info(String.valueOf(boardDTO));
-        log.info(String.valueOf(critera2));
+        log.info(String.valueOf(criteraForBoard));
         return "board/product-detail2";
     }
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class Critera2 {
+public class CriteraForBoard {
     private int page;
     private int rowCount;
     private int pageCount;

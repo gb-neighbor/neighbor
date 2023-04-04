@@ -1,6 +1,6 @@
 package com.neighbor.domain.dao;
 
-import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.CriteraForBoard;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.ReplyDTO;
 import com.neighbor.domain.vo.ReplyVO;
@@ -50,8 +50,8 @@ public class ReplyDAO {
     }
 
 //    reply다 가져오기
-    public List<ReplyDTO> selectAllReplyMemberByBoardId(Long boardId, Critera2 critera2){
-        return replyMapper.selectAllReplyMemberByBoardId(boardId, critera2);
+    public List<ReplyDTO> selectAllReplyMemberByBoardId(Long boardId, CriteraForBoard criteraForBoard){
+        return replyMapper.selectAllReplyMemberByBoardId(boardId, criteraForBoard);
     }
 
 //    reply총 갯수

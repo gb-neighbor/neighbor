@@ -1,12 +1,9 @@
 package com.neighbor.mapper;
 
 import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Critera2;
 import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
