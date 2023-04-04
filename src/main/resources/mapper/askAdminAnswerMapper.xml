@@ -7,5 +7,11 @@
         values(#{askAdminAnswerContent}, #{askAdminId}, #{memberId})
     </insert>
 
+    <update id="update">
+        update tbl_ask_admin
+        set ask_admin_status=1
+        where ask_admin_id=#{askAdminId}
+
+    </update>
 
 </mapper>

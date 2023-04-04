@@ -213,10 +213,14 @@
         var text = "";
         var content = "";
         askAdminDTOS.forEach(ask => {
-            content +=  `
+            if (ask.askAdminAnswerRegisterDate == null) {
+                ask.askAdminAnswerRegisterDate="";
+            }
+                content += `
                         <div class="item-list-contents">
                          <div class="checkbox-zip">
                              <input type="checkbox" id="check1" class="normal" value="${ask.askAdminId}">
+                             <input type="hidden" id="check2" class="normal" value="${ask.memberId}">
                          </div>
                          <div class="qna-num">${ask.askAdminId}</div>
                          <div class="ask-admin-contents">
@@ -242,10 +246,10 @@
                              <div class="comment-writer">작성자: <span>${ask.memberNickname}</span></div>
                               <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
                              <div class="comment-detail">${ask.askAdminContent}</div>
-                             <div class="qna-manage">
+                             <form class="qna-manage">
                                  <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                 <input class="qna-submit-btn" type="submit" value="전송하기">
-                             </div>
+                                 <input class="qna-submit-btn" type="button" value="전송하기">
+                             </form>
                          </div>
                     </div>`
         });
@@ -360,36 +364,45 @@
         var text = "";
         var content = "";
         askAdminDTOS.forEach(ask => {
-            content +=  `<div class="item-list-contents">
+            if (ask.askAdminAnswerRegisterDate == null) {
+                ask.askAdminAnswerRegisterDate="";
+            }
+            content += `
+                        <div class="item-list-contents">
                          <div class="checkbox-zip">
                              <input type="checkbox" id="check1" class="normal" value="${ask.askAdminId}">
+                             <input type="hidden" id="check2" class="normal" value="${ask.memberId}">
                          </div>
                          <div class="qna-num">${ask.askAdminId}</div>
-                         <div class="qna-title">${ask.askAdminTitle}</div>
+                         <div class="ask-admin-contents">
+                                <span id="${ask.askAdminId}" onclick="openModal(${ask.askAdminId})">${ask.askAdminTitle}</span>
+                                <div id="my_modal${ask.askAdminId}" class="my_modal">
+                                    <a class="modal_close_btn">✖</a>
+                                    <div class="comment-writer">작성자: <span>${ask.memberNickname}</span></div>
+                                    <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
+                                    <div class="comment-detail">${ask.askAdminContent}</div>
+                                </div>
+                            </div>
                          <div class="user-nick-name">${ask.memberNickname}</div>
                          <div class="qna-ask-day">${ask.askAdminRegisterDate}</div>
                          <div class="qna-answer-day">${ask.askAdminAnswerRegisterDate}</div>
                          <div class="qna-status qna-status-false">${ask.askStatus}</div>
                          <div class="detail">
-                             <button class="detail-button modal${ask.askAdminId}" type="submit">
+                             <button class="detail-button modal${ask.askAdminAnswerId}" onclick="openModal(${ask.askAdminAnswerId})" type="submit">
                                  <img class="detail-icon" src="/css/admin/images/edit-icon.png">
                              </button>
-
                          </div>
-                         <div id="my_modal${ask.askAdminId}" class="my_modal">
+                         <div id="my_modal${ask.askAdminAnswerId}" class="my_modal">
                              <a class="modal_close_btn">✖</a>
                              <div class="comment-writer">작성자: <span>${ask.memberNickname}</span></div>
                               <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
                              <div class="comment-detail">${ask.askAdminContent}</div>
-                             <div class="qna-manage">
+                             <form class="qna-manage">
                                  <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
                                  <input class="qna-submit-btn" type="submit" value="전송하기">
-                             </div>
+                             </form>
                          </div>
                     </div>`
-
-
-
         });
         $('.item-list-contents').remove();
         if ($("#check-all").prop("checked")) {
@@ -458,6 +471,33 @@
     $('.watch-all-ask').on('click',function() {
         load(page,keyword);
     });
+
+    /*회원에게 관리자가 답변할 때*/
+
+    // 전송하기 버튼을 클릭했을 때 실행할 코드 작성
+    $(document).on('click', '.qna-submit-btn', function() {
+        // console.log("전송하기 버튼을 클릭했습니다."); 들어옴
+        let askAdminAnswerDTO = {
+            askAdminAnswerContent: $('.write-section').val(),
+            askAdminId: $("input[id='check1']").val(),
+            memberId: $("input[id='check2']").val()
+        }
+        console.log($('.write-section').val());
+        console.log($("input[id='check1']").val());
+        console.log($("input[id='check2']").val());
+
+        $.ajax({
+            url: `/admin/ask/answer`,
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8 ',
+            data: JSON.stringify(askAdminAnswerDTO),
+            success: function (result) {
+                alert("전송완료");
+            }
+        });
+
+    });
+
 
 </script>
 </html>

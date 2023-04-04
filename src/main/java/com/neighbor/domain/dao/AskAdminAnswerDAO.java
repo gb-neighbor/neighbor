@@ -16,4 +16,10 @@ public class AskAdminAnswerDAO {
         askAdminAnswerMapper.insertAskAdminAnswer(askAdminAnswerDTO);
     }
 
+
+    //   답변해주면 ask 상태 바꿔주기
+    public void update(Long askAdminId) {
+        askAdminAnswerMapper.update(askAdminId);
+    }
+
 }
