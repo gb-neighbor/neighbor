@@ -1,13 +1,10 @@
 package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.CriteraForBoard;
 import com.neighbor.domain.dto.Criteria;
-import com.neighbor.domain.dto.MemberDTO;
-import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.mapper.BoardFileMapper;
 import com.neighbor.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -29,11 +26,11 @@ public class BoardDAO {
     }
 
     //    맴버, 보드, 보드파일의 정보 가져오기
-    public List<BoardDTO> findAllBoardMember(Critera2 critera2, Long memberId,String keyword, String gugun){return boardMapper.selectAllBoardMember(critera2, memberId, keyword,gugun);}
+    public List<BoardDTO> findAllBoardMember(CriteraForBoard criteraForBoard, Long memberId, String keyword, String gugun){return boardMapper.selectAllBoardMember(criteraForBoard, memberId, keyword,gugun);}
 
     // 보드아이디로 모든 정보 가져오기
-    public BoardDTO findAllBoardMemberByBoard(Critera2 critera2, Long boardId){
-        return boardMapper.selectAllBoardMemberByBoard(critera2, boardId);
+    public BoardDTO findAllBoardMemberByBoard(CriteraForBoard criteraForBoard, Long boardId){
+        return boardMapper.selectAllBoardMemberByBoard(criteraForBoard, boardId);
     }
 
     //페이징 처리를 위해 모든 보드 갯수 가져오기

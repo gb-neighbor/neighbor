@@ -1,18 +1,11 @@
 package com.neighbor.service;
 
 import com.neighbor.controller.ReplyController;
-import com.neighbor.domain.dto.Critera2;
-import com.neighbor.domain.dto.ReplyDTO;
-import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.domain.vo.ReplyFileVO;
-import com.neighbor.mapper.ReplyMapper;
+import com.neighbor.domain.dto.CriteraForBoard;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -64,18 +57,18 @@ public class ReplyServiceTests {
 
     @Test
     public void testRepliesGet(){
-        Critera2 critera2 = new Critera2();
-        critera2.setPage(1);
-        critera2.create(10);
-        log.info(String.valueOf(replyService.getAllReplyMemberByBoardId(49L, critera2)));
+        CriteraForBoard criteraForBoard = new CriteraForBoard();
+        criteraForBoard.setPage(1);
+        criteraForBoard.create(10);
+        log.info(String.valueOf(replyService.getAllReplyMemberByBoardId(49L, criteraForBoard)));
     }
 
     @Test
     public void testController(){
         Long boardId = 49L;
-        Critera2 critera2 = new Critera2();
-        critera2.setPage(1);
-        log.info(String.valueOf(replyController.getReply(boardId, critera2)));
+        CriteraForBoard criteraForBoard = new CriteraForBoard();
+        criteraForBoard.setPage(1);
+        log.info(String.valueOf(replyController.getReply(boardId, criteraForBoard)));
     }
 
 

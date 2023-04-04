@@ -4,18 +4,15 @@ import com.neighbor.domain.dao.BoardDAO;
 import com.neighbor.domain.dao.BoardFileDAO;
 import com.neighbor.domain.dao.ReplyDAO;
 import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.CriteraForBoard;
 import com.neighbor.domain.dto.Criteria;
-import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -33,15 +30,15 @@ public class BoardService {
     }
 
     /* 목록페이지 게시글 가져오기 */
-    public List<BoardDTO> getAllMemberBoard(Critera2 critera2, Long memberId,String keyword,String gugun) {
-        critera2.create(getTotal());
-        return boardDAO.findAllBoardMember(critera2, memberId,keyword,gugun);
+    public List<BoardDTO> getAllMemberBoard(CriteraForBoard criteraForBoard, Long memberId, String keyword, String gugun) {
+        criteraForBoard.create(getTotal());
+        return boardDAO.findAllBoardMember(criteraForBoard, memberId,keyword,gugun);
     }
     
     /* 디테일 페이지 위해 보드아이디로 모든 정보 가져오기 */
-    public BoardDTO getInfoForDetail(Critera2 critera2, Long boardId){
-        critera2.create(getTotal());
-        BoardDTO boardDTO = boardDAO.findAllBoardMemberByBoard(critera2, boardId);
+    public BoardDTO getInfoForDetail(CriteraForBoard criteraForBoard, Long boardId){
+        criteraForBoard.create(getTotal());
+        BoardDTO boardDTO = boardDAO.findAllBoardMemberByBoard(criteraForBoard, boardId);
         boardDTO.setFiles(boardFileDAO.getFilesByBoardId(boardId));
         List<ReplyVO> replyVOList = replyDAO.getAllReplyByBoardId(boardId);
         boardDTO.change(boardDTO.getBoardRegion());

@@ -17,8 +17,13 @@ public class BoardFileService {
     //    파일 추가
     public void upload(BoardDTO boardDTO){
         boardDTO.setBoardId(boardFileDAO.getCurrentSeq());
+//        메인파일만 있다면 디테일 파일은 없다는 것이므로
+        if(boardDTO.getFileMainName() != null){
+            boardFileDAO.saveMain(boardDTO);
+        } else {
             boardFileDAO.saveMain(boardDTO);
             boardFileDAO.saveDetail(boardDTO);
+        }
     }
 
     public BoardFileVO getMainFile(Long boardId){

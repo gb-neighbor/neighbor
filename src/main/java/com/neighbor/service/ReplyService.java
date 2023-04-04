@@ -3,16 +3,14 @@ package com.neighbor.service;
 import com.neighbor.domain.dao.BoardDAO;
 import com.neighbor.domain.dao.ReplyDAO;
 import com.neighbor.domain.dao.ReplyFileDAO;
-import com.neighbor.domain.dto.Critera2;
+import com.neighbor.domain.dto.CriteraForBoard;
 import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.ReplyDTO;
-import com.neighbor.domain.vo.BoardVO;
 import com.neighbor.domain.vo.ReplyFileVO;
 import com.neighbor.domain.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -68,11 +66,11 @@ public class ReplyService {
 
     }
 
-    public List<ReplyDTO> getAllReplyMemberByBoardId(Long boardId, Critera2 critera2){
-        List<ReplyDTO> replyDTOS =  replyDAO.selectAllReplyMemberByBoardId(boardId, critera2);
-        critera2.setTotal(getReplyTotal());
+    public List<ReplyDTO> getAllReplyMemberByBoardId(Long boardId, CriteraForBoard criteraForBoard){
+        List<ReplyDTO> replyDTOS =  replyDAO.selectAllReplyMemberByBoardId(boardId, criteraForBoard);
+        criteraForBoard.setTotal(getReplyTotal());
         for (ReplyDTO replyDTO : replyDTOS) {
-            critera2.create(replyDAO.getCountAll());
+            criteraForBoard.create(replyDAO.getCountAll());
             replyDTO.setFiles(replyFileDAO.getListByReplyId(replyDTO.getReplyId()));
         }
         return replyDTOS;
