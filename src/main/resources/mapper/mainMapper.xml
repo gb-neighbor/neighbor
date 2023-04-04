@@ -17,15 +17,14 @@
 
     <!--별점 인기순별 섹션에 필요 정보 조회-->
     <select id="selectDataForReplyHighAvgList" resultType="mainReplyAvgHighDTO">
-        select m.member_id, m.member_nickname, m.member_region, m.member_profile_uuid, m.member_profile_original_name,
-               m.member_profile_path, m.member_profile_size, b.board_id, b.board_title, b.board_price,
-               ROUND(AVG(r.reply_score), 0) as avg_reply_score, r.reply_id
-        from tbl_member m
-        join tbl_board b on m.member_id = b.member_id
-        left join tbl_reply r on b.board_id = r.board_id
-        group by b.board_id, m.member_id, r.reply_id
-        order by avg_reply_score desc, r.reply_id
-        LIMIT 6;
+        SELECT m.member_id, m.member_nickname, m.member_region, m.member_profile_uuid, m.member_profile_original_name,
+               m.member_profile_path, m.member_profile_size, b.board_id, b.board_title, b.board_price, r.reply_id, round(AVG(r.reply_score),0) AS avg_reply_score
+		FROM tbl_reply r
+		INNER JOIN tbl_member m ON r.member_id = m.member_id
+		INNER JOIN tbl_board b ON r.board_id = b.board_id
+		GROUP BY r.board_id
+		order by avg_reply_score desc
+		limit 6;
     </select>
 
     <!--최근 게시물 섹션에 지역이 전체일 경우 필요 정보 8개 조회-->
@@ -35,9 +34,7 @@
         from tbl_member m
         inner join tbl_board b on m.member_id = b.member_id
         left join tbl_board_file bf on b.board_id = bf.board_id
-        <where>
-            <if test="boardFileStatus "></if>
-        </where>
+        where board_file_status = 1
         order by b.board_register_date desc
         limit 8
     </select>
@@ -49,8 +46,17 @@
         from tbl_member m
         inner join tbl_board b on m.member_id = b.member_id
         left join tbl_board_file bf on b.board_id = bf.board_id
-        where m.member_region = #{memberRegion}
+        where m.member_region = #{memberRegion} and board_file_status = 1
         order by b.board_register_date desc
+        limit 8
+    </select>
+
+    <!--랜덤 추천 메뉴-->
+    <select id="selectRandom" resultType="boardFileVO">
+        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_status, board_file_size, board_id
+        from tbl_board_file
+        where board_file_status = 1
+        order by rand()
         limit 8
     </select>
 </mapper>

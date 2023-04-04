@@ -2,6 +2,7 @@ package com.neighbor.domain.dao;
 
 import com.neighbor.domain.dto.MainRecentDTO;
 import com.neighbor.domain.dto.MainReplyAvgHighDTO;
+import com.neighbor.domain.vo.BoardFileVO;
 import com.neighbor.mapper.MainMapper;
 import com.neighbor.mapper.MemberMapper;
 import com.sun.tools.javac.Main;
@@ -23,4 +24,7 @@ public class MainDAO {
 
     // 메인 별점인기순 부분
     public List<MainReplyAvgHighDTO> selectDataForReplyHighAvgList() {return mainMapper.selectDataForReplyHighAvgList();}
+
+    // 메인 랜덤추천 부분
+    public List<BoardFileVO> selectRandom() {return mainMapper.selectRandom();}
 }
