@@ -2,9 +2,7 @@ package com.neighbor.service;
 
 import com.neighbor.domain.dao.MessageDAO;
 import com.neighbor.domain.dto.*;
-import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.domain.vo.MessageVO;
-import com.neighbor.domain.vo.ReplyVO;
+import com.neighbor.domain.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -81,5 +79,24 @@ public class MessageService {
 
     //    <!--  내가 작성한 후기  -->
     public List<ReplyDTO> getReplyByMemberId(Long memberId){return messageDAO.findReplyByMemberId(memberId);}
+
+    //    <!--  게시글 썸네일 가져오기  -->
+    public BoardFileVO getBoardThumbnail(Long boardId){return messageDAO.findBoardThumbnail(boardId);}
+
+    //    <!--  판매자 아이디 가져오기  -->
+    public Long getSellerId(Long boardId){return messageDAO.findSellerId(boardId);}
+
+    //    <!-- 게시글 정보 가져오기 -->
+    public BoardVO getBoardByBoardId(Long boardId){return messageDAO.findBoardByBoardId(boardId);}
+
+    //  <!--  게시글 판매 상태 바꾸기  -->
+    public void setBoardStatus(Long boardId){messageDAO.changeBoardStatus(boardId);}
+
+    //    <!-- 게시글 판매 상태 업데이트 -->
+    public void setPurchaseStatus(Long boardId, Long memberId){messageDAO.savePurchaseStatus(boardId, memberId);}
+
+    //    <!-- 게시글 판매 상태 조회 -->
+    public Long getPurchase(Long boardId, Long memberId){ return messageDAO.findPurchase(boardId, memberId);}
+
 
 }

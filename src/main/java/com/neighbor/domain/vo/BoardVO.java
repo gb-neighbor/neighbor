@@ -15,6 +15,7 @@ public class BoardVO {
     private Integer boardPrice;
     private Long memberId;
     private Integer boardRegion;
+    private Long sellerId;
 
 
 }

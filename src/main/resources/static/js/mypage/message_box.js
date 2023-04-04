@@ -128,13 +128,6 @@ $("div.modal").on("click", function(){
     }
 });
 
-/* 버튼 텍스트로 변경 */
-
-function changeToText(number){
-    document.getElementById("#purchase_done"+number).style.display ="none";
-    document.getElementById("#purchase_complete_message"+number).style.display ="block";
-}
-
 /*********************************************************************************************/
 var boardId;
 var targetId;
@@ -219,13 +212,11 @@ const messageService=(function(){
     }
 
     function getMessageListByMemberId(callback){
-        console.log("here");
         $.ajax({
             url:"/messages/list/"+memberId,
             dataType:"json",
             method:"post",
             success: function(messageRooms){
-                console.log(messageRooms);
                 if(callback){
                     callback(messageRooms);
                 }
@@ -233,7 +224,18 @@ const messageService=(function(){
         });
     }
 
-    return {list:list, targetInfo:targetInfo, getMessageListByMemberId:getMessageListByMemberId};
+    function changePurchaseStatus(boardId){
+        console.log("boardId: " +boardId);
+        console.log("memberId: " +memberId);
+        $.ajax({
+            url:"/messages/status/"+boardId+"/"+memberId,
+            dataType:"json",
+            method:"post",
+            success:function(){}
+        });
+    }
+
+    return {list:list, targetInfo:targetInfo, getMessageListByMemberId:getMessageListByMemberId, changePurchaseStatus:changePurchaseStatus};
 })();
 
 
@@ -271,7 +273,6 @@ $('.send_form' + globalThis.targetNum).submit(function(e) {
 function showMessageRooms(messageRooms){
     let rooms = "";
     messageRooms.forEach(room => {
-        console.log(room);
         rooms += `
                 <li class="message_list">
                     <button class="detail_btn" onclick="getMessageRoom(${room.targetId}, ${room.boardId}, ${room.messageRoomId})">
@@ -279,14 +280,14 @@ function showMessageRooms(messageRooms){
                     <div class="message_box_wrapper">
                         <div class="profile_wrap">
                             <div class="message_box_profile">
-                                <a href="">
-                                    <img class="message_box_profile_image" src="/css/mypage/images/profile_sample1.png">
+                                <a href="/board/detail/${room.boardId}">
+                                    <img class="message_box_profile_image" src="/board-files/display?fileName=board/${room.boardFilePath}/${room.boardFileUuid}_${room.boardFileOriginalName}">
                                 </a>
                             </div>
                         </div>
                         <div class="message_box_detail">
                             <div class="detail_message">
-                                <a href="" class="nick_name">${room.targetNickname}</a>
+                                <a href="/board/list/member/${room.targetId}" class="nick_name">${room.targetNickname}</a>
                             </div>
                             <div class="message_box_info">
                                 <p class="board_title">${room.boardTitle}</p>
@@ -295,12 +296,23 @@ function showMessageRooms(messageRooms){
                         </div>
                     </div>
                     <form class="purchase_complete_form">
-                        <div class="purchase_complete_wrap">
-                            <p id="purchase_complete_message${room.messageRoomId}" class="complete_message">거래완료</p>
+                        <div class="purchase_complete_wrap">`
+        if(`${room.sellerId}`== memberId) {
+            rooms += `${room.boardStatus}` ?
+                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">판매종료</p>
+`
+                : `${room.purchaseStatus}`!='null' ?
+                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
+                : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
+        }else{
+            rooms += `${room.purchaseStatus}`!='null' ?
+                `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
+                : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
                             <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
-                                    onclick="changeToText(${room.messageRoomId})">구매완료
-                            </button>
-                        </div>
+                                    onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
+                            </button>`;
+        }
+        rooms += `</div>
                     </form>
                     <div  id="my_modal${room.messageRoomId}" class="my_modal2 this_modal">
                         <a class="modal_close_btn" id="modal_close_btn${room.messageRoomId}">✖</a>
@@ -332,7 +344,7 @@ function showTargetInfo(Infos){
 		<div class="profile_image_section">
             <img class="profile_image" src="/members/display?fileName=${Infos.targetInfo.memberProfilePath}/${Infos.targetInfo.memberProfileUuid}_${Infos.targetInfo.memberProfileOriginalName}">
         </div>
-        <p class="detail_nick_name">${Infos.targetInfo.memberNickname}</p>
+          <p class="detail_nick_name">${Infos.targetInfo.memberNickname}</p>
         <div class="title_refresh_wrap">
             <h3 class="detail_title">
                 ${Infos.boardTitle}
@@ -342,7 +354,7 @@ function showTargetInfo(Infos){
             </div>
         </div>
         <div class="div_for_margin"></div>
-        <a class="go_to_board" href="/board">
+        <a class="go_to_board" href="/board/detail/${Infos.boardId}">
             <p class="go_to_board_text">상세보기&nbsp</p>
             <p class="go_to_board_text right_text">></p>
         </a>
@@ -379,3 +391,10 @@ function showMessage(messages){
 }
 
 /*********************************************************************************************/
+/* 버튼 텍스트로 변경 */
+
+function changeToText(number, boardId){
+    $("#purchase_done"+number).css("display","none");
+    $("#purchase_complete_message"+number).css("display","block");
+    messageService.changePurchaseStatus(boardId);
+}

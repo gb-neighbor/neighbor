@@ -63,6 +63,7 @@ public class MessageController {
 
         result.put("targetInfo", memberVO);
         result.put("boardTitle", boardTitle);
+        result.put("boardId", boardId);
 
         return result;
     }
@@ -126,6 +127,13 @@ public class MessageController {
             messageDTO.setTargetProfilePath(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfilePath());
             messageDTO.setTargetProfileUuid(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfileUuid());
             messageDTO.setTargetProfileOriginalName(messageService.getTargetInfo(messageRoom.getTargetId()).getMemberProfileOriginalName());
+            messageDTO.setSellerId(messageService.getSellerId(messageRoom.getBoardId()));
+            messageDTO.setBoardProfileOriginalName(messageService.getBoardThumbnail(messageRoom.getBoardId()).getBoardFileOriginalName());
+            messageDTO.setBoardProfilePath(messageService.getBoardThumbnail(messageRoom.getBoardId()).getBoardFilePath());
+            messageDTO.setBoardProfileUuid(messageService.getBoardThumbnail(messageRoom.getBoardId()).getBoardFileUuid());
+            Long sellerId = messageDTO.getSellerId();
+            Long customerId = (memberId==sellerId)? messageDTO.getTargetId() : memberId;
+            messageDTO.setPurchaseStatus(messageService.getPurchase(messageRoom.getBoardId(), customerId));
 
             result.add(messageDTO);
         }
@@ -133,6 +141,11 @@ public class MessageController {
         return result;
     }
 
+    @PostMapping("status/{boardId}/{memberId}")
+    @ResponseBody
+    public void updateBoardStatus(@PathVariable("boardId") Long boardId, @PathVariable("memberId") Long memberId){
+        messageService.setPurchaseStatus(boardId, memberId);
+    }
 
 
 }

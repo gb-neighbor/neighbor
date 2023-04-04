@@ -10,6 +10,11 @@ public class MessageDTO {
     private String latestRegisterDate;
     private String boardTitle;
     private Long boardId;
+    private Long sellerId;
+    private String boardProfileUuid;
+    private String boardProfilePath;
+    private String boardProfileOriginalName;
+    private Long purchaseStatus;
     private Long targetId;
     private String targetNickname;
     private String targetProfileUuid;
