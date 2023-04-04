@@ -31,10 +31,15 @@ public class ReplyController {
         log.info(String.valueOf(replyDTO.getReplyScore()));
     }
 
-    @PostMapping("lists/{boardId}")
+    @PostMapping("lists/{boardId}/{page}")
     @ResponseBody
-    public List<ReplyDTO> getReply(@PathVariable Long boardId, CriteraForBoard criteraForBoard){
+    public List<ReplyDTO> getReply(@PathVariable("boardId") Long boardId, @PathVariable("page") Integer page){
+        CriteraForBoard criteraForBoard = new CriteraForBoard();
+        criteraForBoard.setPage(page);
+        criteraForBoard.create(replyService.getReplyTotal());
         List<ReplyDTO> replyDTOList =  replyService.getAllReplyMemberByBoardId(boardId, criteraForBoard);
+        log.info("boardId: "+ boardId);
+        log.info(replyDTOList.toString());
         return replyDTOList;
     }
 }

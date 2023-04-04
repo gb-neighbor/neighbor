@@ -22,6 +22,10 @@ public class MainController {
     public String goMain(Model model){
         model.addAttribute("regionAllRecentLists", mainService.findAllByRegionAll());
         model.addAttribute("replyHighAvgLists", mainService.findDataForReplyHighAvgList());
+        model.addAttribute("randomRecommendLists", mainService.findRandom());
+        log.info(String.valueOf(model.getAttribute("regionAllRecentLists")));
+        log.info(String.valueOf(model.getAttribute("replyHighAvgLists")));
+        log.info(String.valueOf(model.getAttribute("randomRecommendLists")));
         return "/main/main";
     }
 

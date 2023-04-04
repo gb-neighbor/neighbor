@@ -46,7 +46,7 @@ $("input[id='cover-file']").on("change", function() {
             console.log(globalThis.uuid)
             $("span.cover-txt").hide();
             $("div.cover-img").hide();
-            $(".img").html(`<img src="/board-files/display?fileName=boards/${toStringByFormatting(new Date())}/t_${uuid}_${$files2.name}" class="mainPhoto">`);
+            $(".img").html(`<img src="/board-files/display?fileName=boards/${toStringByFormatting(new Date())}/${uuid}_${$files2.name}" class="mainPhoto">`);
             $(".img img").css("width", "50%");
             $(".img img").css("height", "100%");
 
