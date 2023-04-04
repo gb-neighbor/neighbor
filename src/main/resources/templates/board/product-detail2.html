@@ -16,7 +16,7 @@
 <article class="subinfo nospace">
     <div class="holder">
         <ul class="loc">
-            <li>목록으로</li>
+            <li onclick="location.href = '/board/list/region/'">목록으로</li>
         </ul>
     </div>
 </article>
@@ -31,9 +31,14 @@
             <div class="main-container">
                 <!-- 대표 사진 -->
 
+                <div class="product-img-container" th:if="${#lists.isEmpty(boardDTO.files)}">
+                    <img src="/image/logo_head_150_150.png" alt="" class="no-image">
+                    <span>이미지가 없습니다</span>
+                </div>
+
                 <!--!!js에서 바꿈!!-->
-                <div class="product-img-container">
-                    <img src="/css/board/images/food.jpeg" alt="" class="product-img">
+                <div class="product-img-container" th:if="${!#lists.isEmpty(boardDTO.files)}">
+                    <img src="/image/logo_head_150_150.png" alt="" class="product-img">
                 </div>
 
                 <!-- //대표 사진 -->
@@ -59,12 +64,13 @@
                     <div class="product-banner-container">
                         <div class="banner-wrapper">
                             <!-- The expanding image container -->
-                            <div class="thumb-container">
+                            <div class="thumb-container" th:if="${!#lists.isEmpty(boardDTO.files)}">
                                 <!-- Close the image -->
                                 <!-- <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span> -->
 
                                 <!-- Expanded image -->
-                                <img id="expandedImg" style="width:100%" src="/css/list/image/dummy-thumbnail-2.jpg">
+                                <img id="expandedImg" style="width:100%;">
+                                <!--<img th:if="${boardDTO.files != null}" id="expandedImg" th:src="@{/image/white.css}" style="width:100%;">-->
 
                                 <!-- Image text -->
                                 <div id="imgtext"></div>
@@ -203,7 +209,7 @@
                         </div>
                     </div>
                     <div class="buy">
-                        <input type="button" value="판매자 보러가기"/>
+                        <input type="button" value="판매자 보러가기" onclick="location.href = '/board/list/member/' + boardDTO.memberId;" />
                         <input type="button" value="쪽지" id="openBtn" onclick="getMessageRoom()"/>
 <!--                        <input type="button" value="쪽지" id="openBtn" onclick="openModalBanner([[${boardId}]], [[${session.memberId}]])"/>-->
                     </div>
@@ -253,7 +259,7 @@
                 <h4 class="review-title">
                     리뷰
                     <!--th:text="${boardDTO.boardTotal}-->
-                    <span class="review-count">9</span>
+                    <span class="review-count" th:text="${boardDTO.totalReply}">9</span>
                     <span class="review-average-star-wrap">
                         </span>
                 </h4>
@@ -261,7 +267,7 @@
                 <ul class="review-list">
                     <!-- 리뷰 게시물 하나 시작 -->
                     <!-- 리뷰 게시물 하나 시작 -->
-                    <li>
+                    <!--<li>
                         <div class="review-user-info">
                             <p class="review-user-nickname">구매자 이름</p>
                             <p class="review-score-wrap">
@@ -276,7 +282,7 @@
                         </div>
                         <div class="review-photo">
                             <div class="review-photo-flex-wrap">
-                                <!-- 리뷰 게시물 하나의 사진 1개 -->
+                                &lt;!&ndash; 리뷰 게시물 하나의 사진 1개 &ndash;&gt;
                                 <div class="review-photo-flex-inner">
                                     <a href="" class="review-img-hover">
                                         <div class="review-img-wrap">
@@ -284,8 +290,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                <!-- 리뷰 게시물 하나의 1개의 사진 끝 -->
-                                <!-- 리뷰 게시물 하나의 사진 1개 -->
+                                &lt;!&ndash; 리뷰 게시물 하나의 1개의 사진 끝 &ndash;&gt;
+                                &lt;!&ndash; 리뷰 게시물 하나의 사진 1개 &ndash;&gt;
                                 <div class="review-photo-flex-inner">
                                     <a href="" class="review-img-hover">
                                         <div class="review-img-wrap">
@@ -293,8 +299,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                <!-- 리뷰 게시물 하나의 1개의 사진 끝 -->
-                                <!-- 리뷰 게시물 하나의 사진 1개 -->
+                                &lt;!&ndash; 리뷰 게시물 하나의 1개의 사진 끝 &ndash;&gt;
+                                &lt;!&ndash; 리뷰 게시물 하나의 사진 1개 &ndash;&gt;
                                 <div class="review-photo-flex-inner">
                                     <a href="" class="review-img-hover">
                                         <div class="review-img-wrap">
@@ -302,10 +308,10 @@
                                         </div>
                                     </a>
                                 </div>
-                                <!-- 리뷰 게시물 하나의 1개의 사진 끝 -->
+                                &lt;!&ndash; 리뷰 게시물 하나의 1개의 사진 끝 &ndash;&gt;
                             </div>
                         </div>
-                        <!-- 사진 끝 -->
+                        &lt;!&ndash; 사진 끝 &ndash;&gt;
                         <div class="review-letters">
                             박스에서 꺼내는데 시원한 느낌이 들더라구요~<br>
                             아무래도 신선하게 보내주시려고 하신것 같아요.<br>
@@ -316,7 +322,7 @@
                             선물을 해도 받는사람이 너무 만족할것 같아서 가까운 지인들에게 식물좀 보내야겠어요!!!<br>
                             예쁜 식물들 감사합니디~^^
                         </div>
-                    </li>
+                    </li>-->
                     <!-- 게시물 하나 끝 -->
 
 
