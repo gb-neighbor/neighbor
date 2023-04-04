@@ -58,7 +58,7 @@
                     <div class="profile">
                         <div class="oneline_wrapper">
                             <div class="profile_image_section">
-                                <img class="profile_image  image-box" src="/css/mypage/images/profile_sample1.png">
+                                <img class="profile_image  image-box" th:src="@{/members/display(fileName=${memberInfo.memberProfilePath}+'/'+${memberInfo.memberProfileUuid}+'_'+${memberInfo.memberProfileOriginalName})}">
                             </div>
 
                             <div class="info_desk">

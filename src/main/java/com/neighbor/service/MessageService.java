@@ -1,12 +1,8 @@
 package com.neighbor.service;
 
 import com.neighbor.domain.dao.MessageDAO;
-import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Criteria;
-import com.neighbor.domain.dto.MessageDTO;
-import com.neighbor.domain.dto.MessageRoomDTO;
-import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.domain.vo.MessageVO;
+import com.neighbor.domain.dto.*;
+import com.neighbor.domain.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -73,9 +69,34 @@ public class MessageService {
     public Integer getTotalReply(Long boardId){return messageDAO.findTotalReply(boardId);}
 
     //    <!--  게시글 평점  -->
-    public Integer getAvgScore(Long boardId){return messageDAO.findCountBoard(boardId);}
+    public Integer getAvgScore(Long boardId){return messageDAO.findAvgScore(boardId);}
 
     //    <!--  내가 쓴 게시글 전체 조회  -->
     public List<BoardDTO> getBoardByMemberId(Long memberId){return messageDAO.findBoardByMemberId(memberId);}
+
+    //    <!--  비밀번호 변경  -->
+    public void setNewPassword(String memberPassword, Long memberId){messageDAO.changePassword(memberPassword, memberId);}
+
+    //    <!--  내가 작성한 후기  -->
+    public List<ReplyDTO> getReplyByMemberId(Long memberId){return messageDAO.findReplyByMemberId(memberId);}
+
+    //    <!--  게시글 썸네일 가져오기  -->
+    public BoardFileVO getBoardThumbnail(Long boardId){return messageDAO.findBoardThumbnail(boardId);}
+
+    //    <!--  판매자 아이디 가져오기  -->
+    public Long getSellerId(Long boardId){return messageDAO.findSellerId(boardId);}
+
+    //    <!-- 게시글 정보 가져오기 -->
+    public BoardVO getBoardByBoardId(Long boardId){return messageDAO.findBoardByBoardId(boardId);}
+
+    //  <!--  게시글 판매 상태 바꾸기  -->
+    public void setBoardStatus(Long boardId){messageDAO.changeBoardStatus(boardId);}
+
+    //    <!-- 게시글 판매 상태 업데이트 -->
+    public void setPurchaseStatus(Long boardId, Long memberId){messageDAO.savePurchaseStatus(boardId, memberId);}
+
+    //    <!-- 게시글 판매 상태 조회 -->
+    public Long getPurchase(Long boardId, Long memberId){ return messageDAO.findPurchase(boardId, memberId);}
+
 
 }

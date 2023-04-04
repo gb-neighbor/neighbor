@@ -1,11 +1,7 @@
 package com.neighbor.mapper;
 
-import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Criteria;
-import com.neighbor.domain.dto.MessageDTO;
-import com.neighbor.domain.dto.MessageRoomDTO;
-import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.domain.vo.MessageVO;
+import com.neighbor.domain.dto.*;
+import com.neighbor.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -55,6 +51,29 @@ public interface MessageMapper {
 //    <!--  내가 쓴 게시글 전체 조회  -->
     public List<BoardDTO> selectBoardByMemberId(Long memberId);
 
+//    <!--  비밀번호 변경  -->
+    public void updatePassword(String memberPassword, Long memberId);
+
+//    <!--  내가 작성한 후기  -->
+    public List<ReplyDTO> selectReplyByMemberId(Long memberId);
+
+//    <!--  게시글 썸네일 가져오기  -->
+    public BoardFileVO selectBoardThumbnail(Long boardId);
+
+//    <!--  판매자 아이디 가져오기  -->
+    public Long selectSellerId(Long boardId);
+
+//    <!-- 게시글 정보 가져오기 -->
+    public BoardVO selectBoardByBoardId(Long boardId);
+
+//    <!--  게시글 판매 상태 바꾸기  -->
+    public void updateBoardStatus(Long boardId);
+
+//    <!-- 게시글 판매 상태 업데이트 -->
+    public void insertPurchaseStatus(Long boardId, Long memberId);
+
+//    <!-- 게시글 판매 상태 조회 -->
+    public Long selectPurchase(Long boardId, Long memberId);
 
 
 }

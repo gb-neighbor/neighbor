@@ -761,10 +761,16 @@ function generateThumbsHtml(files) {
             file.replyFileOriginalName = 'defuault-image'
             file.replyFilePath = 'default-images/boards';
 
+<<<<<<< HEAD
+		}
+		thumbs +=
+			`<div class="review-photo-flex-inner">
+=======
         }
         thumbs +=
             `
              <div class="review-photo-flex-inner">
+>>>>>>> project/master
                  <a href="" class="review-img-hover">
                      <div class="review-img-wrap">
                          <div class="review-img-inner" 
