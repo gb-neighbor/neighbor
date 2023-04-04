@@ -237,7 +237,11 @@
                                     <input class="review-my-score-submit" type="button" value="등록">
                                 </span>
                             </span>
-                        <input type="file" name="files" id="files" multiple/>
+                    <ul class="replyImg"></ul>
+                    <label for="files" id="fileLabel">
+                        파일 올리기
+                    </label>
+                        <input type="file" name="files" id="files" style="display: none" />
                 </form>
                 </h4>
                 <form name='form' class="review-write-form">
@@ -263,7 +267,7 @@
                     <span class="review-average-star-wrap">
                         </span>
                 </h4>
-                <input class="review-write" type="button" value="리뷰작성">
+                <input th:if="${session.memberVO != boardDTO.memberId}" class="review-write" type="button" value="리뷰작성">
                 <ul class="review-list">
                     <!-- 리뷰 게시물 하나 시작 -->
                     <!-- 리뷰 게시물 하나 시작 -->
