@@ -488,8 +488,14 @@ function showMessage(messages) {
 }
 
 /*********************************************************************************************/
-
-FileList.prototype.forEach = Array.prototype.forEach;
+$(".review-my-score-cancel").click(function () {
+    replyInput.val('');
+    $('.review-my').hide();
+    $(".review-my-form input[type=hidden]").remove();
+    $("ul.replyImg").remove();
+    stars.forEach((star) => ($(star).attr('src', '/css/main/images/grey-star.png')))
+})
+/*FileList.prototype.forEach = Array.prototype.forEach;
 globalThis.arrayFile = new Array();
 let replyOriginalNameArray = new Array();
 let replyFileSize = new Array();
@@ -521,6 +527,9 @@ $("input[type=file]").on("change", function () {
             console.log(uuids)
             globalThis.uuids = uuids;
             const dataTransfer = new DataTransfer();
+            $files.forEach((file, i) => {
+                $(".replyImg").append(`<li><img src="/board-files/display?fileName=replies/${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"></li>`);
+            })
             $("input[id='files']")[0].files = dataTransfer.files;
             $files.forEach(file => {
                 text +=
@@ -530,9 +539,52 @@ $("input[type=file]").on("change", function () {
         <input type="hidden" name="files[${i}].replyFilePath" value="${toStringByFormatting(new Date())}">
         <input type="hidden" name="files[${i}].replyFileSize" value="${file.size}">
         `
-                i++;
+                globalThis.i++;
             });
             globalThis.i = 0;
+        }
+    });
+});*/
+
+FileList.prototype.forEach = Array.prototype.forEach;
+globalThis.arrayFile = new Array();
+globalThis.i = 0;
+let replyOriginalNameArray = new Array();
+let replyFileSize = new Array();
+
+$("input[id='files']").on("change", function() {
+    const $files = $("input[id=files]")[0].files;
+    if ($files.length === 0) {
+        return;
+    }
+//    파일 객체에 접근함
+    let formData = new FormData();
+    Array.from($files).forEach(file => globalThis.arrayFile.push(file));
+    // 파일 Array의 file들을 하나씩 담아줌
+    $files.forEach(file => {
+        replyOriginalNameArray.push(file.name)
+        replyFileSize.push(file.size)
+        formData.append("file", file)
+    });
+    $.ajax({
+        url: "/reply-files/upload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (uuids) {
+            globalThis.uuids = uuids;
+            console.log(globalThis.uuids)
+
+            $files.forEach((file, i) => {
+                $(".replyImg").html(`<li><img src="/board-files/display?fileName=/replies/${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"></li>`);
+                $(".add-button").css("margin-top", "172px");
+            });
+            const dataTransfer = new DataTransfer();
+            $("input[id='files']")[0].files = dataTransfer.files;
+            let text = "";
+            console.log("uuid는 " + globalThis.uuids)
+            i=0;
         }
     });
 });
@@ -632,22 +684,20 @@ stars2.forEach((star) =>
 	console.log(replyFileArray)
 	console.log(globalThis.uuids[0])
 })*/
-
 /* 등록버튼을 눌렀을때  */
 $('.review-my-score-submit').on('click', function () {
+    console.log(globalThis.uuids)
     let replyFileArray = new Array();
-    console.log(replyOriginalNameArray)
-    console.log(globalThis.uuids[0])
-    console.log(typeof replyScore); // replyScore의 데이터 타입이 number인지 확인
-    console.log(replyFileSize[0])
-    console.log(replyScore)
-    for (let i = 0; i < replyOriginalNameArray.length; i++) {
-        let replyFileVO = new Object();
-        replyFileVO.replyFileOriginalName = replyOriginalNameArray[i];
-        replyFileVO.replyFileUuid = globalThis.uuids[i];
-        replyFileVO.replyFilePath = toStringByFormatting(new Date());
-        replyFileVO.replyFileSize = replyFileSize[i];
-        replyFileArray.push(replyFileVO);
+
+    if (globalThis.uuids != null) {
+        for (let i = 0; i < replyOriginalNameArray.length; i++) {
+            let replyFileVO = new Object();
+            replyFileVO.replyFileOriginalName = replyOriginalNameArray[i];
+            replyFileVO.replyFileUuid = globalThis.uuids[i];
+            replyFileVO.replyFilePath = toStringByFormatting(new Date());
+            replyFileVO.replyFileSize = replyFileSize[i];
+            replyFileArray.push(replyFileVO);
+        }
     }
     let $value = $(".review-my-textarea").val()
     let jsonObject = {
@@ -663,10 +713,54 @@ $('.review-my-score-submit').on('click', function () {
         contentType: 'application/json; charset=UTF-8',
         success: function (data) {
             globalThis.i = 0;
+            replyOriginalNameArray = new Array();
+            replyFileSize = new Array();
+            globalThis.uuids = new Array();
             replyInput.val('');
             $('.review-my').hide();
             $(".review-my-form input[type=hidden]").remove();
+
+            $("ul.replyImg li").remove();
             stars.forEach((star) => ($(star).attr('src', '/css/main/images/grey-star.png')))
+
+            $.ajax({
+                url: `/replies/lists/${boardIdForReply}/1`, // 1페이지만 가져오기
+                method: 'post',
+                success: function (replyDTOList) {
+                    const $ul = $("ul.review-list");
+                    $ul.empty(); // 기존 댓글 모두 지우기
+                    let replies = '';
+                    replyDTOList.forEach(reply => {
+                        const starsForReply = generateStarHtml(reply.replyScore);
+                        const thumbsForReply = generateThumbsHtml(reply.files);
+                        replies +=
+                            `
+        		<li>
+                        <div class="review-user-info">
+                            <p class="review-user-nickname">${reply.memberNickname}</p>
+                            <p class="review-score-wrap">
+                                    <span class="stars">
+                                    ${starsForReply}
+                                    </span></p>
+                            <p class="review-date">${reply.replyUpdateDate}</p>
+                        </div>
+                        <div class="review-photo">
+                            <div class="review-photo-flex-wrap">
+                                ${thumbsForReply}
+                            </div>
+                        </div>
+                        <!-- 사진 끝 -->
+                        <div class="review-letters">
+                            ${reply.replyContent}
+                        </div>
+                    </li>
+                    <!-- 게시물 하나 끝 -->
+       `;
+                    });
+                    $ul.append(replies);
+                    getProfileImage();
+                }
+            })
         }
     });
 })
@@ -787,7 +881,7 @@ function getProfileImage() {
             let replyFilePath = $(this).data('reply-file-path');
             let replyFileUuid = $(this).data('reply-file-uuid');
             let replyFileOriginalName = $(this).data('reply-file-original-name');
-            let replyUrl = '/board-files/display?fileName=' + 'replies/' + replyFilePath + '/t_' + replyFileUuid + '_' + replyFileOriginalName;
+            let replyUrl = '/board-files/display?fileName=' + '/replies/' + replyFilePath + '/t_' + replyFileUuid + '_' + replyFileOriginalName;
             $(this).css('background-image', 'url(' + replyUrl + ')');
         });
     });
