@@ -219,13 +219,15 @@ $(".result-list").append(boardList2)
 
 /* -------------------------무한 스크롤-------------------------------- */
 let isLastPage = false;
-let page = 1;
 const $ul = $("#list");
 let keyword = "";
 let gugun = $("select[name=gugun]").val();
+let page = 1;
 const boardService = (() => {
+    page = 1;
     function getList(callback){
         console.log(keyword)
+        console.log("현재 "+page)
         console.log(gugun)
         $.ajax({
             url: `/board/lists/regions?keyword=${keyword}&gugun=${gugun}`,
@@ -302,6 +304,18 @@ function appendList(boardDTOList) {
     $ul.append(boardText3);
     getProfileImage();
 }
+// 페이지 로딩 시 초기 리스트를 불러옴
+boardService.getList(function(boardDTOList) {
+    appendList(boardDTOList);
+});
+
+// 검색창에서 키보드를 눌렀을 때
+$('.search-form').on('keydown', function(e) {
+    if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+        e.preventDefault(); // 기본 이벤트 막기
+    }
+});
+
 
 $("button[name=search]").on("click", function(){
     keyword = $("input[name=keyword]").val();
