@@ -27,6 +27,7 @@
         member_profile_path
         from tbl_member m join tbl_reply r on r.member_id = m.member_id
         where board_id = #{boardId}
+        order by r.reply_id desc
         limit #{cri2.offset}, #{cri2.rowCount}
     </select>
 

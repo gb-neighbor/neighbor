@@ -395,6 +395,7 @@ textarea::placeholder {
     font-size: 25px;
     font-weight: 700;
     color: #222624;
+    margin-left:30px;
 }
 
 .review-my-star-wrap {
@@ -435,6 +436,20 @@ textarea::placeholder {
     padding: 25px;
 }
 
+.review-my-form{
+    position:relative;
+}
+
+#fileLabel{
+    position:absolute;
+    right: 60px;
+}
+
+.review-my-star-wrap {
+    position: absolute;
+    left: 23px;
+}
+
 .review-write {
     position: absolute;
     top: 0px;
@@ -445,6 +460,7 @@ textarea::placeholder {
     color: #009a3e;
     border: 0;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .review-write-count {
@@ -1168,5 +1184,9 @@ ul, li {
     background-color: #c2185b;
 }
 
-
+ul.replyImg{
+    display: flex;
+    justify-content: right;
+    margin-right: 123px;
+}
 
