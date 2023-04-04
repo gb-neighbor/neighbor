@@ -123,6 +123,7 @@ $checkInput.on('blur', function () {
     }
 });
 
+
 /* 입력한 값들이 모두 true라면 변경하기 버튼 활성화 */
 $inputs.on('blur', function () {
     if (passwordCheckAll.filter((check) => check).length == 3) {
@@ -132,14 +133,22 @@ $inputs.on('blur', function () {
     $changeButton.attr('disabled', true);
 });
 
+const $oldpassword = $("input[name='oldPassword']").val();
+originalPassword = $("input[name='originalPassword']").val(btoa($("input[name='originalPassword']").val()));
+
 $changeButton.on('click', function () {
     let modalMessage = '';
     /* 기존 비밀번호 검사 후 false일 때 모달창 */
-    modalMessage = '기존 비밀번호가 일치하지 않습니다.';
-    showWarnModal(modalMessage);
-    /* 기존 비밀번호 검사 후 true일 때 모달창 */
-    /* modalMessage = "변경되었습니다.";
-      showWarnModal(modalMessage); */
+    if($originalPassword.val() === $oldpassword){
+        modalMessage = '기존 비밀번호가 일치하지 않습니다.';
+        showWarnModal(modalMessage);
+    }else{
+        /* 기존 비밀번호 검사 후 true일 때 모달창 */
+        modalMessage = "변경되었습니다.";
+        showWarnModal(modalMessage);
+        $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
+        $("form.update-password-form").submit();
+    }
 });
 
 /* 모달창 */

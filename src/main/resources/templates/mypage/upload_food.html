@@ -58,7 +58,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    const memberId = 1;
+    let memberId = [[${memberInfo.memberId}]];
 </script>
 <script src="/js/mypage/upload_food.js"></script>
 </html>

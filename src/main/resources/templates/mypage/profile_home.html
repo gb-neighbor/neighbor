@@ -29,15 +29,15 @@
             </li>
 
             <li class="list_my_shopping">
-                <a href="" class="first_letter" th:href="@{/ask-admin/inquiry-list}">문의</a>
+                <a href="" class="first_letter" th:href="@{/ask-admin/faq}">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
-                    <a class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
+                    <a class="second_letter except_home_letter" th:href="@{/ask-admin/faq}">FAQ</a>
                     <a class="second_letter except_home_letter" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
                 </div>
             </li>
 
             <li class="list_setting">
-                <a href="" class="first_letter" th:href="@{/mypage/profile_home}">설정</a>
+                <a href="" class="first_letter" th:href="@{/mypage/password_update}">설정</a>
                 <div class="list_my_setting_items disply_bundle">
                     <a class="second_letter except_home_letter" th:href="@{/mypage/password_update}" >비밀번호 변경</a>
                     <a class="second_letter except_home_letter" th:href="@{/mypage/user_leave}">회원탈퇴</a>
@@ -56,7 +56,7 @@
                     <div class="profile">
                         <div class="oneline_wrapper">
                             <div class="profile_image_section">
-                                <img class="profile_image  image-box" src="/css/mypage/images/profile_sample1.png">
+                                <img class="profile_image  image-box" th:src="@{/members/display(fileName=${memberInfo.memberProfilePath}+'/'+${memberInfo.memberProfileUuid}+'_'+${memberInfo.memberProfileOriginalName})}">
                                 <div class="profile_camera_image_section">
                                     <img class="profile_camera_image" src="/css/mypage/images/camera.png">
                                     <input id="file" name="chooseFile" type="file" accept="image/*" />
@@ -88,11 +88,42 @@
                             </div>
                         </div>
                     </div>
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        프로필
+                    </button>
+                    <div class="content">
+                        <p class="content_items_padding"></p>
+                        <a href="" class="content_items" th:href="@{/mypage/profile_home}">홈</a>
+                        <a href="" class="content_items" th:href="@{/mypage/message_box}">쪽지함</a>
+                        <a href="" class="content_items" th:href="@{/mypage/upload_food}">내가 올린 반찬</a>
+                        <a href="" class="content_items" th:href="@{/mypage/review}">후기</a>
+                        <p class="content_items_padding"></p>
+                    </div>
+
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        문의
+                    </button>
+                    <div class="content">
+                        <p class="content_items_padding"></p>
+                        <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
+                        <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
+                        <p class="content_items_padding"></p>
+                    </div>
+
+                    <button type="button" class="collapsible" onclick="collapse(this);">
+                        설정
+                    </button>
+                    <div class="content">
+                        <p class="content_items_padding"></p>
+                        <a href="" class="content_items" th:href="@{/mypage/password_update}">비밀번호 변경</a>
+                        <a href="" class="content_items" th:href="@{/mypage/user_leave}">회원탈퇴</a>
+                        <p class="content_items_padding"></p>
+                    </div>
                 </div>
-            </div>
         </div>
-
-
+    </div>
 <!-- //콘텐츠부분 시작 -->
         <div class="contents_container" th:object="${memberInfo}">
 
@@ -104,7 +135,7 @@
                             <div>
                                 <label class="update-user-text">닉네임</label>
                                 <div class="update-user-nickname">
-                                    <input name="memberNickname" class="update-user-value change-value nick-name" value="" th:placeholder=*{memberNickname} />
+                                    <input name="memberNickname" class="update-user-value change-value nick-name" th:value=*{memberNickname} />
                                     <p class="err-nickname err"></p>
                                 </div>
                             </div>
@@ -114,7 +145,7 @@
                             <div>
                                 <label class="update-user-text">휴대폰 번호</label>
                                 <div class="update-user">
-                                    <input name="memberPhone" class="update-user-value phone" value="" th:placeholder=*{memberPhone} />
+                                    <input name="memberPhone" class="update-user-value phone" th:value=*{memberPhone} />
                                     <p class="err-phone err"></p>
                                 </div>
                             </div>
@@ -123,7 +154,7 @@
                             <div>
                                 <label class="update-user-text">이메일</label>
                                 <div class="update-user">
-                                    <input name="memberEmail" class="update-user-value email" value="" th:placeholder=*{memberEmail} />
+                                    <input name="memberEmail" class="update-user-value email" th:value=*{memberEmail} />
                                     <p class="err-email err"></p>
                                 </div>
                             </div>
@@ -133,7 +164,7 @@
                             <div>
                                 <label class="update-user-text">생년월일</label>
                                 <div class="update-user">
-                                    <input name="memberBirth" class="update-user-value change-value birth" value="" th:placeholder=*{memberBirth} />
+                                    <input name="memberBirth" class="update-user-value change-value birth" th:value=*{memberBirth} />
                                     <p class="err-birth err"></p>
                                 </div>
                             </div>
@@ -144,31 +175,37 @@
                                 <label class="update-user-text">지역</label>
                                 <div class="custom_select w1">
                                     <select class="custom_select select-region-drop" name="gugun" id="gugun">
-                                        <option value="1">강남구</option>
-                                        <option value="2">강동구</option>
-                                        <option value="3">강북구</option>
-                                        <option value="4">강서구</option>
-                                        <option value="5">관악구</option>
-                                        <option value="6">광진구</option>
-                                        <option value="7">구로구</option>
-                                        <option value="8">금천구</option>
-                                        <option value="9">노원구</option>
-                                        <option value="10">도봉구</option>
-                                        <option value="11">동대문구</option>
-                                        <option value="12">동작구</option>
-                                        <option value="13">마포구</option>
-                                        <option value="14">서대문구</option>
-                                        <option value="15">서초구</option>
-                                        <option value="16">성동구</option>
-                                        <option value="17">성북구</option>
-                                        <option value="18">송파구</option>
-                                        <option value="19">양천구</option>
-                                        <option value="20">영등포구</option>
-                                        <option value="21">용산구</option>
-                                        <option value="22">은평구</option>
-                                        <option value="23">종로구</option>
-                                        <option value="24">중구</option>
-                                        <option value="25">중랑구</option>
+                                        <script th:inline="javascript">
+                                            let memberRegion = [[${memberInfo.memberRegion}]];
+                                            if($(option).val() == memberRegion){
+                                                $(option).selected = true;
+                                            };
+                                        </script>
+                                            <option value="1">강남구</option>
+                                            <option value="2">강동구</option>
+                                            <option value="3">강북구</option>
+                                            <option value="4">강서구</option>
+                                            <option value="5">관악구</option>
+                                            <option value="6">광진구</option>
+                                            <option value="7">구로구</option>
+                                            <option value="8">금천구</option>
+                                            <option value="9">노원구</option>
+                                            <option value="10">도봉구</option>
+                                            <option value="11">동대문구</option>
+                                            <option value="12">동작구</option>
+                                            <option value="13">마포구</option>
+                                            <option value="14">서대문구</option>
+                                            <option value="15">서초구</option>
+                                            <option value="16">성동구</option>
+                                            <option value="17">성북구</option>
+                                            <option value="18">송파구</option>
+                                            <option value="19">양천구</option>
+                                            <option value="20">영등포구</option>
+                                            <option value="21">용산구</option>
+                                            <option value="22">은평구</option>
+                                            <option value="23">종로구</option>
+                                            <option value="24">중구</option>
+                                            <option value="25">중랑구</option>
                                     </select>
                                 </div>
                             </div>
@@ -178,7 +215,7 @@
                             <div>
                                 <label class="update-user-text">한 줄 소개</label>
                                 <div class="update-user">
-                                    <input name="memberHiSentence" class="update-user-value" th:placeholder=*{memberHiSentence} />
+                                    <input name="memberHiSentence" class="update-user-value" th:value=*{memberHiSentence} />
                                 </div>
                             </div>
                         </div>

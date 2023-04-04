@@ -44,14 +44,22 @@ const foodService=(function(){
 })();
 
 function showMyfoods(myfoods){
+
     let myfoodList = "";
     myfoods.forEach(myfood => {
+        console.log(myfood);
         myfoodList += `
             <div class="content_wrap">
                 <div class="product_thumnail">
-                    <a href="" class="product_detail_link">
-                        <img class="product_thumbnail_image" src="/css/mypage/images/product_sample.png">
-                        <div class="label-spot">`
+                    <a href="" class="product_detail_link">`
+        if(myfood.boardStatus){
+            myfoodList += `<img class="product_thumbnail_image" src="/board-files/display?fileName=boards/${myfood.fileMainPath}/${myfood.fileMainUuid}_${myfood.fileMainName}" style="opacity: 0.8; filter: brightness(0.5);">
+                           <div class="label-spot">`
+        } else{
+            myfoodList += `<img class="product_thumbnail_image" src="/board-files/display?fileName=boards/${myfood.fileMainPath}/${myfood.fileMainUuid}_${myfood.fileMainName}">
+                           <div class="label-spot">`
+        }
+
         if(myfood.boardStatus){
             myfoodList += `<label for="parent-block" >판매종료</label>`
         }
@@ -60,11 +68,9 @@ function showMyfoods(myfoods){
                     </div>
                     <div class="product_info">
                         <span class="areA">
-                            <a class="product_title" href="">${myfood.boardTitle}</a>
+                            <a class="product_title" href="/board/detail/${myfood.boardId}">${myfood.boardTitle}</a>
                         </span>
-                        <span class="price">
-                            ${myfood.boardPrice}
-                        </span>
+                        <span class="price">${myfood.boardPrice}</span>
                         <div class="score">`
 
         for (let i = 0; i < `${myfood.avgScore}`; i++) {
@@ -73,13 +79,13 @@ function showMyfoods(myfoods){
         for (let i = 0; i < (5-`${myfood.avgScore}`); i++) {
             myfoodList += "<img src='/css/mypage/images/grey-star.png'>"
         }
-         myfoodList += `<span class="score_num">${myfood.avgScore}</span>
+         myfoodList += `<span class="reply_num">(${myfood.totalReply})</span>
                     </div>
                 </div>
             </div>
         `;
-        $listBox.append(myfoodList);
     })
+    $listBox.append(myfoodList);
 }
 
 foodService.list(showMyfoods);
