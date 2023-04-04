@@ -741,8 +741,7 @@ function generateThumbsHtml(files) {
 
 		}
 		thumbs +=
-			`
-             <div class="review-photo-flex-inner">
+			`<div class="review-photo-flex-inner">
                  <a href="" class="review-img-hover">
                      <div class="review-img-wrap">
                          <div class="review-img-inner" 

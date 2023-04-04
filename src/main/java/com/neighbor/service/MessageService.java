@@ -1,12 +1,10 @@
 package com.neighbor.service;
 
 import com.neighbor.domain.dao.MessageDAO;
-import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Criteria;
-import com.neighbor.domain.dto.MessageDTO;
-import com.neighbor.domain.dto.MessageRoomDTO;
+import com.neighbor.domain.dto.*;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.MessageVO;
+import com.neighbor.domain.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -73,9 +71,15 @@ public class MessageService {
     public Integer getTotalReply(Long boardId){return messageDAO.findTotalReply(boardId);}
 
     //    <!--  게시글 평점  -->
-    public Integer getAvgScore(Long boardId){return messageDAO.findCountBoard(boardId);}
+    public Integer getAvgScore(Long boardId){return messageDAO.findAvgScore(boardId);}
 
     //    <!--  내가 쓴 게시글 전체 조회  -->
     public List<BoardDTO> getBoardByMemberId(Long memberId){return messageDAO.findBoardByMemberId(memberId);}
+
+    //    <!--  비밀번호 변경  -->
+    public void setNewPassword(String memberPassword, Long memberId){messageDAO.changePassword(memberPassword, memberId);}
+
+    //    <!--  내가 작성한 후기  -->
+    public List<ReplyDTO> getReplyByMemberId(Long memberId){return messageDAO.findReplyByMemberId(memberId);}
 
 }

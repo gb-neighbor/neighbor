@@ -1,11 +1,9 @@
 package com.neighbor.domain.dao;
 
-import com.neighbor.domain.dto.BoardDTO;
-import com.neighbor.domain.dto.Criteria;
-import com.neighbor.domain.dto.MessageDTO;
-import com.neighbor.domain.dto.MessageRoomDTO;
+import com.neighbor.domain.dto.*;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.domain.vo.MessageVO;
+import com.neighbor.domain.vo.ReplyVO;
 import com.neighbor.mapper.MessageMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -52,7 +50,7 @@ public class MessageDAO {
     public Integer findCountReply(Long memberId){return messageMapper.selectCountReply(memberId);}
 
     //    <!--  게시글 평점  -->
-    public Integer findAvgScore(Long boardId){return messageMapper.selectCountBoard(boardId);}
+    public Integer findAvgScore(Long boardId){return messageMapper.selectAvgScore(boardId);}
 
     //    <!--  게시글당 총 후기 수  -->
     public Integer findTotalReply(Long boardId){return messageMapper.selectTotalReply(boardId);}
@@ -60,5 +58,9 @@ public class MessageDAO {
     //    <!--  내가 쓴 게시글 전체 조회  -->
     public List<BoardDTO> findBoardByMemberId(Long memberId){return messageMapper.selectBoardByMemberId(memberId);}
 
+    //    <!--  비밀번호 변경  -->
+    public void changePassword(String memberPassword, Long memberId){messageMapper.updatePassword(memberPassword, memberId);}
 
+    //    <!--  내가 작성한 후기  -->
+    public List<ReplyDTO> findReplyByMemberId(Long memberId){return messageMapper.selectReplyByMemberId(memberId);}
 }
