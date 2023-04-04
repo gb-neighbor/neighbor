@@ -2,10 +2,7 @@ package com.neighbor.controller;
 
 
 import com.neighbor.domain.dto.*;
-import com.neighbor.service.AskAdminService;
-import com.neighbor.service.BoardService;
-import com.neighbor.service.MemberService;
-import com.neighbor.service.ReplyService;
+import com.neighbor.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -24,47 +21,24 @@ public class AdminController {
 
     private final MemberService memberService;
     private final AskAdminService askAdminService;
+    private final AskAdminAnswerService askAdminAnswerService;
     private final BoardService boardService;
     private final ReplyService replyService;
-
-
-    @GetMapping("form")
-    public void form(Model model, int number) {
-        model.addAttribute("number",number);
-    }
-
+//
+//    @GetMapping("form")
+//    public void form(Model model, int number) {
+//        model.addAttribute("number",number);
+//    }
+//
 
     /*AskAdmin 시작*/
 
     //   문의목록 문의사항 삭제
-    @DeleteMapping("ask-admin-delete")
-    public void askAdminDelete(@PathVariable Long askAdminId) {
-        askAdminService.delete(askAdminId);
-    }
+//    @DeleteMapping("ask-admin-delete")
+//    public void askAdminDelete(@PathVariable Long askAdminId) {
+//        askAdminService.delete(askAdminId);
+//    }
 
-    //    대시보드 전체조회
-    @GetMapping("dash-board-listAll")
-    public String dashBoardShowList(Model model){
-        List<BoardDTO> boardDTOS = new ArrayList<>();
-        List<MemberDTO> memberDTOS = new ArrayList<>();
-
-        memberDTOS = memberService.getListBy();
-        for(MemberDTO memberDTO:memberDTOS){
-            memberDTO.change(memberDTO.getMemberRegion());
-        };
-        model.addAttribute("members", memberDTOS);
-
-        boardDTOS = boardService.getListBy();
-        for(BoardDTO boardDTO:boardDTOS){
-            boardDTO.change(boardDTO.getBoardRegion());
-            boardDTO.saleChange(boardDTO.getBoardStatus());
-        };
-        model.addAttribute("boards", boardDTOS);
-
-        model.addAttribute("asks", askAdminService.getListBy());
-        model.addAttribute("replys", replyService.getListBy());
-        return "admin/dash-board";
-    }
 
     // 문의목록 문의사항 답변대기중 조회
 //    @GetMapping("ask-admin-wait-list")
@@ -270,7 +244,44 @@ public class AdminController {
         Long result = Long.parseLong(askAdminId);
         askAdminService.delete(result);
     }
-    
+
+    //    대시보드 전체조회
+    @GetMapping("dash-board-listAll")
+    public String dashBoardShowList(Model model){
+        List<BoardDTO> boardDTOS = new ArrayList<>();
+        List<MemberDTO> memberDTOS = new ArrayList<>();
+
+        memberDTOS = memberService.getListBy();
+        for(MemberDTO memberDTO:memberDTOS){
+            memberDTO.change(memberDTO.getMemberRegion());
+        };
+        model.addAttribute("members", memberDTOS);
+
+        boardDTOS = boardService.getListBy();
+        for(BoardDTO boardDTO:boardDTOS){
+            boardDTO.change(boardDTO.getBoardRegion());
+            boardDTO.saleChange(boardDTO.getBoardStatus());
+        };
+        model.addAttribute("boards", boardDTOS);
+
+        model.addAttribute("asks", askAdminService.getListBy());
+        model.addAttribute("replys", replyService.getListBy());
+        return "admin/dash-board";
+    }
+
     /*ask-admin 끝*/
 
+    /*ask-admin-answer 시작*/
+    
+//    관리자가 답변할 시 답변을 insert 해주고 답변여부를 답변완료로 바꾼다.
+    @PostMapping("ask/answer")
+    @ResponseBody
+    public AskAdminAnswerDTO askAdminAnswer(@RequestBody AskAdminAnswerDTO askAdminAnswerDTO) {
+        askAdminAnswerService.insertAnswer(askAdminAnswerDTO);
+        askAdminAnswerService.updateStatus(askAdminAnswerDTO.getAskAdminId());
+
+        return askAdminAnswerDTO;
+    }
+
+    /*ask-admin-answer 끝*/
 }
