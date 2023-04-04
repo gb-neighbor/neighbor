@@ -4,6 +4,7 @@ import com.neighbor.domain.dao.MainDAO;
 import com.neighbor.domain.dao.MemberDAO;
 import com.neighbor.domain.dto.MainRecentDTO;
 import com.neighbor.domain.dto.MainReplyAvgHighDTO;
+import com.neighbor.domain.vo.BoardFileVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,7 @@ public class MainService {
 
     // 메인 별점인기순 부분
     public List<MainReplyAvgHighDTO> findDataForReplyHighAvgList() {return mainDAO.selectDataForReplyHighAvgList();}
+
+    // 메인 랜덤 추천 부분
+    public List<BoardFileVO> findRandom() {return mainDAO.selectRandom();}
 }
