@@ -218,17 +218,23 @@ $(".result-list").append(boardList2)
 
 
 /* -------------------------무한 스크롤-------------------------------- */
-let page = 1;
 let isLastPage = false;
+let page = 1;
 const $ul = $("#list");
-
+let keyword = "";
+let gugun = $("select[name=gugun]").val();
 const boardService = (() => {
     function getList(callback){
+        console.log(keyword)
+        console.log(gugun)
         $.ajax({
-            url: `/board/lists/regions?page=${page}`,
+            url: `/board/lists/regions?keyword=${keyword}&gugun=${gugun}`,
             type: 'post',
+            data: JSON.stringify({page:page}),
+            contentType: "application/json;charset=utf-8",
             success: function(boardDTOList){
                 if (boardDTOList.length === 0) { // 불러올 데이터가 없으면
+                    console.log("막힘")
                     $(window).off('scroll'); // 스크롤 이벤트를 막음
                     return;
                 }
@@ -240,82 +246,137 @@ const boardService = (() => {
     }
     return {getList: getList};
 })();
-//10개보다 적을시 한번은 실행되야함
 
-function appendList() {
-    boardService.getList(boardDTOList => {
-        console.log(boardDTOList)
-        let boardText3 = '';
-        boardDTOList.forEach(board => {
-            const stars = generateStarHtml(board.avgScore);
-            const thumbs = generateThumbsHtml(board.files);
-            boardText3 +=  `
-                <a>
-                    <li class="result-list-container" >
-                        <div class="result-list-outer-box">
-                            <a href="/board/detail/${board.boardId}">
-                                <div class="profile-area-box">
-                                    <div class="profile-area">
-                                        <div class="profile-area-inner">
-                                            <div class="thumbs" data-member-profile-path="${board.memberProfilePath}" data-member-profile-uuid="${board.memberProfileUuid}"
-                                                data-member-profile-original-name="${board.memberProfileOriginalName}"></div>
-                                            <p class="id">
-                                                <span>${board.memberNickname}</span>
-                                            </p>
-                                            <div class="location">
-                                                <span class="map">${board.boardRegionKo}</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <img src="/css/list/image/arrow_r.png">
+function appendList(boardDTOList) {
+    let boardText3 = '';
+    boardDTOList.forEach(board => {
+        const stars = generateStarHtml(board.avgScore);
+        const thumbs = generateThumbsHtml(board.files);
+        boardText3 +=  `
+            <a>
+                <li class="result-list-container" >
+                    <div class="result-list-outer-box">
+                        <a href="/board/detail/${board.boardId}">
+                            <div class="profile-area-box">
+                                <div class="profile-area">
+                                    <div class="profile-area-inner">
+                                        <div class="thumbs" data-member-profile-path="${board.memberProfilePath}" data-member-profile-uuid="${board.memberProfileUuid}"
+                                            data-member-profile-original-name="${board.memberProfileOriginalName}"></div>
+                                        <p class="id">
+                                            <span>${board.memberNickname}</span>
+                                        </p>
+                                        <div class="location">
+                                            <span class="map">${board.boardRegionKo}</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="title-area-box">
-                                    <div class="title-area">
-                                        <span class="list-title">${board.boardTitle}</span>
-                                        <span class="stars">
-                                            ${stars}
-                                        </span>
-                                    </div>
-                                    <div class="sub-info-area-box">
-                                        <div class="price">
-                                            <span class="won">${board.boardPrice}</span>
-                                        </div>
+                                    <div>
+                                        <img src="/css/list/image/arrow_r.png">
                                     </div>
                                 </div>
-                                <div class="pic-box">
-                                    ${thumbs}
+                            </div>
+                            <div class="title-area-box">
+                                <div class="title-area">
+                                    <span class="list-title">${board.boardTitle}</span>
+                                    <span class="stars">
+                                        ${stars}
+                                    </span>
                                 </div>
-                            </a>
-                        </div>
-                    </li>
-                </a>
-            `;
-        });
-        if (boardDTOList.length === 0) { // 불러올 데이터가 없으면
-            $(window).off('scroll'); // 스크롤 이벤트를 막음
-            return;
-        }
-        $ul.append(boardText3);
-        getProfileImage();
+                                <div class="sub-info-area-box">
+                                    <div class="price">
+                                        <span class="won">${board.boardPrice}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pic-box">
+                                ${thumbs}
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </a>
+        `;
     });
-
-
+    if (boardDTOList.length === 0) { // 불러올 데이터가 없으면
+        $(window).off('scroll'); // 스크롤이벤트 x
+    }
+    $ul.append(boardText3);
+    getProfileImage();
 }
-appendList();
 
-$(window).scroll(function() {
+$("button[name=search]").on("click", function(){
+    keyword = $("input[name=keyword]").val();
+    console.log("버튼 눌름 "+ keyword) // 키워드는 들어옴
+    $ul.empty();
+    page = 1;
+    $(window).off('scroll'); // 이전 스크롤 이벤트를 막음
+    boardService.getList(function(boardDTOList) {
+        appendList(boardDTOList);
+        $(window).on('scroll', function() { // 새로운 스크롤 이벤트 등록
+            let zoomLevel = $('body').css('zoom');
+            if (zoomLevel === '0.8') {
+                if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+                    console.log("스크롤")
+                    page++;
+                    console.log(page)
+                    boardService.getList(function(boardDTOList) {
+                        appendList(boardDTOList);
+                    });
+                }
+            }
+        });
+    });
+});
+
+// 지역
+$("select[name=gugun]").on("change", function () {
+    gugun = $("select[name=gugun]").val();
+    console.log(gugun);
+    $ul.empty();
+    page = 1;
+    $(window).off('scroll'); // 이전 스크롤 이벤트를 막음
+    boardService.getList(function(boardDTOList) {
+        appendList(boardDTOList);
+        $(window).on('scroll', function() { // 새로운 스크롤 이벤트 등록
+            let zoomLevel = $('body').css('zoom');
+            if (zoomLevel === '0.8') {
+                if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+                    console.log("스크롤")
+                    page++;
+                    console.log(page)
+                    boardService.getList(function(boardDTOList) {
+                        appendList(boardDTOList);
+                    });
+                }
+            }
+        });
+    });
+});
+
+
+$(document).ready(function() {
+    // 검색창에서 키보드를 눌렀을 때
+    $('.search-form').on('keydown', function(e) {
+        if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+            e.preventDefault(); // 기본 이벤트 막기
+        }
+    });
+});
+
+$(window).on('scroll', function() {
     let zoomLevel = $('body').css('zoom');
     if (zoomLevel === '0.8') {
-        if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height()) {
+        if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+            console.log("스크롤")
             page++;
-            appendList();
             console.log(page)
-            getProfileImage();
+            boardService.getList(function(boardDTOList) {
+                appendList(boardDTOList);
+            });
         }
     }
 });
+
+
 /* 썸네일 사진 생성 코드 */
 function generateThumbsHtml(files) {
     let thumbs = '';

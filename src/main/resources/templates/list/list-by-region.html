@@ -362,7 +362,7 @@
                         <!-- 검색창 컨테이너 -->
                         <div class="search-area ">
                             <!-- 검색 폼 -->
-                            <form name="form" action="">
+                            <form name="form" class="search-form">
                                 <!-- 서울 구 선택 + 검색창 -->
                                 <div class="wrp_frm region-select-container">
                                     <!-- 서울시 + 구선택 -->
@@ -404,14 +404,14 @@
                                     <!-- //서울시 + 구선택 -->
                                     <!-- 검색창 -->
                                     <div class="region-select-container w4">
-                                        <input type="text" class="search-box" title="장소명 or 해시태그 입력" name="tag" id="tag" value="" placeholder="검색어를 입력 하세요.">
+                                        <input type="text" class="search-box" title="장소명 or 해시태그 입력" name="keyword" id="tag" value="" placeholder="검색어를 입력 하세요.">
                                     </div>
                                     <!-- //검색창 -->
                                 </div>
                                 <!-- //서울 구 선택 + 검색창 -->
                                 <!-- 검색 버튼 -->
                                 <div class="wrp_buttons">
-                                    <button type="submit" class="btn green" onclick="console.log('hello')">검색</button>
+                                    <button type="button" name="search" class="btn green">검색</button>
                                     <button type="button" class="btn lgray" onclick="reset();resetMap();">초기화</button>
                                 </div>
                             </form>

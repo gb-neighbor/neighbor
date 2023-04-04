@@ -59,10 +59,10 @@ public class BoardController {
     }
 
     @GetMapping("list/region")
-    public String goList(Model model, Critera2 critera2){
+    public String goList(Model model, Critera2 critera2,@RequestParam(value = "keyword", required = false) String keyword,@RequestParam(value = "gugun",required = false)String gugun){
         critera2.setPage(1);
 //      맴버와 보드를 합친 DTO를 가져옴
-        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null);
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null,keyword,gugun);
         Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
         int avgScore = 0;
         int sum = 0;
@@ -93,37 +93,39 @@ public class BoardController {
     }
 
 /* 리스트 무한스크롤 이벤트로 가져오기 */
-    @PostMapping("lists/regions")
-    @ResponseBody
-    public List<BoardDTO> getNextPage(Critera2 critera2){
-        //      맴버와 보드를 합친 DTO를 가져옴
-        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null);
-        Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
-        int avgScore = 0;
+@PostMapping("lists/regions")
+@ResponseBody
+public List<BoardDTO> getNextPage(@RequestBody Critera2 critera2, @RequestParam(value = "keyword", required = false) String keyword,@RequestParam(value = "gugun",required = false)String gugun){
+    log.info("==============================================================="+keyword);
+    //      맴버와 보드를 합친 DTO를 가져옴
+    List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, null, keyword, gugun);
+    Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
+    int avgScore = 0;
 
-        for(BoardDTO boardDTO:boardDTOList){
-            boardDTO.change(boardDTO.getBoardRegion());
-            boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
+    for(BoardDTO boardDTO:boardDTOList){
+        boardDTO.change(boardDTO.getBoardRegion());
+        boardDTO.setFiles(boardFileService.getAllFile(boardDTO.getBoardId()));
 
-            // 게시물에 대한 댓글 가져오기
-            List<ReplyVO> replyVOList = replyService.getListByBoardId(boardDTO.getBoardId());
-            replyVOMap.put(boardDTO.getBoardId(), replyVOList);
+        // 게시물에 대한 댓글 가져오기
+        List<ReplyVO> replyVOList = replyService.getListByBoardId(boardDTO.getBoardId());
+        replyVOMap.put(boardDTO.getBoardId(), replyVOList);
 
-            // 해당 게시물에 대한 댓글의 평균 점수 구하기
-            int sum = 0;
-            for (ReplyVO reply : replyVOList) {
-                sum += reply.getReplyScore();
-            }
-            int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
-
-            // 평균 점수 더하기
-            boardDTO.setAvgScore(avg);
+        // 해당 게시물에 대한 댓글의 평균 점수 구하기
+        int sum = 0;
+        for (ReplyVO reply : replyVOList) {
+            sum += reply.getReplyScore();
         }
+        int avg = replyVOList.size() > 0 ? sum / replyVOList.size() : 0;
 
-        log.info(String.valueOf(boardDTOList));
-        log.info(String.valueOf(critera2));
-        return boardDTOList;
+        // 평균 점수 더하기
+        boardDTO.setAvgScore(avg);
     }
+
+    log.info(String.valueOf(boardDTOList));
+    log.info(String.valueOf(critera2));
+    return boardDTOList;
+}
+
 
 
     @GetMapping("list/member/{memberId}")
@@ -166,8 +168,8 @@ public class BoardController {
 
     @GetMapping("lists/members/{memberId}")
     @ResponseBody
-    public List<BoardDTO> getALlBoard(Critera2 critera2, @PathVariable("memberId") Long memberId){
-        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, memberId);
+    public List<BoardDTO> getALlBoard(Critera2 critera2, @PathVariable("memberId") Long memberId,@RequestParam(value = "keyword", required = false) String keyword,@RequestParam(value = "gugun",required = false)String gugun){
+        List<BoardDTO> boardDTOList = boardService.getAllMemberBoard(critera2, memberId,keyword,gugun);
         Map<Long, List<ReplyVO>> replyVOMap = new HashMap<>();
         int avgScore = 0;
 

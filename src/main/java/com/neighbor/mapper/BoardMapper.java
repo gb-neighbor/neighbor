@@ -16,7 +16,7 @@ public interface BoardMapper {
     public void insert(BoardDTO boardDTO);
 
     //  맴버아이디로  게시글 전체 조회
-    public List<BoardDTO> selectAllBoardMember(@Param("cri2") Critera2 critera2, @Param("memberId") Long memberId);
+    public List<BoardDTO> selectAllBoardMember(@Param("cri2") Critera2 critera2, @Param("memberId") Long memberId, @Param("keyword") String keyword,@Param("gugun")String gugun);
 
     // 보드아이디로 게시글과 맴버 정보 전체 조회
     public BoardDTO selectAllBoardMemberByBoard(@Param("cri2") Critera2 critera2, @Param("boardId") Long boardId);

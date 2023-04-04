@@ -29,7 +29,7 @@ public class BoardDAO {
     }
 
     //    맴버, 보드, 보드파일의 정보 가져오기
-    public List<BoardDTO> findAllBoardMember(Critera2 critera2, Long memberId){return boardMapper.selectAllBoardMember(critera2, memberId);}
+    public List<BoardDTO> findAllBoardMember(Critera2 critera2, Long memberId,String keyword, String gugun){return boardMapper.selectAllBoardMember(critera2, memberId, keyword,gugun);}
 
     // 보드아이디로 모든 정보 가져오기
     public BoardDTO findAllBoardMemberByBoard(Critera2 critera2, Long boardId){
