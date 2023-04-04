@@ -12,7 +12,8 @@ input.addEventListener('keyup', function(e) {
 let form = document.querySelector("form[name=board]")
 $("form").on("submit", function (e) {
     e.preventDefault();
-    input.value = input.value.replace(",", "")
+    input.value = input.value.replaceAll(",", "")
+    input.value = parseInt(input.value)
     form.submit();
 
 })
