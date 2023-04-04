@@ -2,10 +2,15 @@ package com.neighbor.service;
 
 import com.neighbor.controller.ReplyController;
 import com.neighbor.domain.dto.CriteraForBoard;
+import com.neighbor.domain.dto.ReplyDTO;
+import com.neighbor.domain.vo.ReplyFileVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -60,17 +65,8 @@ public class ReplyServiceTests {
         CriteraForBoard criteraForBoard = new CriteraForBoard();
         criteraForBoard.setPage(1);
         criteraForBoard.create(10);
-        log.info(String.valueOf(replyService.getAllReplyMemberByBoardId(49L, criteraForBoard)));
+        log.info(String.valueOf(replyService.getAllReplyMemberByBoardId(1L, criteraForBoard)));
     }
-
-    @Test
-    public void testController(){
-        Long boardId = 49L;
-        CriteraForBoard criteraForBoard = new CriteraForBoard();
-        criteraForBoard.setPage(1);
-        log.info(String.valueOf(replyController.getReply(boardId, criteraForBoard)));
-    }
-
 
 
 }

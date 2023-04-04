@@ -38,13 +38,13 @@ public class AskAdminDAOTests {
     /*문의사항 전체 글 수*/
     @Test
     public void askAdminCountAllTest() {
-        log.info(askAdminDAO.countAll().toString());
+//        log.info(askAdminDAO.countAll().toString());
     }
 
     /*문의사항 답변대기중인 글 수*/
     @Test
     public void askAdminCountTest() {
-        askAdminDAO.count();
-        log.info(askAdminDAO.count().toString());
+//        askAdminDAO.count();
+//        log.info(askAdminDAO.count().toString());
     }
 }

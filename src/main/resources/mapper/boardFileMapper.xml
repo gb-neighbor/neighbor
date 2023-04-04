@@ -21,7 +21,7 @@
 	</select>
 
     <select id="selectMainFile" resultType="boardFileVO">
-        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id
+        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id, board_file_status
         from tbl_board_file
         where board_id = #{boardId} and board_file_status = true;
     </select>
@@ -32,7 +32,7 @@
     </select>
 
     <select id="selectAll" resultType="boardFileVO">
-        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id
+        select board_file_id, board_file_original_name, board_file_uuid, board_file_path, board_file_size, board_id, board_file_status
         from tbl_board_file
         where board_id = #{boardId}
         limit 3
