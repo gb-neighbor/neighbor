@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,7 +29,6 @@ public class MypageController {
 //  프로필에 올라갈 정보를 가져오는 메소드
     private Model getMemberInfo(Model model, HttpSession session){
         Long memberId = (Long)session.getAttribute("memberId");
-//        Long memberId = 3L;
         MemberVO memberVO = memberService.getOneMemberInfo(memberId);
         Integer boardCount = messageService.getCountBoard(memberId);
         Integer replyCount = messageService.getCountReply(memberId);
