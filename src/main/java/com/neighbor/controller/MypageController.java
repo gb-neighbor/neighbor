@@ -29,8 +29,8 @@ public class MypageController {
 
 //  프로필에 올라갈 정보를 가져오는 메소드
     private Model getMemberInfo(Model model, HttpSession session){
-//        Long memberId = (Long)session.getAttribute("memberId");
-        Long memberId = 3L;
+        Long memberId = (Long)session.getAttribute("memberId");
+//        Long memberId = 3L;
         MemberVO memberVO = memberService.getOneMemberInfo(memberId);
         Integer boardCount = messageService.getCountBoard(memberId);
         Integer replyCount = messageService.getCountReply(memberId);
