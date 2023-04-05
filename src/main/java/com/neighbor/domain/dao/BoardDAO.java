@@ -39,6 +39,11 @@ public class BoardDAO {
     // 맴버아이디로 보드의 모든 정보 조회
     public List<BoardVO> getBoardByMemberId(Long memberId){return boardMapper.selectOne(memberId);}
 
+    //판매종료 버튼
+    public void sell(Long boardId) {
+        boardMapper.updateBoardStatus(boardId);
+    }
+
     //    관리자 페이지 판매목록 게시글 전체 조회
     public List<BoardDTO> findAll(Criteria criteria, String keyword){return boardMapper.selectAll(criteria, keyword);}
 

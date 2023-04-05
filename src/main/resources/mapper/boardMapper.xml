@@ -92,6 +92,13 @@
         where board_id = #{boardId}
     </select>
 
+    <!-- 사용자가 판매종료 눌렀을시 보드 status 바꿔주기 -->
+    <update id="updateBoardStatus">
+        update tbl_board
+        set board_status = 1
+        where board_id = #{boardId};
+    </update>
+
     <!-- 게시판 판매대기중 조회 -->
     <select id="selectWait" resultType="boardDTO">
         select board_id, b.board_region, board_title, m.member_nickname, board_register_date, board_update_date, board_status, board_content

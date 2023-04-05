@@ -209,5 +209,12 @@ public List<BoardDTO> getNextPage(@RequestBody CriteraForBoard criteraForBoard, 
     }
 
 
+    @GetMapping("sell/{boardId}")
+    @ResponseBody
+    public void sell(@PathVariable Long boardId){
+        boardService.sell(boardId);
+    }
+
+
 
 }
