@@ -658,6 +658,8 @@ if(mainFile.length != 0){
 if(restFile.length != 0){
     /* 나머지 파일 넣는 코드 */
     $("#expandedImg").attr("src", `/board-files/display?fileName=boards/${restFile[0].boardFilePath}/${restFile[0].boardFileUuid}_${restFile[0].boardFileOriginalName}`)
+} else{
+    $("#expandedImg").css("display", "none")
 }
 
 for (let i = 0; i < restFile.length; i++) {
