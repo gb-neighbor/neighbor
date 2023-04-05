@@ -430,8 +430,9 @@ p {
 
 .best-list {
     border-top: 1px solid #d9d9d9;
-    margin-top: 10px
+    margin-top: 10px;
 }
+
 
 .best-list li {
     border-bottom: 1px solid #d9d9d9;
@@ -502,6 +503,7 @@ p {
     font-size: 14px;
     color: #808080;
     margin-left: 10px;
+    line-height: 20px;
 
 }
 
