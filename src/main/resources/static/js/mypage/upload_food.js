@@ -68,18 +68,19 @@ function showMyfoods(myfoods){
         myfoodList += `
             <div class="content_wrap">
                 <div class="product_thumnail">
-                    <a href="" class="product_detail_link">`
-        if(myfood.boardStatus){
+                    <a href="/board/detail/${myfood.boardId}" class="product_detail_link">`
+        if(`${myfood.boardStatus}`==1){
             myfoodList += `<img class="product_thumbnail_image" src="/board-files/display?fileName=boards/${myfood.fileMainPath}/${myfood.fileMainUuid}_${myfood.fileMainName}" style="opacity: 0.8; filter: brightness(0.5);">
-                           <div class="label-spot">`
+                           <div class="label-spot">
+                                <label for="parent-block" >판매종료</label>`
         } else{
             myfoodList += `<img class="product_thumbnail_image" src="/board-files/display?fileName=boards/${myfood.fileMainPath}/${myfood.fileMainUuid}_${myfood.fileMainName}">
                            <div class="label-spot">`
         }
-
-        if(myfood.boardStatus){
-            myfoodList += `<label for="parent-block" >판매종료</label>`
-        }
+        //
+        // if(!myfood.boardStatus){
+        //     myfoodList += ``
+        // }
         myfoodList += `</div>
                         </a>
                     </div>

@@ -113,6 +113,7 @@ $changeButton.on('click', function (e) {
         modalMessage = '기존 비밀번호가 일치하지 않습니다.';
         // setTimeout(function(){modalCheck = true;}, 500);
         showWarnModal(modalMessage);
+        $(".password-check").val("");
 
     }
 });

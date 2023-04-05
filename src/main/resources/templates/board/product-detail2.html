@@ -269,6 +269,7 @@
                         </span>
                 </h4>
                 <input th:if="${session.memberVO != boardDTO.memberId}" class="review-write" type="button" value="리뷰작성">
+                <input type="hidden" name="memberId" th:value="${session.memberVO}">
                 <ul class="review-list">
                     <!-- 리뷰 게시물 하나 시작 -->
                     <!-- 리뷰 게시물 하나 시작 -->
@@ -388,9 +389,9 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let boardDTO = [[${boardDTO}]]
-    const boardId = 2;
-    const memberId = 2;
-    const targetId = 1;
+    let boardId = [[${boardDTO.boardId}]];
+    let memberId = [[${session.memberVO}]];
+    let targetId = [[${boardDTO.memberId}]];
 </script>
 <script src="/js/board/product-detail2.js"></script>
 
