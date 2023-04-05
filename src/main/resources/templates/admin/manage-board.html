@@ -84,7 +84,7 @@
             <img class="admin-profile" src="https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png">
             <p class="admin-name">관리자</p>
             <p class="name-logout-space">ㅣ</p>
-            <button class="admin-logout" type="submit" value="">LOGOUT</button>
+            <button class="admin-logout" type="submit" value=""><a th:href="@{/members/logout}" class="admin-logout" type="submit" style="color: black">LOGOUT</a></button>
         </div>
         <div class="right-body">
             <div class="user-list-letter">
@@ -95,11 +95,11 @@
                 <div class="board-input-wrap">
                     <!-- 버튼만 묶어놓기 -->
                     <div class="wrap-button">
-                        <div class="watch-all-ask">
-                            <input class="watch-all-ask-button" type="button" value="전체보기">
+                        <div class="watch-all-board">
+                            <input class="watch-all-board-button" type="button" value="전체보기">
                         </div>
-                        <div class="watch-all-ask">
-                            <input class="watch-waiting-button" type="button" value="판매대기 상품 보기">
+                        <div class="watch-waiting-board">
+                            <input class="watch-waiting-board-button" type="button" value="판매대기 상품 보기">
                         </div>
                         <div class="board-delete-button-wrap">
                             <input class="board-delete-button" type="button" value="게시글 삭제">
@@ -147,38 +147,6 @@
                     </div>
 
                     <!-- 여기부터 내용 -->
-<!--                    <div class="item-list-contents">-->
-<!--                        <div class="checkbox-zip">-->
-<!--                            <input type="checkbox" id="check1" class="normal" value="">-->
-<!--                        </div>-->
-<!--                        <div class="board-num">-->
-<!--                            1-->
-<!--                        </div>-->
-<!--                        <div class="user-region">-->
-<!--                            서울시 강동구-->
-<!--                        </div>-->
-<!--                        <div class="user-name">-->
-<!--                            hhs1234-->
-<!--                        </div>-->
-<!--                        <div class="board-contents">-->
-<!--                            <span>게시글 내용입니다.</span>-->
-<!--                            <div id="my_modal7" class="my_modal">-->
-<!--                                <a class="modal_close_btn">✖</a>-->
-<!--                                <div class="comment-writer">작성자: 벅벅코딩</div>-->
-<!--                                <div class="comment-title">제목: 메일이 안와요</div>-->
-<!--                                <div class="comment-detail">-->
-<!--                                    그때 그시절. 우리가 먹던 그 반찬들을 추억하며,-->
-<!--                                    그대의 눈동자에 cheers.-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="board-register-date">-->
-<!--                            2023-04-05-->
-<!--                        </div>-->
-<!--                        <div class="status status-false">-->
-<!--                            판매 대기중-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
                     <div class="page-button-box"></div>
                 </div>
@@ -195,18 +163,22 @@
     const $searchButton = $("#search-button");
     const $boardSearch = $(".board-search");
     let page = 1;
+    let page2 = 1;
     let keyword = null;
-
+    let click = 1;
     load(page, keyword);
+    let count = 1;
 
-    $(document).ready(function() {
         // 검색창에서 키보드를 눌렀을 때
-        $('.board-search-form').on('keydown', function(e) {
+    $('.board-search-form').on('keydown', function(e) {
+        if(count==1) {
             page = 1;
-            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
-                e.preventDefault(); // 기본 이벤트 막기
-            }
-        });
+        } else {
+            page2 = 1;
+        }
+        if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+            e.preventDefault(); // 기본 이벤트 막기
+        }
     });
 
     function showList(boardDTOS) {
@@ -271,8 +243,13 @@
         /*페이지 이동을 위함*/
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            page = $(this).data('page');
-            console.log("페이지 이동을 위함 : " + page);
+            if(count == 1) {
+                page = $(this).data('page');
+                load(page);
+            } else {
+                page2 = $(this).data('page2');
+                load2(page2);
+            }
             load(page);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
@@ -286,12 +263,21 @@
 
     $searchButton.on("click", function() {
         keyword = $boardSearch.val();
-        load(page,keyword);
+        if(count == 1) {
+            load(page,keyword);
+        } else {
+            load2(page2,keyword);
+        }
+
     });
 
     $boardSearch.on("keyup", function() {
         keyword = $boardSearch.val();
-        load(page,keyword);
+        if(count == 1) {
+            load(page,keyword);
+        } else {
+            load2(page2,keyword);
+        }
     });
 
     // 처음 페이지 목록을 불러옴.
@@ -337,7 +323,11 @@
                     "checkedId" : checkedItems[i]
                 },
                 success : function() {
-                    load(page, keyword);
+                    if(count == 1) {
+                        load(page, keyword);
+                    } else {
+                        load2(page2,keyword);
+                    }
                 }
             });
         }
@@ -388,17 +378,17 @@
         let text = "";
         $btns.empty(); // 이전에 생성한 페이지 버튼 제거
         if (pageDTO.prev) {
-            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
+            text += `<a class="page-button" data-page2="${pageDTO.startPage - 1}"><code><</code></a>`;
         }
         for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
             if (criteria.page === i) {
-                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+                text += `<a class="page-button" data-page2="${i}">${i}</a>`;
             } else {
-                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+                text += `<a class="page-button" data-page2="${i}">${i}</a>`;
             }
         }
         if (pageDTO.next) {
-            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
+            text += `<a class="page-button" data-page2="${pageDTO.endPage + 1}"><code>></code></a>`;
         }
         $btns.append(text);
         $("input[name='page']").val(criteria.page);
@@ -406,9 +396,9 @@
 // 페이지 이동 버튼 클릭 이벤트 핸들러 추가
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            const page = $(this).data('page');
+            page2 = $(this).data('page2');
             console.log(page);
-            load2(page, keyword);
+            load2(page2, keyword);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         });
@@ -433,13 +423,18 @@
         });
     }
     /*판매 대기중인 목록을 불러오는 ajax*/
-    $('.watch-waiting-button').on('click',function() {
-        load2(page,keyword);
+    $('.watch-waiting-board').on('click',function() {
+        count = 0;
+        page2 = 1;
+        load2(page2,keyword);
     });
 
-    $('.watch-all-ask-button').on('click',function() {
+    $('.watch-all-board').on('click',function() {
+        count = 1;
+        page = 1;
        load(page,keyword);
     });
+
 
 </script>
 </html>

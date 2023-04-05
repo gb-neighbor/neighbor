@@ -286,7 +286,7 @@ a {
     margin-left:35px;
 }
 
-.watch-all-ask-button, .watch-waiting-button {
+.watch-all-board-button, .watch-waiting-board-button {
     background-color: #353C45;
     color: #fff;
     border: none;
@@ -296,7 +296,7 @@ a {
     margin-top: 5%;
 }
 
-.watch-all-ask-button:hover, .watch-waiting-button:hover{
+.watch-all-board-button:hover, .watch-waiting-board-button:hover{
     background-color:#3175c2;
     transition: background-color 0.5s;
  }
