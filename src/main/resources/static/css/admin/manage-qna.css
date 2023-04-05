@@ -36,6 +36,9 @@ body {
     height: 100%;
     font-family: 'Noto Sans KR', sans-serif;
 }
+a {
+    text-decoration: none;
+}
 
 html{
     height: 100%;
@@ -596,3 +599,4 @@ bottom: 3%;
     cursor: pointer;
 
 }
+

@@ -20,7 +20,7 @@
             <div id="wrap-middle-box">
                 <div id="middle-box-contents">
                     <div class="side-top-margin"></div>
-                    <span class="mouseOnEffect">
+                    <span class="mouseOnEffect" th:href="@{/main}">
                                 <div id="middle-box-site-shortcut-bar" class="side-bar">
                                     <div class="icon-gap">
                                         <img class="side-icons" alt="home" src="/css/admin/images/home.png">
@@ -153,14 +153,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-    $(document).ready(function() {
-        // 검색창에서 키보드를 눌렀을 때
-        $('.member-search-form').on('keydown', function(e) {
-            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
-                e.preventDefault(); // 기본 이벤트 막기
-            }
-        });
-    });
 
     const $changePageTags = $(".page-button");
     const $searchButton = $("#search-button");
@@ -169,6 +161,16 @@
     let keyword = null;
 
     load(page, keyword);
+
+    $(document).ready(function() {
+        // 검색창에서 키보드를 눌렀을 때
+        $('.member-search-form').on('keydown', function(e) {
+            page = 1;
+            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+                e.preventDefault(); // 기본 이벤트 막기
+            }
+        });
+    });
 
     function showList(memberDTOS) {
         const $results = $('.checkbox-group');
@@ -220,7 +222,7 @@
         // 클릭 시 css가 변하는 이벤트 추가, css가 제대로 작동하는지 확인 필요. 최종 전에 확인하기
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            const page = $(this).data('page');
+            page = $(this).data('page');
             console.log(page);
             load(page);
             $('.page-button.active').removeClass('active');

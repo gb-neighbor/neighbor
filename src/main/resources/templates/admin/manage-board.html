@@ -186,14 +186,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-    $(document).ready(function() {
-        // 검색창에서 키보드를 눌렀을 때
-        $('.board-search-form').on('keydown', function(e) {
-            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
-                e.preventDefault(); // 기본 이벤트 막기
-            }
-        });
-    });
+
 
     const $changePageTags = $(".page-button");
     const $searchButton = $("#search-button");
@@ -202,6 +195,16 @@
     let keyword = null;
 
     load(page, keyword);
+
+    $(document).ready(function() {
+        // 검색창에서 키보드를 눌렀을 때
+        $('.board-search-form').on('keydown', function(e) {
+            page = 1;
+            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+                e.preventDefault(); // 기본 이벤트 막기
+            }
+        });
+    });
 
     function showList(boardDTOS) {
         const $results = $('.checkbox-group');
@@ -265,8 +268,8 @@
         /*페이지 이동을 위함*/
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            const page = $(this).data('page');
-            console.log(page);
+            page = $(this).data('page');
+            console.log("페이지 이동을 위함 : " + page);
             load(page);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
