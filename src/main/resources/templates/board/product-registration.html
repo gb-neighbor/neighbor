@@ -26,7 +26,7 @@
                 </div>
                 <div class="cover-title">
                     <label for="">
-                        <input type="text" class="input-title" name="boardTitle" placeholder="* 스토리 제목을 입력해주세요">
+                        <input type="text" class="input-title title" name="boardTitle" placeholder="* 스토리 제목을 입력해주세요">
                     </label>
                 </div>
 
@@ -111,6 +111,7 @@
                             사진을 추가하세요!
                     </label>
                 </div>
+            </label>
         <article class="submit-article">
             <div class="inner">
                 <button type="submit" class="submit-button">
@@ -119,6 +120,11 @@
             </div>
         </article>
     </form>
+    <div class="modal_background" style="display:none;position:fixed;z-index: 100; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);">
+        <div class="warn-modal" style="width: 382px; height: 80px;position:fixed;z-index: 100;top:160px;margin-left:750px;font-size: 25px;background: white">
+            <span style="font-size: 15px;padding-left: 77px">필수입력사항을 입력해주세요</span>
+        </div>
+    </div>
 </section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

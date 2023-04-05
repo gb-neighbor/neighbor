@@ -172,7 +172,7 @@ finishSale();
 $(window).scroll(function() {
   let zoomLevel = $('body').css('zoom');
   if (zoomLevel === '0.8') {
-    if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 10 > $(document).height()) {
+    if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 1 > $(document).height()) {
       page++;
       appendList();
       console.log(page)

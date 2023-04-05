@@ -1,4 +1,5 @@
 const input = document.querySelector('.input-price');
+let flag = [false, false, false, false] /* 모든 정보를 잘 입력했는지 */
 input.addEventListener('keyup', function(e) {
     let value = e.target.value;
     value = Number(value.replaceAll(',', ''));
@@ -12,9 +13,11 @@ input.addEventListener('keyup', function(e) {
 let form = document.querySelector("form[name=board]")
 $("form").on("submit", function (e) {
     e.preventDefault();
-    input.value = input.value.replaceAll(",", "")
-    input.value = parseInt(input.value)
-    form.submit();
+    if(flag[0] && flag[1] && flag[2] && flag[3]){
+        input.value = input.value.replaceAll(",", "")
+        input.value = parseInt(input.value)
+        form.submit();
+    }
 
 })
 
@@ -29,6 +32,7 @@ globalThis.j = 0;
 const dataTransfer = new DataTransfer();
 $("input[id='cover-file']").on("change", function() {
     const $files2 = $("input[id=cover-file]")[0].files[0];
+    flag[3] = true;
     console.log($files2)
 //    파일 객체에 접근함
     let formData = new FormData();
@@ -72,7 +76,20 @@ FileList.prototype.forEach = Array.prototype.forEach;
 globalThis.arrayFile = new Array();
 globalThis.i = 0;
 let text= "";
-$("input[id='detail-file']").on("change", function() {
+$(".add-button").on("click", function (e) {
+    if (!$('.img img').length) {
+        e.preventDefault()
+        console.log("들어옴")
+        showWarnModal();
+        $(".cover-label").blur()
+        $(this).blur();
+        return;
+    } else{
+
+    }
+})
+
+$("input[id='detail-file']").on("change", function(e) {
     const $files = $("input[id=detail-file]")[0].files;
     // console.log($files[0])
 //    파일 객체에 접근함
@@ -135,5 +152,57 @@ function toStringByFormatting(source, delimiter = '/') {
     return [year, month, day].join(delimiter);
 }
 /*****************************************************/
+/* 제목 */
+$(".title").on("blur", function () {
+    if($(this).val() != ''){
+        flag[0] = true;
+    } else {
+        flag[0] = false;
+        showWarnModal();
+    }
+})
 
+$(".input-price").on("blur", function () {
+    if($(this).val() != ''){
+        flag[1] = true;
+    } else {
+        flag[1] = false;
+        showWarnModal();
+    }
+})
+
+$("textarea[name='boardContent']").on("blur", function () {
+    if($(this).val() != ''){
+        flag[2] = true;
+    } else {
+        flag[2] = false;
+        showWarnModal();
+    }
+})
+
+/***************************************************/
+const warnModalBack = $(".modal_background");
+warnModalBack.on("click", function () {
+    warnModalBack.hide();
+    $(".review-write").hide()
+    $(".review-write-form").hide()
+    $(".review-my").hide()
+})
+
+warnModalBack.on("click", function () {
+    const modal = $(".modal_background");
+    modal.hide();
+})
+
+function showWarnModal() {
+    const warnModal = $(".modal-warn");
+    $('.modal_background').insertBefore(warnModal);
+    warnModalBack.css("display", "block");
+    warnModal.css("width", "300px")
+    warnModal.css("height", "300px")
+    warnModal.css("position", "fixed")
+    warnModal.css("background", "white")
+    warnModal.css("z-index", "1500")
+
+}
 
