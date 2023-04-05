@@ -22,9 +22,9 @@ public class ReplyController {
 
     @PostMapping("upload/{boardId}")
     @ResponseBody
-    public void uploadReply(@PathVariable Long boardId, @RequestBody ReplyDTO replyDTO, Session session, CriteraForBoard criteraForBoard){
+    public void uploadReply(@PathVariable Long boardId, @RequestBody ReplyDTO replyDTO, HttpSession httpSession, CriteraForBoard criteraForBoard){
 //        나중에 맴버아이디 바꾸기
-        replyDTO.setMemberId(1L);
+        replyDTO.setMemberId((Long)httpSession.getAttribute("memberVO"));
         replyDTO.setBoardId(boardId);
         replyService.saveReply(replyDTO);
         log.info(String.valueOf(replyDTO.getFiles()));
@@ -49,6 +49,7 @@ public class ReplyController {
     public Boolean checkReply(HttpSession session,@PathVariable Long boardId){
 //        해당 리뷰를 작성하고 있는 맴버
         Long memberId = (Long)session.getAttribute("memberVO");
+        log.info(replyService.getCountReplyMember(boardId, memberId).toString()+ "---------------------------------------------------------------");
         return replyService.getCountReplyMember(boardId, memberId);
     }
 }
