@@ -98,7 +98,7 @@ public RedirectView sendFindIdentifcationMail(String memberEmail) {
             return  0;
         }else{
             MemberVO memberVO = memberService.findInfoByEmail(memberEmail);
-            httpSession.setAttribute("memberVO", memberVO);
+            httpSession.setAttribute("memberVO", memberVO.getMemberId());
             return 1;
         }
     }

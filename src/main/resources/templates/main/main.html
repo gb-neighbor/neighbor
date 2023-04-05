@@ -17,10 +17,10 @@
     <section class="container">
         <!-- 메인 배너 -->
         <div class="banner">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div><a class="bannerLink" th:href="@{/board/write}"></a></div>
+            <div><a></a></div>
+            <div><a class="bannerLink"th:href="@{/board/list/region}"></a></div>
+            <div id="goBottom"></div>
         </div>
 
         <!-- 선택 버튼 -->
@@ -51,109 +51,109 @@
         <div class="area-div-wrap">
             <ul class="area-wrap">
                 <li class="area active">
-                    <a href="">전체</a>
+                    <a class="area-change">전체</a>
                 </li>
                 <li class="area">
                     <!-- 주소이동할 때 이거쓰기 <a href="자바스크립트">강남구</a> -->
-                    <a>강남구</a>
+                    <a class="area-change">강남구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">강동구</a> -->
-                    <a>강동구</a>
+                    <a class="area-change">강동구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">강북구</a> -->
-                    <a>강북구</a>
+                    <a class="area-change">강북구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">강서구</a> -->
-                    <a>강서구</a>
+                    <a class="area-change">강서구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">관악구</a> -->
-                    <a>관악구</a>
+                    <a class="area-change">관악구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">광진구</a> -->
-                    <a>광진구</a>
+                    <a class="area-change">광진구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">구로구</a> -->
-                    <a>구로구</a>
+                    <a class="area-change">구로구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">금천구</a> -->
-                    <a>금천구</a>
+                    <a class="area-change">금천구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">노원구</a>-->
-                    <a>노원구</a>
+                    <a class="area-change">노원구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">도봉구</a> -->
-                    <a>도봉구</a>
+                    <a class="area-change">도봉구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">동대문구</a> -->
-                    <a>동대문구</a>
+                    <a class="area-change">동대문구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">동작구</a> -->
-                    <a>동작구</a>
+                    <a class="area-change">동작구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">마포구</a> -->
-                    <a>마포구</a>
+                    <a class="area-change">마포구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">서대문구</a> -->
-                    <a>서대문구</a>
+                    <a class="area-change">서대문구</a>
                 </li>
             </ul>
             <ul class="area-wrap2">
                 <li class="area">
                     <!-- <a href="자바스크립트">서초구</a> -->
-                    <a>서초구</a>
+                    <a class="area-change">서초구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">성동구</a> -->
-                    <a>성동구</a>
+                    <a class="area-change">성동구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">성북구</a> -->
-                    <a>성북구</a>
+                    <a class="area-change">성북구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">송파구</a> -->
-                    <a>송파구</a>
+                    <a class="area-change">송파구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">양천구</a> -->
-                    <a>양천구</a>
+                    <a class="area-change">양천구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">영등포구</a> -->
-                    <a>영등포구</a>
+                    <a class="area-change">영등포구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">용산구</a> -->
-                    <a>용산구</a>
+                    <a class="area-change">용산구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">은평구</a> -->
-                    <a>은평구</a>
+                    <a class="area-change">은평구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">종로구</a> -->
-                    <a>종로구</a>
+                    <a class="area-change">종로구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">중구</a> -->
-                    <a>중구</a>
+                    <a class="area-change">중구</a>
                 </li>
                 <li class="area">
                     <!-- <a href="자바스크립트">중랑구</a> -->
-                    <a>중랑구</a>
+                    <a class="area-change">중랑구</a>
                 </li>
             </ul>
         </div>
@@ -166,8 +166,7 @@
                 <!-- 게시물 하나 -->
                 <th:block th:each="regionAllRecentList: ${regionAllRecentLists}">
                     <li >
-                        <!--th:href="@{/board/detail(boardId=${regionAllRecentList.boardId})}"-->
-                        <a  class="recent-food">
+                        <a th:href="@{/board/detail/__${regionAllRecentList.boardId}__}"  class="recent-food">
                             <div class="recent-food-picture-wrapper">
                                 <div class="recent-food-picture">
                                     <img class="recent-food-image" th:src="'/board-files/display?fileName=/boards/' + ${regionAllRecentList.boardFilePath} + '/' + ${regionAllRecentList.boardFileUuid} + '_' + ${regionAllRecentList.boardFileOriginalName}" />
@@ -205,7 +204,7 @@
                 <!-- 별점 인기순 리스트 하나 -->
                 <th:block th:each="replyHighAvgList: ${replyHighAvgLists}">
                     <li class="bookmark-first-list">
-                        <a href="">
+                        <a th:href="@{/board/detail/__${replyHighAvgList.boardId}__}">
                             <div class="bookmark-place"></div>
                             <div class="bookmark-profile-wrap">
                                 <div class="bookmark-picture"
@@ -254,7 +253,7 @@
                         <!-- 배너 1개 시작 -->
                         <th:block th:each="randomRecommendList: ${randomRecommendLists}">
                             <li class="random-menu-banner" style="margin-right: 20px">
-                                <a>
+                                <a th:href="@{/board/detail/__${randomRecommendList.boardId}__}" class="random-menu-img-link">
                                     <div class="random-menu-img"
                                          th:data-board-file-path="${randomRecommendList.boardFilePath}"
                                          th:data-board-file-uuid="${randomRecommendList.boardFileUuid}"
@@ -346,6 +345,8 @@
             console.log(boardFileOriginalName)
         });
     });
+
+
 
 </script>
 </html>

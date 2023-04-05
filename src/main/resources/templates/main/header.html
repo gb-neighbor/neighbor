@@ -14,19 +14,19 @@
         <div class="header-grey-line-inner">
             <ul class="header-logIn-signUp">
                 <li class="header-my">
-                    <a th:if="${session.memberVO != null}" href="http://localhost:10000/mypage/home">마이페이지</a>
+                    <a th:if="${session.memberVO != null}" th:href="@{/mypage/profile_home}">마이페이지</a>
                 </li>
                 <li class="header-write">
-                    <a th:if="${session.memberVO != null}" href="/board/write">글쓰기</a>
+                    <a th:if="${session.memberVO != null}" th:href="@{/board/write}">글쓰기</a>
                 </li>
                 <li class="header-logIn">
-                    <a th:if="${session.memberVO == null}" href="http://localhost:10000/members/login">로그인</a>
+                    <a th:if="${session.memberVO == null}" th:href="@{/members/login}">로그인</a>
                 </li>
                 <li class="header-signUp">
-                    <a th:if="${session.memberVO == null}" href="http://localhost:10000/members/register">회원가입</a>
+                    <a th:if="${session.memberVO == null}" th:href="@{/members/register}">회원가입</a>
                 </li>
                 <li class="header-logOut">
-                    <a th:if="${session.memberVO != null}" href="http://localhost:10000/members/logout">로그아웃</a>
+                    <a th:if="${session.memberVO != null}" th:href="@{/members/logout}">로그아웃</a>
                 </li>
             </ul>
         </div>
@@ -36,7 +36,7 @@
     <article class="header-grey-line-bottom">
         <h1 class="header-home">
             <a href="">
-                <span class="header-home-name special">싱그러운 집</span>
+                <span class="header-home-name special"></span>
             </a>
         </h1>
     </article>

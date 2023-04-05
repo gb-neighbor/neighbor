@@ -189,7 +189,7 @@ $(document).ready(function(){
         var $infoWrap = $this.find('.recent-food-info-wrap');
         $infoWrap.data('timeout', null);
     });
-  
+
     $('.recent-food-info-wrap').mouseenter(function() {
         var $this = $(this);
         console.log(`4 : ` + $(this));
@@ -206,6 +206,40 @@ $(document).ready(function(){
     });
 });
 
+
+// function changeImage(e) {
+//     $('.recent-food-picture').hover(function() {
+//         var $this = $(e);
+//         console.log(`1 : ` + $(this));
+//         $this.find('.recent-food-info-wrap').stop().fadeIn(300);
+//         $this.find('.recent-food-image').stop().css('filter', 'brightness(50%)');
+//     }, function() {
+//         var $this = $(this);
+//         console.log(`2 : ` + $(this));
+//         $this.find('.recent-food-info-wrap').stop().fadeOut(500);
+//         $this.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+//     }).each(function() {
+//         var $this = $(this);
+//         console.log(`3 : ` + $(this));
+//         var $infoWrap = $this.find('.recent-food-info-wrap');
+//         $infoWrap.data('timeout', null);
+//     });
+//
+//     $('.recent-food-info-wrap').mouseenter(function() {
+//         var $this = $(this);
+//         console.log(`4 : ` + $(this));
+//         var $picture = $this.parent('.recent-food-picture');
+//         clearTimeout($picture.data('timeout'));
+//     }).mouseleave(function() {
+//         var $this = $(this);
+//         console.log(`5 : ` + $(this));
+//         var $picture = $this.parent('.recent-food-picture');
+//         $picture.data('timeout', setTimeout(function() {
+//             $this.stop().fadeOut(500);
+//             $picture.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+//         }, 500));
+//     });
+// };
 
 /* 밝아지는거 but recent-food-info-wrap이 사라질 때 같이 밝기 조절이 된다. */
 /* $(document).ready(function() {
@@ -261,33 +295,110 @@ function topFunction() {
 
 topBtn.addEventListener("click", topFunction);
 
-// /* 내가 쓴 게시물 다 넣기 */
-// let rescentLists = "";
-// let mainFile = (mainRecentDTO.boardFileStatus
-// for (let i = 0; i < mainRecentDTO.length; i++) {
-//     rescentLists +=
-//         `
-//         <li >
-//             <!--th:href="@{/board/detail(boardId=${regionAllRecentList.boardId})}"-->
-//             <a  class="recent-food">
-//                 <div class="recent-food-picture-wrapper">
-//                     <div class="recent-food-picture">
-//                         <img class="recent-food-image" src="/board-files/${}${}" />
-//                         <div class="recent-food-info-wrap">
-//                             <p class="recent-food-picture-title">${mainRecentDTO[i].boardTitle}</p>
-//                             <a href="글쓴이 링크">
-//                                 <div class="recent-food-user-picture" style="background-image: url('/css/main/images/004.jpg');"></div>
-//                                 <p class="recent-food-user-nickname">${mainRecentDTO[i].memberNickname}</p>
-//                             </a>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </a>
-//         </li>
-//        `;
-// }
-// $("ul.list-outer").append(boards);
+// 랜덤 추천 메뉴로 가기
+const goBottom = document.getElementById("goBottom");
 
+goBottom.addEventListener("click", function() {
+    const currentPosition = window.pageYOffset;  // 현재 스크롤 위치
+    const targetPosition = document.body.scrollHeight;  // 목표 스크롤 위치
+
+    const distance = targetPosition - currentPosition;  // 스크롤 거리
+    const duration = 3000;  // 애니메이션 시간 (3초)
+
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const scrollDistance = easeInOutQuad(timeElapsed, currentPosition, distance, duration);
+        window.scrollTo(0, scrollDistance);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+        else window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+});
+
+//
+const boxes = document.querySelectorAll('.area-change');
+
+boxes.forEach(box => {
+    box.addEventListener('click', () => {
+        const className = box.getAttribute('class');
+        const clickedElement = event.target;
+        const elementContent = clickedElement.textContent;
+
+        console.log(`클릭한 요소: ${clickedElement.tagName}, 내용: ${elementContent}`);
+
+        handleClick(elementContent); // 클릭된 요소의 클래스 이름을 인자로 넘겨 함수 호출
+    });
+});
+
+
+//메인 지역별 최근 게시물
+function handleClick(elementContent){
+    $ul.empty();
+    let selectNum = 0;
+    let regionArr = ["전체","강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
+        "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구",
+        "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구",
+        "중구", "중랑구"];
+
+    for (let i = 0; i <= 25; i++){
+        if(elementContent === regionArr[i]){
+            selectNum = i;
+        }
+    }
+    console.log(selectNum);
+
+    $.ajax({
+    url:"/main/region-recent" ,
+    data: {"memberRegion": selectNum},
+    success: function(regionSelectRecentLists){
+        appendList(regionSelectRecentLists);
+
+    }
+    });
+};
+
+const $ul = $(".recent-food-list");
+
+function appendList(regionSelectRecentLists) {
+    let boardText3 = '';
+    regionSelectRecentLists.forEach(regionSelectRecentList => {
+        boardText3 +=  `
+                    <li onmouseenter="changeImage(this)"> 
+                        <!--th:href="@{/board/detail(boardId=${regionSelectRecentList.boardId})}"-->
+                        <a  class="recent-food">
+                            <div class="recent-food-picture-wrapper">
+                                <div class="recent-food-picture">
+                                    <img class="recent-food-image" src="/board-files/display?fileName=/boards/${regionSelectRecentList.boardFilePath}/${regionSelectRecentList.boardFileUuid}_${regionSelectRecentList.boardFileOriginalName}" />
+                                    <div class="recent-food-info-wrap">
+                                        <p class="recent-food-picture-title" text="${regionSelectRecentList.boardTitle}"></p>
+                                        <a href="글쓴이 링크">
+                                            <div class="recent-food-user-picture"
+                                                 data-member-profile-path="${regionSelectRecentList.memberProfilePath}"
+                                                 data-member-profile-uuid="${regionSelectRecentList.memberProfileUuid}"
+                                                 data-member-profile-original-name="${regionSelectRecentList.memberProfileOriginalName}">
+                                            </div>
+                                            <p class="recent-food-user-nickname" text="${regionSelectRecentList.memberNickname}"></p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+        `;
+    });
+    $ul.append(boardText3);
+}
 
 
 
