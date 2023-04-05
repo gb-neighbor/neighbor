@@ -182,7 +182,7 @@ $("div.modal").on("click", function(){
 });
 
 
-const fileDOM = document.querySelector('#file');
+const fileDOM = document.querySelector('#profile');
 const previews = document.querySelectorAll('.image-box');
 
 fileDOM.addEventListener('change', () => {
@@ -254,29 +254,33 @@ $joinInputNickname.on("blur",function(){$.ajax({
     url:"/members/checkNickname" ,
     data: {"memberNickname": $joinInputNickname.val()},
     success: function(result){
-        let message;
+            let message;
 
-        if(result == 1){
-            message = "중복된 닉네임입니다.";
-            $errorNickname.css('color', 'red')
-            $errorNickname.css('display', 'block');
-            checkAll[1] = false;
+            if(result == 1){
+                message = "중복된 닉네임입니다.";
+                $errorNickname.css('color', 'red')
+                $errorNickname.css('display', 'block');
+                checkAll[1] = false;
+                if(originalNickname === $joinInputNickname.val()){
+                    checkAll[1] = true;
+                    message = "";
+                }
 
-        }else if($joinInputNickname.val().length < 1){
-            $errorNickname.css('display', 'block');
-            $errorNickname.css('color', 'red');
-            message = "필수 입력 사항입니다";
-            checkAll[1] = false;
-        }else {
-            message = "사용 가능한 닉네임입니다.";
-            $errorNickname.css('display', 'block');
-            $errorNickname.css('color', '#2bb673');
-            checkAll[1] = true;
-            changeButton();
+            }else if($joinInputNickname.val().length < 1){
+                $errorNickname.css('display', 'block');
+                $errorNickname.css('color', 'red');
+                message = "필수 입력 사항입니다";
+                checkAll[1] = false;
+            }else {
+                message = "사용 가능한 닉네임입니다.";
+                $errorNickname.css('display', 'block');
+                $errorNickname.css('color', '#2bb673');
+                checkAll[1] = true;
+                changeButton();
+            }
+            $errorNickname.text(message);
         }
-        $errorNickname.text(message);
-    }
-});
+    });
 });
 
 let regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -301,12 +305,16 @@ $joinInputPhoneNum.on("blur",function(){$.ajax({
     data: {"memberPhone": $(".phone").val()},
     success: function(result){
         let message;
-
+        console.log(result)
         if(result == 1){
             message = "중복된 번호입니다.";
             $errorPhoneNum.css('color', 'red')
             $errorPhoneNum.css('display', 'block');
             checkAll[3] = false;
+            if(originalPhone === $joinInputPhoneNum.val()){
+                checkAll[3] = true;
+                message = "";
+            }
 
         }else if($joinInputPhoneNum.val().length < 1){
             $errorPhoneNum.css('display', 'block');
@@ -371,6 +379,10 @@ $inputEmail.on("blur", function(){$.ajax({
             $errEmail.css('color', 'red')
             $errEmail.css('display', 'block');
             checkAll[5] = false;
+            if(originalEmail===$inputEmail.val()){
+                checkAll[5] = true;
+                message = "";
+            }
 
         } else if($inputEmail.val().length < 1){
             $errEmail.css('display', 'block');
@@ -411,3 +423,70 @@ $(".birth").on("keyup", function() {
         $(".err-birth").css('color', 'red')
     }
 });
+
+globalThis.arrayFile2 = new Array();
+globalThis.j = 0;
+const dataTransfer = new DataTransfer();
+$("input[id='profile']").on("change", function() {
+    const $files2 = $("input[id=profile]")[0].files[0];
+    console.log($files2)
+//    파일 객체에 접근함
+    let formData = new FormData();
+    globalThis.arrayFile2.push($files2);
+    // 파일 Array의 file들을 하나씩 담아줌
+    console.log(globalThis.arrayFile2)
+    formData.append("file", $files2)
+    $.ajax({
+        url: "/members/upload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (uuid) {
+            globalThis.uuid = uuid;
+            console.log(globalThis.uuid)
+
+            $("input[id='profile']")[0].files = dataTransfer.files;
+            let text2 = "";
+            text2 =
+                `
+                    <input type="hidden" name="memberProfileOriginalName" value="${$files2.name}">
+                    <input type="hidden" name="memberProfileUuid" value="${globalThis.uuid}">
+                    <input type="hidden" name="memberProfilePath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name="memberProfileSize" value="${$files2.size}">
+                    `
+            $("form[name='write-form']").append(text2);
+        }
+    });
+});
+
+
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+
+    return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+
+    return [year, month, day].join(delimiter);
+}
+
+
+function getOriginalRegion(){
+    $("#gugun").children()[originalRegion].selected = true;
+}
+getOriginalRegion();
+
+
+
+
+
+
+
+
