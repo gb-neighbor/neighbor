@@ -35,6 +35,9 @@ public interface BoardMapper {
 
     //     지역으로 게시글 조회
     public BoardDTO select(Integer boardRegion);
+
+    //  판매종료 버튼 클릭시
+    public void updateBoardStatus(Long boardId);
     
     //  관리자 페이지 판매 게시글 관리 판매 대기중목록 불러오기
     public List<BoardDTO> selectWait(@Param("cri") Criteria criteria, @Param("keyword") String keyword);

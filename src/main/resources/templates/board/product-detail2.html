@@ -210,7 +210,8 @@
                     </div>
                     <div class="buy">
                         <input type="button" value="판매자 보러가기" onclick="location.href = '/board/list/member/' + boardDTO.memberId;" />
-                        <input type="button" value="쪽지" id="openBtn" onclick="getMessageRoom()"/>
+                        <input th:if="${session.memberVO != boardDTO.memberId and boardDTO.boardStatus == 0}" type="button" value="쪽지" id="openBtn" onclick="getMessageRoom()"/>
+                        <input th:if="${session.memberVO == boardDTO.memberId and boardDTO.boardStatus == 0}" type="button" value="판매종료하기" id="closeSale" onclick="sell()"/>
 <!--                        <input type="button" value="쪽지" id="openBtn" onclick="openModalBanner([[${boardId}]], [[${session.memberId}]])"/>-->
                     </div>
                 </div>

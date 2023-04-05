@@ -882,3 +882,14 @@ function getProfileImage() {
     });
 }
 /* ========================= */
+
+/* 판매종료 */
+function sell(){
+    $.ajax({
+        url: `/board/sell/${boardIdForReply}`,
+        success: function () {
+            $(".closeSale").remove();
+            location.reload();
+        }
+    });
+}

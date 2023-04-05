@@ -66,6 +66,11 @@ public class BoardService {
     public List<BoardVO> getBoardInfo(Long memberId) {
         return boardDAO.getBoardByMemberId(memberId);
     }
+    
+    //판매종료 버튼
+    public void sell(Long boardId){
+        boardDAO.sell(boardId);
+    }
 
     //  관리자 페이지 판매 목록 게시글 전체 조회
     public List<BoardDTO> getList(Criteria criteria, String keyword) {
