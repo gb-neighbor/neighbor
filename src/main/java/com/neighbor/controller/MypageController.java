@@ -9,6 +9,7 @@ import com.neighbor.service.BoardService;
 import com.neighbor.service.MemberService;
 import com.neighbor.service.MessageService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mypage/*")
+@Slf4j
 public class MypageController {
 
     private final MemberService memberService;
@@ -28,7 +30,7 @@ public class MypageController {
 
 //  프로필에 올라갈 정보를 가져오는 메소드
     private Model getMemberInfo(Model model, HttpSession session){
-        Long memberId = (Long)session.getAttribute("memberId");
+        Long memberId = (Long)session.getAttribute("memberVO");
         MemberVO memberVO = memberService.getOneMemberInfo(memberId);
         Integer boardCount = messageService.getCountBoard(memberId);
         Integer replyCount = messageService.getCountReply(memberId);
@@ -57,9 +59,8 @@ public class MypageController {
     @PostMapping("updatePassword")
     public RedirectView updatePassword(String memberPassword, Long memberId){
         messageService.setNewPassword(memberPassword, memberId);
-        return new RedirectView("/main");
+        return new RedirectView("/mypage/profile_home");
     }
-
 
 
 //   회원탈퇴, 매개변수로 회원 아이디 받기
@@ -132,6 +133,14 @@ public class MypageController {
     }
 
 
+    //  회원정보 변경
+    @PostMapping("updateInfo")
+    public RedirectView changeProfileInfo(MemberVO memberVO, HttpSession session){
+        memberVO.setMemberId((Long)session.getAttribute("memberVO"));
+        memberService.updateMemberInfo(memberVO);
+        log.info(memberVO.toString());
+        return new RedirectView("/mypage/profile_home");
+    }
 
 
 

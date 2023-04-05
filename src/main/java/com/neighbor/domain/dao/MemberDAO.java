@@ -85,5 +85,8 @@ public class MemberDAO {
     public String selectEmailByIdentification(String memberIdentification) {return memberMapper.selectEmailByIdentification(memberIdentification);}
 
     // 랜덤키 수정
-    public void updateRandomKey(String memberRandomKey, String memberEmail){memberMapper.updateRandomKey(memberRandomKey, memberEmail);};
+    public void updateRandomKey(String memberRandomKey, String memberEmail){memberMapper.updateRandomKey(memberRandomKey, memberEmail);}
+
+    // 회원정보 수정
+    public void updateMemberInfo(MemberVO memberVO){memberMapper.updateMemberInfo(memberVO);}
 }

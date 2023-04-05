@@ -130,11 +130,11 @@
 
     <update id="updateMemberInfo">
         update tbl_member
-		set member_nickname='', member_birth='', member_phone='', member_region=0, member_email='',
-		member_hi_sentence='아직 작성된 한줄소개가 없습니다.',
-		member_profile_uuid='', member_profile_original_name='',
-		member_profile_path='', member_profile_size=''
-		where member_id=3
+		set member_nickname=#{memberNickname}, member_birth=#{memberBirth}, member_phone=#{memberPhone}, member_region=#{memberRegion},
+		member_email=#{memberEmail}, member_hi_sentence=#{memberHiSentence},
+		member_profile_uuid=#{memberProfileUuid}, member_profile_original_name=#{memberProfileOriginalName},
+		member_profile_path=#{memberProfilePath}, member_profile_size=#{memberProfileSize}
+		where member_id=#{memberId}
     </update>
 
 </mapper>

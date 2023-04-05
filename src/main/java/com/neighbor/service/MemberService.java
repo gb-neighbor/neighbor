@@ -267,4 +267,8 @@ public class MemberService {
         }
     }
 
+
+    // 회원정보 수정
+    public void updateMemberInfo(MemberVO memberVO){memberDAO.updateMemberInfo(memberVO);}
+
 }

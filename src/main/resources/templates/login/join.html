@@ -610,7 +610,7 @@
                     <input type="hidden" name="memberProfilePath" value="${toStringByFormatting(new Date())}">
                     <input type="hidden" name="memberProfileSize" value="${$files2.size}">
                     `
-                $("form[name='write-form']").html(text2);
+                $("form[name='write-form']").append(text2);
                 console.log(text2);
             }
         });
