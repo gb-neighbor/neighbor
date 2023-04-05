@@ -48,7 +48,7 @@
 </nav>
 <!-- 콘텐츠부분 시작 -->
 <section class="wrap">
-    <form name="write-form">
+    <form name="write-form" th:action="@{/mypage/updateInfo}" method="post">
         <div class="all_wrapper">
             <div class="menu_container">
                 <div class="menu_box">
@@ -208,6 +208,7 @@
                                             <option value="24">중구</option>
                                             <option value="25">중랑구</option>
                                         </select>
+                                        <input type="hidden" name="memberRegion" th:value="*{memberRegion}">
                                     </div>
                                 </div>
                             </div>
@@ -238,9 +239,15 @@
                                 </div>
                                 <input type="hidden" name="oldPassword" th:value="*{memberPassword}">
                             </div>
+                            <div class="spot-for-profile">
+                                <input type="hidden" name="memberProfileOriginalName" th:value="*{memberProfileOriginalName}">
+                                <input type="hidden" name="memberProfileUuid" th:value="*{memberProfileUuid}">
+                                <input type="hidden" name="memberProfilePath" th:value="*{memberProfilePath}">
+                                <input type="hidden" name="memberProfileSize" th:value="*{memberProfileSize}">
+                            </div>
                         </article>
                     </div>
-                    <button type="button" class="change-button" disabled>변경 사항 저장하기</button>
+                    <button type="button" class="change-button" th:disabled="true">변경 사항 저장하기</button>
                 </div>
 
             </div>
@@ -266,6 +273,10 @@
     let originalHiSentence = [[${memberInfo.memberHiSentence}]];
     let originalEmail = [[${memberInfo.memberEmail}]];
     let originalPhone = [[${memberInfo.memberPhone}]];
+    // let originalProfilePath = [[${memberInfo.memberProfilePath}]];
+    // let originalProfileUuid = [[${memberInfo.memberProfileUuid}]];
+    // let originalProfileSize = [[${memberInfo.memberProfileSize}]];
+    // let originalProfileOriginalName = [[${memberInfo.memberProfileOriginalName}]];
 </script>
 <script src="/js/mypage/profile_home.js"></script>
 

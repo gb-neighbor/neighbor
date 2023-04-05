@@ -64,5 +64,8 @@ public interface MemberMapper {
     // 랜덤키 수정
     public void updateRandomKey(String memberRandomKey, String memberEmail);
 
+    // 회원정보 수정
+    public void updateMemberInfo(MemberVO memberVO);
+
 }
 
