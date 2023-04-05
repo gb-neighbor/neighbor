@@ -471,7 +471,7 @@ function showTargetInfo(Infos) {
 
     let target = `
 		<div class="profile_image_section">
-            <img class="profile_image" src="">
+            <img class="profile_image" src="/members/display?fileName=${Infos.targetInfo.memberProfilePath}/${Infos.targetInfo.memberProfileUuid}_${Infos.targetInfo.memberProfileOriginalName}">
         </div>
         <p class="detail_nick_name">${Infos.targetInfo.memberNickname}</p>
         <div class="title_refresh_wrap">
@@ -483,7 +483,7 @@ function showTargetInfo(Infos) {
             </div>
         </div>
         <div class="div_for_margin"></div>
-        <a class="go_to_board" href="/board">
+        <a class="go_to_board" href="/board/detail/${Infos.boardId}">
             <p class="go_to_board_text">상세보기&nbsp</p>
             <p class="go_to_board_text right_text">></p>
         </a>

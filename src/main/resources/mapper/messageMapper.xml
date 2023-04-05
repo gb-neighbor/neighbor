@@ -87,7 +87,7 @@
     <select id="selectBoardByMemberId" resultType="BoardDTO">
         select b.board_id, board_title, board_content, board_register_date, board_update_date, board_status as file_main_status, board_region, member_id,
         board_file_original_name as file_main_name, board_file_uuid as file_main_uuid, board_file_path as file_main_path, board_file_size as file_main_size
-        , board_price
+        , board_price, board_status
         from tbl_board b left join tbl_board_file bf
         on b.board_id = bf.board_id where b.member_id =#{memberId} and board_file_status=1
 		order by board_register_date desc

@@ -240,6 +240,7 @@ $(document).on("click", ".send_btn", function() {
 
 function showMessageRooms(messageRooms){
     let rooms = "";
+    let msg="";
     messageRooms.forEach(room => {
         rooms += `
                 <li class="message_list">
@@ -268,19 +269,48 @@ function showMessageRooms(messageRooms){
         if(`${room.sellerId}`== memberId) {
             console.log("boardStatus: "+`${room.boardStatus}`)
             console.log("purchaseStatus: "+`${room.purchaseStatus}`)
-            rooms += !`${room.boardStatus}` ?
-                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">판매종료</p>`
-                : `${room.purchaseStatus}`!='null' ?
-                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
-                : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
+            // rooms += `${room.purchaseStatus}`!='null' ?
+            //         `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
+            //     :!`${room.boardStatus}` ?
+            //         `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`
+            //     : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
+            if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`){
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료==</p>`;
+            }else if(`${room.purchaseStatus}`!='null' && !`${room.boardStatus}`){
+                msg= `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`;
+            }else if(`${room.purchaseStatus}`=='null' && !`${room.boardStatus}`){
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
+            }else{
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
+            }
+
         }else{
-            rooms += `${room.purchaseStatus}`!='null' ?
-                `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
-                : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
-                            <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
-                                    onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
-                            </button>`;
+            console.log("판매자아냐")
+            console.log("cus boardStatus: "+`${room.boardStatus}`)
+            console.log("cus purchaseStatus: "+`${room.purchaseStatus}`)
+            // rooms += `${room.boardStatus}` ?
+            //     `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료++</p>`
+            //     : `${room.purchaseStatus}`!='null' ?
+            //     `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
+            //     : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
+            //                 <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
+            //                         onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
+            //                 </button>`;
+            if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`){
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
+            }else if(`${room.purchaseStatus}`!='null' && !`${room.boardStatus}`){
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`;
+            }else if(`${room.purchaseStatus}`=='null' && !`${room.boardStatus}`){
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
+                             <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
+                                     onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
+                             </button>`;
+            }else{
+                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
+            }
+
         }
+        rooms += msg;
         rooms += `</div>
                     </form>
                     <div  id="my_modal${room.messageRoomId}" class="my_modal2 this_modal">
@@ -311,7 +341,9 @@ function showTargetInfo(Infos){
 
     let target = `
 		<div class="profile_image_section">
-            <img class="profile_image" src="/members/display?fileName=${Infos.targetInfo.memberProfilePath}/${Infos.targetInfo.memberProfileUuid}_${Infos.targetInfo.memberProfileOriginalName}">
+		    <a href="/board/list/member/${Infos.targetInfo.memberId}">
+                <img class="profile_image" src="/members/display?fileName=${Infos.targetInfo.memberProfilePath}/${Infos.targetInfo.memberProfileUuid}_${Infos.targetInfo.memberProfileOriginalName}">
+            </a>
         </div>
           <p class="detail_nick_name">${Infos.targetInfo.memberNickname}</p>
         <div class="title_refresh_wrap">
