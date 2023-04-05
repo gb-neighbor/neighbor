@@ -31,15 +31,12 @@ var keyword=$("#search_text").val();
 
 const replyService=(function(){
     function list(callback){
-        console.log(1)
-
         $.ajax({
             url: "review/list/"+memberId+"/"+page,
             data: {keyword: keyword},
             dataType: "json",
             method: "post",
             success: function(replyDTO){
-                console.log(2)
                 if(callback){
                     callback(replyDTO);
                 }
@@ -51,10 +48,8 @@ const replyService=(function(){
 
 
 function showReplys(replyDTO){
-    console.log(3)
     let replyList = "";
     replyDTO.replyDTOS.forEach(reply => {
-        console.log(4)
         replyList += `
                 <ul class="my_review">
                 <li class="review_num">${reply.replyId}</li>
@@ -81,11 +76,9 @@ function showReplys(replyDTO){
     });
     $(".reply-list-container").html(replyList);
     showPage(replyDTO.pageDTO);
-    console.log(5)
 }
 
 function showPage(pageDTO) {
-    console.log(pageDTO)
     const $btns = $('.page-button-box');
     const criteria = pageDTO.criteria;
     let text = "";
@@ -110,7 +103,6 @@ function showPage(pageDTO) {
     $page.on('click', function(e) {
         e.preventDefault();
         page = $(this).text();
-        console.log("page: " +page);
         replyService.list(showReplys);
         $('.page-button.active').removeClass('active');
         $(this).addClass('active');

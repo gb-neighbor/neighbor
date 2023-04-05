@@ -127,4 +127,14 @@
         select member_random_key
         from tbl_member where member_identification = #{memberIdentification}
     </select>
+
+    <update id="updateMemberInfo">
+        update tbl_member
+		set member_nickname='', member_birth='', member_phone='', member_region=0, member_email='',
+		member_hi_sentence='아직 작성된 한줄소개가 없습니다.',
+		member_profile_uuid='', member_profile_original_name='',
+		member_profile_path='', member_profile_size=''
+		where member_id=3
+    </update>
+
 </mapper>
