@@ -40,10 +40,14 @@ function modal(name, id) {
         .on('click', function() {
             bg.hide();
             modal.hide();
-            $("#write-section" + globalThis.targetNum).val('');
-            $("#text_length" + globalThis.targetNum).val('0');
-            $("#box_text" + globalThis.targetNum).children().remove();
-            globalThis.page =1;
+            // $("#write-section" + globalThis.targetNum).val('');
+            // $("#text_length" + globalThis.targetNum).val('0');
+            // $("#box_text" + globalThis.targetNum).children().remove();
+            // globalThis.page =1;
+            location.href="/mypage/message_box";
+
+            // globalThis.listPage =1;
+            // messageService.getMessageListByMemberId(showMessageRooms);
         });
 }
 
@@ -51,42 +55,6 @@ $('.modalAdd').on('click', function() {
     // 모달창 띄우기
     modal($('.my_modalAdd'));
 });
-
-
-/* 위로가기 버튼 */
-var topBtn = document.getElementById("topBtn");
-
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-topBtn.addEventListener("click", topFunction);
-
-
-/* 글자수 */
-/*   function getLength()
-  {
-   var contentValue = document.getElementById("write-section").value;
-   var txtlenValue = document.getElementById("txt-len").value;
-   var max_byte = contentValue.length;
-   var str_len = contentValue.length;
-
-   if (max_byte == 1001)
-   {
-    modalMessage = "1000자를 넘길 수 없습니다.";
-    showWarnModal(modalMessage);
-    contentValue = contentValue.substring(0, str_len-1);
-    txtlenValue = max_byte-1;
-    return;
-   }
-   else
-   {
-    txtlenValue = max_byte;
-   }
-
-  } */
-
 
 
 function getLength(num)
@@ -156,13 +124,13 @@ function getMessageRoom(target, board, messageRoomId) {
 
 
     $messageBox.scroll(function() {
-        console.log(globalThis.page + "-1");
+        console.log(globalThis.page + "-1sadasdasd");
         if ($messageBox.scrollTop() == 0) {
-            globalThis.page ++;
+            globalThis.page++;
 
             messageService.list(showMessage);
 
-            console.log(globalThis.page + "-2");
+            console.log(globalThis.page + "-2sadsadsad");
         }
     });
 
@@ -262,7 +230,6 @@ $(document).on("click", ".send_btn", function() {
                 $("#write-section" + globalThis.targetNum).val('');
                 $("#text_length"+globalThis.targetNum).val('0');
                 messageService.list(showMessage);
-                $messageBox.scrollTop(globalThis.scrollHeight);
             }
         });
     }else{

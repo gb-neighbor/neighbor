@@ -24,7 +24,7 @@
                     <a th:href="@{/mypage/profile_home}" class="second_letter select">홈</a>
                     <a th:href="@{/mypage/message_box}" class="second_letter except_home_letter">쪽지함</a>
                     <a th:href="@{/mypage/upload_food}" class="second_letter except_home_letter">내가 올린 반찬</a>
-                    <a th:href="@{/mypage/review}" class="second_letter except_home_letter " >후기</a>
+                    <a th:href="@{/mypage/review}" class="second_letter except_home_letter ">후기</a>
                 </div>
             </li>
 
@@ -39,7 +39,7 @@
             <li class="list_setting">
                 <a href="" class="first_letter" th:href="@{/mypage/password_update}">설정</a>
                 <div class="list_my_setting_items disply_bundle">
-                    <a class="second_letter except_home_letter" th:href="@{/mypage/password_update}" >비밀번호 변경</a>
+                    <a class="second_letter except_home_letter" th:href="@{/mypage/password_update}">비밀번호 변경</a>
                     <a class="second_letter except_home_letter" th:href="@{/mypage/user_leave}">회원탈퇴</a>
                 </div>
             </li>
@@ -48,139 +48,140 @@
 </nav>
 <!-- 콘텐츠부분 시작 -->
 <section class="wrap">
-    <div class="all_wrapper">
-        <div class="menu_container">
-            <div class="menu_box">
-                <div class="menu_contents">
+    <form name="write-form">
+        <div class="all_wrapper">
+            <div class="menu_container">
+                <div class="menu_box">
+                    <div class="menu_contents">
 
-                    <div class="profile">
-                        <div class="oneline_wrapper">
-                            <div class="profile_image_section">
-                                <img class="profile_image  image-box" th:src="@{/members/display(fileName=${memberInfo.memberProfilePath}+'/'+${memberInfo.memberProfileUuid}+'_'+${memberInfo.memberProfileOriginalName})}">
-                                <div class="profile_camera_image_section">
-                                    <img class="profile_camera_image" src="/css/mypage/images/camera.png">
-                                    <input id="file" name="chooseFile" type="file" accept="image/*" />
-                                    <label class="upload_profile" for="file"></label>
-                                </div>
-                            </div>
-
-
-                            <div class="info_desk">
-                                <div class="nick_name">
-                                    <p class="nick_name_letter" th:text="${memberInfo.memberNickname}"></p>
+                        <div class="profile">
+                            <div class="oneline_wrapper">
+                                <div class="profile_image_section">
+                                    <img class="profile_image  image-box"
+                                         th:src="@{/members/display(fileName=${memberInfo.memberProfilePath}+'/'+${memberInfo.memberProfileUuid}+'_'+${memberInfo.memberProfileOriginalName})}">
+                                    <div class="profile_camera_image_section">
+                                        <img class="profile_camera_image" src="/css/mypage/images/camera.png">
+                                        <input id="profile" name="chooseFile" type="file" accept="image/*"/>
+                                        <label class="upload_profile" for="profile"></label>
+                                    </div>
                                 </div>
 
-                                <div class="my_state">
-                                    <div class="scrap">
-                                        <a class="scrap_link" th:href="@{/mypage/upload_food}">
-                                            <p class="scrap_message">게시물&nbsp</p>
-                                            <p class="scrap_count" th:text="${boardCount}"></p>
-                                        </a>
+
+                                <div class="info_desk">
+                                    <div class="nick_name">
+                                        <p class="nick_name_letter" th:text="${memberInfo.memberNickname}"></p>
                                     </div>
 
-                                    <div class="alarm">
-                                        <a class="alarm_link" th:href="@{/mypage/review}">
-                                            <p class="alarm_message">후기&nbsp</p>
-                                            <p class="alarm_count" th:text="${replyCount}"></p>
-                                        </a>
+                                    <div class="my_state">
+                                        <div class="scrap">
+                                            <a class="scrap_link" th:href="@{/mypage/upload_food}">
+                                                <p class="scrap_message">게시물&nbsp</p>
+                                                <p class="scrap_count" th:text="${boardCount}"></p>
+                                            </a>
+                                        </div>
+
+                                        <div class="alarm">
+                                            <a class="alarm_link" th:href="@{/mypage/review}">
+                                                <p class="alarm_message">후기&nbsp</p>
+                                                <p class="alarm_count" th:text="${replyCount}"></p>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        프로필
-                    </button>
-                    <div class="content">
-                        <p class="content_items_padding"></p>
-                        <a href="" class="content_items" th:href="@{/mypage/profile_home}">홈</a>
-                        <a href="" class="content_items" th:href="@{/mypage/message_box}">쪽지함</a>
-                        <a href="" class="content_items" th:href="@{/mypage/upload_food}">내가 올린 반찬</a>
-                        <a href="" class="content_items" th:href="@{/mypage/review}">후기</a>
-                        <p class="content_items_padding"></p>
-                    </div>
+                        <button type="button" class="collapsible" onclick="collapse(this);">
+                            프로필
+                        </button>
+                        <div class="content">
+                            <p class="content_items_padding"></p>
+                            <a href="" class="content_items" th:href="@{/mypage/profile_home}">홈</a>
+                            <a href="" class="content_items" th:href="@{/mypage/message_box}">쪽지함</a>
+                            <a href="" class="content_items" th:href="@{/mypage/upload_food}">내가 올린 반찬</a>
+                            <a href="" class="content_items" th:href="@{/mypage/review}">후기</a>
+                            <p class="content_items_padding"></p>
+                        </div>
 
 
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        문의
-                    </button>
-                    <div class="content">
-                        <p class="content_items_padding"></p>
-                        <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
-                        <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
-                        <p class="content_items_padding"></p>
-                    </div>
+                        <button type="button" class="collapsible" onclick="collapse(this);">
+                            문의
+                        </button>
+                        <div class="content">
+                            <p class="content_items_padding"></p>
+                            <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">FAQ</a>
+                            <a href="" class="content_items" th:href="@{/ask-admin/inquiry-list}">1:1 문의</a>
+                            <p class="content_items_padding"></p>
+                        </div>
 
-                    <button type="button" class="collapsible" onclick="collapse(this);">
-                        설정
-                    </button>
-                    <div class="content">
-                        <p class="content_items_padding"></p>
-                        <a href="" class="content_items" th:href="@{/mypage/password_update}">비밀번호 변경</a>
-                        <a href="" class="content_items" th:href="@{/mypage/user_leave}">회원탈퇴</a>
-                        <p class="content_items_padding"></p>
+                        <button type="button" class="collapsible" onclick="collapse(this);">
+                            설정
+                        </button>
+                        <div class="content">
+                            <p class="content_items_padding"></p>
+                            <a href="" class="content_items" th:href="@{/mypage/password_update}">비밀번호 변경</a>
+                            <a href="" class="content_items" th:href="@{/mypage/user_leave}">회원탈퇴</a>
+                            <p class="content_items_padding"></p>
+                        </div>
                     </div>
                 </div>
-        </div>
-    </div>
-<!-- //콘텐츠부분 시작 -->
-        <div class="contents_container" th:object="${memberInfo}">
+            </div>
+            <!-- //콘텐츠부분 시작 -->
+            <div class="contents_container" th:object="${memberInfo}">
 
-            <div class="third_content">
-                <h3 class="third_content_title">내 정보</h3>
-                <div class="third_content_image_section">
-                    <article class="update-user-info">
-                        <div class="update-user-wrap">
-                            <div>
-                                <label class="update-user-text">닉네임</label>
-                                <div class="update-user-nickname">
-                                    <input name="memberNickname" class="update-user-value change-value nick-name" th:value=*{memberNickname} />
-                                    <p class="err-nickname err"></p>
+                <div class="third_content">
+                    <h3 class="third_content_title">내 정보</h3>
+                    <div class="third_content_image_section">
+                        <article class="update-user-info">
+                            <div class="update-user-wrap">
+                                <div>
+                                    <label class="update-user-text">닉네임</label>
+                                    <div class="update-user-nickname">
+                                        <input name="memberNickname" class="update-user-value change-value nick-name"
+                                               th:value=*{memberNickname} >
+                                        <p class="err-nickname err"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="update-user-wrap">
+                                <div>
+                                    <label class="update-user-text">휴대폰 번호</label>
+                                    <div class="update-user">
+                                        <input name="memberPhone" class="update-user-value phone"
+                                               th:value=*{memberPhone}  >
+                                        <p class="err-phone err"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="update-user-wrap">
+                                <div>
+                                    <label class="update-user-text">이메일</label>
+                                    <div class="update-user">
+                                        <input name="memberEmail" class="update-user-value email"
+                                               th:value=*{memberEmail} >
+                                        <p class="err-email err"></p>
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="update-user-wrap">
-                            <div>
-                                <label class="update-user-text">휴대폰 번호</label>
-                                <div class="update-user">
-                                    <input name="memberPhone" class="update-user-value phone" th:value=*{memberPhone} />
-                                    <p class="err-phone err"></p>
+                            <div class="update-user-wrap">
+                                <div>
+                                    <label class="update-user-text">생년월일</label>
+                                    <div class="update-user">
+                                        <input name="memberBirth" class="update-user-value change-value birth"
+                                               th:value=*{memberBirth} >
+                                        <p class="err-birth err"></p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="update-user-wrap">
-                            <div>
-                                <label class="update-user-text">이메일</label>
-                                <div class="update-user">
-                                    <input name="memberEmail" class="update-user-value email" th:value=*{memberEmail} />
-                                    <p class="err-email err"></p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="update-user-wrap">
-                            <div>
-                                <label class="update-user-text">생년월일</label>
-                                <div class="update-user">
-                                    <input name="memberBirth" class="update-user-value change-value birth" th:value=*{memberBirth} />
-                                    <p class="err-birth err"></p>
-                                </div>
                             </div>
-
-                        </div>
-                        <div class="update-user-wrap">
-                            <div>
-                                <label class="update-user-text">지역</label>
-                                <div class="custom_select w1">
-                                    <select class="custom_select select-region-drop" name="gugun" id="gugun">
-                                        <script th:inline="javascript">
-                                            let memberRegion = [[${memberInfo.memberRegion}]];
-                                            if($(option).val() == memberRegion){
-                                                $(option).selected = true;
-                                            };
-                                        </script>
+                            <div class="update-user-wrap">
+                                <div>
+                                    <label class="update-user-text">지역</label>
+                                    <div class="custom_select w1">
+                                        <select class="custom_select select-region-drop" name="gugun" id="gugun">
+                                            <option value="0">선택</option>
                                             <option value="1">강남구</option>
                                             <option value="2">강동구</option>
                                             <option value="3">강북구</option>
@@ -206,44 +207,46 @@
                                             <option value="23">종로구</option>
                                             <option value="24">중구</option>
                                             <option value="25">중랑구</option>
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="update-user-wrap">
-                            <div>
-                                <label class="update-user-text">한 줄 소개</label>
-                                <div class="update-user">
-                                    <input name="memberHiSentence" class="update-user-value" th:value=*{memberHiSentence} />
+                            <div class="update-user-wrap">
+                                <div>
+                                    <label class="update-user-text">한 줄 소개</label>
+                                    <div class="update-user">
+                                        <input name="memberHiSentence" class="update-user-value"
+                                               th:value=*{memberHiSentence} >
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="update-user-wrap">
-                            <input type="hidden" name="realPassword" >
-                            <div>
-                                <label class="update-user-text">비밀번호 확인</label>
-                                <div class="update-user">
-                                    <input
-                                            type="password"
-                                            name="memberPassword"
-                                            class="update-user-value password-check"
-                                            value=""
-                                            disabled
-                                    />
-                                    <p class="err-password-check err"></p>
+                            <div class="update-user-wrap">
+                                <input type="hidden" name="realPassword">
+                                <div>
+                                    <label class="update-user-text">비밀번호 확인</label>
+                                    <div class="update-user">
+                                        <input
+                                                type="password"
+                                                name="memberPassword"
+                                                class="update-user-value password-check"
+                                                value=""
+                                        />
+                                        <p class="err-password-check err"></p>
+                                    </div>
                                 </div>
+                                <input type="hidden" name="oldPassword" th:value="*{memberPassword}">
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
+                    <button type="button" class="change-button" disabled>변경 사항 저장하기</button>
                 </div>
-                <button type="button" class="change-button" disabled>변경 사항 저장하기</button>
+
             </div>
 
         </div>
-
-    </div>
+    </form>
 </section>
 <button id="topBtn">Top</button>
 <div class="modal">
@@ -254,7 +257,16 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-
+<script th:inline="javascript">
+    let memberId = [[${memberInfo.memberId}]];
+    let originalNickname = [[${memberInfo.memberNickname}]];
+    let originalBirth = [[${memberInfo.memberBirth}]];
+    let originalRegion = [[${memberInfo.memberRegion}]];
+    let originalPassword = [[${memberInfo.memberPassword}]];
+    let originalHiSentence = [[${memberInfo.memberHiSentence}]];
+    let originalEmail = [[${memberInfo.memberEmail}]];
+    let originalPhone = [[${memberInfo.memberPhone}]];
+</script>
 <script src="/js/mypage/profile_home.js"></script>
 
 </html>
