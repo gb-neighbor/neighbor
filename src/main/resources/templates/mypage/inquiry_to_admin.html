@@ -19,7 +19,7 @@
     <div class="subnav_wrapper">
         <ul class="subnav_list">
             <li class="list_profile">
-                <a href="" class="first_letter">프로필</a>
+                <a th:href="@{/mypage/profile_home}" class="first_letter">프로필</a>
                 <div class="list_profile_items disply_bundle">
                     <a href="" class="second_letter">홈</a>
                     <a href="" class="second_letter except_home_letter">쪽지함</a>
@@ -31,13 +31,13 @@
             <li class="list_my_shopping">
                 <a href="" class="first_letter select">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
-                    <a href="" class="second_letter except_home_letter">FAQ</a>
-                    <a th:href="@{write}" class="second_letter except_home_letter select">1:1 문의</a>
+                    <a href="/ask-admin/faq" class="second_letter except_home_letter">FAQ</a>
+                    <a  class="second_letter except_home_letter select">1:1 문의</a>
                 </div>
             </li>
 
             <li class="list_setting">
-                <a href="" class="first_letter">설정</a>
+                <a th:href="@{/mypage/password_update}" class="first_letter">설정</a>
                 <div class="list_my_setting_items disply_bundle">
                     <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
                     <a href="" class="second_letter except_home_letter">회원탈퇴</a>
@@ -53,10 +53,7 @@
     <article class="divide_btns">
         <ul class="btn_list">
             <li class="activate">
-                <a class="btn_setting select_btn" th:href="@{write}">1:1문의</a>
-            </li>
-            <li>
-                <a class="btn_setting" href="">FAQ</a>
+                <a class="btn_setting select_btn">1:1문의</a>
             </li>
         </ul>
     </article>
@@ -104,13 +101,12 @@
             <ul class="my_inquiry" th:each="askAdmin:${askAdmin}">
                 <li class="inquiry_num" th:text="${askAdmin.askAdminId}"></li>
                 <li class="inquiry_my_title">
-                    <strong> <span class="cat">[회원정보문의]</span></strong>
+                    <strong> <span class="cat">[1:1문의]</span></strong>
                     <a class="detail_link" th:href="@{detail/{askAdminId}(askAdminId=${askAdmin.askAdminId})}" th:text="${askAdmin.askAdminTitle}">
                         로그인이 안돼요!
                     </a>
                 </li>
                 <li class="inquiry_status"><span class="inquiry_status_color"><span th:if="${askAdmin.askAdminStatus} == true">답변완료</span><span th:unless="${askAdmin.askAdminStatus} == true" style="color: #545353">답변대기</span></span></li>
-<!--                <li class="inquiry_status"><span class="inquiry_status_color" th:if="${askAdmin.askAdminStatus} == true">답변완료</span></li>-->
                 <li class="inquiry_date" th:text="${askAdmin.askAdminRegisterDate}"></li>
             </ul>
         </div>
