@@ -20,38 +20,33 @@
             <div id="wrap-middle-box">
                 <div id="middle-box-contents">
                     <div class="side-top-margin"></div>
-
-                        <span class="mouseOnEffect">
-                            <a th:href="@{/main}">
-                                <div id="middle-box-site-shortcut-bar" class="side-bar">
-                                    <div class="icon-gap">
-                                        <img class="side-icons" alt="home" src="/css/admin/images/home.png">
-                                    </div>
-                                    사이트 바로가기
-                                </div>
-                            </a>
-                        </span>
-
-                    <span class="mouseOnEffect">
-                        <a th:href="@{/admin/dashboard/list}">
-                                <div id="middle-box-dashBoard-bar" class="side-bar">
-                                    <div class="icon-gap">
-                                        <img class="side-icons" alt="dash-board"
-                                             src="/css/admin/images/dashBoard-icon.png">
-                                    </div>
-                                    대시보드
-                                </div>
-                        </a>
-                    </span>
-
-                    <button type="button" class="no-collapsible mouseOnEffect">
-                        <a th:href="@{/admin/member/list}">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
+                    <a class="mouseOnEffect" th:href="@{/main}">
+                        <div id="middle-box-site-shortcut-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="home" src="/css/admin/images/home.png">
+                            </div>
+                            사이트 바로가기
                         </div>
-                        회원관리
-                        </a>
-                    </button>
+                    </a>
+
+                    <a class="mouseOnEffect" th:href="@{/admin/dashboard/list}">
+                        <div id="middle-box-dashBoard-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="dash-board"
+                                     src="/css/admin/images/dashBoard-icon.png">
+                            </div>
+                            대시보드
+                        </div>
+                    </a>
+
+                    <a class="no-collapsible mouseOnEffect" th:href="@{/admin/member/list}">
+                        <div id="middle-box-dashBoard-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
+                            </div>
+                            회원관리
+                        </div>
+                    </a>
 
                     <button type="button" class="collapsible" onclick="collapse(this);">
                         <div class="icon-gap">
@@ -63,19 +58,18 @@
                     </button>
 
                     <div class="content">
-                        <p><a th:href="@{/admin/board/list}">게시글 목록</a></p>
-                        <p><!--<a th:href="@{/admin/reply/list}">-->후기 목록<!--</a>--></p>
+                        <p><a th:href="@{/admin/board/list}" style="color: white">게시글 목록</a></p>
+                        <p><a th:href="@{/admin/reply/list}" style="color: white">후기 목록</a></p>
                     </div>
 
-                    <button type="button" class="no-collapsible mouseOnEffect">
-                        <a th:href="@{/admin/ask/list}">
-                        <div class="icon-gap">
-                            <img class="side-icons" alt="ask-board"
-                                 src="/css/admin/images/ask-board-icon.png">
+                    <a class="no-collapsible mouseOnEffect" th:href="@{/admin/ask/list}">
+                        <div id="middle-box-dashBoard-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="ask-board" src="/css/admin/images/ask-board-icon.png">
+                            </div>
+                            문의 게시판 관리
                         </div>
-                        문의 게시판 관리
-                        </a>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -155,63 +149,65 @@
                             답변하기
                         </div>
                     </div>
-                     <!--<div class="item-list-contents">
-                         <div class="checkbox-zip">
-                             <input type="checkbox" id="check1" class="normal" value="">
-                         </div>
-                         <div class="qna-num"></div>
-                         <div class="qna-title"></div>
-                         <div class="user-nick-name"></div>
-                         <div class="qna-ask-day"></div>
-                         <div class="qna-answer-day"></div>
-                         <div class="qna-status qna-status-false"></div>
-                         <div class="detail">
-                             <button class="detail-button modal7" type="submit">
-                                 <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                             </button>
-                         </div>
-                         <div id="my_modal7" class="my_modal">
-                             <a class="modal_close_btn">✖</a>
-                             <div class="comment-writer">작성자: 벅벅코딩</div>
-                             <div class="comment-title">제목: 메일이 안와요</div>
-                             <div class="comment-detail">
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                 메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                             </div>
-                             <div class="qna-manage">
-                                 <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                 <input class="qna-submit-btn" type="submit" value="전송하기">
-                             </div>
-                         </div>
-                    </div>-->
+                    <!--<div class="item-list-contents">
+                        <div class="checkbox-zip">
+                            <input type="checkbox" id="check1" class="normal" value="">
+                        </div>
+                        <div class="qna-num"></div>
+                        <div class="qna-title"></div>
+                        <div class="user-nick-name"></div>
+                        <div class="qna-ask-day"></div>
+                        <div class="qna-answer-day"></div>
+                        <div class="qna-status qna-status-false"></div>
+                        <div class="detail">
+                            <button class="detail-button modal7" type="submit">
+                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
+                            </button>
+                        </div>
+                        <div id="my_modal7" class="my_modal">
+                            <a class="modal_close_btn">✖</a>
+                            <div class="comment-writer">작성자: 벅벅코딩</div>
+                            <div class="comment-title">제목: 메일이 안와요</div>
+                            <div class="comment-detail">
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
+                            </div>
+                            <div class="qna-manage">
+                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                <input class="qna-submit-btn" type="submit" value="전송하기">
+                            </div>
+                        </div>
+                   </div>-->
                 </div>
                 <div class="page-button-box"></div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
+
     const $changePageTags = $(".page-button");
     const $searchButton = $("#search-button");
     const $askAdminSearch = $(".ask-admin-search");
-    var page = 1;
+    let page = 1;
+    let page2 = 1;
     let keyword = null;
-
+    let click = 1;
     load(page, keyword);
 
     $(document).ready(function() {
         // 검색창에서 키보드를 눌렀을 때
-        $('.board-search-form').on('keydown', function(e) {
-            page = 1; // 페이지를 1로 해줘서 검색은 항상 전체를 하게 한다.
+        $('.ask-admin-search-form').on('keydown', function(e) {
+            page = 1;
             if (e.keyCode == 13) { // Enter 키를 눌렀을 때
                 e.preventDefault(); // 기본 이벤트 막기
             }
@@ -229,7 +225,7 @@
             if (ask.askAdminAnswerId == null) {
                 ask.askAdminAnswerId=1;
             }
-                content += `
+            content += `
                         <div class="item-list-contents">
                          <div class="checkbox-zip">
                              <input type="checkbox" id="check1" class="normal" value="${ask.askAdminId}">
@@ -260,7 +256,7 @@
                               <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
                              <div class="comment-detail">${ask.askAdminContent}</div>
                              <form class="qna-manage">
-                                 <p><textarea id="write-section-${ask.askAdminId}" class="write-section" cols="82" rows="10"  name = "${ask.askAdminAnswerContent}" value="${ask.askAdminAnswerContent}"></textarea></p>
+                                 <p><textarea class="write-section" cols="82" rows="10" data-answer="${ask.askAdminAnswerContent}"></textarea></p>
                                  <input class="qna-submit-btn" type="button" value="전송하기" data-askId="${ask.askAdminId}">
                              </form>
                          </div>
@@ -299,7 +295,11 @@
         /*페이지 이동을 위함*/
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            page = $(this).data('page');
+            if(count = 1) {
+                page = $(this).data('page');
+            } else {
+                page2 = $(this).data('page2');
+            }
             console.log(page);
             load(page);
             $('.page-button.active').removeClass('active');
@@ -339,40 +339,24 @@
             }
         });
     }
-    // 전송하기 버튼을 클릭했을 때 실행할 코드 작성
-    $(document).on('click', '.qna-submit-btn', function() {
-        // console.log("전송하기 버튼을 클릭했습니다."); 들어옴
-        let askAdminAnswerDTO = {
-            askAdminAnswerContent: $('.write-section').val(),
-            askAdminId: this.dataset.askid,
-            memberId: $("input[id='check2']").val()
-        }
-        console.log($('.write-section').val());
 
-        $.ajax({
-            url: `/admin/ask/answer`,
-            type: "POST",
-            contentType: 'application/json; charset=UTF-8 ',
-            data: JSON.stringify(askAdminAnswerDTO),
-            success: function() {
-                bg.remove();
-                $('.item-list-contents').remove();
-                load(page, keyword);
-            }
-        });
-    });
-
-    /* delete 버튼 클릭 시 ajax실행*/
-
+    /* 답변대기 목록에서 삭제버튼을 눌렀을 때 */
     $('.ask-delete-button').on('click', function () {
         var checkedItems = [];
+
+// 체크박스 요소들을 가져온다.
         var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
+
+// 체크박스들을 순회하며 체크된 항목들을 배열에 담는다.
         checkboxes.forEach(function(checkbox) {
             if (checkbox.checked) {
-                checkedItems.push(checkbox.value);
+                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
             }
         });
+        console.log(checkedItems);
+
         for(let i = 0; i<checkedItems.length; i++){
+            console.log(checkedItems[i]);
             $.ajax({
                 type : "DELETE",
                 url : "/admin/ask/delete",
@@ -380,11 +364,17 @@
                     "checkedId" : checkedItems[i]
                 },
                 success : function() {
-                    load(page, keyword);
+                    if(count = 1) {
+                        load(page, keyword);
+                    } else {
+                        load2(page,keyword);
+                    }
                 }
             });
         }
     });
+
+
 
     function showListWait(askAdminDTOS) {
         const $results = $('.checkbox-group');
@@ -427,11 +417,9 @@
                               <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
                              <div class="comment-detail">${ask.askAdminContent}</div>
                              <form class="qna-manage">
-                                <p>
-                                    <textarea class="write-section" cols="82" rows="10" value="${ask.askAdminAnswerContent}"></textarea>
-                                </p>
-                                <input class="qna-submit-btn" type="button" value="전송하기" data-askId="${ask.askAdminId}">
-                            </form>
+                                 <p><textarea class="write-section" cols="82" rows="10" data-answer="${ask.askAdminAnswerContent}"></textarea></p>
+                                 <input class="qna-submit-btn" type="button" value="전송하기" data-askid="${ask.askAdminId}">
+                             </form>
                          </div>
                     </div>`
         });
@@ -450,17 +438,17 @@
         let text = "";
         $btns.empty(); // 이전에 생성한 페이지 버튼 제거
         if (pageDTO.prev) {
-            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
+            text += `<a class="page-button" data-page2="${pageDTO.startPage - 1}"><code><</code></a>`;
         }
         for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
             if (criteria.page === i) {
-                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+                text += `<a class="page-button" data-page2="${i}">${i}</a>`;
             } else {
-                text += `<a class="page-button" data-page="${i}">${i}</a>`;
+                text += `<a class="page-button" data-page2="${i}">${i}</a>`;
             }
         }
         if (pageDTO.next) {
-            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
+            text += `<a class="page-button" data-page2="${pageDTO.endPage + 1}"><code>></code></a>`;
         }
         $btns.append(text);
         $("input[name='page']").val(criteria.page);
@@ -468,13 +456,15 @@
 // 페이지 이동 버튼 클릭 이벤트 핸들러 추가
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            load2(page, keyword);
+            page2 = $(this).data('page2');
+            console.log(page);
+            load2(page2, keyword);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         });
     }
 
-    function load2(page, keyword) {
+    function load2(page2, keyword) {
         $('.total-mentor-num').empty();
         $('.list-container').empty();
         $('.page-button-box').empty();
@@ -482,7 +472,7 @@
             url: `/admin/ask/page/keyword/status`,
             type: "get",
             data: {
-                page: page,
+                page: page2,
                 keyword: keyword
             },
             success: function (resultWait) {
@@ -492,13 +482,14 @@
             }
         });
     }
-    /* 판매 대기중인 목록을 불러오는 ajax*/
+    /*판매 대기중인 목록을 불러오는 ajax*/
     $('.watch-waiting-ask').on('click',function() {
-        load2(page,keyword);
+        count = 0;
+        load2(page2,keyword);
     });
 
-    /* 전체 목록을 불러오는 ajax*/
     $('.watch-all-ask').on('click',function() {
+        count = 1;
         load(page,keyword);
     });
 
@@ -553,11 +544,11 @@
     $(document).on('click', '.qna-submit-btn', function() {
         // console.log("전송하기 버튼을 클릭했습니다."); 들어옴
         let askAdminAnswerDTO = {
-            askAdminAnswerContent: $('.write-section').val(),
+            askAdminAnswerContent: $(this).prev().children().val(),
             askAdminId: this.dataset.askid,
             memberId: $("input[id='check2']").val()
         }
-        console.log($('.write-section').val());
+        console.log("dqwescx : " + $('.write-section').val());
 
         $.ajax({
             url: `/admin/ask/answer`,
@@ -571,6 +562,7 @@
             }
         });
     });
+
 
 
 </script>
