@@ -599,6 +599,10 @@ div.buttons button:nth-child(1) {
     background-size: 100% 100%;
 }
 
+.random-menu-img-link{
+    cursor: pointer;
+}
+
 .random-menu-banner-arrows {
     text-align: center;
 }
@@ -681,4 +685,10 @@ div.buttons button:nth-child(1) {
 
 .bookmark-second-list {
     margin-left: 8px;
+}
+
+.bannerLink{
+    display: block;
+    height: 100%;
+    width: 100%;
 }

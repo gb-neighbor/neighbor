@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,7 +42,18 @@ public class MemberController {
 
     //메인에서 로그인으로 이동
     @GetMapping("login")
-    public String goLogin() {
+    public String goLogin(HttpServletRequest req) {
+        if(req.getHeader("Cookie") != null) {
+            Cookie[] cookies = req.getCookies();
+            for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("memberVO")) {
+                    req.getSession().setAttribute("memberVO", Long.valueOf(cookie.getValue()));
+                    return "/main/main";
+                }
+            }
+        }
+
+
         return "/login/login";
     }
 
@@ -120,7 +134,7 @@ public class MemberController {
 
     // 로그인
     @PostMapping("login")
-    public RedirectView login(String memberIdentification, String memberPassword, HttpSession httpSession){
+    public RedirectView login(String memberIdentification, String memberPassword, String saveEmail, HttpSession httpSession, HttpServletResponse response){
         String path = "";
         Long memberId = memberService.login(memberIdentification, memberPassword);
         memberService.login(memberIdentification, memberPassword);
@@ -130,15 +144,45 @@ public class MemberController {
         }else{
             MemberVO memberVO = memberService.findInfoByIdentification(memberIdentification);
             httpSession.setAttribute("memberVO", memberVO.getMemberId());
-            path = "/main";
+
+            if(saveEmail != null){
+//                Cookie memberIdentificationCookie = new Cookie("memberIdentification", memberIdentification);
+//                Cookie memberPasswordCookie = new Cookie("memberPassword", memberPassword);
+//                response.addCookie(memberIdentificationCookie);
+//                response.addCookie(memberPasswordCookie);
+
+                Cookie cookie = new Cookie("memberVO", String.valueOf(memberId));
+                cookie.setPath("/");
+                cookie.setMaxAge(60 * 60 * 3);
+
+                response.addCookie(cookie);
+            }
+            if(memberVO.getMemberId() == 1){
+                path = "/admin/dashboard/list";
+                log.info("관리자 계정으로 들어옴 !!!!!!!!!!!!!!!!!!!!!!!");
+            }else{
+                log.info("메인 일반 계정으로 들어옴 !!!!!!!!!!!!!!!!!!!!!!!");
+                path = "/main";
+            }
+
         }
+        log.info(path);
         return new RedirectView(path);
     }
 
     //로그아웃
     @GetMapping("logout")
-    public RedirectView logout(HttpSession httpSession){
+    public RedirectView logout(HttpSession httpSession, HttpServletRequest req, HttpServletResponse resp){
         httpSession.invalidate();
+        if(req.getHeader("Cookie") != null) {
+            Cookie[] cookies = req.getCookies();
+            for (Cookie cookie : cookies) {
+                cookie.setPath("/");
+                cookie.setMaxAge(0); //초단위
+                resp.addCookie(cookie);
+            }
+        }
+
         return new RedirectView("/main");
     }
 
@@ -156,7 +200,7 @@ public class MemberController {
     }
 
 
-//    카카오 로그인
+    //    카카오 로그인
     @GetMapping("/kakao-login")
     public String kakaoCallback(String code, HttpSession session) throws Exception {
         log.info("code1234 : " + code);
@@ -167,12 +211,14 @@ public class MemberController {
         log.info(kakaoInfo.getMemberEmail());
 
 
-        session.setAttribute("memberVO", kakaoInfo);
         if(memberService.checkEmail(kakaoInfo.getMemberEmail()) == 0){
+            session.setAttribute("memberVO", kakaoInfo);
             return "redirect:no-join";
+        }else{
+            MemberVO memberVO = memberService.findInfoByEmail(kakaoInfo.getMemberEmail());
+            session.setAttribute("memberVO", memberVO.getMemberId());
+            return "redirect:/main";
         }
-
-        return "redirect:/main";
     }
 
 

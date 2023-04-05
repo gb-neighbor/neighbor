@@ -46,7 +46,7 @@
         from tbl_member m
         inner join tbl_board b on m.member_id = b.member_id
         left join tbl_board_file bf on b.board_id = bf.board_id
-        where m.member_region = #{memberRegion} and board_file_status = 1
+        where (m.member_region = #{memberRegion} or #{memberRegion} = 0) and board_file_status = 1
         order by b.board_register_date desc
         limit 8
     </select>
