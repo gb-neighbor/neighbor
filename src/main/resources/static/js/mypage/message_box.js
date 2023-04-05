@@ -103,37 +103,36 @@ globalThis.targetNum;
 
 var $messageBox;
 var $infoBox;
+var $modalBox;
 
 globalThis.page;
 globalThis.listPage =1;
 
-function getMessageRoom(target, board, messageRoomId) {
+function getMessageRoom(target, board, messageRoomId, callback) {
     globalThis.page = 1;
     targetId = target;
     boardId = board;
     globalThis.targetNum = messageRoomId;
+
     $messageBox = $("#box_text" + globalThis.targetNum);
 
-    globalThis.scrollHeight = $messageBox[0].scrollHeight;
     $infoBox = $('#box_top' + globalThis.targetNum);
 
-
     messageService.targetInfo(showTargetInfo);
-    console.log(globalThis.page + "init");
     messageService.list(showMessage);
 
+    // function toBottom(callback){
+    //     $messageBox.scrollTop($messageBox[0].scrollHeight);
+    // }
+
+    console.log(globalThis.scrollHeight);
 
     $messageBox.scroll(function() {
-        console.log(globalThis.page + "-1sadasdasd");
         if ($messageBox.scrollTop() == 0) {
             globalThis.page++;
-
             messageService.list(showMessage);
-
-            console.log(globalThis.page + "-2sadsadsad");
         }
     });
-
 
 }
 
@@ -142,13 +141,14 @@ function refreshClicked(){
     $("#box_text" + globalThis.targetNum).children().remove();
     globalThis.page =1;
     messageService.list(showMessage);
-
-    $messageBox.scrollTop(globalThis.scrollHeight);
+    $messageBox.scrollTop($messageBox[0].scrollHeight);
 }
 
 function openModalBanner(num){ /* 괄호에 num으로 받기 */
     modal('#my_modal', num);
 }
+
+var scrollPos;
 
 const messageService=(function(){
     function list(callback){
@@ -162,6 +162,16 @@ const messageService=(function(){
                         callback(messages);
                     }
                 }
+                // scrollPos = $messageBox.scroll;
+                if(globalThis.page ==1){
+                    $messageBox.scrollTop($messageBox[0].scrollHeight);
+                    scrollPos=$messageBox[0].scrollHeight;
+                }else{
+                    $messageBox.scrollTop($messageBox[0].scrollHeight-scrollPos);
+                    scrollPos=$messageBox[0].scrollHeight;
+                }
+
+                // console.log($messageBox[0].scrollHeight);
             }
         });
     }
@@ -211,7 +221,6 @@ const messageService=(function(){
 messageService.getMessageListByMemberId(showMessageRooms);
 
 $(document).on("click", ".send_btn", function() {
-    console.log("어떤뗴!")
     if($("#write-section" + globalThis.targetNum).val()){
         let messageVO = {
             boardId: boardId,
@@ -267,47 +276,50 @@ function showMessageRooms(messageRooms){
                     <form class="purchase_complete_form">
                         <div class="purchase_complete_wrap">`
         if(`${room.sellerId}`== memberId) {
-            console.log("boardStatus: "+`${room.boardStatus}`)
-            console.log("purchaseStatus: "+`${room.purchaseStatus}`)
-            // rooms += `${room.purchaseStatus}`!='null' ?
-            //         `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
-            //     :!`${room.boardStatus}` ?
-            //         `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`
-            //     : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
-            if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`){
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료==</p>`;
-            }else if(`${room.purchaseStatus}`!='null' && !`${room.boardStatus}`){
-                msg= `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`;
-            }else if(`${room.purchaseStatus}`=='null' && !`${room.boardStatus}`){
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
-            }else{
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
-            }
+            // console.log("boardStatus: "+`${room.boardStatus}`)
+            // console.log("purchaseStatus: "+`${room.purchaseStatus}`)
+            rooms += `${room.purchaseStatus}`!='null' ?
+                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
+                :`${room.boardStatus}`=='true' ?
+                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`
+                : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
+            // if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`=='true'){
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료==</p>`;
+            //
+            // }else if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`=='false'){
+            //     msg= `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`;
+            //
+            // }else if(`${room.purchaseStatus}`=='null' && `${room.boardStatus}`=='false'){
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
+            //
+            // }else{
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
+            // }
 
         }else{
-            console.log("판매자아냐")
-            console.log("cus boardStatus: "+`${room.boardStatus}`)
-            console.log("cus purchaseStatus: "+`${room.purchaseStatus}`)
-            // rooms += `${room.boardStatus}` ?
-            //     `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료++</p>`
-            //     : `${room.purchaseStatus}`!='null' ?
-            //     `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
-            //     : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
-            //                 <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
-            //                         onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
-            //                 </button>`;
-            if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`){
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
-            }else if(`${room.purchaseStatus}`!='null' && !`${room.boardStatus}`){
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`;
-            }else if(`${room.purchaseStatus}`=='null' && !`${room.boardStatus}`){
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
-                             <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
-                                     onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
-                             </button>`;
-            }else{
-                msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
-            }
+            // console.log("판매자아냐")
+            // console.log("cus boardStatus: "+`${room.boardStatus}`)
+            // console.log("cus purchaseStatus: "+`${room.purchaseStatus}`)
+            rooms += `${room.boardStatus}`=='true'?
+                `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`
+                : `${room.purchaseStatus}`!='null' ?
+                `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
+                : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
+                            <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
+                                    onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
+                            </button>`;
+            // if(`${room.purchaseStatus}`!='null' && `${room.boardStatus}`){
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
+            // }else if(`${room.purchaseStatus}`!='null' && !`${room.boardStatus}`){
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`;
+            // }else if(`${room.purchaseStatus}`=='null' && !`${room.boardStatus}`){
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="color: red;">거래종료</p>
+            //                  <button type="button" id="purchase_done${room.messageRoomId}" class="purchase_complete_btn"
+            //                          onclick="changeToText(${room.messageRoomId}, ${room.boardId})">구매완료
+            //                  </button>`;
+            // }else{
+            //     msg=`<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: grey;">판매종료</p>`;
+            // }
 
         }
         rooms += msg;
@@ -406,10 +418,10 @@ function changeToText(number, boardId){
 
 $(window).scroll(
     function() {
-        console.log("Math.ceil($(window).scrollTop())"+Math.ceil($(window).scrollTop()));
-        console.log("$(document).height()"+$(document).height());
-        console.log("$(window).height()"+$(window).height());
-        console.log("$(document).height() - $(window).height()"+($(document).height() - $(window).height()));
+        // console.log("Math.ceil($(window).scrollTop())"+Math.ceil($(window).scrollTop()));
+        // console.log("$(document).height()"+$(document).height());
+        // console.log("$(window).height()"+$(window).height());
+        // console.log("$(document).height() - $(window).height()"+($(document).height() - $(window).height()));
 
         if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height()-232) {
             globalThis.listPage++;

@@ -376,7 +376,7 @@ function getMessageRoom() {
     messageService.list(showMessage);
     $messageBox.scrollTop(globalThis.scrollHeight);
 }
-
+var scrollPos;
 
 $messageBox.scroll(function () {
     if ($messageBox.scrollTop() == 0) {
@@ -392,7 +392,7 @@ function refreshClicked() {
     globalThis.page = 1;
     messageService.list(showMessage);
     globalThis.scrollHeight = $messageBox[0].scrollHeight;
-    $messageBox.scrollTop(globalThis.scrollHeight);
+    $messageBox.scrollTop($messageBox[0].scrollHeight);
 }
 
 
@@ -411,6 +411,13 @@ const messageService = (function () {
                     if (callback) {
                         callback(messages);
                     }
+                }
+                if(globalThis.page ==1){
+                    $messageBox.scrollTop($messageBox[0].scrollHeight);
+                    scrollPos=$messageBox[0].scrollHeight;
+                }else{
+                    $messageBox.scrollTop($messageBox[0].scrollHeight-scrollPos);
+                    scrollPos=$messageBox[0].scrollHeight;
                 }
             }
         });
