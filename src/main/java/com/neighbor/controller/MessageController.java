@@ -4,19 +4,14 @@ import com.neighbor.domain.dto.Criteria;
 import com.neighbor.domain.dto.MessageDTO;
 import com.neighbor.domain.dto.MessageRoomDTO;
 import com.neighbor.domain.vo.MemberVO;
-import com.neighbor.domain.vo.MessageRoomVO;
 import com.neighbor.domain.vo.MessageVO;
 import com.neighbor.service.BoardService;
 import com.neighbor.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,11 +104,17 @@ public class MessageController {
     }
 
 
-    @PostMapping("list/{memberId}")
+    @PostMapping("list/{memberId}/{listPage}")
     @ResponseBody
-    public List<MessageDTO> getMyMessageList(@PathVariable("memberId") Long memberId){
+    public List<MessageDTO> getMyMessageList(@PathVariable("memberId") Long memberId, @PathVariable("listPage") int page){
+        Criteria criteria = new Criteria();
+
+        criteria.setAmount(5);
+        criteria.setPage(page);
+        criteria.setOffset(criteria.getOffset());
+
         List<MessageDTO> result = new ArrayList<>();
-        List<MessageRoomDTO> entireList = messageService.showList(memberId);
+        List<MessageRoomDTO> entireList = messageService.showList(memberId, criteria);
 
         for (MessageRoomDTO messageRoom : entireList) {
             MessageDTO messageDTO = new MessageDTO();
@@ -131,9 +132,12 @@ public class MessageController {
             messageDTO.setBoardProfileOriginalName(messageService.getBoardThumbnail(messageRoom.getBoardId()).getBoardFileOriginalName());
             messageDTO.setBoardProfilePath(messageService.getBoardThumbnail(messageRoom.getBoardId()).getBoardFilePath());
             messageDTO.setBoardProfileUuid(messageService.getBoardThumbnail(messageRoom.getBoardId()).getBoardFileUuid());
+            messageDTO.setBoardStatus(messageService.getBoardByBoardId(messageRoom.getBoardId()).getBoardStatus());
+
             Long sellerId = messageDTO.getSellerId();
             Long customerId = (memberId==sellerId)? messageDTO.getTargetId() : memberId;
             messageDTO.setPurchaseStatus(messageService.getPurchase(messageRoom.getBoardId(), customerId));
+
 
             result.add(messageDTO);
         }

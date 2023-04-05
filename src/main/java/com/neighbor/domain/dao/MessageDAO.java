@@ -4,6 +4,7 @@ import com.neighbor.domain.dto.*;
 import com.neighbor.domain.vo.*;
 import com.neighbor.mapper.MessageMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class MessageDAO {
     private final MessageMapper messageMapper;
 
     //    <!-- 내가 보낸 쪽지 전체 -->
-    public List<MessageRoomDTO> findAll(Long memberId){return messageMapper.selectAll(memberId);}
+    public List<MessageRoomDTO> findAll(Long memberId, Criteria criteria){return messageMapper.selectAll(memberId, criteria);}
 
     //    <!-- 해당 게시글의 쪽지 내역-->
     public List<MessageVO> findMessage(Long messageRoomId, Criteria criteria){return messageMapper.selectMessage(messageRoomId, criteria);}
@@ -53,14 +54,17 @@ public class MessageDAO {
     //    <!--  게시글당 총 후기 수  -->
     public Integer findTotalReply(Long boardId){return messageMapper.selectTotalReply(boardId);}
 
+    //    <!--  키워드별 작성 후기 수  -->
+    public Integer findCountReplyByKeyword(Long memberId, String keyword){return messageMapper.selectCountReplyByKeyword(memberId, keyword);}
+
     //    <!--  내가 쓴 게시글 전체 조회  -->
-    public List<BoardDTO> findBoardByMemberId(Long memberId){return messageMapper.selectBoardByMemberId(memberId);}
+    public List<BoardDTO> findBoardByMemberId(Long memberId, Criteria criteria){return messageMapper.selectBoardByMemberId(memberId, criteria);}
 
     //    <!--  비밀번호 변경  -->
     public void changePassword(String memberPassword, Long memberId){messageMapper.updatePassword(memberPassword, memberId);}
 
     //    <!--  내가 작성한 후기  -->
-    public List<ReplyDTO> findReplyByMemberId(Long memberId){return messageMapper.selectReplyByMemberId(memberId);}
+    public List<ReplyDTO> findReplyByMemberId(Long memberId, Criteria criteria, String keyword){return messageMapper.selectReplyByMemberId(memberId, criteria, keyword);}
 
     //    <!--  게시글 썸네일 가져오기  -->
     public BoardFileVO findBoardThumbnail(Long boardId){return messageMapper.selectBoardThumbnail(boardId);}

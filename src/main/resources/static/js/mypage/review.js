@@ -14,19 +14,34 @@ function collapse(element) {
     }
 }
 
+
+$(document).ready(function() {
+    // 검색창에서 키보드를 눌렀을 때
+    $('.faq_search').on('keydown', function(e) {
+        if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+            e.preventDefault(); // 기본 이벤트 막기
+        }
+    });
+});
+
 /************************************************************************************/
 
-globalThis.page=1;
+var page=1;
+var keyword=$("#search_text").val();
 
 const replyService=(function(){
     function list(callback){
+        console.log(1)
+
         $.ajax({
-            url: "review/list/"+memberId+"/"+globalThis.page,
+            url: "review/list/"+memberId+"/"+page,
+            data: {keyword: keyword},
             dataType: "json",
             method: "post",
-            success: function(replys){
+            success: function(replyDTO){
+                console.log(2)
                 if(callback){
-                    callback(replys);
+                    callback(replyDTO);
                 }
             }
         });
@@ -35,9 +50,11 @@ const replyService=(function(){
 })();
 
 
-function showReplys(replys){
+function showReplys(replyDTO){
+    console.log(3)
     let replyList = "";
-    replys.forEach(reply => {
+    replyDTO.replyDTOS.forEach(reply => {
+        console.log(4)
         replyList += `
                 <ul class="my_review">
                 <li class="review_num">${reply.replyId}</li>
@@ -63,6 +80,51 @@ function showReplys(replys){
         `;
     });
     $(".reply-list-container").html(replyList);
+    showPage(replyDTO.pageDTO);
+    console.log(5)
+}
+
+function showPage(pageDTO) {
+    console.log(pageDTO)
+    const $btns = $('.page-button-box');
+    const criteria = pageDTO.criteria;
+    let text = "";
+    $btns.empty(); // 이전에 생성한 페이지 버튼 제거
+    if (pageDTO.prev) {
+        text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
+    }
+    for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+        if (criteria.page === i) {
+            text += `<a class="page-button" data-page="${i}">${i}</a>`;
+        } else {
+            text += `<a class="page-button" data-page="${i}">${i}</a>`;
+        }
+    }
+    if (pageDTO.next) {
+        text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
+    }
+    $btns.append(text);
+    $("input[name='page']").val(criteria.page);
+    let $page = $(".page-button-box").children(".page-button");
+    /*페이지 이동을 위함*/
+    $page.on('click', function(e) {
+        e.preventDefault();
+        page = $(this).text();
+        console.log("page: " +page);
+        replyService.list(showReplys);
+        $('.page-button.active').removeClass('active');
+        $(this).addClass('active');
+    }).on('mouseenter', function() {
+        $(this).css('cursor', 'pointer');
+    }).on('mouseleave', function() {
+        $(this).css('cursor', 'auto');
+    });
 }
 
 replyService.list(showReplys);
+
+$(".search_btn").on("click", function(){
+    page=1;
+    keyword=$("#search_text").val();
+    replyService.list(showReplys);
+});

@@ -1,6 +1,8 @@
 package com.neighbor.controller;
 
 import com.neighbor.domain.dto.BoardDTO;
+import com.neighbor.domain.dto.Criteria;
+import com.neighbor.domain.dto.PageDTO;
 import com.neighbor.domain.dto.ReplyDTO;
 import com.neighbor.domain.vo.MemberVO;
 import com.neighbor.service.BoardService;
@@ -85,7 +87,13 @@ public class MypageController {
     @PostMapping("myFoodList/{memberId}/{page}")
     @ResponseBody
     public List<BoardDTO> getListOfMyFood(@PathVariable("memberId")Long memberId, @PathVariable("page") int page){
-        List<BoardDTO> result = messageService.getBoardByMemberId(memberId);
+        Criteria criteria = new Criteria();
+
+        criteria.setAmount(8);
+        criteria.setPage(page);
+        criteria.setOffset(criteria.getOffset());
+
+        List<BoardDTO> result = messageService.getBoardByMemberId(memberId, criteria);
         for(BoardDTO board : result){
             board.setAvgScore(messageService.getAvgScore(board.getBoardId()));
             board.setTotalReply(messageService.getTotalReply(board.getBoardId()));
@@ -101,15 +109,28 @@ public class MypageController {
 
 //      후기
     @GetMapping("review")
-    public void gotomyReview(Model model, HttpSession session){
+    public void gotoMyReview(Model model, HttpSession session){
         getMemberInfo(model, session);
     }
 
 //    후기목록
     @PostMapping("review/list/{memberId}/{page}")
     @ResponseBody
-    public List<ReplyDTO> getReviewList(@PathVariable("memberId") Long memberId, @PathVariable("page") int page) {
-        return messageService.getReplyByMemberId(memberId);
+    public ReplyDTO getReviewList(@PathVariable("memberId") Long memberId, @PathVariable("page") int page, @RequestParam("keyword") String keyword, Criteria criteria) {
+
+
+        criteria = criteria.create(page, 10);
+        ReplyDTO replyDTO = new ReplyDTO();
+
+        if(keyword == null){
+            replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, messageService.getCountReply(memberId)));
+            keyword="";
+        }else{
+            replyDTO.setPageDTO(new PageDTO().createPageDTO(criteria, messageService.getCountReplyByKeyword(memberId, keyword)));
+        }
+        replyDTO.setReplyDTOS(messageService.getReplyByMemberId(memberId, criteria, keyword));
+
+        return replyDTO;
     }
 
 

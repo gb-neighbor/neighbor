@@ -15,8 +15,8 @@ public class MessageService {
     private final MessageDAO messageDAO;
 
     //    <!-- 내가 보낸 쪽지 전체 -->
-    public List<MessageRoomDTO> showList(Long memberId) {
-        return messageDAO.findAll(memberId);
+    public List<MessageRoomDTO> showList(Long memberId, Criteria criteria) {
+        return messageDAO.findAll(memberId, criteria);
     }
 
     //    <!-- 해당 게시글의 쪽지 내역-->
@@ -65,6 +65,9 @@ public class MessageService {
     //    <!--  작성 후기 수  -->
     public Integer getCountReply(Long memberId){return messageDAO.findCountReply(memberId);}
 
+    //    <!--  키워드별 작성 후기 수  -->
+    public Integer getCountReplyByKeyword(Long memberId, String keyword){return messageDAO.findCountReplyByKeyword(memberId, keyword);}
+
     //    <!--  게시글당 총 후기 수  -->
     public Integer getTotalReply(Long boardId){return messageDAO.findTotalReply(boardId);}
 
@@ -72,13 +75,13 @@ public class MessageService {
     public Integer getAvgScore(Long boardId){return messageDAO.findAvgScore(boardId);}
 
     //    <!--  내가 쓴 게시글 전체 조회  -->
-    public List<BoardDTO> getBoardByMemberId(Long memberId){return messageDAO.findBoardByMemberId(memberId);}
+    public List<BoardDTO> getBoardByMemberId(Long memberId, Criteria criteria){return messageDAO.findBoardByMemberId(memberId, criteria);}
 
     //    <!--  비밀번호 변경  -->
     public void setNewPassword(String memberPassword, Long memberId){messageDAO.changePassword(memberPassword, memberId);}
 
     //    <!--  내가 작성한 후기  -->
-    public List<ReplyDTO> getReplyByMemberId(Long memberId){return messageDAO.findReplyByMemberId(memberId);}
+    public List<ReplyDTO> getReplyByMemberId(Long memberId, Criteria criteria, String keyword){return messageDAO.findReplyByMemberId(memberId, criteria, keyword);}
 
     //    <!--  게시글 썸네일 가져오기  -->
     public BoardFileVO getBoardThumbnail(Long boardId){return messageDAO.findBoardThumbnail(boardId);}
