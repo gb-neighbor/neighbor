@@ -9,6 +9,7 @@ public class MessageDTO {
     private Long messageRoomId;
     private String latestRegisterDate;
     private String boardTitle;
+    private Boolean boardStatus;
     private Long boardId;
     private Long sellerId;
     private String boardProfileUuid;
