@@ -133,33 +133,30 @@ $inputs.on('blur', function () {
 });
 
 const $oldpassword = $("input[name='oldPassword']").val();
-console.log("1= " +$oldpassword);
-originalPassword = $("input[name='originalPassword']").val(btoa($("input[name='originalPassword']").val()));
-console.log("2= " +originalPassword);
 
 let form = $("form.update-password-form");
-form.action = "/mypage/updatePassword";
-form.method = "post";
 
 $changeButton.on('click', function (e) {
     e.preventDefault();
     let modalMessage = '';
+    originalPassword = $("input[name='originalPassword']").val(btoa($("input[name='originalPassword']").val()));
     console.log("$originalPassword.val() : " + $originalPassword.val());
     console.log("$oldpassword : " + $oldpassword);
 
 
-    /* 기존 비밀번호 검사 후 false일 때 모달창 */
+    /* 기존 비밀번호 검사 후 true일 때 모달창 */
     if($originalPassword.val() === $oldpassword){
-        modalMessage = '기존 비밀번호가 일치하지 않습니다.';
-        // setTimeout(function(){modalCheck = true;}, 500);
-        showWarnModal(modalMessage);
-    }else{
-        /* 기존 비밀번호 검사 후 true일 때 모달창 */
         modalMessage = "변경되었습니다.";
         showWarnModal(modalMessage);
         // setTimeout(function(){modalCheck = true;}, 500);
         $("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
-        // $("form.update-password-form").submit();
+        form.submit();
+    /* 기존 비밀번호 검사 후 false일 때 모달창 */
+    }else{
+        modalMessage = '기존 비밀번호가 일치하지 않습니다.';
+        // setTimeout(function(){modalCheck = true;}, 500);
+        showWarnModal(modalMessage);
+
     }
 });
 

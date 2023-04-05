@@ -74,94 +74,47 @@ $originalPassword.on('blur', function () {
     passwordCheckAll[0] = true;
 });
 
-/* 새로운 비밀번호 검사 */
-/* $passwordInput.on('blur', function () {
-  let value = $(this).val();
+// select 요소 가져오기
+const select = $('#gugun');
 
-  if (!value) {
-    $regexText.css('color', 'rgb(153, 153, 153)');
-    $passwordInput.css('border', '1px solid rgb(238, 238, 238)');
-    passwordCheck = false;
-    passwordCheckAll[1] = passwordCheck;
-    return;
-  } */
+let selectedOptionValue = originalRegion;
 
-/* 정규식 검사 */
-/*  let numberCheck = value.search(passwordNumberRegex);
- let englishCheck = value.search(passwordEnglishRegex);
- let specialCharacterCheck = value.search(passwordSpecialCharacterRegex);
+// change 이벤트 리스너 추가
+select.on('change', function() {
+    // 선택된 옵션의 값을 가져오기
+    selectedOptionValue = $(this).val();
+});
 
- var condition1 =
-   numberCheck >= 0 &&
-   englishCheck >= 0 &&
-   englishCheck >= 0 &&
-   specialCharacterCheck >= 0 &&
-   specialCharacterCheck >= 0 &&
-   numberCheck >= 0;
- var condition2 = value.length > 9 && value.length < 21;
- var condition3 = value.search(/\s/) < 0; */
 
-/* 정규식 검사 통과하면 true */
-/*  passwordCheck = condition1 && condition2 && condition3;
+let form = $("form[name='write-form']");
+const inputPassword = $("input.password-check")
 
- passwordCheckAll[1] = passwordCheck;
-
- if (!passwordCheck) {
-   $regexText.css('color', 'rgb(222, 28, 34)');
-   $passwordInput.css('border', '1px solid rgb(222, 28, 34)');
-   passwordCheckAll[1] = passwordCheck;
- } else {
-   $regexText.css('color', 'rgb(153, 153, 153)');
-   $passwordInput.css('border', '1px solid rgb(238, 238, 238)');
- }
-}); */
-
-/* 새로운 비밀번호 한번 더 입력 검사 */
-/* $checkInput.on('blur', function () {
-  let value = $(this).val();
-
-  if (value != $passwordInput.val()) {
-    $warnText.show();
-    $warnText.text(regexMessage);
-    $checkInput.css('border', '1px solid rgb(222, 28, 34)');
-    passwordCheck = false;
-    passwordCheckAll[2] = passwordCheck;
-  } else {
-    $warnText.hide();
-    passwordCheck = true;
-    passwordCheckAll[2] = passwordCheck;
-  }
-
-  passwordCheckAll[2] = passwordCheck;
-
-  if (!passwordCheck) {
-    $warnText.show();
-    $warnText.text(regexMessage);
-    $checkInput.css('border', '1px solid rgb(222, 28, 34)');
-    passwordCheckAll[2] = passwordCheck;
-  } else {
-    $warnText.hide();
-    $checkInput.css('border', '1px solid rgb(238, 238, 238)');
-  }
-}); */
-
-/* 입력한 값들이 모두 true라면 변경하기 버튼 활성화 */
-/* $inputs.on('blur', function () {
-  if (passwordCheckAll.filter((check) => check).length == 1) {
-    $changeButton.attr('disabled', false);
-    return;
-  }
-  $changeButton.attr('disabled', true);
-});  */
-
-$changeButton.on('click', function () {
+$changeButton.on('click', function (e) {
+    e.preventDefault();
     let modalMessage = '';
-    /* 기존 비밀번호 검사 후 false일 때 모달창 */
-    modalMessage = '기존 비밀번호가 일치하지 않습니다.';
-    showWarnModal(modalMessage);
+
+    inputPassword.val(btoa($("input.password-check").val()));
+    // console.log("inputPassword.val() : " + inputPassword.val());
+    // console.log("originalPassword : " + originalPassword);
+    // console.log("memberNickname : " + $("input[name='memberNickname']").val());
+    // console.log("memberBirth : " + $("input[name='memberBirth']").val());
+    // console.log("memberProfilePath : " + $("input[name='memberProfilePath']").val());
+
     /* 기존 비밀번호 검사 후 true일 때 모달창 */
-    /* modalMessage = "변경되었습니다.";
-      showWarnModal(modalMessage); */
+    if(originalPassword === inputPassword.val()){
+        modalMessage = "변경되었습니다.";
+        showWarnModal(modalMessage);
+        // setTimeout(function(){modalCheck = true;}, 500);
+        $("input[name='memberBirth']").val($("input[name='memberBirth']").val().replaceAll("-", ""));
+        $("input[name='memberRegion']").val(selectedOptionValue);
+        form.submit();
+        /* 기존 비밀번호 검사 후 false일 때 모달창 */
+    }else{
+        modalMessage = '기존 비밀번호가 일치하지 않습니다.';
+        // setTimeout(function(){modalCheck = true;}, 500);
+        showWarnModal(modalMessage);
+
+    }
 });
 
 /* 모달창 */
@@ -198,17 +151,15 @@ fileDOM.addEventListener('change', () => {
 
 /* 모든 정보가 있어야만 클릭 가능*/
 function changeButton(){
-    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6]){
+    if($(".password-check")!=""){
         $(".change-button").attr("disabled", false);
-        $(".password-check").attr("disabled", false);
     } else {
         $(".change-button").attr("disabled", true);
-        $(".password-check").attr("disabled", true);
     }
 }
 
 /* 인풋테그에 값이 있으면 순서대로 true로 변경 */
-let checkAll = [false, false, false, false, false, false];
+let checkAll = [false, false, false, false, false, false, false];
 /* 순서대로
     0 -> 닉네임
     1 -> 닉네임 중복
@@ -217,6 +168,7 @@ let checkAll = [false, false, false, false, false, false];
     4 -> 핸드폰 번호 중복
     5 -> 이메일
     6 -> 이메일 중복
+    7 -> 비밀번호 입력
 */
 
 /* 닉네임 */
@@ -288,7 +240,7 @@ $(".phone").on("keyup", function(){
     if($(".phone").val() != "" && $(".phone").val().length == 11 && regPhone.test($(".phone").val())) {
         checkAll[2] = true;
         $(".err-phone").text("");
-        changeButton();
+        // changeButton();
     } else {
         checkAll[2] = false;
         $(".err-phone").text("핸드폰 번호를 제대로 입력해주세요")
@@ -424,6 +376,10 @@ $(".birth").on("keyup", function() {
     }
 });
 
+$(".password-check").on("keyup", function() {
+    changeButton();
+});
+
 globalThis.arrayFile2 = new Array();
 globalThis.j = 0;
 const dataTransfer = new DataTransfer();
@@ -455,7 +411,7 @@ $("input[id='profile']").on("change", function() {
                     <input type="hidden" name="memberProfilePath" value="${toStringByFormatting(new Date())}">
                     <input type="hidden" name="memberProfileSize" value="${$files2.size}">
                     `
-            $("form[name='write-form']").append(text2);
+            $(".spot-for-profile").html(text2);
         }
     });
 });
