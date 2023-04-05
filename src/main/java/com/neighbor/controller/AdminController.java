@@ -246,7 +246,7 @@ public class AdminController {
     }
 
     //    대시보드 전체조회
-    @GetMapping("dash-board-listAll")
+    @GetMapping("dashboard/list")
     public String dashBoardShowList(Model model){
         List<BoardDTO> boardDTOS = new ArrayList<>();
         List<MemberDTO> memberDTOS = new ArrayList<>();

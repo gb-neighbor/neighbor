@@ -20,16 +20,20 @@
             <div id="wrap-middle-box">
                 <div id="middle-box-contents">
                     <div class="side-top-margin"></div>
-                    <span class="mouseOnEffect">
+
+                        <span class="mouseOnEffect">
+                            <a th:href="@{/main}">
                                 <div id="middle-box-site-shortcut-bar" class="side-bar">
                                     <div class="icon-gap">
                                         <img class="side-icons" alt="home" src="/css/admin/images/home.png">
                                     </div>
                                     사이트 바로가기
-                                </div> 
-                            </span>
+                                </div>
+                            </a>
+                        </span>
 
                     <span class="mouseOnEffect">
+                        <a th:href="@{/admin/dashboard/list}">
                                 <div id="middle-box-dashBoard-bar" class="side-bar">
                                     <div class="icon-gap">
                                         <img class="side-icons" alt="dash-board"
@@ -37,13 +41,16 @@
                                     </div>
                                     대시보드
                                 </div>
-                            </span>
+                        </a>
+                    </span>
 
                     <button type="button" class="no-collapsible mouseOnEffect">
+                        <a th:href="@{/admin/member/list}">
                         <div class="icon-gap">
                             <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
                         </div>
                         회원관리
+                        </a>
                     </button>
 
                     <button type="button" class="collapsible" onclick="collapse(this);">
@@ -56,16 +63,18 @@
                     </button>
 
                     <div class="content">
-                        <p>게시글 목록</p>
-                        <p>후기 목록</p>
+                        <p><a th:href="@{/admin/board/list}">게시글 목록</a></p>
+                        <p><!--<a th:href="@{/admin/reply/list}">-->후기 목록<!--</a>--></p>
                     </div>
 
                     <button type="button" class="no-collapsible mouseOnEffect">
+                        <a th:href="@{/admin/ask/list}">
                         <div class="icon-gap">
                             <img class="side-icons" alt="ask-board"
                                  src="/css/admin/images/ask-board-icon.png">
                         </div>
                         문의 게시판 관리
+                        </a>
                     </button>
                 </div>
             </div>
@@ -191,22 +200,23 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
+    const $changePageTags = $(".page-button");
+    const $searchButton = $("#search-button");
+    const $askAdminSearch = $(".ask-admin-search");
+    var page = 1;
+    let keyword = null;
+
+    load(page, keyword);
+
     $(document).ready(function() {
         // 검색창에서 키보드를 눌렀을 때
         $('.board-search-form').on('keydown', function(e) {
+            page = 1; // 페이지를 1로 해줘서 검색은 항상 전체를 하게 한다.
             if (e.keyCode == 13) { // Enter 키를 눌렀을 때
                 e.preventDefault(); // 기본 이벤트 막기
             }
         });
     });
-
-    const $changePageTags = $(".page-button");
-    const $searchButton = $("#search-button");
-    const $askAdminSearch = $(".ask-admin-search");
-    let page = 1;
-    let keyword = null;
-
-    load(page, keyword);
 
     function showList(askAdminDTOS) {
         const $results = $('.checkbox-group');
@@ -250,7 +260,7 @@
                               <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
                              <div class="comment-detail">${ask.askAdminContent}</div>
                              <form class="qna-manage">
-                                 <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
+                                 <p><textarea id="write-section-${ask.askAdminId}" class="write-section" cols="82" rows="10"  name = "${ask.askAdminAnswerContent}" value="${ask.askAdminAnswerContent}"></textarea></p>
                                  <input class="qna-submit-btn" type="button" value="전송하기" data-askId="${ask.askAdminId}">
                              </form>
                          </div>
@@ -289,7 +299,7 @@
         /*페이지 이동을 위함*/
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            const page = $(this).data('page');
+            page = $(this).data('page');
             console.log(page);
             load(page);
             $('.page-button.active').removeClass('active');
@@ -329,25 +339,40 @@
             }
         });
     }
+    // 전송하기 버튼을 클릭했을 때 실행할 코드 작성
+    $(document).on('click', '.qna-submit-btn', function() {
+        // console.log("전송하기 버튼을 클릭했습니다."); 들어옴
+        let askAdminAnswerDTO = {
+            askAdminAnswerContent: $('.write-section').val(),
+            askAdminId: this.dataset.askid,
+            memberId: $("input[id='check2']").val()
+        }
+        console.log($('.write-section').val());
+
+        $.ajax({
+            url: `/admin/ask/answer`,
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8 ',
+            data: JSON.stringify(askAdminAnswerDTO),
+            success: function() {
+                bg.remove();
+                $('.item-list-contents').remove();
+                load(page, keyword);
+            }
+        });
+    });
 
     /* delete 버튼 클릭 시 ajax실행*/
 
     $('.ask-delete-button').on('click', function () {
         var checkedItems = [];
-
-// 체크박스 요소들을 가져온다.
         var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
-
-// 체크박스들을 순회하며 체크된 항목들을 배열에 담는다.
         checkboxes.forEach(function(checkbox) {
             if (checkbox.checked) {
-                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
+                checkedItems.push(checkbox.value);
             }
         });
-        console.log(checkedItems);
-
         for(let i = 0; i<checkedItems.length; i++){
-            console.log(checkedItems[i]);
             $.ajax({
                 type : "DELETE",
                 url : "/admin/ask/delete",
@@ -360,7 +385,6 @@
             });
         }
     });
-
 
     function showListWait(askAdminDTOS) {
         const $results = $('.checkbox-group');
@@ -403,9 +427,11 @@
                               <div class="comment-title">제목: <span>${ask.askAdminTitle}</span></div>
                              <div class="comment-detail">${ask.askAdminContent}</div>
                              <form class="qna-manage">
-                                 <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                 <input class="qna-submit-btn" type="button" value="전송하기" data-askid="${ask.askAdminId}">
-                             </form>
+                                <p>
+                                    <textarea class="write-section" cols="82" rows="10" value="${ask.askAdminAnswerContent}"></textarea>
+                                </p>
+                                <input class="qna-submit-btn" type="button" value="전송하기" data-askId="${ask.askAdminId}">
+                            </form>
                          </div>
                     </div>`
         });
@@ -442,8 +468,6 @@
 // 페이지 이동 버튼 클릭 이벤트 핸들러 추가
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            const page = $(this).data('page');
-            console.log(page);
             load2(page, keyword);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
@@ -468,11 +492,12 @@
             }
         });
     }
-    /*판매 대기중인 목록을 불러오는 ajax*/
+    /* 판매 대기중인 목록을 불러오는 ajax*/
     $('.watch-waiting-ask').on('click',function() {
         load2(page,keyword);
     });
 
+    /* 전체 목록을 불러오는 ajax*/
     $('.watch-all-ask').on('click',function() {
         load(page,keyword);
     });
@@ -532,9 +557,7 @@
             askAdminId: this.dataset.askid,
             memberId: $("input[id='check2']").val()
         }
-        console.log("13245687");
-        console.log(this);
-        console.log(this.dataset.askid);
+        console.log($('.write-section').val());
 
         $.ajax({
             url: `/admin/ask/answer`,
@@ -548,7 +571,6 @@
             }
         });
     });
-
 
 
 </script>
