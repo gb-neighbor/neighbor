@@ -84,7 +84,7 @@
             <img class="admin-profile" src="https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png">
             <p class="admin-name">관리자</p>
             <p class="name-logout-space">ㅣ</p>
-            <button class="admin-logout" type="submit" value="">LOGOUT</button>
+            <button class="admin-logout" type="submit" value=""><a th:href="@{/members/logout}" class="admin-logout" type="submit" style="color: black">LOGOUT</a></button>
         </div>
         <div class="right-body">
             <div class="user-list-letter">
@@ -149,41 +149,6 @@
                             답변하기
                         </div>
                     </div>
-                    <!--<div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="qna-num"></div>
-                        <div class="qna-title"></div>
-                        <div class="user-nick-name"></div>
-                        <div class="qna-ask-day"></div>
-                        <div class="qna-answer-day"></div>
-                        <div class="qna-status qna-status-false"></div>
-                        <div class="detail">
-                            <button class="detail-button modal7" type="submit">
-                                <img class="detail-icon" src="/css/admin/images/edit-icon.png">
-                            </button>
-                        </div>
-                        <div id="my_modal7" class="my_modal">
-                            <a class="modal_close_btn">✖</a>
-                            <div class="comment-writer">작성자: 벅벅코딩</div>
-                            <div class="comment-title">제목: 메일이 안와요</div>
-                            <div class="comment-detail">
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                                메일이 안와요메일이 안와요메일이 안와요메일이 안와요메일이 안와요
-                            </div>
-                            <div class="qna-manage">
-                                <p><textarea class="write-section" cols="82" rows="10"></textarea></p>
-                                <input class="qna-submit-btn" type="submit" value="전송하기">
-                            </div>
-                        </div>
-                   </div>-->
                 </div>
                 <div class="page-button-box"></div>
             </div>
@@ -203,15 +168,18 @@
     let keyword = null;
     let click = 1;
     load(page, keyword);
+    let count = 1;
 
-    $(document).ready(function() {
-        // 검색창에서 키보드를 눌렀을 때
-        $('.ask-admin-search-form').on('keydown', function(e) {
+    // 검색창에서 키보드를 눌렀을 때
+    $('.ask-admin-search-form').on('keydown', function(e) {
+        if(count==1) {
             page = 1;
-            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
-                e.preventDefault(); // 기본 이벤트 막기
-            }
-        });
+        } else {
+            page2 = 1;
+        }
+        if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+            e.preventDefault(); // 기본 이벤트 막기
+        }
     });
 
     function showList(askAdminDTOS) {
@@ -295,13 +263,15 @@
         /*페이지 이동을 위함*/
         $('.page-button').on('click', function(e) {
             e.preventDefault();
-            if(count = 1) {
+            if(count == 1) {
                 page = $(this).data('page');
+                load(page);
             } else {
                 page2 = $(this).data('page2');
+                load2(page2);
             }
             console.log(page);
-            load(page);
+
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         }).on('mouseenter', function() {
@@ -314,12 +284,21 @@
 
     $searchButton.on("click", function() {
         keyword = $askAdminSearch.val();
-        load(page,keyword);
+        if(count == 1) {
+            load(page,keyword);
+        } else {
+            load2(page2,keyword);
+        }
+
     });
 
     $askAdminSearch.on("keyup", function() {
         keyword = $askAdminSearch.val();
-        load(page,keyword);
+        if(count == 1) {
+            load(page,keyword);
+        } else {
+            load2(page2,keyword);
+        }
     });
 
     // 처음 페이지 목록을 불러옴.
@@ -332,7 +311,6 @@
                 keyword: keyword
             },
             success: function (result) {
-                // replyDTO
                 $('.total-mentor-num').html(result.askTotal);
                 showList(result.askAdminDTOS);
                 showPage(result.pageDTO);
@@ -347,6 +325,13 @@
 // 체크박스 요소들을 가져온다.
         var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
 
+        // 체크박스가 하나도 선택되어 있지 않은 경우
+        if (checkboxes.length === 0) {
+            // 모달창 띄우기
+            alert('선택된 목록이 없습니다. 삭제할 항목을 선택해주세요.');
+            return;
+        }
+
 // 체크박스들을 순회하며 체크된 항목들을 배열에 담는다.
         checkboxes.forEach(function(checkbox) {
             if (checkbox.checked) {
@@ -354,6 +339,7 @@
             }
         });
         console.log(checkedItems);
+
 
         for(let i = 0; i<checkedItems.length; i++){
             console.log(checkedItems[i]);
@@ -364,10 +350,10 @@
                     "checkedId" : checkedItems[i]
                 },
                 success : function() {
-                    if(count = 1) {
+                    if(count == 1) {
                         load(page, keyword);
                     } else {
-                        load2(page,keyword);
+                        load2(page2,keyword);
                     }
                 }
             });
@@ -485,11 +471,13 @@
     /*판매 대기중인 목록을 불러오는 ajax*/
     $('.watch-waiting-ask').on('click',function() {
         count = 0;
+        page2 = 1;
         load2(page2,keyword);
     });
 
     $('.watch-all-ask').on('click',function() {
         count = 1;
+        page = 1;
         load(page,keyword);
     });
 
