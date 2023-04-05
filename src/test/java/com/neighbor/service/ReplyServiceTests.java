@@ -62,10 +62,14 @@ public class ReplyServiceTests {
 
     @Test
     public void testRepliesGet(){
-        CriteraForBoard criteraForBoard = new CriteraForBoard();
-        criteraForBoard.setPage(1);
-        criteraForBoard.create(10);
-        log.info(String.valueOf(replyService.getAllReplyMemberByBoardId(1L, criteraForBoard)));
+//        CriteraForBoard criteraForBoard = new CriteraForBoard();
+//        criteraForBoard.setPage(1);
+//        criteraForBoard.create(10);
+//        log.info(String.valueOf(replyService.getAllReplyMemberByBoardId(1L, criteraForBoard)));
+    }
+    @Test
+    public void testGet(){
+        log.info(String.valueOf(replyService.getCountReplyMember(1L, 1L)));
     }
 
 

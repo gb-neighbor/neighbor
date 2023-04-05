@@ -371,7 +371,15 @@
 </div>
 <!--  // 쪽지 모달 위치  -->
 
-<div class="modal_background" style="position: fixed; z-index: 998; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);"></div>
+
+<!-- 이미 썼다는 모달 -->
+<div class="modal_background" style="display:none;position:fixed;z-index: 100; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);">
+    <div class="warn-modal" style="width: 382px; height: 80px;position:fixed;z-index: 100;top:160px;margin-left:750px;font-size: 25px">
+        <span style="font-size: 15px;padding-left: 77px">이미 댓글을 입력하셨습니다</span>
+    </div>
+</div>
+
+<!-- //이미 썼다는 모달-->
 <!-- top으로 가는 버튼  -->
 <button id="topBtn">Top</button>
 <!-- //top으로 가는 버튼  -->

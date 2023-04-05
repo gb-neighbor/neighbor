@@ -113,6 +113,7 @@ function appendList() {
       console.log(board)
       if(board.files[0] != null){
       const stars = generateStarHtml(board.avgScore);
+      console.log(typeof board.boardStatus)
       boards +=
           `
         <li>
@@ -122,7 +123,7 @@ function appendList() {
                     data-board-file-path="${board.files[0].boardFilePath}"
                     data-board-file-uuid="${board.files[0].boardFileUuid}"
                     data-board-file-original-name="${board.files[0].boardFileOriginalName}"
-                    data-board-status="${board.files[0].boardStatus}">
+                    data-board-status="${board.boardStatus}">
                 </div>
             </div>
             <p class="board-title">${board.boardTitle}</p>
@@ -159,12 +160,14 @@ function appendList() {
     }
     $ul.append(boards);
     getProfileImage();
+    finishSale();
   });
 
 
 }
 
 appendList();
+finishSale();
 
 $(window).scroll(function() {
   let zoomLevel = $('body').css('zoom');
@@ -174,6 +177,7 @@ $(window).scroll(function() {
       appendList();
       console.log(page)
       getProfileImage();
+      finishSale()
     }
   }
 });
@@ -225,8 +229,6 @@ function getProfileImage(){
       let boardFilePath = $(this).data('board-file-path');
       let boardFileUuid = $(this).data('board-file-uuid');
       let boardFileOriginalName = $(this).data('board-file-original-name');
-      if(boardFileOriginalName == undefined){
-      }
       let boardUrl = '/board-files/display?fileName=' + 'boards/' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
       $(this).css('background-image', 'url(' + boardUrl + ')');
     });
@@ -236,16 +238,24 @@ function getProfileImage(){
 
 /* ---------------------------무한스크롤 끝------------------------------------- */
 
-/*  판매종료 띄우기*/
-window.onload = function (){
+  // 판매종료 띄우기
+function finishSale (){
   for (let i = 0; i < boardList.length; i++) {
-    if(boardList[i].boardStatus === true){
+    if(boardList[i].boardStatus == 1){
       $($(".label-spot")[i]).append(`<label for="parent-block">판매종료</label>`);
       $($(".board-thumb")[i]).css("opacity", 0.8).css("filter", "brightness(0.5)");
     }
-     else{
+  }
+}
+function finishSale() {
+  for (let i = 0; i < boardList.length; i++) {
+    console.log($('.board-thumb')) // 이게 안나옴
+    console.log($('.board-thumb').data('board-status'))
+    let boardStatus = $('.board-thumb').eq(i).data('board-status');
+    if (boardStatus == 1) {
+      $($(".label-spot")[i]).append(`<label for="parent-block">판매종료</label>`);
+      $($(".board-thumb")[i]).css("opacity", 0.8).css("filter", "brightness(0.5)");
+      console.log("들어옴")
     }
   }
 }
-
-

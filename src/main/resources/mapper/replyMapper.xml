@@ -42,6 +42,12 @@
         select count(reply_id) from tbl_reply
     </select>
 
+    <!-- 해당 게시물에 해당 사람이 리뷰를 몇번 썼는지 확인 -->
+    <select id="countReplyForRestrict" resultType="_int">
+        select count(reply_id) from tbl_reply
+        where board_id = #{boardId} and #{memberId}
+    </select>
+
 
     <!--후기관리 글 삭제-->
     <delete id="delete">

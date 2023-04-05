@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -41,5 +42,13 @@ public class ReplyController {
         log.info("boardId: "+ boardId);
         log.info(replyDTOList.toString());
         return replyDTOList;
+    }
+
+    @GetMapping("checks/{boardId}")
+    @ResponseBody
+    public Boolean checkReply(HttpSession session,@PathVariable Long boardId){
+//        해당 리뷰를 작성하고 있는 맴버
+        Long memberId = (Long)session.getAttribute("memberVO");
+        return replyService.getCountReplyMember(boardId, memberId);
     }
 }
