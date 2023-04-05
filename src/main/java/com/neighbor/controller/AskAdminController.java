@@ -87,5 +87,10 @@ public class AskAdminController {
         return new RedirectView("/ask-admin/inquiry-list");
     }
 
+    @GetMapping("/faq")
+    public String faq(){
+        return "mypage/faq";
+    }
+
 
 }

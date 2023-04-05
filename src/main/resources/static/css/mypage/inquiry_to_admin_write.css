@@ -70,6 +70,7 @@ a{
 .subnav a{
     display: inline-block;
     line-height: 49px;
+    cursor: pointer;
 }
 
 .subnav_wrapper{

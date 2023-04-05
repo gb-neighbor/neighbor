@@ -31,7 +31,7 @@
                 <a href="" class="first_letter select">문의</a>
                 <div class="list_my_shopping_items disply_bundle">
                     <a href="" class="second_letter except_home_letter select">FAQ</a>
-                    <a href="" class="second_letter except_home_letter">1:1 문의</a>
+                    <a th:href="@{inquiry-list}" class="second_letter except_home_letter">1:1 문의</a>
                 </div>
             </li>
 
@@ -51,9 +51,6 @@
 <section class="wrap">
     <article class="divide_btns">
         <ul class="btn_list">
-            <li>
-                <a class="btn_setting" href="">1:1문의</a>
-            </li>
             <li class="activate">
                 <a class="btn_setting select_btn" href="">FAQ</a>
             </li>
@@ -61,7 +58,7 @@
     </article>
 
     <article class="faq_content">
-        <form class="faq_search">
+        <form class="faq_search" style="display: none">
             <div class="search_wrap">
                 <div class="search_container">
                     <h3 class="search_info">자주 묻는 문의 선택</h3>
@@ -95,69 +92,63 @@
         <button type="button" class="collapsible" onclick="collapse(this);">
             <span class="question">Q.</span>
             <strong>
-                <span class="category_text">[회원정보관련]&nbsp</span>
+                <span class="category_text">[회원문의]&nbsp</span>
             </strong>
             비밀번호 변경은 어떻게하나요?
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
+            <p class="content_items">[마이페이지>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하시면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
             <span class="question">Q.</span>
             <strong>
-                <span class="category_text">[회원정보관련]&nbsp</span>
+                <span class="category_text">[회원문의]&nbsp</span>
             </strong>
-            비밀번호 변경은 어떻게하나요?
+            문의는 어떻게하나요?
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
+            <p class="content_items">[마이페이지>설정>문의>1:1문의쓰기>문의작성] 하시면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
             <span class="question">Q.</span>
             <strong>
-                <span class="category_text">[회원정보관련]&nbsp</span>
+                <span class="category_text">[회원문의]&nbsp</span>
             </strong>
-            비밀번호 변경은 어떻게하나요?
+            거래는 어떻게하나요?
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
+            <p class="content_items">[게시글>쪽지>판매자에게 쪽지] 하시면 됩니다.</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
             <span class="question">Q.</span>
             <strong>
-                <span class="category_text">[회원정보관련]&nbsp</span>
+                <span class="category_text">[회원문의]&nbsp</span>
             </strong>
-            비밀번호 변경은 어떻게하나요?
+            결제는 어떻게하나요?
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
+            <p class="content_items">[결제는 판매자와 상의후 개인거래입니다]</p>
         </div>
 
         <button type="button" class="collapsible" onclick="collapse(this);">
             <span class="question">Q.</span>
             <strong>
-                <span class="category_text">[회원정보관련]&nbsp</span>
+                <span class="category_text">[회원문의]&nbsp</span>
             </strong>
-            비밀번호 변경은 어떻게하나요?
+            판매신청은 어디서하나요?
         </button>
         <div class="content">
             <span class="answer">A.</span>
-            <p class="content_items">[마이가든>설정>비밀번호변경>기존 비밀번호 입력>새로운 비밀번호 입력] 하면 됩니다.</p>
+            <p class="content_items">[홈>상단 글쓰기>글작성 후 등록] 해주시면 판매 신청 완료입니다.</p>
         </div>
 
-        <div id="pagingDisplay" class="paging_navigation">
-            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>
-            <a href="" class="paging_num">1</a>
-            <a href="" class="paging_next_num">2</a>
-            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>
-        </div>
     </article>
 </section>
 <div th:insert="~{/main/footer:: footer}"></div>
