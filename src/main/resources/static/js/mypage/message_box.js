@@ -137,6 +137,7 @@ var $messageBox;
 var $infoBox;
 
 globalThis.page;
+globalThis.listPage =1;
 
 function getMessageRoom(target, board, messageRoomId) {
     globalThis.page = 1;
@@ -213,7 +214,7 @@ const messageService=(function(){
 
     function getMessageListByMemberId(callback){
         $.ajax({
-            url:"/messages/list/"+memberId,
+            url:"/messages/list/"+memberId+"/"+globalThis.listPage,
             dataType:"json",
             method:"post",
             success: function(messageRooms){
@@ -241,8 +242,8 @@ const messageService=(function(){
 
 messageService.getMessageListByMemberId(showMessageRooms);
 
-$('.send_form' + globalThis.targetNum).submit(function(e) {
-    e.preventDefault();
+$(document).on("click", ".send_btn", function() {
+    console.log("어떤뗴!")
     if($("#write-section" + globalThis.targetNum).val()){
         let messageVO = {
             boardId: boardId,
@@ -281,7 +282,7 @@ function showMessageRooms(messageRooms){
                         <div class="profile_wrap">
                             <div class="message_box_profile">
                                 <a href="/board/detail/${room.boardId}">
-                                    <img class="message_box_profile_image" src="/board-files/display?fileName=board/${room.boardFilePath}/${room.boardFileUuid}_${room.boardFileOriginalName}">
+                                    <img class="message_box_profile_image" src="/board-files/display?fileName=boards/${room.boardProfilePath}/${room.boardProfileUuid}_${room.boardProfileOriginalName}">
                                 </a>
                             </div>
                         </div>
@@ -298,9 +299,10 @@ function showMessageRooms(messageRooms){
                     <form class="purchase_complete_form">
                         <div class="purchase_complete_wrap">`
         if(`${room.sellerId}`== memberId) {
-            rooms += `${room.boardStatus}` ?
-                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">판매종료</p>
-`
+            console.log("boardStatus: "+`${room.boardStatus}`)
+            console.log("purchaseStatus: "+`${room.purchaseStatus}`)
+            rooms += !`${room.boardStatus}` ?
+                    `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">판매종료</p>`
                 : `${room.purchaseStatus}`!='null' ?
                     `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color: red;">거래종료</p>`
                 : `<p id="purchase_complete_message${room.messageRoomId}" class="complete_message" style="display: block; color:#009a3e;">거래중</p>`;
@@ -319,7 +321,7 @@ function showMessageRooms(messageRooms){
                         <div class="box_top" id="box_top${room.messageRoomId}"></div>
                         <div class="box_text" id="box_text${room.messageRoomId}"></div>
     
-                        <form class="send_form${room.messageRoomId}" name="form" method="post" >
+                        <form class="send_form${room.messageRoomId}" name="form" method="post">
                             <div class="text-container">
                                 <textarea class="write-section"  id="write-section${room.messageRoomId}" name="messageContent" cols="20" rows="5"
                                      onKeydown="getLength(${room.messageRoomId})"  onKeyUp="getLength(${room.messageRoomId})" maxlength="1001"></textarea>
@@ -327,14 +329,14 @@ function showMessageRooms(messageRooms){
                                     <input  id="text_length${room.messageRoomId}" class="count_letter" type="text" size="3" name="txtlen" value="0"
                                            readonly>
                                     <input disabled class="count_letter_max" type="text" size="10" value="/1000" readonly>
-                                    <button type="submit" id="send_btn_${room.messageRoomId}" class="send_btn">전송</button>
+                                    <button type="button" id="send_btn_${room.messageRoomId}" class="send_btn">전송</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </li>`;
     });
-    $("#message_box_list").html(rooms);
+    $("#message_box_list").append(rooms);
 }
 
 
@@ -398,3 +400,21 @@ function changeToText(number, boardId){
     $("#purchase_complete_message"+number).css("display","block");
     messageService.changePurchaseStatus(boardId);
 }
+
+
+
+/************************************************************************************************/
+
+$(window).scroll(
+    function() {
+        console.log("Math.ceil($(window).scrollTop())"+Math.ceil($(window).scrollTop()));
+        console.log("$(document).height()"+$(document).height());
+        console.log("$(window).height()"+$(window).height());
+        console.log("$(document).height() - $(window).height()"+($(document).height() - $(window).height()));
+
+        if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height()-232) {
+            globalThis.listPage++;
+            messageService.getMessageListByMemberId(showMessageRooms);
+        }
+    }
+);

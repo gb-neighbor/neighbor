@@ -5,6 +5,8 @@
     <select id="selectAll" resultType="messageRoomDTO">
         select if(seller_id=#{memberId}, customer_id, seller_id) target_id, message_room_id, board_id
         from tbl_message_room where (seller_id=#{memberId} or customer_id=#{memberId})
+        order by message_room_id desc
+        limit #{criteria.offset}, #{criteria.amount}
     </select>
 
     <!-- 해당 게시글의 쪽지 내역-->
@@ -66,6 +68,11 @@
         select count(reply_id) as count_reply from tbl_reply where member_id=#{memberId}
     </select>
 
+    <!--  키워드별 작성 후기 수  -->
+    <select id="selectCountReplyByKeyword" resultType="integer">
+        select count(reply_id) as count_reply from tbl_reply r join tbl_board b on r.board_id =b.board_id where r.member_id=#{memberId} and board_title like concat('%',#{keyword}, '%')
+    </select>
+
     <!--  게시물 평점  -->
     <select id="selectAvgScore" resultType="integer">
         select ifnull(avg(reply_score), 0) avg_score from tbl_reply where board_id =#{boardId}
@@ -82,7 +89,9 @@
         board_file_original_name as file_main_name, board_file_uuid as file_main_uuid, board_file_path as file_main_path, board_file_size as file_main_size
         , board_price
         from tbl_board b left join tbl_board_file bf
-        on b.board_id = bf.board_id where b.member_id =#{memberId} and board_file_status=1;
+        on b.board_id = bf.board_id where b.member_id =#{memberId} and board_file_status=1
+		order by board_register_date desc
+        limit #{criteria.offset}, #{criteria.amount}
     </select>
 
     <update id="updatePassword" >
@@ -93,8 +102,11 @@
 
     <!-- 내가 올린 후기글  -->
     <select id="selectReplyByMemberId" resultType="replyDTO">
-        	select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, r.board_id, board_title
-	        from tbl_reply r join tbl_board b on r.board_id =b.board_id where r.member_id=#{memberId}
+        select reply_id, reply_content, reply_score, reply_register_date, reply_update_date, r.member_id, r.board_id, board_title
+        from tbl_reply r join tbl_board b on r.board_id =b.board_id where r.member_id=#{memberId}
+        and board_title like concat('%',#{keyword}, '%')
+        order by reply_register_date desc
+        limit #{cri.offset}, #{cri.amount}
     </select>
 
     <!--  게시글 대표 사진 가져오기  -->

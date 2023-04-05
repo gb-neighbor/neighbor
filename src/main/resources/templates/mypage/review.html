@@ -56,8 +56,8 @@
             <div class="search_wrap">
                 <h3 class="message_box_title">내가 쓴 후기</h3>
                 <div class="search_container">
-                    <input type="text" name="search_text" id="search_text" class="search_input" value="" placeholder="제목으로 검색">
-                    <button type="submit" class="search_btn">검색</button>
+                    <input type="text" name="search_text" id="search_text" class="search_input" placeholder="제목으로 검색">
+                    <button type="button" class="search_btn">검색</button>
                 </div>
             </div>
         </form>
@@ -74,13 +74,13 @@
 
             </div>
         </div>
-
-        <div id="pagingDisplay" class="paging_navigation">
-            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>
-            <a href="" class="paging_num">1</a>
-            <a href="" class="paging_next_num">2</a>
-            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>
-        </div>
+        <div class="page-button-box"></div>
+<!--        <div id="pagingDisplay" class="paging_navigation">-->
+<!--            <a href="" rel="prev" class="arrow prev"><img class="arrow_left" src="/css/mypage/images/paging_left_arrow.png"></a>-->
+<!--            <a href="" class="paging_num">1</a>-->
+<!--            <a href="" class="paging_next_num">2</a>-->
+<!--            <a href="" class="arrow next"><img class="arrow_right" src="/css/mypage/images/paging_right_arrow.png"></a>-->
+<!--        </div>-->
     </article>
 </section>
 <div th:insert="~{/main/footer:: footer}"></div>

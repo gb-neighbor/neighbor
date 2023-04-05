@@ -3,6 +3,7 @@ package com.neighbor.mapper;
 import com.neighbor.domain.dto.*;
 import com.neighbor.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public interface MessageMapper {
 
 //    <!-- 내가 보낸 쪽지 전체 -->
-    public List<MessageRoomDTO> selectAll(Long memberId);
+    public List<MessageRoomDTO> selectAll(Long memberId, Criteria criteria);
 
 //    <!-- 해당 게시글의 쪽지 내역-->
     public List<MessageVO> selectMessage(Long messageRoomId, Criteria criteria);
@@ -48,14 +49,17 @@ public interface MessageMapper {
 //    <!--  게시글당 총 후기 수  -->
     public Integer selectTotalReply(Long boardId);
 
+//    <!--  키워드별 작성 후기 수  -->
+    public Integer selectCountReplyByKeyword(Long memberId, @Param("keyword") String keyword);
+
 //    <!--  내가 쓴 게시글 전체 조회  -->
-    public List<BoardDTO> selectBoardByMemberId(Long memberId);
+    public List<BoardDTO> selectBoardByMemberId(Long memberId, Criteria criteria);
 
 //    <!--  비밀번호 변경  -->
     public void updatePassword(String memberPassword, Long memberId);
 
 //    <!--  내가 작성한 후기  -->
-    public List<ReplyDTO> selectReplyByMemberId(Long memberId);
+    public List<ReplyDTO> selectReplyByMemberId(Long memberId, @Param("cri") Criteria criteria, @Param("keyword") String keyword);
 
 //    <!--  게시글 썸네일 가져오기  -->
     public BoardFileVO selectBoardThumbnail(Long boardId);

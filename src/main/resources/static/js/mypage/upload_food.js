@@ -26,6 +26,7 @@ const $listBox = $(".my_food_content");
 
 globalThis.page=1;
 
+
 const foodService=(function(){
     function list(callback){
         $.ajax({
@@ -42,6 +43,22 @@ const foodService=(function(){
 
     return {list:list};
 })();
+
+foodService.list(showMyfoods);
+
+
+
+$(window).scroll(
+    function() {
+        if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height() - 312) {
+            globalThis.page++;
+            console.log("here2");
+            console.log("page: "+globalThis.page);
+            foodService.list(showMyfoods);
+        }
+    }
+);
+
 
 function showMyfoods(myfoods){
 
@@ -88,4 +105,3 @@ function showMyfoods(myfoods){
     $listBox.append(myfoodList);
 }
 
-foodService.list(showMyfoods);
