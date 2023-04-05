@@ -117,7 +117,6 @@ public class MypageController {
     @ResponseBody
     public ReplyDTO getReviewList(@PathVariable("memberId") Long memberId, @PathVariable("page") int page, @RequestParam("keyword") String keyword, Criteria criteria) {
 
-
         criteria = criteria.create(page, 10);
         ReplyDTO replyDTO = new ReplyDTO();
 

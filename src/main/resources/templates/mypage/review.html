@@ -87,7 +87,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let memberId = [[${memberInfo.memberId}]];
+    let memberId = [[${session.memberVO}]];
 </script>
 <script src="/js/mypage/review.js"></script>
 </html>
