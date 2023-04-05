@@ -69,7 +69,7 @@ public class ReplyServiceTests {
     }
     @Test
     public void testGet(){
-        log.info(String.valueOf(replyService.getCountReplyMember(1L, 1L)));
+        log.info(String.valueOf(replyService.getCountReplyMember(20L, 3L)));
     }
 
 
