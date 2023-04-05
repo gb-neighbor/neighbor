@@ -58,4 +58,9 @@ public class ReplyDAO {
     public int getCountAll(){
         return replyMapper.getCountAll();
     }
+    
+//    댓글 제한을 위한 쿼리
+    public Integer getCountReplyMember(Long boardId, Long memberId){
+        return replyMapper.countReplyForRestrict(boardId, memberId);
+    };
 }

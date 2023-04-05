@@ -65,17 +65,29 @@ $('div.modal').on('click', function () {
     }
 });
 
-$(document).ready(function () {
     $('.review-write').click(function () {
         if ($('.review-my').css('display') == 'none') {
+            $.ajax({
+                url: `/replies/checks/${boardIdForReply}`,
+                success: function (check) {
+                    console.log(check)
+                    if(!check){
+                        showWarnModal();
+                        $(".review-my-textarea").val("리뷰는 한번만 작성할 수 있습니다. 신중하게 작성해주세요")
+                    }
+                }
+            });
             // 숨겨진 상태면 보이게 함
             $('.review-my').show(); // review-my 클래스 전체를 보이도록 수정
         }
-    });
 
     // 취소 버튼 클릭 시
     $('.review-my-score-cancel').click(function () {
         $('.review-my').hide(); // review-my 클래스 전체를 숨기도록 수정
+        replyInput.val('');
+        $(".review-my-form input[type=hidden]").remove();
+        $("ul.replyImg li").remove();
+        stars.forEach((star) => ($(star).attr('src', '/css/main/images/grey-star.png')))
     });
 });
 
@@ -150,7 +162,27 @@ function modal(name, id) {
         });
 }
 
+const warnModalBack = $(".modal_background");
+warnModalBack.on("click", function () {
+    warnModalBack.hide();
+    $(".review-write").hide()
+    $(".review-write-form").hide()
+    $(".review-my").hide()
+})
 
+warnModalBack.on("click", function () {
+    const modal = $(".modal_background");
+    modal.hide();
+})
+
+function showWarnModal() {
+    const warnModal = $(".modal-warn");
+    warnModalBack.css("display", "block");
+    warnModal.css("width", "300px")
+    warnModal.css("height", "300px")
+    warnModal.css("position", "fixed")
+
+}
 /*********************************************************************************************/
 
 function getLength(num) {
@@ -236,8 +268,10 @@ function pushNext() {
         }, 30);
     }
 };*/
-if (boardDTO.files.length < 5) {
+console.log(boardDTO.files.length)
+if (boardDTO.files.length < 6) {
     randomNext.style.display = "none";
+    console.log("들어어어어옴")
 }
 
 function pushPrev() {
@@ -684,6 +718,11 @@ stars2.forEach((star) =>
 	console.log(replyFileArray)
 	console.log(globalThis.uuids[0])
 })*/
+/* 리뷰작성 버튼을 눌렀을때 한번만 작성할 수 있도록 */
+
+
+
+
 /* 등록버튼을 눌렀을때  */
 $('.review-my-score-submit').on('click', function () {
     console.log(globalThis.uuids)
@@ -764,6 +803,7 @@ $('.review-my-score-submit').on('click', function () {
         }
     });
 })
+
 /* --------------------------------- 업로드 -----------------------*/
 
 

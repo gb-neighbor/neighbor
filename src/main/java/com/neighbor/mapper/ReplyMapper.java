@@ -40,5 +40,7 @@ public interface ReplyMapper {
 //    보드아이디로 맴버정보와 reply가져오기
     public List<ReplyDTO> selectAllReplyMemberByBoardId(Long boardId, @Param("cri2") CriteraForBoard criteraForBoard);
 
+//    맴버아이디랑 보드아이디로 reply몇개썼는지 확인하기
+    public Integer countReplyForRestrict(Long boardId, Long memberId);
 
 }

@@ -80,4 +80,13 @@ public class ReplyService {
         return replyDAO.getCountAll();
     }
 
+    public Boolean getCountReplyMember(Long boardId, Long memberId) {
+        Integer count = replyDAO.getCountReplyMember(boardId, memberId);
+        Boolean result = false;
+        if(count < 1){
+            result  = true;
+        }
+        return result;
+    }
+
 }

@@ -50,7 +50,7 @@ public class BoardController {
         boardDTO.setMemberId(memberId);
 
         boardDTO.setBoardId(boardService.write(boardDTO));
-        if(boardDTO.getFileMainName() != null){
+        if(boardDTO.getFileMainName() != null || boardDTO.getFiles() != null){
             boardFileService.upload(boardDTO);
         }
         log.info(String.valueOf(boardDTO));
