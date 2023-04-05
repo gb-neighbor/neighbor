@@ -24,7 +24,7 @@
                 and board_title like concat('%',#{keyword},'%')
             </if>
             <if test="gugun != null and gugun != '' and gugun != 0">
-                AND board_region LIKE CONCAT('%', #{gugun}, '%')
+                AND board_region = #{gugun}
             </if>
         </where>
         order by board_id desc

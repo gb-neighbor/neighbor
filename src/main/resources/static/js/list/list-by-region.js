@@ -21,9 +21,13 @@ function resetMap(){
     });
 }
 
+globalThis.regionSelected = 0;
+
 // 지도에서 선택 한 지역구 리스트 제목으로 반환
 function locationClick(num){
     $selected_region.text($region_list[num]);
+    globalThis.regionSelected = num;
+    console.log( $selected_region.text($region_list[num]).toString());
 }
 
 // 드롭다운에서 선택한 지역구 반환
@@ -221,14 +225,16 @@ $(".result-list").append(boardList2)
 let isLastPage = false;
 const $ul = $("#list");
 let keyword = "";
-let gugun = $("select[name=gugun]").val();
+// let gugun = $("select[name=gugun]").val();
+let gugun = 0;
+
 let page = 1;
 const boardService = (() => {
     page = 1;
     function getList(callback){
-        console.log(keyword)
-        console.log("현재 "+page)
-        console.log(gugun)
+        console.log("현재키워드 :"+keyword)
+        console.log("현재페이지 :"+page)
+        console.log("현재 구군 :"+gugun)
         $.ajax({
             url: `/board/lists/regions?keyword=${keyword}&gugun=${gugun}`,
             type: 'post',
@@ -344,6 +350,7 @@ $("button[name=search]").on("click", function(){
 // 지역
 $("select[name=gugun]").on("change", function () {
     gugun = $("select[name=gugun]").val();
+    console.log(keyword);
     console.log(gugun);
     $ul.empty();
     page = 1;
@@ -366,6 +373,31 @@ $("select[name=gugun]").on("change", function () {
     });
 });
 
+
+//지도
+$(".input-gugun").on("click", function () {
+    gugun = $(this).prev().val();
+    console.log("버튼눌렀을때 구군sd : "+gugun);
+    $ul.empty();
+    page = 1;
+    $(window).off('scroll'); // 이전 스크롤 이벤트를 막음
+    boardService.getList(function(boardDTOList) {
+        appendList(boardDTOList);
+        $(window).on('scroll', function() { // 새로운 스크롤 이벤트 등록
+            let zoomLevel = $('body').css('zoom');
+            if (zoomLevel === '0.8') {
+                if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+                    console.log("스크롤")
+                    page++;
+                    console.log(page)
+                    boardService.getList(function(boardDTOList) {
+                        appendList(boardDTOList);
+                    });
+                }
+            }
+        });
+    });
+});
 
 $(document).ready(function() {
     // 검색창에서 키보드를 눌렀을 때
