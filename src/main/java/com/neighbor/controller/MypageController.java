@@ -71,9 +71,9 @@ public class MypageController {
 
 //    회원탈퇴 완료
     @PostMapping("leave")
-    public String deleteMember(Long memberId){
+    public RedirectView deleteMember(Long memberId){
             memberService.delete(memberId);
-        return "redirect:/main";
+        return new RedirectView("/members/logout");
     }
 
 //     내가 올린 음식

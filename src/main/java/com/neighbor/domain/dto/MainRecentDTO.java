@@ -14,6 +14,7 @@ public class MainRecentDTO {
     private String memberProfileUuid;
     private String memberProfilePath;
     private Long boardId;
+    private Integer boardRegion;
     private String boardTitle;
     private Long boardFileId;
     private boolean boardFileStatus;

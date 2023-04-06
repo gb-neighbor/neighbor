@@ -54,7 +54,7 @@ function showReplys(replyDTO){
                 <ul class="my_review">
                 <li class="review_num">${reply.replyId}</li>
                 <li class="review_my_title">
-                    <a class="detail_link" href="">
+                    <a class="detail_link" href="/board/detail/${reply.boardId}">
                         ${reply.boardTitle}
                     </a>
                 </li>
