@@ -530,12 +530,18 @@ bottom: 3%;
     margin-top: 10%;
     padding-bottom: 1%;
     border-bottom: 1px solid black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .comment-title{
     margin-top: 1%;
     padding-bottom: 1%;
     border-bottom: 1px solid black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .comment-detail{
@@ -543,6 +549,9 @@ bottom: 3%;
     margin-bottom: 3%;
     padding-bottom: 5%;
     border-bottom: 1px solid black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .qna-submit-btn{

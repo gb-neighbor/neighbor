@@ -37,10 +37,10 @@ function clock() {
     var minutes = time.getMinutes();
     var seconds = time.getSeconds();
 
-    Target.innerText = 
-    `${month + 1}월 ${date}일 ${week[day]}요일 ` +
-    `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-        
+    Target.innerText =
+        `${month + 1}월 ${date}일 ${week[day]}요일 ` +
+        `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
 }
 clock();
 setInterval(clock, 1000); // 1초마다 실행
@@ -64,7 +64,7 @@ $(".checkbox-group").on("click", ".normal", function() {
 
 var check = $("input[type='checkbox']");
 check.click(function(){
-	$(this).parents(".right-contents").children(".status").toggle();
+    $(this).parents(".right-contents").children(".status").toggle();
 });
 
 
@@ -119,5 +119,4 @@ function openModal(id) {
     console.log(id);
     modal(id);
 }
-
 
