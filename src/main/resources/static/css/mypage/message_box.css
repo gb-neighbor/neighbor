@@ -130,12 +130,18 @@ a{
 }
 
 .message_box_title{
-    margin-top: 0;
-    margin-bottom: 40px;
-    line-height: 1;
-    font-size: 18px;
-    font-weight: bold;
-    color: #222624;
+    z-index: 2;
+    margin-top: 6px;
+    line-height: 20px;
+    color: #808080;
+    font-size: 13px;
+    text-decoration: none;
+    margin-bottom: 0;
+    text-align: left;
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .unread{
@@ -364,6 +370,10 @@ a{
     margin: 0 auto;
     font-weight: 400;
     font-size: 20px;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .title_refresh_wrap{
