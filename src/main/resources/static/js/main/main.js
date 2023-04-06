@@ -85,6 +85,8 @@ prev.addEventListener('click', function () {
     }, 300);
 });
 
+
+
 next.addEventListener('click', function () {
     if (checkArrow) {
         return;
@@ -172,39 +174,39 @@ randomNext.addEventListener('click', function () {
 /* 최근 게시물 */
 var timeOut = null;
 
-$(document).ready(function(){
-    $('.recent-food-picture').hover(function() {
-        var $this = $(this);
-        console.log(`1 : ` + $(this));
-        $this.find('.recent-food-info-wrap').stop().fadeIn(300);
-        $this.find('.recent-food-image').stop().css('filter', 'brightness(50%)');
-    }, function() {
-        var $this = $(this);
-        console.log(`2 : ` + $(this));
-        $this.find('.recent-food-info-wrap').stop().fadeOut(500);
-        $this.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
-    }).each(function() {
-        var $this = $(this);
-        console.log(`3 : ` + $(this));
-        var $infoWrap = $this.find('.recent-food-info-wrap');
-        $infoWrap.data('timeout', null);
-    });
-
-    $('.recent-food-info-wrap').mouseenter(function() {
-        var $this = $(this);
-        console.log(`4 : ` + $(this));
-        var $picture = $this.parent('.recent-food-picture');
-        clearTimeout($picture.data('timeout'));
-    }).mouseleave(function() {
-        var $this = $(this);
-        console.log(`5 : ` + $(this));
-        var $picture = $this.parent('.recent-food-picture');
-        $picture.data('timeout', setTimeout(function() {
-        $this.stop().fadeOut(500);
-        $picture.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
-        }, 500));
-    });
-});
+// $(document).ready(function(){
+//     $('.recent-food-picture').hover(function() {
+//         var $this = $(this);
+//         console.log(`1 : ` + $(this));
+//         $this.find('.recent-food-info-wrap').stop().fadeIn(300);
+//         $this.find('.recent-food-image').stop().css('filter', 'brightness(50%)');
+//     }, function() {
+//         var $this = $(this);
+//         console.log(`2 : ` + $(this));
+//         $this.find('.recent-food-info-wrap').stop().fadeOut(500);
+//         $this.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+//     }).each(function() {
+//         var $this = $(this);
+//         console.log(`3 : ` + $(this));
+//         var $infoWrap = $this.find('.recent-food-info-wrap');
+//         $infoWrap.data('timeout', null);
+//     });
+//
+//     $('.recent-food-info-wrap').mouseenter(function() {
+//         var $this = $(this);
+//         console.log(`4 : ` + $(this));
+//         var $picture = $this.parent('.recent-food-picture');
+//         clearTimeout($picture.data('timeout'));
+//     }).mouseleave(function() {
+//         var $this = $(this);
+//         console.log(`5 : ` + $(this));
+//         var $picture = $this.parent('.recent-food-picture');
+//         $picture.data('timeout', setTimeout(function() {
+//         $this.stop().fadeOut(500);
+//         $picture.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+//         }, 500));
+//     });
+// });
 
 
 // function changeImage(e) {
@@ -271,6 +273,38 @@ $(document).ready(function(){
     });
 }); */
 
+function addEventListeners() {
+    $('.recent-food-content ul').on('mouseenter', '.recent-food-picture', function() {
+        var $this = $(this);
+        $this.find('.recent-food-info-wrap').stop().fadeIn(300);
+        $this.find('.recent-food-image').stop().css('filter', 'brightness(50%)');
+    }).on('mouseleave', '.recent-food-picture', function() {
+        var $this = $(this);
+        $this.find('.recent-food-info-wrap').stop().fadeOut(500);
+        $this.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+    }).find('.recent-food-picture').each(function() {
+        var $this = $(this);
+        var $infoWrap = $this.find('.recent-food-info-wrap');
+        $infoWrap.data('timeout', null);
+    });
+
+    $('.recent-food-content ul').on('mouseenter', '.recent-food-info-wrap', function() {
+        var $this = $(this);
+        var $picture = $this.parent('.recent-food-picture');
+        clearTimeout($picture.data('timeout'));
+    }).on('mouseleave', '.recent-food-info-wrap', function() {
+        var $this = $(this);
+        var $picture = $this.parent('.recent-food-picture');
+        $picture.data('timeout', setTimeout(function() {
+            $this.stop().fadeOut(500);
+            $picture.find('.recent-food-image').stop().css('filter', 'brightness(100%)');
+        }, 500));
+    });
+
+}
+
+addEventListeners();
+
 
 
 /* 맨 위로 가는 버튼 */
@@ -303,17 +337,22 @@ goBottom.addEventListener("click", function() {
     const targetPosition = document.body.scrollHeight;  // 목표 스크롤 위치
 
     const distance = targetPosition - currentPosition;  // 스크롤 거리
-    const duration = 3000;  // 애니메이션 시간 (3초)
+    const duration = 1000;  // 애니메이션 시간 (1초)
 
     let startTime = null;
+    let animationFrameId = null; // 추가된 부분
 
     function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
         const scrollDistance = easeInOutQuad(timeElapsed, currentPosition, distance, duration);
         window.scrollTo(0, scrollDistance);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-        else window.scrollTo(0, document.body.scrollHeight);
+
+        if (timeElapsed < duration) {
+            animationFrameId = requestAnimationFrame(animation);
+        } else {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
     }
 
     function easeInOutQuad(t, b, c, d) {
@@ -323,8 +362,19 @@ goBottom.addEventListener("click", function() {
         return -c / 2 * (t * (t - 2) - 1) + b;
     }
 
+    // 추가된 부분
+    window.addEventListener("wheel", function(event) {
+        if (animationFrameId !== null) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+    }, { passive: true });
+
     requestAnimationFrame(animation);
 });
+
+
+
 
 //
 const boxes = document.querySelectorAll('.area-change');
@@ -338,6 +388,20 @@ boxes.forEach(box => {
         console.log(`클릭한 요소: ${clickedElement.tagName}, 내용: ${elementContent}`);
 
         handleClick(elementContent); // 클릭된 요소의 클래스 이름을 인자로 넘겨 함수 호출
+    });
+});
+
+
+const areaLinks = document.querySelectorAll(".area-change");
+
+areaLinks.forEach(function(areaLink) {
+    areaLink.addEventListener("click", function() {
+        // 기존에 "active" 클래스가 적용된 요소를 찾아서 클래스를 제거합니다.
+        const activeLink = document.querySelector(".active");
+        activeLink.classList.remove("active");
+
+        // 클릭된 요소에 "active" 클래스를 추가합니다.
+        this.parentElement.classList.add("active");
     });
 });
 
@@ -373,22 +437,24 @@ const $ul = $(".recent-food-list");
 function appendList(regionSelectRecentLists) {
     let boardText3 = '';
     regionSelectRecentLists.forEach(regionSelectRecentList => {
+
+        console.log(regionSelectRecentList.boardTitle);
+
+        console.log(regionSelectRecentList.memberNickname);
         boardText3 +=  `
-                    <li onmouseenter="changeImage(this)"> 
+                    <li> 
                         <!--th:href="@{/board/detail(boardId=${regionSelectRecentList.boardId})}"-->
-                        <a  class="recent-food">
+                        <a href="http://localhost:10000/board/detail/${regionSelectRecentList.boardId}" class="recent-food">
                             <div class="recent-food-picture-wrapper">
                                 <div class="recent-food-picture">
                                     <img class="recent-food-image" src="/board-files/display?fileName=/boards/${regionSelectRecentList.boardFilePath}/${regionSelectRecentList.boardFileUuid}_${regionSelectRecentList.boardFileOriginalName}" />
                                     <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title" text="${regionSelectRecentList.boardTitle}"></p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture"
-                                                 data-member-profile-path="${regionSelectRecentList.memberProfilePath}"
-                                                 data-member-profile-uuid="${regionSelectRecentList.memberProfileUuid}"
-                                                 data-member-profile-original-name="${regionSelectRecentList.memberProfileOriginalName}">
+                                        <p class="recent-food-picture-title" >${regionSelectRecentList.boardTitle}</p>
+                                        <a /*href="http://localhost:10000/board/detail/${regionSelectRecentList.memberId}"*/>
+                                            <div class="recent-food-user-picture">
+                                                <img class="recent-food-profile-image" src="/members/display?fileName=${regionSelectRecentList.memberProfilePath}/${regionSelectRecentList.memberProfileUuid}_${regionSelectRecentList.memberProfileOriginalName}" style=" width: 100%; height: 100%;"/>
                                             </div>
-                                            <p class="recent-food-user-nickname" text="${regionSelectRecentList.memberNickname}"></p>
+                                            <p class="recent-food-user-nickname" >${regionSelectRecentList.memberNickname}</p>
                                         </a>
                                     </div>
                                 </div>
@@ -396,8 +462,12 @@ function appendList(regionSelectRecentLists) {
                         </a>
                     </li>
         `;
+        let profileUrl = '/members/display?fileName=' + regionSelectRecentList.memberProfilePath + '/t_' + regionSelectRecentList.memberProfileUuid + '_' + regionSelectRecentList.memberProfileOriginalName;
+        $('.recent-food-content ul').find('.recent-food-user-picture').css('background-image', 'url(' + profileUrl + ')');
     });
+
     $ul.append(boardText3);
+
 }
 
 

@@ -187,6 +187,10 @@ div.buttons button:nth-child(1) {
     color: #222624;
 }
 
+.area{
+    cursor: pointer;
+}
+
 .area-wrap {
     margin-top: -10px;
     z-index: 1;
@@ -270,13 +274,14 @@ div.buttons button:nth-child(1) {
 }
 
 .recent-food-picture-title {
+    display: flex;
+    justify-content: center;
     line-height: 26px;
     font-size: 28px;
-    width: 150px;
+    width: 284px;
     overflow: hidden;
     position: absolute;
     top: -175px;
-    left: 70px;
     color: white;
 }
 
@@ -293,8 +298,7 @@ div.buttons button:nth-child(1) {
 
 .recent-food-user-picture {
     width: 70px;
-    height: 40px;
-    padding-bottom: 33px;
+    height: 70px;
     position: absolute;
     top: 60px;
     left: 107px;
@@ -305,17 +309,26 @@ div.buttons button:nth-child(1) {
     background-size: cover;
 }
 
+.recent-food-image{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+
+}
+
 .recent-food-user-nickname {
     max-width: 100%;
     line-height: 35px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    width: 284px;
     vertical-align: top;
     font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     position: absolute;
-    right: 114px;
     top: 140px;
     color: white;
 }

@@ -19,13 +19,13 @@ function sendJoin(){
 
 
 /* login.html 이메일 저장 버튼 클릭시 alert 이벤트 */
-$(".checkbox").on("click", function(){
-    if($(this).is(":checked")){
-        alert("개인정보보호를 위해 개인 기기에서만 사용하세요")
-    } else{
-    }
-
-})
+// $(".checkbox").on("click", function(){
+//     if($(this).is(":checked")){
+//         alert("개인정보보호를 위해 개인 기기에서만 사용하세요")
+//     } else{
+//     }
+//
+// })
 
 
 
