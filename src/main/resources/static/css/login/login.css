@@ -250,3 +250,10 @@ dd{
     background-image: url('https://www.shouse.garden/images/ico/sns_n.png');
     background-size: 18px auto;
 }
+
+.err-message{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: red;
+}

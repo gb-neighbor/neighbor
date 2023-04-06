@@ -164,28 +164,7 @@
             <ul class="recent-food-list">
                 <!-- =clearfix -->
                 <!-- 게시물 하나 -->
-                <th:block th:each="regionAllRecentList: ${regionAllRecentLists}">
-                    <li >
-                        <a th:href="@{/board/detail/__${regionAllRecentList.boardId}__}"  class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" th:src="'/board-files/display?fileName=/boards/' + ${regionAllRecentList.boardFilePath} + '/' + ${regionAllRecentList.boardFileUuid} + '_' + ${regionAllRecentList.boardFileOriginalName}" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title" th:text="${regionAllRecentList.boardTitle}"></p>
-                                        <a href="글쓴이 링크">
-                                            <div class="recent-food-user-picture"
-                                                 th:data-member-profile-path="${regionAllRecentList.memberProfilePath}"
-                                                 th:data-member-profile-uuid="${regionAllRecentList.memberProfileUuid}"
-                                                 th:data-member-profile-original-name="${regionAllRecentList.memberProfileOriginalName}">
-                                            </div>
-                                            <p class="recent-food-user-nickname" th:text="${regionAllRecentList.memberNickname}"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </th:block>
+
                 <!-- 게시물하나 끝 -->
                 <!-- after있음 -->
             </ul>
@@ -345,7 +324,7 @@
             console.log(boardFileOriginalName)
         });
     });
-
+    handleClick('전체');
 
 
 </script>

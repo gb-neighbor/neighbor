@@ -48,13 +48,19 @@ public class MemberController {
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("memberVO")) {
                     req.getSession().setAttribute("memberVO", Long.valueOf(cookie.getValue()));
-                    return "/main/main";
+                    return "redirect: /main/main";
                 }
             }
         }
 
 
         return "/login/login";
+    }
+
+    //로그인 실패시 로그인fail html로 이동
+    @GetMapping("login-fail")
+    public String goFail() {
+        return "/login/fail";
     }
 
     //회원가입에서 로고 클릭시 세션비우고 메인으로 이동
@@ -140,7 +146,7 @@ public class MemberController {
         memberService.login(memberIdentification, memberPassword);
 
         if(memberService.login(memberIdentification, memberPassword) == null){
-            path = "/members/login";
+            path = "/members/login-fail";
         }else{
             MemberVO memberVO = memberService.findInfoByIdentification(memberIdentification);
             httpSession.setAttribute("memberVO", memberVO.getMemberId());
