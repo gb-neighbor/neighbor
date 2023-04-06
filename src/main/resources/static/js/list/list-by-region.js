@@ -322,6 +322,30 @@ $('.search-form').on('keydown', function(e) {
     }
 });
 
+$("button[name=search-reset]").on("click",function () {
+    gugun = 0;
+    keyword = "";
+    $ul.empty();
+    page = 1;
+    $(window).off('scroll'); // 이전 스크롤 이벤트를 막음
+    boardService.getList(function(boardDTOList) {
+        appendList(boardDTOList);
+        $(window).on('scroll', function() { // 새로운 스크롤 이벤트 등록
+            let zoomLevel = $('body').css('zoom');
+            if (zoomLevel === '0.8') {
+                if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+                    console.log("스크롤")
+                    page++;
+                    console.log(page)
+                    boardService.getList(function(boardDTOList) {
+                        appendList(boardDTOList);
+                    });
+                }
+            }
+        });
+    });
+});
+
 
 $("button[name=search]").on("click", function(){
     keyword = $("input[name=keyword]").val();
