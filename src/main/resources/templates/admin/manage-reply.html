@@ -94,15 +94,21 @@
             <div class="user-list-contents">
                 <div class="reply-input-wrap">
                     <div class="reply-delete-button-wrap">
-                        <input class="reply-delete-button" type="button" value="후기 삭제">
+                        <input class="reply-delete-button admin-delete-button" onclick="openModalDelete()" type="button" value="후기 삭제">
                     </div>
-
+                    <div id="admin-my-modal" class="admin-modal">
+                        <div class="admin-modal-content">
+                            <p id="delete-check"></p>
+                            <button class="admin-delete-check" onclick="deleteItem()">확인</button>
+                            <button class="admin-delete-cancel" onclick="closeModal()">취소</button>
+                        </div>
+                    </div>
                     <div class="reply-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
                             <form class="reply-search-form" name="search-form" >
-                                <input class="reply-search keyword" name="keyword" type="text" placeholder="후기내용 검색">
-                                <button id="search-button" type="button">검색</button>
+                                <input class="reply-search keyword" name="keyword" type="text" placeholder="후기 내용 검색">
+                                <button id="search-button" type="button" style="display:none;">검색</button>
                             </form>
                         </div>
                     </div>
@@ -137,43 +143,10 @@
                             작성일
                         </div>
                     </div>
-
                     <!-- 여기부터 내용 -->
-                    <!--                    <div class="item-list-contents" th:each="reply:${replys}">-->
-                    <!--                        <div class="checkbox-zip">-->
-                    <!--                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">-->
-                    <!--                        </div>-->
-                    <!--                        <div class="reply-num" th:text="*{reply.replyId}"></div>-->
-                    <!--                        <div class="board-num" th:text="*{reply.boardId}"></div>-->
-                    <!--                        <div class="region" th:text="*{reply.replyRegionKo}"></div>-->
-                    <!--                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>-->
-                    <!--                        <div class="reply-content">-->
-                    <!--                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>-->
-                    <!--                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">-->
-                    <!--                                <a class="modal_close_btn">✖</a>-->
-                    <!--                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>-->
-                    <!--                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>-->
-                    <!--                    </div>-->
                 </div>
 
-                <div class="page-button-box">
-                    <!--<div th:object="${pagination}">
-                        <div style="text-align: center">
-                            <a class="page-button" th:href="*{result.pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
-                            <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
-                                <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                                <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                            </th:block>
-                            <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
-                        </div>
-                        <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
-                            <input type="hidden" th:field="*{page}">
-                        </form>
-                    </div>-->
-                </div>
+                <div class="page-button-box"></div>
             </div>
         </div>
     </div>
@@ -183,24 +156,20 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-
-
     const $changePageTags = $(".page-button");
     const $searchButton = $("#search-button");
     const $replySearch = $(".reply-search");
-    let page = 1;
+    page = 1;
     let keyword = null;
     load(page, keyword);
-    $(document).ready(function() {
         // 검색창에서 키보드를 눌렀을 때
         $('.reply-search-form').on('keydown', function(e) {
-            page = 1;
             if (e.keyCode == 13) { // Enter 키를 눌렀을 때
                 e.preventDefault(); // 기본 이벤트 막기
             }
         });
-    });
     function showList(replyDTOS) {
+        replyDTOS = replyDTOS || [];
         console.log("showlist" + page);
         const $results = $('.checkbox-group');
         var text = "";
@@ -261,8 +230,8 @@
         $('.page-button').on('click', function(e) {
             e.preventDefault();
             page = $(this).data('page');
-            console.log(page);
-            load(page);
+            keyword = $replySearch.val();
+            load(page,keyword);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         }).on('mouseenter', function() {
@@ -273,14 +242,14 @@
     }
 
     $searchButton.on("click", function() {
+        page = 1;
         keyword = $replySearch.val();
-        console.log(keyword);
         load(page,keyword);
     });
 
     $replySearch.on("keyup", function() {
+        page = 1;
         keyword = $replySearch.val();
-        console.log(keyword);
         load(page,keyword);
     });
 
@@ -304,7 +273,7 @@
 
     /* delete 버튼 클릭 시 ajax실행*/
 
-    $('.reply-delete-button').on('click', function () {
+    $('.admin-delete-check').on('click', function () {
         var checkedIds = new Array();
         // 체크 박스 체크된 값
         $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function () {
@@ -322,6 +291,46 @@
             }
         });
     });
+
+    /*삭제 버튼 모달*/
+    // 모달창 열기 함수
+    function openModalDelete() {
+        var checkedItems = [];
+        var message = document.getElementById("delete-check");
+        // 체크박스 요소들을 가져온다.
+        var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
+        // 체크된 항목이 없으면 모달을 띄웁니다.
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
+            }
+        });
+        if (checkedItems.length === 0) {
+            message.innerText = "선택된게 없습니다.";
+            document.getElementById("admin-my-modal").style.display = "block";
+            document.getElementsByClassName("admin-delete-cancel")[0].style.display = "none";
+            return;
+        } else {
+            message.innerText = "정말 삭제하시겠습니까?";
+            document.getElementById("admin-my-modal").style.display = "block";
+            document.getElementsByClassName("admin-delete-cancel")[0].style.display = "inline-block";
+        }
+    }
+
+    // 모달창 닫기 함수
+    function closeModal() {
+        document.getElementById("admin-my-modal").style.display = "none";
+    }
+
+    // 삭제 함수
+    function deleteItem() {
+        // 여기에 삭제 작업 코드를 작성
+        // 삭제 작업 후 모달창을 닫는 코드
+        closeModal();
+    }
+
+
 
 </script>
 </html>

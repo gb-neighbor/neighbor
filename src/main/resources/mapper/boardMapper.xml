@@ -135,6 +135,9 @@
         select count(distinct board_id) countTotalBoards
         from tbl_board
         where board_status=0
+        <if test="keyword!=null">
+            and board_content like concat('%',#{keyword}, '%')
+        </if>
     </select>
 
     <!-- 관리자 대시보드 게시판 조회 -->

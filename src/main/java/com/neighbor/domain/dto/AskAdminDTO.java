@@ -30,7 +30,7 @@ public class AskAdminDTO {
     private String memberProfileSystemName;
     private String memberProfileOriginalName;
     private String memberProfilePath;
-    private Integer askTotal;
+    private int askTotal;
 
     // ajax를 위한 리스트 생성
     private List<AskAdminDTO> askAdminDTOS;
