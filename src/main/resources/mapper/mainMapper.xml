@@ -18,7 +18,7 @@
     <!--별점 인기순별 섹션에 필요 정보 조회-->
     <select id="selectDataForReplyHighAvgList" resultType="mainReplyAvgHighDTO">
         SELECT m.member_id, m.member_nickname, m.member_region, m.member_profile_uuid, m.member_profile_original_name,
-               m.member_profile_path, m.member_profile_size, b.board_id, b.board_title, b.board_price, r.reply_id, round(AVG(r.reply_score),0) AS avg_reply_score
+               m.member_profile_path, m.member_profile_size, b.board_id, b.board_title, b.board_region, b.board_price, r.reply_id, round(AVG(r.reply_score),0) AS avg_reply_score
 		FROM tbl_board b
 		INNER JOIN tbl_member m ON b.member_id = m.member_id
 		INNER JOIN tbl_reply r ON r.board_id = b.board_id

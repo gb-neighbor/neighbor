@@ -183,6 +183,7 @@ $(".nick-name").on("keyup",function(){
 
     if(!$(this).val()){
         checkAll[2] = false;
+        $errNick.css('color', 'red')
         $errNick.text("닉네임을 입력해주세요")
     } else if($(this).val()){
         $errNick.text("")
@@ -438,6 +439,9 @@ function send() {
         $(document.writeForm).submit();
     }
 }
+
+
+
 /*닉네임 중복*/
 const $joinInputNickname = $(".nick-name");
 const $errorNickname = $(".err-nickname");

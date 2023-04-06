@@ -56,7 +56,7 @@ public RedirectView sendFindIdentifcationMail(String memberEmail) {
     MailVO mailVO = new MailVO();
     mailVO.setAddress(memberEmail);
     mailVO.setTitle("이웃집 반찬 아이디 찾기");
-    mailVO.setMessage("안녕하세요. 이웃집 반찬입니다.\n\n 회원님의 아이디는 " + memberIdentification + "입니다.");
+    mailVO.setMessage("안녕하세요. 이웃집 반찬입니다.\n\n회원님의 아이디는 " + memberIdentification + "입니다.");
 
     memberService.sendMail(mailVO);
 
@@ -79,7 +79,7 @@ public RedirectView sendFindIdentifcationMail(String memberEmail) {
         mailVO.setAddress(memberEmail);
         mailVO.setTitle("이웃집 반찬 비밀번호 변경");
         mailVO.setMessage("안녕하세요. 이웃집 반찬입니다.\n\n 비밀번호 변경을 위해선 아래 경로에 들어가주세요 \n\n " +
-                "경로: http://localhost:10000/members/change-password?memberIdentification="+memberIdentification + "&memberRandomKey=" + Base64.getEncoder().encodeToString(randomkey.getBytes(StandardCharsets.UTF_8)));
+                "url: http://localhost:10000/members/change-password?memberIdentification="+memberIdentification + "&memberRandomKey=" + Base64.getEncoder().encodeToString(randomkey.getBytes(StandardCharsets.UTF_8)));
 
         memberService.sendMail(mailVO);
 

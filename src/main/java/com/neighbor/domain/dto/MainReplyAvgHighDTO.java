@@ -17,6 +17,7 @@ public class MainReplyAvgHighDTO {
     private String memberProfilePath;
     private Long boardId;
     private String boardTitle;
+    private Integer boardRegion;
     private Integer boardPrice;
     private Long replyId;
     private Integer avgReplyScore;

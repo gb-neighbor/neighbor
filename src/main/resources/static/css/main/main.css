@@ -275,6 +275,7 @@ div.buttons button:nth-child(1) {
 
 .recent-food-picture-title {
     display: flex;
+    white-space: nowrap;
     justify-content: center;
     line-height: 26px;
     font-size: 28px;
@@ -440,6 +441,7 @@ div.buttons button:nth-child(1) {
 }
 
 .bookmark-food-name {
+    width: 270px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
