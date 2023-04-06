@@ -30,7 +30,7 @@ public class ReplyDAO {
 }
 
 // 후기글 전체 글 수
-    public Integer countAll(String keyword) {
+    public int countAll(String keyword) {
         return replyMapper.countAll(keyword);
     }
 
