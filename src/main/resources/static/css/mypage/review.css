@@ -73,7 +73,7 @@ a{
     display: none;
 }
 
-.list_my_shopping{
+.list_my_shopping_items{
     display: none;
 }
 
@@ -199,7 +199,6 @@ input::placeholder {
 .my_review{
     display: flex;
     align-items: center;
-    justify-content: center;
     margin-top: -1px;
     margin-bottom: 0;
     text-align: center;
@@ -210,6 +209,7 @@ input::placeholder {
     border-top: 1px solid #d9d9d9;
     border-bottom: 1px solid #d9d9d9;
     box-sizing: border-box;
+    justify-content: space-between;
 }
 
 .review_num{
@@ -246,6 +246,9 @@ input::placeholder {
     padding-left: 30px;
     padding-right: 30px;
     box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .review_my_content{
@@ -275,14 +278,23 @@ input::placeholder {
     height: 32px;
 }
 
-.paging_num{
-    display: flex;
+.page-button.active{
+    /*display: flex;*/
     align-items: center;
     justify-content: center;
     margin-left: 35px;
     font-size: 16px;
     font-weight: 700;
     color: #009a3e;
+}
+.page-button{
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    margin-left: 35px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
 }
 
 .paging_next_num{
@@ -332,4 +344,11 @@ input::placeholder {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.page-button-box {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 15px;
+    font-weight: bold;
 }
