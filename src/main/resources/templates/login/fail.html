@@ -13,23 +13,22 @@
 <body>
 <div class="wrapper">
     <div class="login-content">
-        <form action="/members/join-to-main" method="get">
-            <div class="logo">
-                <button>
-                    <span class="logo-name">이웃집 반찬</span>
-                </button>
-            </div>
-        </form>
+        <div class="logo">
+            <a href="http://localhost:10000/main">
+                <span class="logo-name">이웃집 반찬</span>
+            </a>
+        </div>
         <div class="form-wrapper">
             <form action="/members/login" name="loginForm" method="post">
                 <input type="text" placeholder="아이디" id="id" class="id" name="memberIdentification">
                 <input type="password" placeholder="비밀번호 8자 이상" class="password" name="memberPassword">
+                <p class="err-message err">존재하지 않는 계정입니다.</p>
                 <button type="button" class="login-button btn" onclick="sendLogin()">로그인</button>
 
                 <div class="bottom-wrap">
                     <label class="is-checked">
                         <input type="checkbox" name="saveEmail" onclick="" class="checkbox">
-                        <span>자동 로그인</span>
+                        <span>이메일 저장</span>
                     </label>
 
                     <div class="link">
