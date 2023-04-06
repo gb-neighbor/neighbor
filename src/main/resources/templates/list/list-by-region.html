@@ -517,6 +517,15 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let boardDTO = [[${boardDTOList}]];
+    $(document).ready(function() {
+        $('.thumbs').each(function () {
+            let memberProfilePath = $(this).data('member-profile-path');
+            let memberProfileFileUuid = $(this).data('member-profile-uuid');
+            let memberProfileOriginalName = $(this).data('member-profile-original-name');
+            let membeUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileFileUuid + '_' + memberProfileOriginalName;
+            $(this).css('background-image', 'url(' + membeUrl + ')');
+        });
+    });
 </script>
 
 <script src="/js/list/list-by-region.js"></script>
