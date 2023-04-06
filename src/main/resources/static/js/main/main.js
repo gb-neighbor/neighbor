@@ -443,14 +443,13 @@ function appendList(regionSelectRecentLists) {
         console.log(regionSelectRecentList.memberNickname);
         boardText3 +=  `
                     <li> 
-                        <!--th:href="@{/board/detail(boardId=${regionSelectRecentList.boardId})}"-->
                         <a href="http://localhost:10000/board/detail/${regionSelectRecentList.boardId}" class="recent-food">
                             <div class="recent-food-picture-wrapper">
                                 <div class="recent-food-picture">
                                     <img class="recent-food-image" src="/board-files/display?fileName=/boards/${regionSelectRecentList.boardFilePath}/${regionSelectRecentList.boardFileUuid}_${regionSelectRecentList.boardFileOriginalName}" />
                                     <div class="recent-food-info-wrap">
                                         <p class="recent-food-picture-title" >${regionSelectRecentList.boardTitle}</p>
-                                        <a /*href="http://localhost:10000/board/detail/${regionSelectRecentList.memberId}"*/>
+                                        <a href="http://localhost:10000/board/list/member/${regionSelectRecentList.memberId}"/>
                                             <div class="recent-food-user-picture">
                                                 <img class="recent-food-profile-image" src="/members/display?fileName=${regionSelectRecentList.memberProfilePath}/${regionSelectRecentList.memberProfileUuid}_${regionSelectRecentList.memberProfileOriginalName}" style=" width: 100%; height: 100%;"/>
                                             </div>

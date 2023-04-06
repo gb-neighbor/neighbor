@@ -42,11 +42,11 @@
     <!--최근 게시물 섹션에 지역별 필요 정보 8개 조회-->
     <select id="selectAllByRegion" resultType="mainRecentDTO">
         select m.member_id, m.member_nickname, m.member_profile_uuid, m.member_profile_original_name, m.member_profile_path, m.member_profile_size,
-               b.board_id, b.board_title, bf.board_file_id, bf.board_file_original_name, bf.board_file_uuid, bf.board_file_path, bf.board_file_size
+               b.board_id, b.board_title, b.board_region ,bf.board_file_id, bf.board_file_original_name, bf.board_file_uuid, bf.board_file_path, bf.board_file_size
         from tbl_member m
         inner join tbl_board b on m.member_id = b.member_id
         left join tbl_board_file bf on b.board_id = bf.board_id
-        where (m.member_region = #{memberRegion} or #{memberRegion} = 0) and board_file_status = 1
+        where (b.board_region = #{boardRegion} or #{boardRegion} = 0) and board_file_status = 1
         order by b.board_register_date desc
         limit 8
     </select>
