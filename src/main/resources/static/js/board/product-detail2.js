@@ -400,7 +400,7 @@ function openModalBanner(num) { /* 괄호에 num으로 받기 */
     modal('.my_modal', num);
 }
 
-const messageService = (function () {
+const messageService = (function () {f
     function list(callback) {
         $.ajax({
             url: "/messages/detail/" + boardId + "/" + memberId + "/" + targetId + "/" + globalThis.page,
