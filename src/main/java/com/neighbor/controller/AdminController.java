@@ -149,7 +149,7 @@ public class AdminController {
         return "admin/manage-board";
     }
 
-    /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
+    /* 게시판관리 ajax로 리스트를 불러오는 컨트롤러 */
 
     @GetMapping("board/page/keyword")
     @ResponseBody
@@ -220,6 +220,8 @@ public class AdminController {
 
         return askAdminDTO;
     }
+
+
 
     //  답변대기중 보여주기
     @GetMapping("ask/page/keyword/status")

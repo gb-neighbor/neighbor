@@ -102,7 +102,14 @@
                             <input class="watch-waiting-board-button" type="button" value="판매대기 상품 보기">
                         </div>
                         <div class="board-delete-button-wrap">
-                            <input class="board-delete-button" type="button" value="게시글 삭제">
+                            <input class="board-delete-button admin-delete-button" onclick="openModalDelete()" type="button" value="게시글 삭제">
+                        </div>
+                        <div id="admin-my-modal" class="admin-modal">
+                            <div class="admin-modal-content">
+                                <p id="delete-check"></p>
+                                <button class="admin-delete-check" onclick="deleteItem()">확인</button>
+                                <button class="admin-delete-cancel" onclick="closeModal()">취소</button>
+                            </div>
                         </div>
                     </div>
                     <div class="board-search-wrap">
@@ -110,7 +117,7 @@
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
                             <form class="board-search-form" name="search-form" >
                                 <input class="board-search keyword" name="keyword" type="text" placeholder="내용 검색">
-                                <button id="search-button" type="button">검색</button>
+                                <button id="search-button" type="button" style="display:none;">검색</button>
                             </form>
                         </div>
                     </div>
@@ -165,7 +172,6 @@
     let page = 1;
     let page2 = 1;
     let keyword = null;
-    let click = 1;
     load(page, keyword);
     let count = 1;
 
@@ -245,12 +251,13 @@
             e.preventDefault();
             if(count == 1) {
                 page = $(this).data('page');
-                load(page);
+                keyword = $boardSearch.val();
+                load(page,keyword);
             } else {
                 page2 = $(this).data('page2');
-                load2(page2);
+                keyword = $boardSearch.val();
+                load2(page2,keyword);
             }
-            load(page);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         }).on('mouseenter', function() {
@@ -298,9 +305,8 @@
         });
     }
 
-    /* delete 버튼 클릭 시 ajax실행*/
-
-    $('.board-delete-button').on('click', function () {
+        /* delete 버튼 클릭 시 ajax실행*/
+    $('.admin-delete-check').on('click', function () {
         var checkedItems = [];
 
 // 체크박스 요소들을 가져온다.
@@ -397,14 +403,14 @@
         $('.page-button').on('click', function(e) {
             e.preventDefault();
             page2 = $(this).data('page2');
-            console.log(page);
+            keyword = $boardSearch.val();
             load2(page2, keyword);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         });
     }
 
-    function load2(page, keyword) {
+    function load2(page2, keyword) {
         $('.total-mentor-num').empty();
         $('.list-container').empty();
         $('.page-button-box').empty();
@@ -412,7 +418,7 @@
             url: `/admin/board/page/keyword/status`,
             type: "get",
             data: {
-                page: page,
+                page: page2,
                 keyword: keyword
             },
             success: function (resultWait) {
@@ -422,18 +428,64 @@
             }
         });
     }
-    /*판매 대기중인 목록을 불러오는 ajax*/
-    $('.watch-waiting-board').on('click',function() {
-        count = 0;
-        page2 = 1;
-        load2(page2,keyword);
-    });
 
-    $('.watch-all-board').on('click',function() {
-        count = 1;
-        page = 1;
-       load(page,keyword);
-    });
+
+        $('.watch-all-board-button, .watch-waiting-board-button').click(function() {
+            $('.board-search-form input').val("");
+
+            /*판매 대기중인 목록을 불러오는 ajax*/
+            $('.watch-waiting-board').on('click',function() {
+                count = 0;
+                page2 = 1;
+                keyword = null;
+                load2(page2,keyword);
+            });
+
+            $('.watch-all-board').on('click',function() {
+                count = 1;
+                page = 1;
+                keyword = null;
+                load(page,keyword);
+            });
+        });
+/*삭제 버튼 모달*/
+    // 모달창 열기 함수
+    function openModalDelete() {
+        var checkedItems = [];
+        var message = document.getElementById("delete-check");
+        // 체크박스 요소들을 가져온다.
+        var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
+        // 체크된 항목이 없으면 모달을 띄웁니다.
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
+            }
+        });
+        if (checkedItems.length === 0) {
+            message.innerText = "선택된게 없습니다.";
+            document.getElementById("admin-my-modal").style.display = "block";
+            document.getElementsByClassName("admin-delete-cancel")[0].style.display = "none";
+            return;
+        } else {
+            message.innerText = "정말 삭제하시겠습니까?";
+            document.getElementById("admin-my-modal").style.display = "block";
+            document.getElementsByClassName("admin-delete-cancel")[0].style.display = "inline-block";
+        }
+    }
+
+    // 모달창 닫기 함수
+    function closeModal() {
+        document.getElementById("admin-my-modal").style.display = "none";
+    }
+
+    // 삭제 함수
+    function deleteItem() {
+        // 여기에 삭제 작업 코드를 작성
+        // 삭제 작업 후 모달창을 닫는 코드
+        closeModal();
+    }
+
 
 
 </script>
