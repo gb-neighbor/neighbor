@@ -283,6 +283,7 @@ div.buttons button:nth-child(1) {
     position: absolute;
     top: -175px;
     color: white;
+    text-overflow: ellipsis;
 }
 
 .recent-food-user-info {

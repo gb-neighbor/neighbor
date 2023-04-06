@@ -13,6 +13,9 @@
     <nav class="header-grey-line">
         <div class="header-grey-line-inner">
             <ul class="header-logIn-signUp">
+                <li class="header-admin">
+                    <a th:if="${session.memberVO == 1}" th:href="@{/admin/dashboard/list}">관리자페이지</a>
+                </li>
                 <li class="header-my">
                     <a th:if="${session.memberVO != null}" th:href="@{/mypage/profile_home}">마이페이지</a>
                 </li>

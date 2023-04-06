@@ -17,9 +17,12 @@
     <section class="container">
         <!-- 메인 배너 -->
         <div class="banner">
-            <div><a class="bannerLink" th:href="@{/board/write}"></a></div>
+            <div>
+                <a class="bannerLink" th:if="${session.memberVO != null}" th:href="@{/board/write}"></a>
+                <a class="bannerLink" th:if="${session.memberVO == null}" th:href="@{/members/login}"></a>
+            </div>
             <div><a></a></div>
-            <div><a class="bannerLink"th:href="@{/board/list/region}"></a></div>
+            <div><a class="bannerLink" th:href="@{/board/list/region}"></a></div>
             <div id="goBottom"></div>
         </div>
 
@@ -164,13 +167,13 @@
             <ul class="recent-food-list">
                 <!-- =clearfix -->
                 <!-- 게시물 하나 -->
-
+                <h1>게시물이 존재하지 않습니다.</h1>
                 <!-- 게시물하나 끝 -->
                 <!-- after있음 -->
             </ul>
         </div>
         <!-- 최근 게시물 더보기 -->
-        <a href="" class="recent-food-more-button">
+        <a th:href="@{/board/list/region}" class="recent-food-more-button">
             <span class="recent-food-more-write">더보기</span>
         </a>
     </article>
@@ -215,7 +218,7 @@
             </ul>
         </div>
         <div class="bookmark-more-button-wrap">
-            <a href="" class="bookmark-more-button">
+            <a th:href="@{/board/list/region}" class="bookmark-more-button">
                 <span class="bookmark-more-write">더보기</span>
             </a>
         </div>
