@@ -219,7 +219,7 @@ function getProfileImage(){
       let memberProfilePath = $(this).data('member-profile-path');
       let memberProfileUuid = $(this).data('member-profile-uuid');
       let memberProfileOriginalName = $(this).data('member-profile-original-name');
-      let boardUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileUuid + '_' + memberProfileOriginalName;
+      let boardUrl = '/members/display?fileName=' + memberProfilePath + '/' + memberProfileUuid + '_' + memberProfileOriginalName;
       $(this).css('background-image', 'url(' + boardUrl + ')');
     });
   });
@@ -229,7 +229,7 @@ function getProfileImage(){
       let boardFilePath = $(this).data('board-file-path');
       let boardFileUuid = $(this).data('board-file-uuid');
       let boardFileOriginalName = $(this).data('board-file-original-name');
-      let boardUrl = '/board-files/display?fileName=' + 'boards/' + boardFilePath + '/t_' + boardFileUuid + '_' + boardFileOriginalName;
+      let boardUrl = '/board-files/display?fileName=' + 'boards/' + boardFilePath + '/' + boardFileUuid + '_' + boardFileOriginalName;
       $(this).css('background-image', 'url(' + boardUrl + ')');
     });
   });

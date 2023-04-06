@@ -135,7 +135,7 @@
             let memberProfilePath = $(this).data('member-profile-path');
             let memberProfileUuid = $(this).data('member-profile-uuid');
             let memberProfileOriginalName = $(this).data('member-profile-original-name');
-            let boardUrl = '/members/display?fileName=' + memberProfilePath + '/t_' + memberProfileUuid + '_' + memberProfileOriginalName;
+            let boardUrl = '/members/display?fileName=' + memberProfilePath + '/' + memberProfileUuid + '_' + memberProfileOriginalName;
             $(this).css('background-image', 'url(' + boardUrl + ')');
         });
     });

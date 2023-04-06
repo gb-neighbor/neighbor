@@ -12,7 +12,7 @@
     <!-- 메인 페이지 헤더 부분에 회색줄 -->
     <nav class="header-grey-line">
         <div class="header-grey-line-inner">
-            <ul class="header-logIn-signUp">
+            <ul class="header-logIn-signUp" style="display: block">
                 <li class="header-my">
                     <a th:if="${session.memberVO != null}" th:href="@{/mypage/profile_home}">마이페이지</a>
                 </li>
