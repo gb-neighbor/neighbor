@@ -446,7 +446,6 @@ function appendList(regionSelectRecentLists) {
             console.log(regionSelectRecentList.memberNickname);
             boardText3 += `
                     <li> 
-                        <!--th:href="@{/board/detail(boardId=${regionSelectRecentList.boardId})}"-->
                         <a href="http://localhost:10000/board/detail/${regionSelectRecentList.boardId}" class="recent-food">
                             <div class="recent-food-picture-wrapper">
                                 <div class="recent-food-picture">

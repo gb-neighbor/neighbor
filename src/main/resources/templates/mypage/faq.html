@@ -18,7 +18,7 @@
     <div class="subnav_wrapper">
         <ul class="subnav_list">
             <li class="list_profile">
-                <a href="" class="first_letter">프로필</a>
+                <a th:href="@{/mypage/profile_home}" class="first_letter">프로필</a>
                 <div class="list_profile_items disply_bundle">
                     <a href="" class="second_letter">홈</a>
                     <a href="" class="second_letter except_home_letter">쪽지함</a>
@@ -36,7 +36,7 @@
             </li>
 
             <li class="list_setting">
-                <a href="" class="first_letter">설정</a>
+                <a th:href="@{/mypage/password_update}" class="first_letter">설정</a>
                 <div class="list_my_setting_items disply_bundle">
                     <a href="" class="second_letter except_home_letter">비밀번호 변경</a>
                     <a href="" class="second_letter except_home_letter">회원탈퇴</a>

@@ -58,7 +58,7 @@ public class BoardDAO {
     }
 
     //    관리자 페이지 판매 목록 판매 대기중인 글 수
-    public Integer count(String keyword) {
+    public int count(String keyword) {
         return boardMapper.count(keyword);
     }
 

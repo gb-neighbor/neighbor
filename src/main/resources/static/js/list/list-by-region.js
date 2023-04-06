@@ -313,6 +313,7 @@ function appendList(boardDTOList) {
 // 페이지 로딩 시 초기 리스트를 불러옴
 boardService.getList(function(boardDTOList) {
     appendList(boardDTOList);
+    getProfileImage();
 });
 
 // 검색창에서 키보드를 눌렀을 때
@@ -320,6 +321,30 @@ $('.search-form').on('keydown', function(e) {
     if (e.keyCode == 13) { // Enter 키를 눌렀을 때
         e.preventDefault(); // 기본 이벤트 막기
     }
+});
+
+$("button[name=search-reset]").on("click",function () {
+    gugun = 0;
+    keyword = "";
+    $ul.empty();
+    page = 1;
+    $(window).off('scroll'); // 이전 스크롤 이벤트를 막음
+    boardService.getList(function(boardDTOList) {
+        appendList(boardDTOList);
+        $(window).on('scroll', function() { // 새로운 스크롤 이벤트 등록
+            let zoomLevel = $('body').css('zoom');
+            if (zoomLevel === '0.8') {
+                if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+                    console.log("스크롤")
+                    page++;
+                    console.log(page)
+                    boardService.getList(function(boardDTOList) {
+                        appendList(boardDTOList);
+                    });
+                }
+            }
+        });
+    });
 });
 
 
@@ -340,6 +365,7 @@ $("button[name=search]").on("click", function(){
                     console.log(page)
                     boardService.getList(function(boardDTOList) {
                         appendList(boardDTOList);
+                        getProfileImage()
                     });
                 }
             }
@@ -366,6 +392,7 @@ $("select[name=gugun]").on("change", function () {
                     console.log(page)
                     boardService.getList(function(boardDTOList) {
                         appendList(boardDTOList);
+                        getProfileImage()
                     });
                 }
             }
@@ -373,7 +400,7 @@ $("select[name=gugun]").on("change", function () {
     });
 });
 
-
+getProfileImage()
 //지도
 $(".input-gugun").on("click", function () {
     gugun = $(this).prev().val();
@@ -417,6 +444,7 @@ $(window).on('scroll', function() {
             console.log(page)
             boardService.getList(function(boardDTOList) {
                 appendList(boardDTOList);
+                getProfileImage()
             });
         }
     }
@@ -451,7 +479,6 @@ function generateStarHtml(avgScore) {
     }
     return stars;
 }
-
 function getProfileImage(){
     $('.thumbs1').each(function () {
         let boardFilePath = $(this).data('board-file-path');

@@ -94,15 +94,21 @@
             <div class="user-list-contents">
                 <div class="reply-input-wrap">
                     <div class="reply-delete-button-wrap">
-                        <input class="reply-delete-button" type="button" value="후기 삭제">
+                        <input class="reply-delete-button admin-delete-button" onclick="openModalDelete()" type="button" value="후기 삭제">
                     </div>
-
+                    <div id="admin-my-modal" class="admin-modal">
+                        <div class="admin-modal-content">
+                            <p id="delete-check"></p>
+                            <button class="admin-delete-check" onclick="deleteItem()">확인</button>
+                            <button class="admin-delete-cancel" onclick="closeModal()">취소</button>
+                        </div>
+                    </div>
                     <div class="reply-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
                             <form class="reply-search-form" name="search-form" >
-                                <input class="reply-search keyword" name="keyword" type="text" placeholder="후기내용 검색">
-                                <button id="search-button" type="button">검색</button>
+                                <input class="reply-search keyword" name="keyword" type="text" placeholder="후기 내용 검색">
+                                <button id="search-button" type="button" style="display:none;">검색</button>
                             </form>
                         </div>
                     </div>
@@ -137,43 +143,10 @@
                             작성일
                         </div>
                     </div>
-
                     <!-- 여기부터 내용 -->
-                    <!--                    <div class="item-list-contents" th:each="reply:${replys}">-->
-                    <!--                        <div class="checkbox-zip">-->
-                    <!--                            <input type="checkbox" name="checkbox" id="check1" class="normal" value="">-->
-                    <!--                        </div>-->
-                    <!--                        <div class="reply-num" th:text="*{reply.replyId}"></div>-->
-                    <!--                        <div class="board-num" th:text="*{reply.boardId}"></div>-->
-                    <!--                        <div class="region" th:text="*{reply.replyRegionKo}"></div>-->
-                    <!--                        <div class="writer-nick" th:text="*{reply.memberNickname}"></div>-->
-                    <!--                        <div class="reply-content">-->
-                    <!--                            <span th:attrappend="id=*{reply.replyId}" th:text="*{reply.replyContent}" onclick="openModal(this.id)"></span>-->
-                    <!--                            <div th:id="'my_modal' + *{reply.replyId}" class="my_modal">-->
-                    <!--                                <a class="modal_close_btn">✖</a>-->
-                    <!--                                <div class="comment-writer">작성자: <span th:text="*{reply.memberNickname}"></span></div>-->
-                    <!--                                <div class="comment-detail" th:text="*{reply.replyContent}"></div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="reply-day" th:text="*{reply.replyRegisterDate}"></div>-->
-                    <!--                    </div>-->
                 </div>
 
-                <div class="page-button-box">
-                    <!--<div th:object="${pagination}">
-                        <div style="text-align: center">
-                            <a class="page-button" th:href="*{result.pageDTO.startPage - 1}" th:if="*{prev}"><code><</code></a>
-                            <th:block th:each="page:${#numbers.sequence(result.pageDTO.startPage, result.pageDTO.endPage)}">
-                                <a class="page-button" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                                <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                            </th:block>
-                            <a class="page-button" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
-                        </div>
-                        <form th:action="@{/replys/list}" th:object="${criteria}" name="pageForm">
-                            <input type="hidden" th:field="*{page}">
-                        </form>
-                    </div>-->
-                </div>
+                <div class="page-button-box"></div>
             </div>
         </div>
     </div>
@@ -181,147 +154,5 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/admin/admin.js"></script>
-<script>
-
-
-    const $changePageTags = $(".page-button");
-    const $searchButton = $("#search-button");
-    const $replySearch = $(".reply-search");
-    let page = 1;
-    let keyword = null;
-    load(page, keyword);
-    $(document).ready(function() {
-        // 검색창에서 키보드를 눌렀을 때
-        $('.reply-search-form').on('keydown', function(e) {
-            page = 1;
-            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
-                e.preventDefault(); // 기본 이벤트 막기
-            }
-        });
-    });
-    function showList(replyDTOS) {
-        console.log("showlist" + page);
-        const $results = $('.checkbox-group');
-        var text = "";
-        var content = "";
-        replyDTOS.forEach(reply => {
-            content += `
-            <div class="item-list-contents">
-                <div class="checkbox-zip">
-                    <input type="checkbox" name="checkbox" id="check1" class="normal" value="">
-                </div>
-                <div class="reply-num">${reply.replyId}</div>
-                <div class="board-num">${reply.boardId}</div>
-                <div class="region">${reply.replyRegionKo}</div>
-                <div class="writer-nick">${reply.memberNickname}</div>
-                <div class="reply-content">
-                    <span id="${reply.replyId}" onclick="openModal(${reply.replyId})">${reply.replyContent}</span>
-                    <div id="my_modal${reply.replyId}" class="my_modal">
-                        <a class="modal_close_btn">✖</a>
-                        <div class="comment-writer">작성자: <span>${reply.memberNickname}</span></div>
-                        <div class="comment-detail">${reply.replyContent}</div>
-                    </div>
-                </div>
-                <div class="reply-day">${reply.replyRegisterDate}</div>
-            </div>`
-        });
-        $('.item-list-contents').remove();
-        if ($("#check-all").prop("checked")) {
-            $("#check-all").prop("checked", false);
-        }
-        $results.append(content);
-
-    } // showlist 끝
-
-    // 페이지를 텍스트로 가져오기 성공!
-    function showPage(pageDTO) {
-        console.log("showpage" + page);
-        const $btns = $('.page-button-box');
-        const criteria = pageDTO.criteria;
-        let text = "";
-        $btns.empty(); // 이전에 생성한 페이지 버튼 제거
-        if (pageDTO.prev) {
-            text += `<a class="page-button" data-page="${pageDTO.startPage - 1}"><code><</code></a>`;
-        }
-        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
-            if (criteria.page === i) {
-                text += `<a class="page-button" data-page="${i}">${i}</a>`;
-            } else {
-                text += `<a class="page-button" data-page="${i}">${i}</a>`;
-            }
-        }
-        if (pageDTO.next) {
-            text += `<a class="page-button" data-page="${pageDTO.endPage + 1}"><code>></code></a>`;
-        }
-        $btns.append(text);
-        $("input[name='page']").val(criteria.page);
-
-        // 클릭 시 css가 변하는 이벤트 추가, css가 제대로 작동하는지 확인 필요. 최종 전에 확인하기
-        $('.page-button').on('click', function(e) {
-            e.preventDefault();
-            page = $(this).data('page');
-            console.log(page);
-            load(page);
-            $('.page-button.active').removeClass('active');
-            $(this).addClass('active');
-        }).on('mouseenter', function() {
-            $(this).css('cursor', 'pointer');
-        }).on('mouseleave', function() {
-            $(this).css('cursor', 'auto');
-        });
-    }
-
-    $searchButton.on("click", function() {
-        keyword = $replySearch.val();
-        console.log(keyword);
-        load(page,keyword);
-    });
-
-    $replySearch.on("keyup", function() {
-        keyword = $replySearch.val();
-        console.log(keyword);
-        load(page,keyword);
-    });
-
-    function load(page, keyword) {
-        $.ajax({
-            url: `/admin/reply/page/keyword`,
-            type: "get",
-            data: {
-                page: page,
-                keyword: keyword
-            },
-            success: function (result) {
-                console.log("load" + page);
-                // replyDTO
-                $('.total-mentor-num').html(result.replyTotal);
-                showList(result.replyDTOS);
-                showPage(result.pageDTO);
-            }
-        });
-    }
-
-    /* delete 버튼 클릭 시 ajax실행*/
-
-    $('.reply-delete-button').on('click', function () {
-        var checkedIds = new Array();
-        // 체크 박스 체크된 값
-        $('input:checkbox[name=checkbox]:checked').parent().parent().find('.reply-num').each(function () {
-            console.log(this.innerText);
-            checkedIds.push(this.innerText);
-        });
-        $.ajax({
-            url: "/admin/reply/delete",
-            type: "delete",
-            data: {
-                "checkedIds": checkedIds,
-            },
-            success: function () {
-                load(page, keyword);
-            }
-        });
-    });
-
-</script>
+<script src="/js/admin/manage-reply.js"></script>
 </html>
