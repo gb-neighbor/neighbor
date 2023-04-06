@@ -195,14 +195,9 @@ warnModalBack.on("click", function () {
 })
 
 function showWarnModal() {
-    const warnModal = $(".modal-warn");
-    $('.modal_background').insertBefore(warnModal);
+    const warnModalBack = $('.modal_background');
+    const warnModal = $('.modal-warn');
     warnModalBack.css("display", "block");
-    warnModal.css("width", "300px")
-    warnModal.css("height", "300px")
-    warnModal.css("position", "fixed")
-    warnModal.css("background", "white")
-    warnModal.css("z-index", "1500")
-
+    warnModal.css("display", "block");
 }
 
