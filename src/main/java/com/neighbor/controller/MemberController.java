@@ -36,7 +36,14 @@ public class MemberController {
 
     // 회원가입 페이지로 이동
     @GetMapping("register")
-    public String goSignUp(){
+    public String goSignUp(HttpSession httpSession){
+        httpSession.invalidate();
+        return "/login/join";
+    }
+
+    // 카카오로그인시 없으면 회원가입 페이지로 이동
+    @GetMapping("kakao-register")
+    public String goKakaoSignUp(){
         return "/login/join";
     }
 
@@ -57,11 +64,11 @@ public class MemberController {
         return "/login/login";
     }
 
-    //로그인 실패시 로그인fail html로 이동
-    @GetMapping("login-fail")
-    public String goFail() {
-        return "/login/fail";
-    }
+//    //로그인 실패시 로그인fail html로 이동
+//    @GetMapping("login-fail")
+//    public String goFail() {
+//        return "/login/fail";
+//    }
 
     //회원가입에서 로고 클릭시 세션비우고 메인으로 이동
     @GetMapping("join-to-main")
@@ -140,16 +147,15 @@ public class MemberController {
 
     // 로그인
     @PostMapping("login")
-    public RedirectView login(String memberIdentification, String memberPassword, String saveEmail, HttpSession httpSession, HttpServletResponse response){
+    public String login(String memberIdentification, String memberPassword, String saveEmail, HttpSession httpSession, HttpServletResponse response){
         String path = "";
         Long memberId = memberService.login(memberIdentification, memberPassword);
         memberService.login(memberIdentification, memberPassword);
 
         if(memberService.login(memberIdentification, memberPassword) == null){
-            path = "/members/login-fail";
+            path = "/login/fail";
         }else{
             MemberVO memberVO = memberService.findInfoByIdentification(memberIdentification);
-            httpSession.setAttribute("memberVO", memberVO.getMemberId());
 
             if(saveEmail != null){
 //                Cookie memberIdentificationCookie = new Cookie("memberIdentification", memberIdentification);
@@ -164,16 +170,18 @@ public class MemberController {
                 response.addCookie(cookie);
             }
             if(memberVO.getMemberId() == 1){
-                path = "/admin/dashboard/list";
+                path = "redirect:/admin/dashboard/list";
                 log.info("관리자 계정으로 들어옴 !!!!!!!!!!!!!!!!!!!!!!!");
             }else{
                 log.info("메인 일반 계정으로 들어옴 !!!!!!!!!!!!!!!!!!!!!!!");
-                path = "/main";
+                path = "redirect:/main";
             }
+
+            httpSession.setAttribute("memberVO", memberVO.getMemberId());
 
         }
         log.info(path);
-        return new RedirectView(path);
+        return path;
     }
 
     //로그아웃
@@ -195,7 +203,9 @@ public class MemberController {
     //아이디 찾기
     @PostMapping("find-id")
     public void findIdentification(String memberEmail) {
+        log.info("이메일 들어왔다-----------------!!"+memberEmail);
         memberService.findIdentification(memberEmail);
+        log.info(memberService.findIdentification(memberEmail)+"확인 확인 확인");
     }
 
     //비밀번호 변경
