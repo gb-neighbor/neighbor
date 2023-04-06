@@ -12,9 +12,8 @@ function sendLogin(){
 
 /* 회원가입시 비밀번호 암호화 */
 function sendJoin(){
-    location.replace(location.href);
-    $(".pw").val(btoa($(".pw").val()));
-    document.loginForm.submit();
+    const newPassword = btoa($('.pw').val());
+    $('.pw').val(newPassword);
 }
 
 
@@ -40,7 +39,7 @@ $('input').keydown(function(event) {
 
 
 /* 인풋테그에 값이 있으면 순서대로 true로 변경 */
-let checkAll = [false, false, false, false, false, false, false, false, false, false, false, false];
+let checkAll = [false, false, false, false, false, false, false, false, false, false, false, false, false];
 /* 순서대로
     0 -> 비밀번호를 정확히 입력했다면 true
     1 -> 비밀번호와 비밀번호 확인이 같다면 true
@@ -54,6 +53,7 @@ let checkAll = [false, false, false, false, false, false, false, false, false, f
     9 -> 아이디 중복
     10 -> 이메일 중복
     11 -> 닉네임 중복
+    12 -> 지역
 */
 
 /* 프로필 사진 썸네일 */
@@ -100,7 +100,7 @@ $(".identification").on("blur", function () {
     } else {
         $(".id-err").text("");
         checkAll[7] = true;
-        changeButton();
+
     }
 })
 
@@ -132,7 +132,7 @@ $passwordInput.keyup(function(e){
     } else{
         $errPassword.text("")
         checkAll[0] = true;
-        changeButton();
+
     }
 })
 
@@ -142,7 +142,7 @@ $passwordInput.keyup(function(e){
     if($passwordInput.val() == $passwordCheck.val()){
         $errPasswordCheck.text("")
         checkAll[1] = true;
-        changeButton();
+
     } else{
         $errPasswordCheck.text("비밀번호가 다릅니다")
         checkAll[1] = false;
@@ -155,7 +155,7 @@ $passwordCheck.keyup(function(e){
     if($passwordInput.val() == $passwordCheck.val()){
         $errPasswordCheck.text("")
         checkAll[1] = true;
-        changeButton();
+
     } else{
         $errPasswordCheck.text("비밀번호가 다릅니다")
         checkAll[1] = false;
@@ -177,7 +177,7 @@ $(".nick-name").on("keyup",function(){
     } else if($(this).val()){
         $errNick.text("")
         checkAll[2] = true;
-        changeButton();
+
 
     }
 
@@ -187,19 +187,28 @@ $(".nick-name").on("keyup",function(){
     } else if($(this).val()){
         $errNick.text("")
         checkAll[2] = true;
-        changeButton();
+
 
     }
 })
 
+$errName = $(".err-name")
 /* 이름엔 영어와 한글만 가능하게 */
-$(".name").on("keyup", function() {
+$(".name").on("blur", function() {
     $(this).val($(this).val().replace(/[^(ㄱ-힣a-zA-Z)]/gi, ''));
     if($(this).val() != ""){
         checkAll[3] = true;
-        changeButton();
+
     } else {
         checkAll[3] = false;
+    }
+
+    if(!$(this).val()){
+        checkAll[3] = false;
+        $errName.text("필수 입력 사항입니다.")
+    } else if($(this).val()) {
+        $errName.text("")
+        checkAll[3] = true;
     }
 });
 
@@ -210,7 +219,10 @@ $(".birth").on("keyup", function() {
     if($(this).val() != "" && $(this).val().length == 8 && regBirth.test($(this).val())){
         checkAll[4] = true;
         $(".err-birth").text("");
-        changeButton();
+
+    }else if(!$(this).val()){
+        checkAll[4] = false;
+        $(".err-birth").text("필수 입력 사항입니다.")
     } else {
         checkAll[4] = false;
         $(".err-birth").text("생일을 정확히 입력해주세요")
@@ -224,7 +236,7 @@ $(".phone").on("keyup", function(){
     if($(".phone").val() != "" && $(".phone").val().length == 11 && regPhone.test($(".phone").val())) {
         checkAll[5] = true;
         $(".err-phone").text("");
-        changeButton();
+
     } else {
         checkAll[5] = false;
         $(".err-phone").text("핸드폰 번호를 제대로 입력해주세요")
@@ -234,16 +246,16 @@ $(".phone").on("keyup", function(){
 
 
 /* 지역 */
-/* $("#region").on("keyup", function(){
-    if(!$(this).val()){
-        checkAll[7] = false;
-        $(".err-region").text("지역을 입력해주세요");
+$(".regionSelect").on("blur", function(){
+    if($(this).val() == 0){
+        checkAll[12] = false;
+        $(".err-region").text("지역을 선택해주세요");
     } else{
-        checkAll[7] = true;
+        checkAll[12] = true;
         $(".err-region").text("");
-        changeButton();
+
     }
-}) */
+})
 
 
 
@@ -267,7 +279,7 @@ $email.keyup(function(){
     } else {
         $helpEmail.text("");
         checkAll[6] = true;
-        changeButton();
+
 
     }
 
@@ -337,7 +349,7 @@ $joinInputId.on("blur",function(){$.ajax({
             $joinHelp.css('display', 'block');
             $joinHelp.css('color', '#2bb673');
             checkAll[9] = true;
-            changeButton();
+
 
 
         }
@@ -382,7 +394,7 @@ $inputEmail.on("blur", function(){$.ajax({
             $errEmail.css('display', 'block');
             $errEmail.css('color', '#2bb673');
             checkAll[10] = true;
-            changeButton();
+
         }
 
         $errEmail.text(message);
@@ -417,15 +429,15 @@ $inputEmail.on("blur", function(){$.ajax({
 
 // /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
-const $joinInputs = $("input[type=email]");
+const $joinInputs = $( ".regionSelect, input[type=text], input[type=password], input[type=checkbox]", );
 function send() {
-    $joinInputs.trigger("blur");
-    if (checkAll.filter(check => check).length != $joinInputs.length) {
-        return;
-    }
-    $(document.write-form).submit();
-}
 
+    $joinInputs.trigger("blur");
+    if (checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11] && checkAll[12]) {
+        sendJoin();
+        $(document.writeForm).submit();
+    }
+}
 /*닉네임 중복*/
 const $joinInputNickname = $(".nick-name");
 const $errorNickname = $(".err-nickname");
@@ -442,7 +454,7 @@ $joinInputNickname.on("blur",function(){$.ajax({
             $errorNickname.css('display', 'block');
             checkAll[11] = false;
 
-        }else if($joinInputId.val().length < 1){
+        }else if($joinInputNickname.val().length < 1){
             $errorNickname.css('display', 'block');
             $errorNickname.css('color', 'red');
             message = "필수 입력 사항입니다";
@@ -452,7 +464,7 @@ $joinInputNickname.on("blur",function(){$.ajax({
             $errorNickname.css('display', 'block');
             $errorNickname.css('color', '#2bb673');
             checkAll[11] = true;
-            changeButton();
+
         }
         $errorNickname.text(message);
         console.log("checkNickname 들어옴");
@@ -494,7 +506,7 @@ $joinInputPhoneNum.on("blur",function(){$.ajax({
             $errorPhoneNum.css('display', 'block');
             $errorPhoneNum.css('color', '#2bb673');
             checkAll[5] = true;
-            changeButton();
+
         }
         $errorPhoneNum.text(message);
         console.log("checkPhone 들어옴");
@@ -507,13 +519,13 @@ $joinInputPhoneNum.on("blur",function(){$.ajax({
 
 
 /* 모든 정보가 있어야만 클릭 가능*/
-function changeButton(){
-    if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11]){
-        $(".join").attr("disabled", false);
-    } else {
-        $(".join").attr("disabled", true);
-    }
-}
+// function changeButton(){
+//     if(checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11]){
+//         $(".join-btn").attr("disabled", false);
+//     } else {
+//         $(".join").attr("disabled", true);
+//     }
+// }
 
 
 
