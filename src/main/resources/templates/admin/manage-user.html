@@ -93,15 +93,21 @@
             <div class="user-list-contents">
                 <div class="member-input-wrap">
                     <div class="member-delete-button-wrap">
-                        <input class="member-delete-button" type="button" value="회원 탈퇴">
+                        <input class="member-delete-button admin-delete-button" onclick="openModalDelete()" type="button" value="회원 탈퇴">
                     </div>
-
+                    <div id="admin-my-modal" class="admin-modal">
+                        <div class="admin-modal-content">
+                            <p id="delete-check"></p>
+                            <button class="admin-delete-check" onclick="deleteItem()">확인</button>
+                            <button class="admin-delete-cancel" onclick="closeModal()">취소</button>
+                        </div>
+                    </div>
                     <div class="member-search-wrap">
                         <div class="search-border">
                             <img id="search-icon" alt="search" src="/css/admin/images/search-icon.png">
                             <form class="member-search-form" name="search-form" >
                                 <input class="member-search keyword" name="keyword" type="text" placeholder="이름 검색">
-                                <button id="search-button" type="button">검색</button>
+                                <button id="search-button" type="button" style="display:none;">검색</button>
                             </form>
                         </div>
                     </div>
@@ -135,16 +141,6 @@
                     </div>
 
                     <!--여기부터 내용-->
-                    <!--div class="item-list-contents">
-                        <div class="checkbox-zip">
-                            <input type="checkbox" id="check1" class="normal" value="">
-                        </div>
-                        <div class="user-num"></div>
-                        <div class="user-name"></div>
-                        <div class="user-email"></div>
-                        <div class="user-nickname"></div>
-                        <div class="user-region"></div>
-                    </div>-->
                 </div>
                 <div class="page-button-box"></div>
                 </div>
@@ -165,14 +161,12 @@
 
     load(page, keyword);
 
-    $(document).ready(function() {
-        // 검색창에서 키보드를 눌렀을 때
-        $('.member-search-form').on('keydown', function(e) {
-            page = 1;
-            if (e.keyCode == 13) { // Enter 키를 눌렀을 때
-                e.preventDefault(); // 기본 이벤트 막기
-            }
-        });
+    // 검색창에서 키보드를 눌렀을 때
+    $('.member-search-form').on('keydown', function(e) {
+        page = 1;
+        if (e.keyCode == 13) { // Enter 키를 눌렀을 때
+            e.preventDefault(); // 기본 이벤트 막기
+        }
     });
 
     function showList(memberDTOS) {
@@ -226,8 +220,8 @@
         $('.page-button').on('click', function(e) {
             e.preventDefault();
             page = $(this).data('page');
-            console.log(page);
-            load(page);
+            keyword = $memberSearch.val();
+            load(page,keyword);
             $('.page-button.active').removeClass('active');
             $(this).addClass('active');
         }).on('mouseenter', function() {
@@ -266,7 +260,7 @@
 
     /* delete 버튼 클릭 시 ajax실행*/
 
-    $('.member-delete-button').on('click', function () {
+    $('.admin-delete-check').on('click', function () {
         var checkedItems = [];
 
 // 체크박스 요소들을 가져옵니다.
@@ -294,6 +288,46 @@
             });
         }
     });
+
+    /*삭제 버튼 모달*/
+    // 모달창 열기 함수
+    function openModalDelete() {
+        var checkedItems = [];
+        var message = document.getElementById("delete-check");
+        // 체크박스 요소들을 가져온다.
+        var checkboxes = document.querySelectorAll('.item-list-contents input[type="checkbox"]');
+        // 체크된 항목이 없으면 모달을 띄웁니다.
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedItems.push(checkbox.value); // 체크된 항목의 부모 요소인 item-list-contents를 배열에 추가합니다.
+            }
+        });
+        if (checkedItems.length === 0) {
+            message.innerText = "선택된게 없습니다.";
+            document.getElementById("admin-my-modal").style.display = "block";
+            document.getElementsByClassName("admin-delete-cancel")[0].style.display = "none";
+            return;
+        } else {
+            message.innerText = "정말 삭제하시겠습니까?";
+            document.getElementById("admin-my-modal").style.display = "block";
+            document.getElementsByClassName("admin-delete-cancel")[0].style.display = "inline-block";
+        }
+    }
+
+    // 모달창 닫기 함수
+    function closeModal() {
+        document.getElementById("admin-my-modal").style.display = "none";
+    }
+
+    // 삭제 함수
+    function deleteItem() {
+        // 여기에 삭제 작업 코드를 작성
+        // 삭제 작업 후 모달창을 닫는 코드
+        closeModal();
+    }
+
+
 
 </script>
 </html>

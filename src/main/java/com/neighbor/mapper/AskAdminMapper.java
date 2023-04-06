@@ -23,10 +23,10 @@ public interface AskAdminMapper {
     public void delete(Long askAdminId);
 
 // 전체 질문 수
-    public Integer countAll(@Param("keyword") String keyword);
+    public int countAll(@Param("keyword") String keyword);
 
 //    답변 대기 중인 질문 수
-    public Integer count(@Param("keyword") String keyword);
+    public int count(@Param("keyword") String keyword);
 
 //    대시보드 문의사항 부분조회
     public List<AskAdminDTO> selectAllBy();

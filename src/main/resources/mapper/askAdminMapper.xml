@@ -55,6 +55,9 @@
         select count(distinct ask_admin_id) countAnswerWaitAsks
         from tbl_ask_admin
         where ask_admin_status = 0
+        <if test="keyword!=null">
+            and ask_admin_title like concat('%',#{keyword}, '%')
+        </if>
     </select>
 
     <delete id="delete">
