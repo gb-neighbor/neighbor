@@ -55,7 +55,7 @@ public class MemberController {
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("memberVO")) {
                     req.getSession().setAttribute("memberVO", Long.valueOf(cookie.getValue()));
-                    return "redirect: /main/main";
+                    return "redirect:/main";
                 }
             }
         }
@@ -101,7 +101,7 @@ public class MemberController {
     public String signUp(MemberVO memberVO, HttpSession httpSession) {
         httpSession.invalidate();
         memberService.signUp(memberVO);
-        return "redirect:/main";
+        return "redirect:/members/login";
     }
 
     // 계정정보가 없을시 알림 페이지 이동

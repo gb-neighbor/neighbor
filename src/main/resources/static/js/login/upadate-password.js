@@ -15,6 +15,7 @@ $passwordInput.keyup(function(e){
     // 아무것도 입력하지 않았을때
     if(!$value){
         $errPassword.text("비밀번호를 입력해주세요");
+        checkAll[0] = false;
     } else if($value.length<10 || $value.length>20){
         $errPassword.text("비밀번호는 10자 이상 20자 이하로 입력해주세요")
         checkAll[0] = false;
