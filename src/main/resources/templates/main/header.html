@@ -12,6 +12,7 @@
     <!-- 메인 페이지 헤더 부분에 회색줄 -->
     <nav class="header-grey-line">
         <div class="header-grey-line-inner">
+            <ul class="header-logIn-signUp" style="display: block">
             <ul class="header-logIn-signUp">
                 <li class="header-admin">
                     <a th:if="${session.memberVO == 1}" th:href="@{/admin/dashboard/list}">관리자페이지</a>
