@@ -313,6 +313,7 @@ function appendList(boardDTOList) {
 // 페이지 로딩 시 초기 리스트를 불러옴
 boardService.getList(function(boardDTOList) {
     appendList(boardDTOList);
+    getProfileImage();
 });
 
 // 검색창에서 키보드를 눌렀을 때
@@ -364,6 +365,7 @@ $("button[name=search]").on("click", function(){
                     console.log(page)
                     boardService.getList(function(boardDTOList) {
                         appendList(boardDTOList);
+                        getProfileImage()
                     });
                 }
             }
@@ -390,6 +392,7 @@ $("select[name=gugun]").on("change", function () {
                     console.log(page)
                     boardService.getList(function(boardDTOList) {
                         appendList(boardDTOList);
+                        getProfileImage()
                     });
                 }
             }
@@ -397,7 +400,7 @@ $("select[name=gugun]").on("change", function () {
     });
 });
 
-
+getProfileImage()
 //지도
 $(".input-gugun").on("click", function () {
     gugun = $(this).prev().val();
@@ -441,6 +444,7 @@ $(window).on('scroll', function() {
             console.log(page)
             boardService.getList(function(boardDTOList) {
                 appendList(boardDTOList);
+                getProfileImage()
             });
         }
     }
@@ -475,7 +479,6 @@ function generateStarHtml(avgScore) {
     }
     return stars;
 }
-
 function getProfileImage(){
     $('.thumbs1').each(function () {
         let boardFilePath = $(this).data('board-file-path');
