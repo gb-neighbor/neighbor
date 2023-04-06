@@ -50,6 +50,7 @@ const replyService=(function(){
 function showReplys(replyDTO){
     let replyList = "";
     replyDTO.replyDTOS.forEach(reply => {
+
         replyList += `
                 <ul class="my_review">
                 <li class="review_num">${reply.replyId}</li>
@@ -62,14 +63,14 @@ function showReplys(replyDTO){
                     <a class="detail_link" href="/board/detail/${reply.boardId}">
                        ${reply.replyContent}
                     </a>
-                </li>`
+                </li><li style="width:15%;">`
             for (let i = 0; i < `${reply.replyScore}`; i++) {
                 replyList += "<img src='/css/mypage/images/star.png'>"
             }
             for (let i = 0; i < (5-`${reply.replyScore}`); i++) {
                 replyList += "<img src='/css/mypage/images/grey-star.png'>"
             }
-        replyList +=`
+        replyList +=`</li>
             <li class="review_date">${reply.replyUpdateDate}</li>
         </ul>
         `;
@@ -88,7 +89,7 @@ function showPage(pageDTO) {
     }
     for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
         if (criteria.page === i) {
-            text += `<a class="page-button" data-page="${i}">${i}</a>`;
+            text += `<a class="page-button active" data-page="${i}">${i}</a>`;
         } else {
             text += `<a class="page-button" data-page="${i}">${i}</a>`;
         }
@@ -103,6 +104,13 @@ function showPage(pageDTO) {
     $page.on('click', function(e) {
         e.preventDefault();
         page = $(this).text();
+        console.log(page)
+        if(page=='>'){
+            page = `${pageDTO.endPage + 1}`;
+        }
+        if(page=='<'){
+            page = `${pageDTO.startPage - 10}`;
+        }
         replyService.list(showReplys);
         $('.page-button.active').removeClass('active');
         $(this).addClass('active');

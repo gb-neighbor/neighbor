@@ -88,7 +88,7 @@ function showMyfoods(myfoods){
                         <span class="areA">
                             <a class="product_title" href="/board/detail/${myfood.boardId}">${myfood.boardTitle}</a>
                         </span>
-                        <span class="price">${myfood.boardPrice}</span>
+                        <span class="price">${myfood.boardPrice} 원</span>
                         <div class="score">`
 
         for (let i = 0; i < `${myfood.avgScore}`; i++) {
