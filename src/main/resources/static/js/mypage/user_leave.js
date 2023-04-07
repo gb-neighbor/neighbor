@@ -15,25 +15,32 @@ function collapse(element) {
 }
 
 /* 모달창 */
-let modalCheck;
-function showWarnModal(modalMessage){
-    modalCheck = false;
-    $("div#content-wrap").html(modalMessage)
-    $("div.warn-modal").css("animation", "popUp 0.5s");
-    $("div.modal").css("display", "flex").hide().fadeIn(500);
-    setTimeout(function(){modalCheck = true;}, 500);
+/* 탈퇴버튼 클릭했을 때 */
+/*삭제 버튼 모달*/
+// 모달창 열기 함수
+function openModalDelete() {
+    document.getElementById("user-my-modal").style.display = "block";
 }
 
-$("div.modal").on("click", function(){
-    if(modalCheck){
-        $("div.warn-modal").css("animation", "popDown 0.5s");
-        $("div.modal").fadeOut(500);
-    }
+// 모달창 닫기 함수
+function closeModal() {
+    document.getElementById("user-my-modal").style.display = "none";
+}
+
+// 삭제 함수
+function deleteItem() {
+    // 여기에 삭제 작업 코드를 작성
+    // 삭제 작업 후 모달창을 닫는 코드
+    closeModal();
+}
+
+// 탈퇴하기 버튼에 대한 이벤트 처리
+document.querySelector('.leave_btn').addEventListener('click', function(e) {
+    e.preventDefault(); // 폼 전송을 막음
+    openModal();
 });
 
-/* 탈퇴버튼 클릭했을 때 */
-$('.leave_btn').on("click", function (e) {
-    e.preventDefault();
-    modalMessage = "탈퇴완료 되었습니다.";
-    showWarnModal(modalMessage);
-});
+// 모달창 내의 버튼에 대한 이벤트 처리
+const modalContent = document.querySelector('.user-modal-content');
+modalContent.querySelector('.user-delete-check').addEventListener('click', deleteItem);
+modalContent.querySelector('.user-delete-cancel').addEventListener('click', closeModal);

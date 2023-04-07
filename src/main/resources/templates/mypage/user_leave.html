@@ -143,7 +143,13 @@
                 <form th:action="@{/mypage/leave(memberId=${memberInfo.memberId})}" name="leave" method="post">
                     <div class="leave_site_btns">
                         <a th:href="@{/main}" class="go_on_btn">서비스 계속 이용하기</a>
-                        <button type="submit" class="leave_btn">탈퇴하기</button>
+                        <button type="button" class="leave_btn user-delete-button" onclick="openModalDelete()">탈퇴하기</button>
+                        <div id="user-my-modal" class="user-modal">
+                            <div class="user-modal-content">
+                                <p style="margin-bottom: 20px;">탈퇴가 완료되었습니다.</p>
+                                <button class="user-delete-check" onclick="deleteItem()">확인</button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
