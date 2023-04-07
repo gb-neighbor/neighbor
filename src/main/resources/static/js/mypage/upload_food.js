@@ -47,18 +47,32 @@ const foodService=(function(){
 foodService.list(showMyfoods);
 
 
+// $(window).scroll(
+//     function() {
+//         console.log("$(window).scrollTop()"+$(window).scrollTop())
+//         console.log("$(document).height()"+$(document).height())
+//         console.log("$(window).height()"+$(window).height())
+//         console.log("$(document).height() - $(window).height()"+($(document).height() - $(window).height()))
+//         if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height() - 807) {
+//             globalThis.page++;
+//             console.log("here2");
+//             console.log("page: "+globalThis.page);
+//             foodService.list(showMyfoods);
+//         }
+//     }
+// );
 
-$(window).scroll(
-    function() {
-        if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height() - 312) {
-            globalThis.page++;
-            console.log("here2");
-            console.log("page: "+globalThis.page);
+$(window).on('scroll', function() {
+    let zoomLevel = $('body').css('zoom');
+    if (zoomLevel === '0.8') {
+        if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+            console.log("스크롤")
+            page++;
+            console.log(page)
             foodService.list(showMyfoods);
         }
     }
-);
-
+});
 
 function showMyfoods(myfoods){
 
