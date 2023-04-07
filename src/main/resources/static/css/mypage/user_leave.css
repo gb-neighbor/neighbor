@@ -455,3 +455,53 @@ textarea::placeholder {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/*탈퇴 모달*/
+.user-modal {
+    display: none; /* 모달창을 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 7px;
+}
+
+/* 모달창 내용 스타일 */
+.user-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 25%;
+    text-align: center;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+/* 버튼 스타일 */
+
+.user-delete-cancel{
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #009a3e;
+    color: #fff;
+    cursor: pointer;
+}
+.user-delete-check{
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #009a3e;
+    color: #fff;
+    cursor: pointer;
+}
+/*탈퇴 모달 끝*/
