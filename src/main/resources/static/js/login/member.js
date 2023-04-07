@@ -8,7 +8,8 @@ function sendLogin(){
     $('.password').val(btoa($('.password').val()));
     document.loginForm.submit();
 }
-
+// const newPassword = btoa($('.pw').val());
+// $('.pw').val(newPassword);
 
 /* 회원가입시 비밀번호 암호화 */
 function sendJoin(){
@@ -435,8 +436,7 @@ function send() {
 
     $joinInputs.trigger("blur");
     if (checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11] && checkAll[12]) {
-        sendJoin();
-        $(document.writeForm).submit();
+        registerComplete();
     }
 }
 
@@ -587,6 +587,46 @@ function toStringByFormatting(source, delimiter = '/') {
 
     return [year, month, day].join(delimiter);
 }
+
+
+//모달
+let modalCheck;
+function showWarnModal(modalMessage){
+    modalCheck = false;
+    $("div#content-wrap").html(modalMessage)
+    $("div.warn-modal").css("animation", "popUp 0.5s");
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function(){modalCheck = true;}, 500);
+    console.log("들ㅇ옴")
+}
+
+$(".confirm-btn").on("click", function(){
+    if(modalCheck){
+        $("div.warn-modal").css("animation", "popDown 0.5s");
+        $("div.modal").fadeOut(500);
+    }
+});
+
+let changeForm = $("form[name='writeForm']");
+
+const $modalOn = $(".join-btn");
+const $confirm = $(".confirm-btn");
+
+function registerComplete(){
+
+        let modalMessage = '';
+
+        modalMessage = "회원가입이 완료되었습니다.";
+        showWarnModal(modalMessage);
+
+
+    $(".confirm-btn").on('click', function () {
+        console.log("또들어옴")
+        sendJoin();
+        changeForm.submit();
+    });
+
+};
 
 
 
