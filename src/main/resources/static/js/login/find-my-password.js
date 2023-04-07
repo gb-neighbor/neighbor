@@ -33,4 +33,41 @@ $email.keyup(function(){
         changeButton();
     }
 
-})
+});
+
+// 모달창
+let modalCheck;
+function showWarnModal(modalMessage){
+    modalCheck = false;
+    $("div#content-wrap").html(modalMessage)
+    $("div.warn-modal").css("animation", "popUp 0.5s");
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function(){modalCheck = true;}, 500);
+    console.log("들ㅇ옴")
+}
+
+$(".confirm-btn").on("click", function(){
+    if(modalCheck){
+        $("div.warn-modal").css("animation", "popDown 0.5s");
+        $("div.modal").fadeOut(500);
+    }
+});
+
+let findForm = $("form[name='find-password']");
+
+const $modalOn = $(".change-button");
+const $confirm = $(".confirm-btn");
+
+$modalOn.on('click', function (e) {
+    e.preventDefault();
+    let modalMessage = '';
+
+    modalMessage = "이메일을 확인해주세요.";
+    showWarnModal(modalMessage);
+
+});
+
+$confirm.on('click', function () {
+    console.log("또들어옴")
+    findForm.submit();
+});
