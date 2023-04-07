@@ -39,7 +39,7 @@
                         </div>
                     </a>
 
-                    <a class="no-collapsible mouseOnEffect" th:href="@{/admin/member/list}">
+                    <a class="mouseOnEffect" th:href="@{/admin/member/list}">
                         <div id="middle-box-dashBoard-bar" class="side-bar">
                             <div class="icon-gap">
                                 <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
@@ -48,7 +48,7 @@
                         </div>
                     </a>
 
-                    <button type="button" class="collapsible" onclick="collapse(this);">
+                    <button type="button" class="mouseOnEffect collapsible" onclick="collapse(this);">
                         <div class="icon-gap">
                             <img class="side-icons" alt="ask-answer"
                                  src="/css/admin/images/ask-answer-icon2.png">
@@ -62,7 +62,7 @@
                         <p><a th:href="@{/admin/reply/list}" style="color: white">후기 목록</a></p>
                     </div>
 
-                    <a class="no-collapsible mouseOnEffect" th:href="@{/admin/ask/list}">
+                    <a class="mouseOnEffect" th:href="@{/admin/ask/list}">
                         <div id="middle-box-dashBoard-bar" class="side-bar">
                             <div class="icon-gap">
                                 <img class="side-icons" alt="ask-board" src="/css/admin/images/ask-board-icon.png">
@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="total-mentor">
-                    <p>전체 게시글</p>
+                    <p>게시글 수</p>
                     <p class="total-mentor-num"></p>
                 </div>
 
@@ -155,11 +155,11 @@
 
                     <!-- 여기부터 내용 -->
                 </div>
-                    <div class="page-button-box"></div>
-                </div>
+                <div class="page-button-box"></div>
             </div>
         </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/manage-board.js"></script>

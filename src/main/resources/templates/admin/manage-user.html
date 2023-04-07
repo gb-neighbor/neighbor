@@ -21,32 +21,32 @@
                 <div id="middle-box-contents">
                     <div class="side-top-margin"></div>
                     <a class="mouseOnEffect" th:href="@{/main}">
-                                <div id="middle-box-site-shortcut-bar" class="side-bar">
-                                    <div class="icon-gap">
-                                        <img class="side-icons" alt="home" src="/css/admin/images/home.png">
-                                    </div>
-                                    사이트 바로가기
-                                </div> 
-                            </a>
+                        <div id="middle-box-site-shortcut-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="home" src="/css/admin/images/home.png">
+                            </div>
+                            사이트 바로가기
+                        </div>
+                    </a>
 
                     <a class="mouseOnEffect" th:href="@{/admin/dashboard/list}">
-                                <div id="middle-box-dashBoard-bar" class="side-bar">
-                                    <div class="icon-gap">
-                                        <img class="side-icons" alt="dash-board"
-                                             src="/css/admin/images/dashBoard-icon.png">
-                                    </div>
-                                    대시보드
-                                </div>
-                            </a>
-
-                        <a class="no-collapsible mouseOnEffect" th:href="@{/admin/member/list}">
-                            <div id="middle-box-dashBoard-bar" class="side-bar">
-                                <div class="icon-gap">
-                                    <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
-                                </div>
-                                회원관리
+                        <div id="middle-box-dashBoard-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="dash-board"
+                                     src="/css/admin/images/dashBoard-icon.png">
                             </div>
-                        </a>
+                            대시보드
+                        </div>
+                    </a>
+
+                    <a class="mouseOnEffect" th:href="@{/admin/member/list}">
+                        <div id="middle-box-dashBoard-bar" class="side-bar">
+                            <div class="icon-gap">
+                                <img class="side-icons" alt="user" src="/css/admin/images/user-icon.png">
+                            </div>
+                            회원관리
+                        </div>
+                    </a>
 
                     <button type="button" class="collapsible" onclick="collapse(this);">
                         <div class="icon-gap">
@@ -62,7 +62,7 @@
                         <p><a th:href="@{/admin/reply/list}" style="color: white">후기 목록</a></p>
                     </div>
 
-                    <a class="no-collapsible mouseOnEffect" th:href="@{/admin/ask/list}">
+                    <a class="mouseOnEffect" th:href="@{/admin/ask/list}">
                         <div id="middle-box-dashBoard-bar" class="side-bar">
                             <div class="icon-gap">
                                 <img class="side-icons" alt="ask-board" src="/css/admin/images/ask-board-icon.png">
@@ -143,10 +143,10 @@
                     <!--여기부터 내용-->
                 </div>
                 <div class="page-button-box"></div>
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
