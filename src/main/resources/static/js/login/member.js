@@ -268,11 +268,12 @@ const $helpEmail = $(".err-email")
 
 var regExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-$email.keyup(function(){
+$email.blur(function(){
     if( !$email.val() ){
         $helpEmail.text("이메일을 입력해주세요")
         $errEmail.css('color', 'red')
         $email.focus();
+        checkAll[6] = false;
     } else if (!regExp.test($email.val())) {
         $helpEmail.text("이메일이 유효하지 않습니다.")
         $errEmail.css('color', 'red')
@@ -281,11 +282,11 @@ $email.keyup(function(){
     } else {
         $helpEmail.text("");
         checkAll[6] = true;
-
-
     }
 
 })
+
+
 
 
 console.log($(".check span"))
@@ -316,7 +317,6 @@ $(".check-all span").on("click", function () {
         $(".check-all span").attr("class", "span-checked")
         $(".check span").attr("class", "span-checked")
         checkAll[8] = true;
-        changeButton()
     } else {
         $(".check-all span").attr("class", "span-check")
         $(".check span").attr("class", "span-check")
@@ -368,6 +368,7 @@ $joinInputId.on("blur",function(){$.ajax({
 const $inputEmail = $(".email");
 const $errEmail = $(".err-email");
 
+
 $inputEmail.on("blur", function(){$.ajax({
     url:"/members/checkEmail" ,
     data: {"memberEmail": $inputEmail.val()},
@@ -392,10 +393,12 @@ $inputEmail.on("blur", function(){$.ajax({
             checkAll[10] = false;
 
         } else{
+
             message = "사용 가능한 이메일입니다.";
             $errEmail.css('display', 'block');
             $errEmail.css('color', '#2bb673');
             checkAll[10] = true;
+            console.log("------이메일 중복 아님---------" + checkAll[10]);
 
         }
 
@@ -406,6 +409,8 @@ $inputEmail.on("blur", function(){$.ajax({
     }
 });
 });
+
+
 
 // //로그인 시 계정이 존재하지 않을 시
 // const $submitLogin = $(".login-button");
@@ -429,16 +434,7 @@ $inputEmail.on("blur", function(){$.ajax({
 // });
 // });
 
-// /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
-const $joinInputs = $( ".regionSelect, input[type=text], input[type=password], input[type=checkbox]", );
-function send() {
-
-    $joinInputs.trigger("blur");
-    if (checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11] && checkAll[12]) {
-        registerComplete();
-    }
-}
 
 
 
@@ -614,10 +610,10 @@ const $confirm = $(".confirm-btn");
 
 function registerComplete(){
 
-        let modalMessage = '';
+    let modalMessage = '';
 
-        modalMessage = "회원가입이 완료되었습니다.";
-        showWarnModal(modalMessage);
+    modalMessage = "회원가입이 완료되었습니다.";
+    showWarnModal(modalMessage);
 
 
     $(".confirm-btn").on('click', function () {
@@ -627,6 +623,32 @@ function registerComplete(){
     });
 
 };
+
+
+
+// /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
+
+const $joinInputs = $( ".regionSelect, input[type=text], input[type=password], input[type=checkbox]", );
+function send() {
+
+    $joinInputs.trigger("blur");
+    console.log(checkAll[0]);
+    console.log(checkAll[1]);
+    console.log(checkAll[2]);
+    console.log(checkAll[3]);
+    console.log(checkAll[4]);
+    console.log(checkAll[5]);
+    console.log(checkAll[6]);
+    console.log(checkAll[7]);
+    console.log(checkAll[8]);
+    console.log(checkAll[9]);
+    console.log(checkAll[10]);
+    console.log(checkAll[11]);
+    console.log(checkAll[12]);
+    if (checkAll[0] && checkAll[1] && checkAll[2] && checkAll[3] && checkAll[4] && checkAll[5] && checkAll[6] && checkAll[7] && checkAll[8] && checkAll[9] && checkAll[10] && checkAll[11] && checkAll[12]) {
+        registerComplete();
+    }
+}
 
 
 
