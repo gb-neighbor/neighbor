@@ -42,9 +42,9 @@ public class MemberController {
     }
 
     // 카카오로그인시 없으면 회원가입 페이지로 이동
-    @GetMapping("kakao-register")
+    @GetMapping("oauth-register")
     public String goKakaoSignUp(){
-        return "/login/join";
+            return "/login/join";
     }
 
     //메인에서 로그인으로 이동
