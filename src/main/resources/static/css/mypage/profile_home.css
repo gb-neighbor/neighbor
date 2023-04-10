@@ -208,6 +208,9 @@ a{
 
 /*컨텐츠*/
 
+#profile{
+    display: none;
+}
 
 .profile_image_section{
     position: relative;

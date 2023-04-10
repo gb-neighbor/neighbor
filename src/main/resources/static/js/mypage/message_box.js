@@ -416,16 +416,27 @@ function changeToText(number, boardId){
 
 /************************************************************************************************/
 
-$(window).scroll(
-    function() {
-        // console.log("Math.ceil($(window).scrollTop())"+Math.ceil($(window).scrollTop()));
-        // console.log("$(document).height()"+$(document).height());
-        // console.log("$(window).height()"+$(window).height());
-        // console.log("$(document).height() - $(window).height()"+($(document).height() - $(window).height()));
+// $(window).scroll(
+//     function() {
+//         // console.log("Math.ceil($(window).scrollTop())"+Math.ceil($(window).scrollTop()));
+//         // console.log("$(document).height()"+$(document).height());
+//         // console.log("$(window).height()"+$(window).height());
+//         // console.log("$(document).height() - $(window).height()"+($(document).height() - $(window).height()));
+//
+//         if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height()-232) {
+//             globalThis.listPage++;
+//             messageService.getMessageListByMemberId(showMessageRooms);
+//         }
+//     }
+// );
 
-        if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height()-232) {
+$(window).on('scroll', function() {
+    let zoomLevel = $('body').css('zoom');
+    if (zoomLevel === '0.8') {
+        if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && globalThis.listPage > 0) {
+            console.log("스크롤")
             globalThis.listPage++;
             messageService.getMessageListByMemberId(showMessageRooms);
         }
     }
-);
+});
