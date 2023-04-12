@@ -24,49 +24,6 @@ public class AdminController {
     private final AskAdminAnswerService askAdminAnswerService;
     private final BoardService boardService;
     private final ReplyService replyService;
-//
-//    @GetMapping("form")
-//    public void form(Model model, int number) {
-//        model.addAttribute("number",number);
-//    }
-//
-
-    /*AskAdmin 시작*/
-
-    //   문의목록 문의사항 삭제
-//    @DeleteMapping("ask-admin-delete")
-//    public void askAdminDelete(@PathVariable Long askAdminId) {
-//        askAdminService.delete(askAdminId);
-//    }
-
-
-    // 문의목록 문의사항 답변대기중 조회
-//    @GetMapping("ask-admin-wait-list")
-//    public String askAdminShowList(Criteria criteria, Model model) {
-//        if(criteria.getPage() == 0){
-//            criteria.create(1,6);
-//        }
-//
-//        model.addAttribute("Asks", askAdminService.getListAll(criteria.create(criteria.getPage(), criteria.getAmount()))); // 업데이트된 Criteria 객체 전달
-//        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, askAdminService.getCountAll()));
-//
-//        return "admin/manage-qna";
-//    }
-//
-//
-//    //    문의목록 총 질문 수
-//    @GetMapping("ask-admin-countAll")
-//    public Integer getAskAdminTotal() {
-//        return askAdminService.getCountAll();
-//    }
-//
-//    //    문의목록 답변 대기 중인 질문 수
-//    @GetMapping("ask-admin-count")
-//    public Integer getWaitAnswerTotal() {
-//        return askAdminService.getCount();
-//    }
-
-    /*AskAdmin 끝*/
 
     /*member 시작*/
 
