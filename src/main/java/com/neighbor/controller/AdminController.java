@@ -30,7 +30,7 @@ public class AdminController {
     /*처음 클릭했을때 화면으로 가는 일반 컨트롤러*/
     @GetMapping("member/list")
     public String memberShowList() {
-        return "admin/manage-user";
+        return "admin/manage-member";
     }
 
     /* 후기작성 ajax로 리스트를 불러오는 컨트롤러 */
