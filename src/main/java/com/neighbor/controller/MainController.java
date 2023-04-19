@@ -26,7 +26,7 @@ public class MainController {
         log.info(String.valueOf(model.getAttribute("regionAllRecentLists")));
         log.info(String.valueOf(model.getAttribute("replyHighAvgLists")));
         log.info(String.valueOf(model.getAttribute("randomRecommendLists")));
-        return "/main/main";
+        return "main/main";
     }
 
 }

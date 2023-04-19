@@ -168,6 +168,7 @@
                 <!-- =clearfix -->
                 <!-- 게시물 하나 -->
                 <h1>게시물이 존재하지 않습니다.</h1>
+
                 <!-- 게시물하나 끝 -->
                 <!-- after있음 -->
             </ul>
@@ -258,6 +259,9 @@
 <div th:insert="~{/main/footer:: footer}"></div>
 </body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    let randomRecommendLists = $[[randomRecommendLists]];
+</script>
 <script src="/js/main/main.js"></script>
 <script th:inline="javascript">
     $(document).ready(function() {
