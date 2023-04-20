@@ -437,39 +437,34 @@ function appendList(regionSelectRecentLists) {
     let boardText3 = '';
     if(regionSelectRecentLists[0] == null){
         boardText3 += `<h3 style="display: flex; align-items: center; justify-content: center; padding-top: 110px; padding-bottom: 110px; font-size: 30px; font-weight: 500; ">게시물이 존재하지 않습니다.</h3>`
-        $ul.append(boardText3);
     }else {
-
         regionSelectRecentLists.forEach(regionSelectRecentList => {
-
-            console.log(regionSelectRecentList.boardTitle);
-            console.log(regionSelectRecentList.memberNickname);
             boardText3 += `
-                    <li> 
-                        <a href="http://localhost:10000/board/detail/${regionSelectRecentList.boardId}" class="recent-food">
-                            <div class="recent-food-picture-wrapper">
-                                <div class="recent-food-picture">
-                                    <img class="recent-food-image" src="/board-files/display?fileName=/boards/${regionSelectRecentList.boardFilePath}/${regionSelectRecentList.boardFileUuid}_${regionSelectRecentList.boardFileOriginalName}" />
-                                    <div class="recent-food-info-wrap">
-                                        <p class="recent-food-picture-title" >${regionSelectRecentList.boardTitle}</p>
-                                        <a href="http://localhost:10000/board/list/member/${regionSelectRecentList.memberId}"/>
-                                            <div class="recent-food-user-picture">
-                                                <img class="recent-food-profile-image" src="/members/display?fileName=${regionSelectRecentList.memberProfilePath}/${regionSelectRecentList.memberProfileUuid}_${regionSelectRecentList.memberProfileOriginalName}" style=" width: 100%; height: 100%;"/>
-                                            </div>
-                                            <p class="recent-food-user-nickname" >${regionSelectRecentList.memberNickname}</p>
-                                        </a>
-                                    </div>
+                <li> 
+                    <a href="/board/detail/${regionSelectRecentList.boardId}" class="recent-food">
+                        <div class="recent-food-picture-wrapper">
+                            <div class="recent-food-picture">
+                                <img class="recent-food-image" src="/board-files/display?fileName=/boards/${regionSelectRecentList.boardFilePath}/${regionSelectRecentList.boardFileUuid}_${regionSelectRecentList.boardFileOriginalName}" />
+                                <div class="recent-food-info-wrap">
+                                    <p class="recent-food-picture-title" >${regionSelectRecentList.boardTitle}</p>
+                                    <a href="board/list/member/${regionSelectRecentList.memberId}"/>
+                                        <div class="recent-food-user-picture">
+                                            <img class="recent-food-profile-image" src="/members/display?fileName=${regionSelectRecentList.memberProfilePath}/${regionSelectRecentList.memberProfileUuid}_${regionSelectRecentList.memberProfileOriginalName}" style=" width: 100%; height: 100%;"/>
+                                        </div>
+                                        <p class="recent-food-user-nickname" >${regionSelectRecentList.memberNickname}</p>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
-                    </li>
-        `;
+                        </div>
+                    </a>
+                </li>
+            `;
             let profileUrl = '/members/display?fileName=' + regionSelectRecentList.memberProfilePath + '/t_' + regionSelectRecentList.memberProfileUuid + '_' + regionSelectRecentList.memberProfileOriginalName;
             $('.recent-food-content ul').find('.recent-food-user-picture').css('background-image', 'url(' + profileUrl + ')');
         });
     }
-    $ul.empty();
-    $ul.append(boardText3);
+
+    $ul.html(boardText3);
 
 }
 

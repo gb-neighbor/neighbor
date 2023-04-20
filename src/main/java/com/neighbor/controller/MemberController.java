@@ -38,13 +38,13 @@ public class MemberController {
     @GetMapping("register")
     public String goSignUp(HttpSession httpSession){
         httpSession.invalidate();
-        return "/login/join";
+        return "login/join";
     }
 
     // 카카오로그인시 없으면 회원가입 페이지로 이동
     @GetMapping("oauth-register")
     public String goKakaoSignUp(){
-            return "/login/join";
+            return "login/join";
     }
 
     //메인에서 로그인으로 이동
@@ -61,7 +61,7 @@ public class MemberController {
         }
 
 
-        return "/login/login";
+        return "login/login";
     }
 
 //    //로그인 실패시 로그인fail html로 이동
@@ -79,11 +79,11 @@ public class MemberController {
 
     // 아이디찾기 페이지로 이동
     @GetMapping("find-id")
-    public String goFindId() { return"/login/find-my-id";}
+    public String goFindId() { return"login/find-my-id";}
 
     // 아이디찾기 페이지로 이동
     @GetMapping("find-password")
-    public String goFindPassword() { return"/login/find-my-password";}
+    public String goFindPassword() { return"login/find-my-password";}
 
     // 비밀번호 변경 페이지로 이동
     @GetMapping("change-password")
@@ -93,7 +93,7 @@ public class MemberController {
         if(dbRandomkey.equals(memberRandomKey)){
             memberService.updateRandomKey(null, dbEmail);
         }
-        return"/login/update-password";
+        return"login/update-password";
     }
 
     //회원가입
@@ -107,7 +107,7 @@ public class MemberController {
     // 계정정보가 없을시 알림 페이지 이동
     @GetMapping("no-join")
     public String noJoin(){
-        return "/login/no-join";
+        return "login/no-join";
     }
 
 
@@ -153,7 +153,7 @@ public class MemberController {
         memberService.login(memberIdentification, memberPassword);
 
         if(memberService.login(memberIdentification, memberPassword) == null){
-            path = "/login/fail";
+            path = "login/fail";
         }else{
             MemberVO memberVO = memberService.findInfoByIdentification(memberIdentification);
 
@@ -248,6 +248,6 @@ public class MemberController {
     //네이버 로그인 비교 페이지로 이동
     @GetMapping("callback")
     public String naverLogin(){
-        return "/login/compare";
+        return "login/compare";
     }
 }
