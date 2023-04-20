@@ -3,12 +3,12 @@
 
 <h2>1. 기획 배경</h2>
 <div dir="auto" style="display: flex;">
-<img width="1180" alt="스크린샷 2022-12-27 오전 12 09 34" src="https://user-images.githubusercontent.com/122762472/233268724-52c63abb-eafe-44df-a173-c2dd995585c4.png" style = "width: 45%; height : 45%">
+<img width="1180" alt="스크린샷 2022-12-27 오전 12 09 34" src="https://user-images.githubusercontent.com/122762472/233271052-0c5c7132-5d41-460f-99fa-cef79298b72f.png" style = "width: 45%; height : 45%">
 </div>
 
 
 <h2>2. 기대 효과</h2>
-<img width="1161" alt="스크린샷 2022-12-27 오전 12 20 31" src="https://user-images.githubusercontent.com/122762472/233268843-cbe4f55a-08e3-41bd-9e05-5a9a2aad564e.png" style = "width: 45%; height : 45%">
+<img width="1161" alt="스크린샷 2022-12-27 오전 12 20 31" src="https://user-images.githubusercontent.com/122762472/233271146-a61e54a2-2d8b-4e3b-bad4-fb17ba64e077.png" style = "width: 45%; height : 45%">
 
 
 <h2>3. 프로젝트 사용 툴</h2>
